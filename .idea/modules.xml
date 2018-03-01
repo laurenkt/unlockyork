@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/unlock.iml" filepath="$PROJECT_DIR$/.idea/modules/unlock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/unlock_main.iml" filepath="$PROJECT_DIR$/.idea/modules/unlock_main.iml" group="unlock" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/unlock_test.iml" filepath="$PROJECT_DIR$/.idea/modules/unlock_test.iml" group="unlock" />
+    </modules>
+  </component>
+</project>
