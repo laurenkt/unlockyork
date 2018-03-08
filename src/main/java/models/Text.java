@@ -1,20 +1,16 @@
+package models;
 public class Text {
-    int xPosition;
-    int yPosition;
 
-    int x2Position;
-    int y2Position;
+    Position position;
+    Fonts font;
+    Colours colour;
 
-    String font;
+    String content;
 
-    boolean italic;
-    boolean bold;
-    boolean underline;
-
-    int textSize;
-
-    String colour;
-
-
-
+    public Text(Position position, Fonts font, Colours colour, String content) {
+        this.position = position;
+        this.font = font;
+        this.colour = colour;
+        this.content = content;
+    }
 }
