@@ -1,6 +1,7 @@
 version '1.0-SNAPSHOT'
 
 apply plugin: 'application'
+mainClassName = 'main.java.Kiosk'
 
 sourceCompatibility = 1.8
 
@@ -18,11 +19,19 @@ sourceSets {
         java {
             srcDirs = ['main/java']
         }
+
+        resources {
+            srcDirs = ['main/resources']
+        }
     }
 
     test {
         java {
             srcDirs = ['test/java']
+        }
+
+        resources {
+            srcDirs = ['test/resources']
         }
     }
 }
