@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: src.src-1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/build/libs/src-1.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

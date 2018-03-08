@@ -23,6 +23,8 @@ public class Kiosk extends Application {
 
         root.getChildren().add(mediaView);*/
 
+        System.out.println("Test");
+
         MapView root = new MapView(primaryStage, new Image(getClass().getResource("map.png").toExternalForm()));
 
         primaryStage.setTitle("Drag to pan the map");

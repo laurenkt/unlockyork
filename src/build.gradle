@@ -1,0 +1,28 @@
+version '1.0-SNAPSHOT'
+
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.jdom:jdom:2.0.0'
+    testCompile 'junit:junit:4.12'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['main/java']
+        }
+    }
+
+    test {
+        java {
+            srcDirs = ['test/java']
+        }
+    }
+}
