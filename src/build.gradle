@@ -1,0 +1,37 @@
+version '1.0-SNAPSHOT'
+
+apply plugin: 'application'
+mainClassName = 'main.java.Kiosk'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.jdom:jdom:2.0.0'
+    testCompile 'junit:junit:4.12'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['main/java']
+        }
+
+        resources {
+            srcDirs = ['main/resources']
+        }
+    }
+
+    test {
+        java {
+            srcDirs = ['test/java']
+        }
+
+        resources {
+            srcDirs = ['test/resources']
+        }
+    }
+}

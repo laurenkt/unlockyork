@@ -5,91 +5,88 @@ import com.sun.javafx.geom.transform.BaseTransform;
 import com.sun.javafx.jmx.MXNodeAlgorithm;
 import com.sun.javafx.jmx.MXNodeAlgorithmContext;
 import com.sun.javafx.sg.prism.NGNode;
-import javafx.application.Application;
-import javafx.event.EventHandler;
+import javafx.geometry.Bounds;
+import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
-import java.awt.event.MouseEvent;
+public class MapView extends ScrollPane {
+    private double scaleValue = 0.7;
+    private double zoomIntensity = 0.02;
+    private Node target;
+    private Node zoomNode;
 
-public class MapView extends StackPane {
-    public MapView(Stage stage, Image tiles) {
+    public MapView(Image tiles) {
         super();
+        this.target = new ImageView(tiles);
+        this.zoomNode = new Group(target);
+        setContent(outerNode(zoomNode));
 
-        // set the image as the child
-        getChildren().setAll(new ImageView(tiles));
+        setPannable(true);
+        setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        setFitToHeight(true); //center
+        setFitToWidth(true); //center
 
-        ScrollPane scroll = createScrollPane();
-        Scene scene = new Scene(scroll);
-
-        scene.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
-            @Override
-            public void handle(javafx.scene.input.MouseEvent event) {
-                System.out.println("Mouse Clicked");
-            }
-        });
-
-        scene.setOnMouseDragged(new EventHandler<javafx.scene.input.MouseEvent>() {
-            @Override
-            public void handle(javafx.scene.input.MouseEvent event) {
-                System.out.println("Mouse Dragged");
-            }
-        });
-
-        scene.setOnMouseEntered(new EventHandler<javafx.scene.input.MouseEvent>() {
-            @Override
-            public void handle(javafx.scene.input.MouseEvent event) {
-                System.out.println("Mouse Entered");
-            }
-        });
-
-        scene.setOnMouseExited(new EventHandler<javafx.scene.input.MouseEvent>() {
-            @Override
-            public void handle(javafx.scene.input.MouseEvent event) {
-                System.out.println("Mouse Exited");
-            }
-        });
-
-        scene.setOnMouseMoved(new EventHandler<javafx.scene.input.MouseEvent>() {
-            @Override
-            public void handle(javafx.scene.input.MouseEvent event) {
-                System.out.println("Mouse Moved");
-            }
-        });
-
-        scene.setOnMousePressed(new EventHandler<javafx.scene.input.MouseEvent>() {
-            @Override
-            public void handle(javafx.scene.input.MouseEvent event) {
-                System.out.println("Mouse Presssed");
-            }
-        });
-
-        scene.setOnMouseReleased(new EventHandler<javafx.scene.input.MouseEvent>() {
-            @Override
-            public void handle(javafx.scene.input.MouseEvent event) {
-                System.out.println("Mouse Released");
-            }
-        });
-
-        stage.setScene(scene);
-        stage.show();
+        updateScale();
     }
 
-    private ScrollPane createScrollPane() {
-        ScrollPane scrollPane = new ScrollPane();
-        // Make sure the content can be panned
-        scrollPane.setPannable(true);
-        // Hide the scroll bars
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        // link it to this stackpane
-        scrollPane.setContent(this);
-        return scrollPane;
+    private Node outerNode(Node node) {
+        Node outerNode = centeredNode(node);
+        outerNode.setOnScroll(e -> {
+            e.consume();
+            onScroll(e.getDeltaY(), new Point2D(e.getX(), e.getY()));
+        });
+        return outerNode;
     }
+
+    private Node centeredNode(Node node) {
+        VBox vBox = new VBox(node);
+        vBox.setAlignment(Pos.CENTER);
+        return vBox;
+    }
+
+    private void updateScale() {
+        target.setScaleX(scaleValue);
+        target.setScaleY(scaleValue);
+    }
+
+    private void onScroll(double wheelDelta, Point2D mousePoint) {
+        double zoomFactor = Math.exp(wheelDelta * zoomIntensity);
+
+        System.out.println(wheelDelta);
+
+        Bounds innerBounds = zoomNode.getLayoutBounds();
+        Bounds viewportBounds = getViewportBounds();
+
+        // calculate pixel offsets from [0, 1] range
+        double valX = this.getHvalue() * (innerBounds.getWidth() - viewportBounds.getWidth());
+        double valY = this.getVvalue() * (innerBounds.getHeight() - viewportBounds.getHeight());
+
+        scaleValue = scaleValue * zoomFactor;
+        updateScale();
+        this.layout(); // refresh ScrollPane scroll positions & target bounds
+
+        // convert target coordinates to zoomTarget coordinates
+        Point2D posInZoomTarget = target.parentToLocal(zoomNode.parentToLocal(mousePoint));
+
+        // calculate adjustment of scroll position (pixels)
+        Point2D adjustment = target.getLocalToParentTransform().deltaTransform(posInZoomTarget.multiply(zoomFactor - 1));
+
+        // convert back to [0, 1] range
+        // (too large/small values are automatically corrected by ScrollPane)
+        Bounds updatedInnerBounds = zoomNode.getBoundsInLocal();
+        this.setHvalue((valX + adjustment.getX()) / (updatedInnerBounds.getWidth() - viewportBounds.getWidth()));
+        this.setVvalue((valY + adjustment.getY()) / (updatedInnerBounds.getHeight() - viewportBounds.getHeight()));
+    }
+
 }
-
