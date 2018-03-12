@@ -1,24 +1,22 @@
 package models;
+
+import java.util.ArrayList;
+
 public class Text {
 
     Position position;
-    Fonts font;
-    Colours colour;
-    String content;
 
-    Text(Position position, Fonts font, Colours colour, String content) {
+    ArrayList<textContent> content;
+
+    Text(Position position, ArrayList<textContent> content) {
         this.position = position;
-        this.font = font;
-        this.colour = colour;
         this.content = content;
     }
 
     public Text()
     {
         position = new Position();
-        font = new Fonts();
-        colour = new Colours();
-        content = "null";
+        content = new ArrayList<textContent>();
     }
 
     public Position getPosition() {
@@ -29,27 +27,11 @@ public class Text {
         this.position = position;
     }
 
-    public Fonts getFont() {
-        return font;
-    }
-
-    public void setFont(Fonts font) {
-        this.font = font;
-    }
-
-    public Colours getColour() {
-        return colour;
-    }
-
-    public void setColour(Colours colour) {
-        this.colour = colour;
-    }
-
-    public String getContent() {
+    public ArrayList<textContent> getContent() {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(ArrayList<textContent> content) {
         this.content = content;
     }
 }
