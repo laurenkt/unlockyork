@@ -29,6 +29,13 @@ public class XMLParser {
 
     public static void main(String[] args) {
 
+        XMLParser parser = new XMLParser();
+        parser.parser();
+    }
+
+    public void parser()
+    {
+
         //Slide slides = new Slide();
 
         //Presentation pres = new Presentation();
@@ -43,7 +50,7 @@ public class XMLParser {
         Document document = null;
         try {
             if (parser != null)
-                document = parser.parse(new File("/Users/jonathantrain/IdeaProjects/unlockyork/src/main/resources/example.pws"));
+                document = parser.parse(new File("src/build/resources/main/example.pws"));
         } catch (SAXException | IOException e) {
             e.printStackTrace();
         }
@@ -52,7 +59,7 @@ public class XMLParser {
         SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 
         // load a WXS schema, represented by a Schema instance
-        Source schemaFile = new StreamSource(new File("/Users/jonathantrain/IdeaProjects/unlockyork/src/main/resources/schema.xsd"));
+        Source schemaFile = new StreamSource(new File("src/build/resources/main/schema.xsd"));
         Schema schema = null;
         try {
             schema = factory.newSchema(schemaFile);
