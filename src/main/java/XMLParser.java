@@ -11,7 +11,7 @@ public class XMLParser {
     public static void main(String[] args) {
 
         try {
-            File inputFile = new File("/Users/jonathantrain/IdeaProjects/unlockyork/src/main/resources/example.pws");
+            File inputFile = new File("/Users/Ollie/IdeaProjects/unlockyork/src/main/resources/example.pws");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(inputFile);
