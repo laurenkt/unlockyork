@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: firebase-storage-common-license-11.8.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/733b4c07d6b5b49803f4610e8b1875044766f91a/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/733b4c07d6b5b49803f4610e8b1875044766f91a/output/res" />
+      <root url="file://$USER_HOME$/.android/build-cache/9701fa61c410bc76a165d2a2d5ce63b778aa8472/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/9701fa61c410bc76a165d2a2d5ce63b778aa8472/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

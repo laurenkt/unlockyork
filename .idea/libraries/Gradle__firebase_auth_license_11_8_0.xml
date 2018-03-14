@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: firebase-auth-license-11.8.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/46dd71706e85591ab165045ddf7316def57a8fc6/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/46dd71706e85591ab165045ddf7316def57a8fc6/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/a6d7e8af6ca7fa80bfe38319cd61c27bfa377c33/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/a6d7e8af6ca7fa80bfe38319cd61c27bfa377c33/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
