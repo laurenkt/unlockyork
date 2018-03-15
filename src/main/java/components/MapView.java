@@ -45,7 +45,8 @@ public class MapView extends ScrollPane {
         outerNode.setOnScroll(e -> {
             e.consume();
             onScroll(e.getDeltaY(), new Point2D(e.getX(), e.getY()));
-            //System.out.println(scaleValue);
+           // System.out.println(scaleValue);
+
         });
         return outerNode;
     }
@@ -72,8 +73,33 @@ public class MapView extends ScrollPane {
         double valY = getVvalue() * (innerBounds.getHeight() - viewportBounds.getHeight());
 
         scaleValue = scaleValue * zoomFactor;
+
+        if (scaleValue >= 1.8){
+            scaleValue = 1.8;
+        }
+
+        if (scaleValue <= 0.17){
+            scaleValue = 0.17;
+        }
+
+
+        if (scaleValue <= 0.9){
+            System.out.println("level 1");
+        }
+
+        if (scaleValue >= 0.9){
+            System.out.println("level 2");
+        }
+
+
+
+
         updateScale();
-        layout(); // refresh ScrollPane scroll positions & target bounds
+        layout();// refresh ScrollPane scroll positions & target bounds
+
+
+
+
 
         // convert target coordinates to zoomTarget coordinates
         Point2D posInZoomTarget = target.parentToLocal(zoomNode.parentToLocal(mousePoint));
@@ -86,6 +112,8 @@ public class MapView extends ScrollPane {
         Bounds updatedInnerBounds = zoomNode.getBoundsInLocal();
         setHvalue((valX + adjustment.getX()) / (updatedInnerBounds.getWidth() - viewportBounds.getWidth()));
         setVvalue((valY + adjustment.getY()) / (updatedInnerBounds.getHeight() - viewportBounds.getHeight()));
+
+
     }
 
 }
