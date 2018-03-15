@@ -30,13 +30,5 @@
     <orderEntry type="library" exported="" scope="PROVIDED" name="Gradle: jdom-2.0.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="Gradle: junit-4.12" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="Gradle: hamcrest-core-1.3" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: src.src-1.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: src.src-1.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: src.src-1.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: src.src-1.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: src.src-1.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: src.src-1.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: src.src-1.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: src.src-1.0-SNAPSHOT" level="project" />
   </component>
 </module>

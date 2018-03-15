@@ -5,6 +5,8 @@
       <module name="kiosk" target="1.8" />
       <module name="kiosk_main" target="1.8" />
       <module name="kiosk_test" target="1.8" />
+      <module name="src_main" target="1.8" />
+      <module name="src_test" target="1.8" />
       <module name="unlock_main" target="1.8" />
       <module name="unlock_test" target="1.8" />
     </bytecodeTargetLevel>

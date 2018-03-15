@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: play-services-identity-11.8.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/c43ce8e53d36deebed5d7f566db5b54c7956e195/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/c43ce8e53d36deebed5d7f566db5b54c7956e195/output/res" />
+      <root url="file://$USER_HOME$/.android/build-cache/ae07559f941d6099c3d4e37d343c4fedf4873278/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/ae07559f941d6099c3d4e37d343c4fedf4873278/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

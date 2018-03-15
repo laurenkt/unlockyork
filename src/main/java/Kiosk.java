@@ -26,8 +26,8 @@ public class Kiosk extends Application {
 
         primaryStage.setTitle("Drag to pan the map");
 
-        MapView map = new MapView(new Image(getClass().getResource("map.png").toExternalForm()));
-        Scene scene = new Scene(map);
+        MapView map = new MapView(new Image(getClass().getResource("York20.png").toExternalForm()));
+        Scene scene = new Scene(map, 700, 700);
         primaryStage.setScene(scene);
         primaryStage.show();
 
