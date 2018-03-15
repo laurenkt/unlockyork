@@ -4,11 +4,11 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Presentation {
-    Meta meta;
-    ArrayList<Slide> slides;
-    GPS gps;
-    Fonts presDefaultFont;
-    Colours presDefaultColour;
+    Meta meta; //presentation meta
+    ArrayList<Slide> slides; //all slides inside presentation
+    GPS gps; //GPS coordinates for the presentation
+    Fonts presDefaultFont; // presentation defaults for the font of text
+    Colours presDefaultColour; // presentation defaults for colour
 
 
     Presentation(Meta meta, ArrayList<Slide> slides, GPS gps, Fonts presDefaultFont, Colours presDefaultColour) {

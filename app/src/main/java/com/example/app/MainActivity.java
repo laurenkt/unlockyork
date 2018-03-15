@@ -1,6 +1,5 @@
 package com.example.app;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -13,15 +12,12 @@ import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
-
-
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
-
 import java.io.IOException;
-import android.util.Log;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
         cameraPreview = (SurfaceView) findViewById(R.id.cameraPreview);
         txtResult = (TextView) findViewById(R.id.txtResult);
+        Intent i = getIntent();
+
 
         barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.QR_CODE)
@@ -113,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                             vibrator.vibrate(100);
                             txtResult.setText(qrcode.valueAt(0).displayValue);
                             sendText(txtResult.getText().toString());
+                            cameraSource.stop();
 
 
                         }
@@ -130,8 +129,6 @@ public class MainActivity extends AppCompatActivity {
         i.putExtras(bundle);
         startActivity(i);
     }
-
-
 
 
 }

@@ -104,17 +104,29 @@ public class XMLParser {
 
             NamedNodeMap presDeflauts =  deflauts.getAttributes();
 
+            //sets the presentation defaults for font and colour
             getPresentationDeflaults(presentation, presDeflauts);
 
+            //get the meta from the xml
             presentation.setMeta(getMeta(deflauts.getElementsByTagName("Meta").item(0).getAttributes()));
+
+            //get the gps from the xml
+            if(deflauts.getElementsByTagName("GPS").item(0) != null)
+            {
+                presentation.setGps(getGps(deflauts.getElementsByTagName("GPS").item(0).getAttributes()));
+            }
 
             System.out.println("----------------------------");
 
+            // loop through all slide elements
             for (int i = 0; i < slideList.getLength(); i++) {
+
+                //get the specified slide element from xml
                 xmlSlide = slideList.item(i);
 
                 Slide slide = new Slide();
 
+                // sets the default values found in the presentation
                 setSlideDefaults(slide, presentation);
 
 
@@ -122,72 +134,86 @@ public class XMLParser {
                 System.out.println("\nCurrent Element :" + xmlSlide.getNodeName() + " SLIDE : " + i);
                 System.out.println("list size : " +slideList.getLength());
 
+                //if node is actually an element
                 if (xmlSlide.getNodeType() == Node.ELEMENT_NODE) {
 
+                    // pulls the slide attributes if it has any and will overwrite the default values from presentation
                     getSlideDefaults(slide, xmlSlide.getAttributes());
 
                     System.out.println("\n-----------------------------SLIDE - ELEMENTS-------------------------------------");
 
+                    // if the slide actually as elements to it
                     if(xmlSlide.hasChildNodes())
                     {
+                        // saves all slide elements into slideElements
                         slideElements = xmlSlide.getChildNodes();
 
+                        //loops through all elements found for each slide
                         for(int n = 0; n < slideElements.getLength(); n++)
                         {
                             System.out.println(slideElements.item(n).getNodeName());
 
+                            // if the element is text, will pull that element from the xml
                             if(slideElements.item(n).getNodeName().equals("Text")) {
 
                                 System.out.println("\n-----------text----------");
 
+                                //adds text object to the slide
                                 slide.getText().add(getText(slideElements.item(n), slide));
 
                                 System.out.println("\n");
 
                             }
 
+                            // if the element is shape, will pull that element from the xml
                             if(slideElements.item(n).getNodeName().equals("Shape"))
                             {
                                 if(slideElements.item(n).hasAttributes())
                                 {
                                     System.out.println("\n-----------shape----------");
-
+                                    //adds shape object to the slide
                                     slide.getShape().add(getSlideShape(slideElements.item(n), slide));
 
                                     System.out.println("\n");
                                 }
                             }
 
+                            // if the element is image, will pull that element from the xml
                             if(slideElements.item(n).getNodeName().equals("Image"))
                             {
                                 if(slideElements.item(n).hasAttributes())
                                 {
                                     System.out.println("\n-----------image----------");
 
+                                    //adds image object to the slide
                                     slide.getImage().add(getSlideImage(slideElements.item(n)));
 
                                     System.out.println("\n");
                                 }
                             }
 
+                            // if the element is video, will pull that element from the xml
                             if(slideElements.item(n).getNodeName().equals("Video"))
                             {
                                 if(slideElements.item(n).hasAttributes())
                                 {
                                     System.out.println("\n-----------video----------");
 
+                                    //adds video object to the slide
                                     slide.getVideo().add(getSlideVideo(slideElements.item(n)));
 
                                     System.out.println("\n");
                                 }
                             }
 
+                            // if the element is audio, will pull that element from the xml
                             if(slideElements.item(n).getNodeName().equals("Audio"))
                             {
                                 if(slideElements.item(n).hasAttributes())
                                 {
                                     System.out.println("\n-----------audio----------");
 
+                                    //adds audio object to the slide
                                     slide.getAudio().add(getSlideAudio(slideElements.item(n)));
 
                                     System.out.println("\n");
@@ -197,6 +223,7 @@ public class XMLParser {
                     }
                 }
 
+                // adds slide to the slide array in presentation
                 presentation.getSlides().add(slide);
             }
         } catch (Exception e) {
@@ -206,6 +233,7 @@ public class XMLParser {
         return presentation;
     }
 
+    //pulls all audio information from the dom data structure and saves it into an audio object
     public static Audio getSlideAudio(Node xmlSlide)
     {
 
@@ -232,6 +260,7 @@ public class XMLParser {
 
     }
 
+    //pulls all video information from the dom data structure and saves it into an video object
     public static Video getSlideVideo(Node xmlSlide)
     {
         Position videoPosition = new Position();
@@ -256,6 +285,7 @@ public class XMLParser {
         return slideVideo;
     }
 
+    //pulls all shape information from the dom data structure and saves it into an shape object
     public static Shape getSlideShape(Node xmlSlide, Slide slide)
     {
 
@@ -266,21 +296,26 @@ public class XMLParser {
         slideShape.getPosition().setxBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x2").getNodeValue()));
         slideShape.getPosition().setyBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y2").getNodeValue()));
 
+        // sets default values for colour from the slide/presentation defaults
         slideShape.getColour().setFill(slide.getColour().getFill());
         slideShape.getColour().setColour(slide.getColour().getColour());
 
+        // if the colour has been specified in the xml, it will overwrite the defaults
         if(xmlSlide.getAttributes().getNamedItem("color") != null)
         {
             slideShape.getColour().setColour(xmlSlide.getAttributes().getNamedItem("color").getNodeValue());
         }
 
+        // if the colour fill has been specified in the xml, it will overwrite the defaults
         if(xmlSlide.getAttributes().getNamedItem("fill") != null)
         {
             slideShape.getColour().setFill(xmlSlide.getAttributes().getNamedItem("fill").getNodeValue());
         }
 
+        //gets the type of shape "triangle", "square" etc.
         slideShape.setShape(xmlSlide.getAttributes().getNamedItem("type").getNodeValue());
 
+        //if a stroke value has been specified then it will be added to the shape object
         if(xmlSlide.getAttributes().getNamedItem("stroke") != null)
         {
             slideShape.setStroke(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("stroke").getNodeValue()));
@@ -298,6 +333,7 @@ public class XMLParser {
         return slideShape;
     }
 
+    //pulls all image information from the dom data structure and saves it into an image object
     public static Image getSlideImage(Node xmlSlide)
     {
         Position imagePosition = new Position();
@@ -322,6 +358,7 @@ public class XMLParser {
 
     }
 
+    // gets the attributes for the text object element in the xml
     public static void getTextAttributes(Text text, NamedNodeMap xmlSlide)
     {
         if(xmlSlide.getNamedItem("duration") != null)
@@ -355,6 +392,7 @@ public class XMLParser {
         }
     }
 
+    //gets the attributes for the textContent object element in xml
     public static void getTextContentAttributes(textContent content, NamedNodeMap xmlSlide)
     {
         if(xmlSlide.getNamedItem("fill") != null) {
@@ -391,11 +429,10 @@ public class XMLParser {
         }
     }
 
+    //sets the defaults from the slide/presentation for the text content objects
+    //ensures text always has a format
     public static void setTextContentDefaults(textContent content, Slide slide)
     {
-        //content.setFont(slide.getFont());
-        //content.setColour(slide.getColour());
-
         content.getFont().setBold(slide.getFont().isBold());
         content.getFont().setUnderline(slide.getFont().isUnderline());
         content.getFont().setItalic(slide.getFont().isItalic());
@@ -404,65 +441,69 @@ public class XMLParser {
 
         content.getColour().setColour(slide.getColour().getColour());
         content.getColour().setFill(slide.getColour().getFill());
-
-
     }
 
+    //pulls the actual text from the text elements from xml
     public static Text getText(Node xmlSlide, Slide slide)
     {
         Text slideText = new Text();
 
+        //sets the transition default from the slide
         slideText.setTransition(slide.getTransitions());
 
+        //pulls all the attributes for the Text object when specified in the xml
         getTextAttributes(slideText, xmlSlide.getAttributes());
 
-
+        //loops through all lines of text written in the xml
         for(int i = 0; i < xmlSlide.getChildNodes().getLength(); i++)
         {
                 textContent contentText = new textContent();
 
+                //sets the defaults for a new textContent from slide/presentation defaults
                 setTextContentDefaults(contentText, slide);
 
                 System.out.println("SLIDE DE BOLD: " + slide.getFont().isBold());
 
+                //gets the attributes specified from the Text element, these will overwrite the defaults when needed
                 getTextContentAttributes(contentText, xmlSlide.getAttributes());
 
                 ///////////////////BOLD/////////////////////////////////////////////////
+                //if a format change is specified for bold this particular textContent will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("bold") != null) {
                     contentText.getFont().setBold(parseBoolean(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("bold").getNodeValue()));
                     System.out.println("bold from FORMAT");
                 }
 
                 /////////////////////underline//////////////////////////////////////////
-
+                //if a format change is specified for underline this particular textContent will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("underline") != null) {
                     contentText.getFont().setUnderline(parseBoolean(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("underline").getNodeValue()));
                     System.out.println("underline from FORMAT");
                 }
 
                 ////////////////////italic//////////////////////////////////////////////
-
+                //if a format change is specified for italic this particular textContent will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("italic") != null) {
                     contentText.getFont().setItalic(parseBoolean(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("italic").getNodeValue()));
                     System.out.println("italic from FORMAT");
                 }
 
                 ///////////////////textsize////////////////////////////////////////////
-
+                //if a format change is specified for textsize this particular textContent will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("textsize") != null) {
                     contentText.getFont().setTextSize(Integer.parseInt(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("textsize").getNodeValue()));
                     System.out.println("textsize from FORMAT");
                 }
 
                 ///////////////////////font///////////////////////////////////////////
-
+                //if a format change is specified for font this particular textContent will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("font") != null) {
                     contentText.getFont().setFont(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("font").getNodeValue());
                     System.out.println("font from FORMAT");
                 }
 
                 //////////////////colour/////////////////////////////////////////////
-
+                //if a format change is specified for colour this particular textContent will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("color") != null) {
 
                     contentText.getColour().setColour(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("color").getNodeValue());
@@ -471,13 +512,14 @@ public class XMLParser {
                 }
 
                 ///////////////////////line break///////////////////////////////////
-
+                //when a line break as been specified the content is set to be a line break
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Br")) {
                     System.out.println("---- Br ---");
                     contentText.setContent("\n");
                 }
                 else
                 {
+                    //if not a line break, the actual text content of the line is added to the textContent object
                     contentText.setContent(xmlSlide.getChildNodes().item(i).getTextContent().trim());
                 }
 
@@ -502,6 +544,7 @@ public class XMLParser {
         return slideText;
     }
 
+    //gets the meta from the dom structure and creates a meta object
     public static Meta getMeta(NamedNodeMap xmlMeta)
     {
         Meta slideMeta = new Meta();
@@ -514,6 +557,7 @@ public class XMLParser {
         return slideMeta;
     }
 
+    //gets the presentation object defaults from the presentation attributes
     public static void getPresentationDeflaults(Presentation presentation, NamedNodeMap xmlDefaults)
     {
         if(xmlDefaults.getNamedItem("italic") != null)
@@ -559,6 +603,7 @@ public class XMLParser {
         }
     }
 
+    //gets the slide defaults from the slide attributes in the dom structure
     public static void getSlideDefaults(Slide slide, NamedNodeMap xmlSlide)
     {
         if(xmlSlide.getNamedItem("duration") != null) {
@@ -612,11 +657,9 @@ public class XMLParser {
         }
     }
 
+    //sets the slide defaults from the presentation defaults
     public static void setSlideDefaults(Slide slide, Presentation presentation)
     {
-        //slide.setFont(presentation.getPresDefaultFont());
-        //slide.setColour(presentation.getPresDefaultColour());
-
         slide.getFont().setFont(presentation.getPresDefaultFont().getFont());
         slide.getFont().setTextSize(presentation.getPresDefaultFont().getTextSize());
         slide.getFont().setItalic(presentation.getPresDefaultFont().isItalic());
@@ -625,6 +668,20 @@ public class XMLParser {
 
         slide.getColour().setColour(presentation.getPresDefaultColour().getColour());
         slide.getColour().setFill(presentation.getPresDefaultColour().getFill());
+    }
+
+    //gets the gps from the dom structure and creates a GPS object and saves it in there
+    public static GPS getGps(NamedNodeMap xmlGps)
+    {
+        GPS slideGps = new GPS();
+
+        slideGps.setElevation(Double.parseDouble(xmlGps.getNamedItem("elevation").getNodeValue()));
+        slideGps.setLatitude(Double.parseDouble(xmlGps.getNamedItem("latitude").getNodeValue()));
+        slideGps.setLongitude(Double.parseDouble(xmlGps.getNamedItem("longitude").getNodeValue()));
+
+        System.out.println("GPS - elev: " + slideGps.getElevation() + " - lat: " + slideGps.getLatitude() + " - long" + slideGps.getLongitude());
+
+        return slideGps;
     }
 
 
