@@ -2,9 +2,9 @@ package models;
 
 public class Video {
 
-    String path;
+    String path; // path of the video file
 
-    Position position;
+    Position position; // position of video on slide
 
     Video(String path, Position position) {
         this.path = path;

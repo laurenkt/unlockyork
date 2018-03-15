@@ -1,9 +1,9 @@
 package models;
 public class Transitions {
 
-    String startTrigger;
+    String startTrigger; // if trigger, set by an event
 
-    int duration;
+    int duration; // time on screen
 
     Transitions(String startTrigger, int duration) {
         this.startTrigger = startTrigger;

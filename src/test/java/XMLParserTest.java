@@ -1,3 +1,4 @@
+import models.Presentation;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,15 +8,23 @@ public class XMLParserTest {
     XMLParser parser;
 
     @Before
-    public void setUp() {
-        parser = new XMLParser();
+    public void setUp() throws Exception {
+         parser = new XMLParser();
     }
 
     @Test
-    public void onePlusOneEqualsTwo() {
-        assertTrue(1+1 == 2);
+    public void testPresentation() {
+        XMLParser parser = new XMLParser();
+        Presentation presentation = parser.parser("src/build/resources/main/example.pws", "src/build/resources/main/schema.xsd");
+
+        assertTrue(!presentation.getPresDefaultFont().isItalic() == false);
+
+       // assertTrue(presentation.getPresDefaultFont().isUnderline() == false);
+      //  assertTrue(presentation.getPresDefaultFont().getTextSize() == 12);
+      //  assertTrue(presentation.getSlides().size() == 5);
     }
 
 }
+
 
 

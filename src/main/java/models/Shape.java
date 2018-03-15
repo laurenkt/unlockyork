@@ -2,13 +2,13 @@ package models;
 
 public class Shape {
 
-    String shape;
+    String shape; //what the shape is ie. triangle
 
-    int stroke;
+    int stroke; //thickness of shape outline
 
-    Position position;
+    Position position; // position of the shape on the slide
 
-    Colours colour;
+    Colours colour; // colour of the shape
 
     Shape(String shape, int stroke, Position position, Colours colour) {
         this.shape = shape;

@@ -14,6 +14,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.transform.Scale;
@@ -22,12 +24,35 @@ import javafx.stage.Stage;
 public class MapView extends ScrollPane {
     private double scaleValue = 0.7;
     private double zoomIntensity = 0.02;
+    private ImageView poi;
+    private ImageView mapView;
     private Node target;
     private Node zoomNode;
+    private Node target2;
+    private Group root;
+    private Bounds boundsInScene;
 
-    public MapView(Image tiles) {
+    public MapView(Image tiles, Image poiIcon) {
         super();
-        this.target = new ImageView(tiles);
+
+        mapView = new ImageView();
+        mapView.setImage(tiles);
+
+        poi = new ImageView();
+        poi.setFitHeight(100);
+        poi.setFitWidth(100);
+        poi.setTranslateX(-40);
+        poi.setTranslateY(-610);
+        poi.setImage(poiIcon);
+
+        StackPane stack = new StackPane();
+        stack.getChildren().addAll(mapView,poi);
+
+        HBox hBox = new HBox();
+        hBox.getChildren().add(stack);
+
+        this.target = hBox;
+
         this.zoomNode = new Group(target);
         setContent(outerNode(zoomNode));
 
@@ -38,6 +63,30 @@ public class MapView extends ScrollPane {
         setFitToWidth(true); //center
 
         updateScale();
+    }
+
+    public double getXPoiMin() {
+        boundsInScene = poi.localToScene(poi.getBoundsInLocal());
+        double xMin = boundsInScene.getMinX();
+        return xMin;
+    }
+
+    public double getXPoiMax () {
+        boundsInScene = poi.localToScene(poi.getBoundsInLocal());
+        double xMax = boundsInScene.getMaxX();
+        return xMax;
+    }
+
+    public double getYPoiMin() {
+        boundsInScene = poi.localToScene(poi.getBoundsInLocal());
+        double yMin = boundsInScene.getMinY();
+        return yMin;
+    }
+
+    public double getYPoiMax() {
+        boundsInScene = poi.localToScene(poi.getBoundsInLocal());
+        double yMax = boundsInScene.getMaxY();
+        return yMax;
     }
 
     private Node outerNode(Node node) {
