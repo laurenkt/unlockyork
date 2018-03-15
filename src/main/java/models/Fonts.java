@@ -19,13 +19,13 @@ public class Fonts {
 
     public Fonts()
     {
-        font = "null";
+        font = "Times New Roman";
 
         italic = false;
         bold = false;
         underline = false;
 
-        textSize = 0;
+        textSize = 10;
     }
 
     public String getFont() {
