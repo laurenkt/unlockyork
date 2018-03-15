@@ -13,7 +13,7 @@ import android.media.MediaPlayer;
 
 public class ScanSuccess extends AppCompatActivity {
     String location = "null";
-    TextView tv = findViewById(R.id.invalid_message);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class ScanSuccess extends AppCompatActivity {
                 int duration = Toast.LENGTH_SHORT;
                 Toast toastText = Toast.makeText(this,error,duration);
                 toastText.show();
-                Intent i =new Intent(this,MainActivity.class);
+                Intent i = new Intent(this,MainActivity.class);
 
                 startActivity(i);
         }
