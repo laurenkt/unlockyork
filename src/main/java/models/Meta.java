@@ -2,8 +2,8 @@ package models;
 
 public class Meta{
 
-    String key;
-    String value;
+    String key; //what the value means ie.author
+    String value; //value of key ie. authors name
 
 
     Meta(String key, String value) {

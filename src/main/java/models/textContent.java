@@ -2,9 +2,9 @@ package models;
 
 public class textContent {
 
-    Fonts font;
-    Colours colour;
-    String content;
+    Fonts font; // font for this part of text
+    Colours colour; // colour for this part of text
+    String content; // actual text content
 
     textContent(Fonts font, Colours colour, String content)
     {

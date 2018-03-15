@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Text {
 
-    Position position;
+    Position position; // position of text on this slide
 
-    ArrayList<textContent> content;
+    ArrayList<textContent> content; // array of all the different parts of the text
 
-    Transitions transition;
+    Transitions transition; // transitions for the text
 
     Text(Position position, ArrayList<textContent> content, Transitions transition) {
         this.position = position;
@@ -46,17 +46,4 @@ public class Text {
     public void setContent(ArrayList<textContent> content) {
         this.content = content;
     }
-
-//    public void printText()
-//    {
-//        System.out.println();
-//
-//        System.out.println("content TEXT , bold: " + content.getFont().isBold()
-//                + " ,italic: " + content.getFont().isItalic()
-//                + " ,underline: " + content.getFont().isUnderline()
-//                + " ,textsize: " + content.getFont().getTextSize()
-//                + " ,colour: " + content.getColour().getColour()
-//                + " ,font: " + content.getFont().getFont()
-//                + " , TEXT: " + content.getContent());
-//    }
 }

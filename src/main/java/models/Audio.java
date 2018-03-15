@@ -2,9 +2,9 @@ package models;
 
 public class Audio {
 
-    String path;
+    String path; //file path to audio file
 
-    Position position;
+    Position position; //position of audio on the slide
 
     Audio(String path, Position position) {
         this.path = path;
