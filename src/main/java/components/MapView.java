@@ -122,7 +122,7 @@ public class MapView extends ScrollPane {
         double valY = getVvalue() * (innerBounds.getHeight() - viewportBounds.getHeight());
 
         scaleValue = scaleValue * zoomFactor;
-
+// Upper and lower zoom limits
         if (scaleValue >= 1.8){
             scaleValue = 1.8;
         }
@@ -130,8 +130,7 @@ public class MapView extends ScrollPane {
         if (scaleValue <= 0.17){
             scaleValue = 0.17;
         }
-
-
+//Level switching, here there will be street level map base when entering level 2
         if (scaleValue <= 0.9){
             System.out.println("level 1");
         }
@@ -140,16 +139,9 @@ public class MapView extends ScrollPane {
             System.out.println("level 2");
         }
 
-
-
-
         updateScale();
         layout();// refresh ScrollPane scroll positions & target bounds
-
-
-
-
-
+        
         // convert target coordinates to zoomTarget coordinates
         Point2D posInZoomTarget = target.parentToLocal(zoomNode.parentToLocal(mousePoint));
 
