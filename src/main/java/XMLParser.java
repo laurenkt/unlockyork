@@ -24,21 +24,24 @@ import org.w3c.dom.Element;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
+import static java.lang.Boolean.parseBoolean;
+
 
 public class XMLParser {
 
     public static void main(String[] args) {
 
+        Presentation presentation = new Presentation();
+
         XMLParser parser = new XMLParser();
-        parser.parser();
+        presentation = parser.parser("src/build/resources/main/example.pws", "src/build/resources/main/schema.xsd");
+        System.out.println("finished");
     }
 
-    public void parser()
+    public Presentation parser(String xmlPath, String schemaPath)
     {
-
-        //Slide slides = new Slide();
-
-        //Presentation pres = new Presentation();
+        //creates a blank presentation object that will contain the parsed presentation
+        Presentation presentation = new Presentation();
 
         // parse an XML document into a DOM tree
         DocumentBuilder parser = null;
@@ -50,7 +53,7 @@ public class XMLParser {
         Document document = null;
         try {
             if (parser != null)
-                document = parser.parse(new File("src/build/resources/main/example.pws"));
+                document = parser.parse(new File(xmlPath)); //File("src/build/resources/main/example.pws")
         } catch (SAXException | IOException e) {
             e.printStackTrace();
         }
@@ -59,7 +62,7 @@ public class XMLParser {
         SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 
         // load a WXS schema, represented by a Schema instance
-        Source schemaFile = new StreamSource(new File("src/build/resources/main/schema.xsd"));
+        Source schemaFile = new StreamSource(new File(schemaPath)); //File("src/build/resources/main/schema.xsd")
         Schema schema = null;
         try {
             schema = factory.newSchema(schemaFile);
@@ -88,113 +91,70 @@ public class XMLParser {
         }
 
         try {
-            //File inputFile = new File("/Users/jonathantrain/IdeaProjects/unlockyork/src/main/resources/example.pws");
-            //DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            //DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            //Document doc = dBuilder.parse(inputFile);
-           // doc.getDocumentElement().normalize();
-           // System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-            NodeList slideList = document.getElementsByTagName("Slide");
+            NodeList slideList = null;
+            if (document != null) {
+                slideList = document.getElementsByTagName("Slide");
+            }
+
             NodeList slideElements;
-            Node slide;
-            NodeList presentation = document.getElementsByTagName("Presentation");
 
-
+            Node xmlSlide;
 
             Element deflauts = document.getDocumentElement();
 
-            //slideList.item(0).getParentNode().
-            //Element meta = document.getDocumentElement();
-            //System.out.println("defaults: " + document.getDocumentElement().getAttribute("font"));
+            NamedNodeMap presDeflauts =  deflauts.getAttributes();
 
+            getPresentationDeflaults(presentation, presDeflauts);
 
-
+            presentation.setMeta(getMeta(deflauts.getElementsByTagName("Meta").item(0).getAttributes()));
 
             System.out.println("----------------------------");
 
-            //getMeta(presentation.item(0).getFirstChild());
-
-            //System.out.println("meta: " + slideList.item(0).getNodeName());
-
             for (int i = 0; i < slideList.getLength(); i++) {
-                slide = slideList.item(i);
+                xmlSlide = slideList.item(i);
 
-                //slide.getChildNodes();
+                Slide slide = new Slide();
 
-
+                setSlideDefaults(slide, presentation);
 
 
                 System.out.println("\n/////////////////// SLIDE: " + i + " ///////////////////");
-                System.out.println("\nCurrent Element :" + slide.getNodeName() + " SLIDE : " + i);
+                System.out.println("\nCurrent Element :" + xmlSlide.getNodeName() + " SLIDE : " + i);
                 System.out.println("list size : " +slideList.getLength());
 
-                if (slide.getNodeType() == Node.ELEMENT_NODE) {
+                if (xmlSlide.getNodeType() == Node.ELEMENT_NODE) {
 
-                    if(slide.hasAttributes() == true)
+                    getSlideDefaults(slide, xmlSlide.getAttributes());
+
+                    System.out.println("\n-----------------------------SLIDE - ELEMENTS-------------------------------------");
+
+                    if(xmlSlide.hasChildNodes())
                     {
-                        System.out.println("slide duration: " + slide.getAttributes().getNamedItem("duration"));
-                        System.out.println("slide fill: " + slide.getAttributes().getNamedItem("fill"));
-                        System.out.println("slide colour: " + slide.getAttributes().getNamedItem("color"));
-                        System.out.println("slide font: " + slide.getAttributes().getNamedItem("font"));
-
-                    }
-
-                    System.out.println("\n-----------SLIDE - ELEMENTS----------");
-
-                    if(slide.hasChildNodes() == true)
-                    {
-                        slideElements = slide.getChildNodes();
-
-                        //equals("gfhd")
+                        slideElements = xmlSlide.getChildNodes();
 
                         for(int n = 0; n < slideElements.getLength(); n++)
                         {
                             System.out.println(slideElements.item(n).getNodeName());
 
                             if(slideElements.item(n).getNodeName().equals("Text")) {
-                                if (slideElements.item(n).hasAttributes()) {
-                                    System.out.println("   size: " + slideElements.item(n).getAttributes().getNamedItem("textsize"));
-                                    System.out.println("   underline: " + slideElements.item(n).getAttributes().getNamedItem("underline"));
-                                    System.out.println("   bold: " + slideElements.item(n).getAttributes().getNamedItem("bold"));
-                                    System.out.println("   italic: " + slideElements.item(n).getAttributes().getNamedItem("italic"));
-                                    System.out.println("   font: " + slideElements.item(n).getAttributes().getNamedItem("font"));
 
-                                }
+                                System.out.println("\n-----------text----------");
 
-                                System.out.println("text content: " + slideElements.item(n).getTextContent());
+                                slide.getText().add(getText(slideElements.item(n), slide));
 
+                                System.out.println("\n");
 
-                                if (slideElements.item(n).hasChildNodes() == true) {
-                                    System.out.println(slideElements.item(n).getChildNodes().item(0));
-                                    for(int x = 0; x < slideElements.item(n).getChildNodes().getLength(); x++)
-                                    {
-                                        if(slideElements.item(n).getChildNodes().item(x).getNodeName().equals("Format")) {
-                                            System.out.println("    " + slideElements.item(n).getChildNodes().item(x).getNodeName());
-                                            if (slideElements.item(n).getChildNodes().item(x).hasAttributes()) {
-                                                System.out.println("        size: " + slideElements.item(n).getChildNodes().item(x).getAttributes().getNamedItem("textsize"));
-                                                System.out.println("        underline: " + slideElements.item(n).getChildNodes().item(x).getAttributes().getNamedItem("underline"));
-                                                System.out.println("        bold: " + slideElements.item(n).getChildNodes().item(x).getAttributes().getNamedItem("bold"));
-                                                System.out.println("        italic: " + slideElements.item(n).getChildNodes().item(x).getAttributes().getNamedItem("italic"));
-                                                System.out.println("        font: " + slideElements.item(n).getChildNodes().item(x).getAttributes().getNamedItem("font"));
-                                                System.out.println("        colour: " + slideElements.item(n).getChildNodes().item(x).getAttributes().getNamedItem("color"));
-
-                                            }
-                                            System.out.println("        Format content: " + slideElements.item(n).getChildNodes().item(x).getTextContent());
-                                        }
-                                    }
-
-
-
-                                }
                             }
-
 
                             if(slideElements.item(n).getNodeName().equals("Shape"))
                             {
                                 if(slideElements.item(n).hasAttributes())
                                 {
-                                    XMLParser.getSlideShape(slideElements.item(n), deflauts);
+                                    System.out.println("\n-----------shape----------");
 
+                                    slide.getShape().add(getSlideShape(slideElements.item(n), slide));
+
+                                    System.out.println("\n");
                                 }
                             }
 
@@ -202,7 +162,11 @@ public class XMLParser {
                             {
                                 if(slideElements.item(n).hasAttributes())
                                 {
-                                    XMLParser.getSlideImage(slideElements.item(n));
+                                    System.out.println("\n-----------image----------");
+
+                                    slide.getImage().add(getSlideImage(slideElements.item(n)));
+
+                                    System.out.println("\n");
                                 }
                             }
 
@@ -210,7 +174,11 @@ public class XMLParser {
                             {
                                 if(slideElements.item(n).hasAttributes())
                                 {
-                                    XMLParser.getSlideVideo(slideElements.item(n));
+                                    System.out.println("\n-----------video----------");
+
+                                    slide.getVideo().add(getSlideVideo(slideElements.item(n)));
+
+                                    System.out.println("\n");
                                 }
                             }
 
@@ -218,34 +186,40 @@ public class XMLParser {
                             {
                                 if(slideElements.item(n).hasAttributes())
                                 {
-                                      XMLParser.getSlideAudio(slideElements.item(n));
+                                    System.out.println("\n-----------audio----------");
+
+                                    slide.getAudio().add(getSlideAudio(slideElements.item(n)));
+
+                                    System.out.println("\n");
                                 }
                             }
                         }
                     }
                 }
+
+                presentation.getSlides().add(slide);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return presentation;
     }
 
-    public static void getSlideAudio(Node slide)
+    public static Audio getSlideAudio(Node xmlSlide)
     {
 
         Position audioPosition = new Position();
 
-        audioPosition.setxTopLeft(Integer.parseInt(slide.getAttributes().getNamedItem("x").getNodeValue()));
-        audioPosition.setyTopLeft(Integer.parseInt(slide.getAttributes().getNamedItem("y").getNodeValue()));
-        audioPosition.setxBottomRight(Integer.parseInt(slide.getAttributes().getNamedItem("x2").getNodeValue()));
-        audioPosition.setyBottomRight(Integer.parseInt(slide.getAttributes().getNamedItem("y2").getNodeValue()));
-
+        audioPosition.setxTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x").getNodeValue()));
+        audioPosition.setyTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y").getNodeValue()));
+        audioPosition.setxBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x2").getNodeValue()));
+        audioPosition.setyBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y2").getNodeValue()));
 
         Audio slideAudio = new Audio();
 
-        slideAudio.setPath(slide.getAttributes().getNamedItem("path").getNodeValue());
+        slideAudio.setPath(xmlSlide.getAttributes().getNamedItem("path").getNodeValue());
         slideAudio.setPosition(audioPosition);
-
 
         System.out.println("slideAudio");
         System.out.println("    x: " + slideAudio.getPosition().getxTopLeft());
@@ -254,22 +228,22 @@ public class XMLParser {
         System.out.println("    x2: " + slideAudio.getPosition().getyBottomRight());
         System.out.println("    path: " + slideAudio.getPath());
 
-        //return slideAudio;
+        return slideAudio;
 
     }
 
-    public static void getSlideVideo(Node slide)
+    public static Video getSlideVideo(Node xmlSlide)
     {
         Position videoPosition = new Position();
 
-        videoPosition.setxTopLeft(Integer.parseInt(slide.getAttributes().getNamedItem("x").getNodeValue()));
-        videoPosition.setyTopLeft(Integer.parseInt(slide.getAttributes().getNamedItem("y").getNodeValue()));
-        videoPosition.setxBottomRight(Integer.parseInt(slide.getAttributes().getNamedItem("x2").getNodeValue()));
-        videoPosition.setyBottomRight(Integer.parseInt(slide.getAttributes().getNamedItem("y2").getNodeValue()));
+        videoPosition.setxTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x").getNodeValue()));
+        videoPosition.setyTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y").getNodeValue()));
+        videoPosition.setxBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x2").getNodeValue()));
+        videoPosition.setyBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y2").getNodeValue()));
 
         Video slideVideo = new Video();
 
-        slideVideo.setPath(slide.getAttributes().getNamedItem("path").getNodeValue());
+        slideVideo.setPath(xmlSlide.getAttributes().getNamedItem("path").getNodeValue());
         slideVideo.setPosition(videoPosition);
 
         System.out.println("slideAudio");
@@ -278,50 +252,39 @@ public class XMLParser {
         System.out.println("    x2: " + slideVideo.getPosition().getxBottomRight());
         System.out.println("    x2: " + slideVideo.getPosition().getyBottomRight());
         System.out.println("    path: " + slideVideo.getPath());
+
+        return slideVideo;
     }
 
-    public static void getSlideShape(Node slide, Element defaults)
+    public static Shape getSlideShape(Node xmlSlide, Slide slide)
     {
-        Position shapePosition = new Position();
-
-        shapePosition.setxTopLeft(Integer.parseInt(slide.getAttributes().getNamedItem("x").getNodeValue()));
-        shapePosition.setyTopLeft(Integer.parseInt(slide.getAttributes().getNamedItem("y").getNodeValue()));
-        shapePosition.setxBottomRight(Integer.parseInt(slide.getAttributes().getNamedItem("x2").getNodeValue()));
-        shapePosition.setyBottomRight(Integer.parseInt(slide.getAttributes().getNamedItem("y2").getNodeValue()));
-
-        Colours shapeColour = new Colours();
-
-        if(slide.getAttributes().getNamedItem("color") != null)
-        {
-            shapeColour.setColour(slide.getAttributes().getNamedItem("color").getNodeValue());
-        }
-        else
-        {
-           // shapeColour.setColour(defaults.getAttributes().getNamedItem("colour").getNodeValue());
-            System.out.println("de colour shape: " + defaults.getAttributes().getNamedItem("color").getNodeValue());
-        }
-
-        if(slide.getAttributes().getNamedItem("fill") != null)
-        {
-            shapeColour.setFill(slide.getAttributes().getNamedItem("fill").getNodeValue());
-        }
-        else
-        {
-            shapeColour.setFill(defaults.getAttributes().getNamedItem("fill").getNodeValue());
-        }
 
         Shape slideShape = new Shape();
 
-        slideShape.setShape(slide.getAttributes().getNamedItem("type").getNodeValue());
+        slideShape.getPosition().setxTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x").getNodeValue()));
+        slideShape.getPosition().setyTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y").getNodeValue()));
+        slideShape.getPosition().setxBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x2").getNodeValue()));
+        slideShape.getPosition().setyBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y2").getNodeValue()));
 
-        if(slide.getAttributes().getNamedItem("stroke") != null)
+        slideShape.getColour().setFill(slide.getColour().getFill());
+        slideShape.getColour().setColour(slide.getColour().getColour());
+
+        if(xmlSlide.getAttributes().getNamedItem("color") != null)
         {
-            slideShape.setStroke(Integer.parseInt(slide.getAttributes().getNamedItem("stroke").getNodeValue()));
+            slideShape.getColour().setColour(xmlSlide.getAttributes().getNamedItem("color").getNodeValue());
         }
 
-        slideShape.setColour(shapeColour);
-        slideShape.setPosition(shapePosition);
+        if(xmlSlide.getAttributes().getNamedItem("fill") != null)
+        {
+            slideShape.getColour().setFill(xmlSlide.getAttributes().getNamedItem("fill").getNodeValue());
+        }
 
+        slideShape.setShape(xmlSlide.getAttributes().getNamedItem("type").getNodeValue());
+
+        if(xmlSlide.getAttributes().getNamedItem("stroke") != null)
+        {
+            slideShape.setStroke(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("stroke").getNodeValue()));
+        }
 
         System.out.println("   x: " + slideShape.getPosition().getxTopLeft());
         System.out.println("   y: " + slideShape.getPosition().getyTopLeft());
@@ -332,20 +295,21 @@ public class XMLParser {
         System.out.println("   colour: " + slideShape.getColour().getColour());
         System.out.println("   fill: " + slideShape.getColour().getFill());
 
+        return slideShape;
     }
 
-    public static void getSlideImage(Node slide)
+    public static Image getSlideImage(Node xmlSlide)
     {
         Position imagePosition = new Position();
 
-        imagePosition.setxTopLeft(Integer.parseInt(slide.getAttributes().getNamedItem("x").getNodeValue()));
-        imagePosition.setyTopLeft(Integer.parseInt(slide.getAttributes().getNamedItem("y").getNodeValue()));
-        imagePosition.setxBottomRight(Integer.parseInt(slide.getAttributes().getNamedItem("x2").getNodeValue()));
-        imagePosition.setyBottomRight(Integer.parseInt(slide.getAttributes().getNamedItem("y2").getNodeValue()));
+        imagePosition.setxTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x").getNodeValue()));
+        imagePosition.setyTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y").getNodeValue()));
+        imagePosition.setxBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x2").getNodeValue()));
+        imagePosition.setyBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y2").getNodeValue()));
 
         Image slideImage = new Image();
 
-        slideImage.setPath(slide.getAttributes().getNamedItem("path").getNodeValue());
+        slideImage.setPath(xmlSlide.getAttributes().getNamedItem("path").getNodeValue());
         slideImage.setPosition(imagePosition);
 
         System.out.println("   x: " + slideImage.getPosition().getxTopLeft());
@@ -354,17 +318,313 @@ public class XMLParser {
         System.out.println("   y2: " + slideImage.getPosition().getyBottomRight());
         System.out.println("   path: " + slideImage.getPath());
 
+        return slideImage;
+
     }
 
-    public static void getMeta(Node presMeta)
+    public static void getTextAttributes(Text text, NamedNodeMap xmlSlide)
     {
-        Meta meta = new Meta();
+        if(xmlSlide.getNamedItem("duration") != null)
+        {
+            text.getTransition().setDuration(Integer.parseInt(xmlSlide.getNamedItem("duration").getNodeValue()));
+        }
 
-        meta.setKey(presMeta.getAttributes().getNamedItem("key").getNodeValue());
-        meta.setValue(presMeta.getAttributes().getNamedItem("value").getNodeValue());
+        if(xmlSlide.getNamedItem("start") != null)
+        {
+            text.getTransition().setStartTrigger(xmlSlide.getNamedItem("start").getNodeValue());
+        }
 
-        System.out.println("META key: " + meta.getKey() + "author: " + meta.getValue());
+        if(xmlSlide.getNamedItem("x") != null)
+        {
+            text.getPosition().setxTopLeft(Integer.parseInt(xmlSlide.getNamedItem("x").getNodeValue()));
+        }
 
+        if(xmlSlide.getNamedItem("y") != null)
+        {
+            text.getPosition().setyTopLeft(Integer.parseInt(xmlSlide.getNamedItem("y").getNodeValue()));
+        }
+
+        if(xmlSlide.getNamedItem("x2") != null)
+        {
+            text.getPosition().setxBottomRight(Integer.parseInt(xmlSlide.getNamedItem("x2").getNodeValue()));
+        }
+
+        if(xmlSlide.getNamedItem("y2") != null)
+        {
+            text.getPosition().setyBottomRight(Integer.parseInt(xmlSlide.getNamedItem("y2").getNodeValue()));
+        }
+    }
+
+    public static void getTextContentAttributes(textContent content, NamedNodeMap xmlSlide)
+    {
+        if(xmlSlide.getNamedItem("fill") != null) {
+            content.getColour().setFill(xmlSlide.getNamedItem("fill").getNodeValue());
+        }
+
+        if(xmlSlide.getNamedItem("color") != null) {
+            content.getColour().setColour(xmlSlide.getNamedItem("color").getNodeValue());
+        }
+
+        if(xmlSlide.getNamedItem("italic") != null)
+        {
+            content.getFont().setItalic(parseBoolean(xmlSlide.getNamedItem("italic").getNodeValue()));
+        }
+
+        if(xmlSlide.getNamedItem("bold") != null)
+        {
+            content.getFont().setBold(parseBoolean(xmlSlide.getNamedItem("bold").getNodeValue()));
+        }
+
+        if(xmlSlide.getNamedItem("underline") != null)
+        {
+            content.getFont().setUnderline(parseBoolean(xmlSlide.getNamedItem("underline").getNodeValue()));
+        }
+
+        if(xmlSlide.getNamedItem("textsize") != null)
+        {
+            content.getFont().setTextSize(Integer.parseInt(xmlSlide.getNamedItem("textsize").getNodeValue()));
+        }
+
+        if(xmlSlide.getNamedItem("font") != null)
+        {
+            content.getFont().setFont(xmlSlide.getNamedItem("font").getNodeValue());
+        }
+    }
+
+    public static void setTextContentDefaults(textContent content, Slide slide)
+    {
+        //content.setFont(slide.getFont());
+        //content.setColour(slide.getColour());
+
+        content.getFont().setBold(slide.getFont().isBold());
+        content.getFont().setUnderline(slide.getFont().isUnderline());
+        content.getFont().setItalic(slide.getFont().isItalic());
+        content.getFont().setTextSize(slide.getFont().getTextSize());
+        content.getFont().setFont(slide.getFont().getFont());
+
+        content.getColour().setColour(slide.getColour().getColour());
+        content.getColour().setFill(slide.getColour().getFill());
+
+
+    }
+
+    public static Text getText(Node xmlSlide, Slide slide)
+    {
+        Text slideText = new Text();
+
+        slideText.setTransition(slide.getTransitions());
+
+        getTextAttributes(slideText, xmlSlide.getAttributes());
+
+
+        for(int i = 0; i < xmlSlide.getChildNodes().getLength(); i++)
+        {
+                textContent contentText = new textContent();
+
+                setTextContentDefaults(contentText, slide);
+
+                System.out.println("SLIDE DE BOLD: " + slide.getFont().isBold());
+
+                getTextContentAttributes(contentText, xmlSlide.getAttributes());
+
+                ///////////////////BOLD/////////////////////////////////////////////////
+                if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("bold") != null) {
+                    contentText.getFont().setBold(parseBoolean(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("bold").getNodeValue()));
+                    System.out.println("bold from FORMAT");
+                }
+
+                /////////////////////underline//////////////////////////////////////////
+
+                if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("underline") != null) {
+                    contentText.getFont().setUnderline(parseBoolean(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("underline").getNodeValue()));
+                    System.out.println("underline from FORMAT");
+                }
+
+                ////////////////////italic//////////////////////////////////////////////
+
+                if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("italic") != null) {
+                    contentText.getFont().setItalic(parseBoolean(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("italic").getNodeValue()));
+                    System.out.println("italic from FORMAT");
+                }
+
+                ///////////////////textsize////////////////////////////////////////////
+
+                if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("textsize") != null) {
+                    contentText.getFont().setTextSize(Integer.parseInt(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("textsize").getNodeValue()));
+                    System.out.println("textsize from FORMAT");
+                }
+
+                ///////////////////////font///////////////////////////////////////////
+
+                if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("font") != null) {
+                    contentText.getFont().setFont(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("font").getNodeValue());
+                    System.out.println("font from FORMAT");
+                }
+
+                //////////////////colour/////////////////////////////////////////////
+
+                if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("color") != null) {
+
+                    contentText.getColour().setColour(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("color").getNodeValue());
+                    System.out.println("colour from FORMAT");
+
+                }
+
+                ///////////////////////line break///////////////////////////////////
+
+                if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Br")) {
+                    System.out.println("---- Br ---");
+                    contentText.setContent("\n");
+                }
+                else
+                {
+                    contentText.setContent(xmlSlide.getChildNodes().item(i).getTextContent().trim());
+                }
+
+                if(contentText.getContent() == "\n")
+                {
+                    System.out.println("LINE BREAK");
+                }
+
+                System.out.println("content TEXT , bold: " + contentText.getFont().isBold()
+                        + " ,italic: " + contentText.getFont().isItalic()
+                        + " ,underline: " + contentText.getFont().isUnderline()
+                        + " ,textsize: " + contentText.getFont().getTextSize()
+                        + " ,colour: " + contentText.getColour().getColour()
+                        + " ,fill: " + contentText.getColour().getFill()
+                        + " ,font: " + contentText.getFont().getFont()
+                        + " , TEXT: " + contentText.getContent());
+
+                slideText.getContent().add(i, contentText);
+            }
+
+
+        return slideText;
+    }
+
+    public static Meta getMeta(NamedNodeMap xmlMeta)
+    {
+        Meta slideMeta = new Meta();
+
+        slideMeta.setValue(xmlMeta.getNamedItem("value").getNodeValue());
+        slideMeta.setKey(xmlMeta.getNamedItem("key").getNodeValue());
+
+        System.out.println("META - value: " + slideMeta.getValue() + " - key: " + slideMeta.getKey());
+
+        return slideMeta;
+    }
+
+    public static void getPresentationDeflaults(Presentation presentation, NamedNodeMap xmlDefaults)
+    {
+        if(xmlDefaults.getNamedItem("italic") != null)
+        {
+            presentation.getPresDefaultFont().setItalic(parseBoolean(xmlDefaults.getNamedItem("italic").getNodeValue()));
+            System.out.println("PRES italic: " + presentation.getPresDefaultFont().isItalic());
+        }
+
+        if(xmlDefaults.getNamedItem("bold") != null)
+        {
+            presentation.getPresDefaultFont().setBold(parseBoolean(xmlDefaults.getNamedItem("bold").getNodeValue()));
+            System.out.println("PRES bold: " + presentation.getPresDefaultFont().isBold());
+        }
+
+        if(xmlDefaults.getNamedItem("underline") != null)
+        {
+            presentation.getPresDefaultFont().setUnderline(parseBoolean(xmlDefaults.getNamedItem("underline").getNodeValue()));
+            System.out.println("PRES underline: " + presentation.getPresDefaultFont().isUnderline());
+        }
+
+        if(xmlDefaults.getNamedItem("textsize") != null)
+        {
+            presentation.getPresDefaultFont().setTextSize(Integer.parseInt(xmlDefaults.getNamedItem("textsize").getNodeValue()));
+            System.out.println("PRES textsize: " + presentation.getPresDefaultFont().getTextSize());
+        }
+
+        if(xmlDefaults.getNamedItem("color") != null)
+        {
+            presentation.getPresDefaultColour().setColour(xmlDefaults.getNamedItem("color").getNodeValue());
+            System.out.println("PRES colour: " + presentation.getPresDefaultColour().getColour());
+        }
+
+        if(xmlDefaults.getNamedItem("font") != null)
+        {
+            presentation.getPresDefaultFont().setFont(xmlDefaults.getNamedItem("font").getNodeValue());
+            System.out.println("PRES font: " + presentation.getPresDefaultFont().getFont());
+        }
+
+        if(xmlDefaults.getNamedItem("fill") != null)
+        {
+            presentation.getPresDefaultColour().setFill(xmlDefaults.getNamedItem("fill").getNodeValue());
+            System.out.println("PRES fill: " + presentation.getPresDefaultColour().getFill());
+        }
+    }
+
+    public static void getSlideDefaults(Slide slide, NamedNodeMap xmlSlide)
+    {
+        if(xmlSlide.getNamedItem("duration") != null) {
+            slide.getTransitions().setDuration(Integer.parseInt(xmlSlide.getNamedItem("duration").getNodeValue()));
+            System.out.println("SLIDE duration: " + slide.getTransitions().getDuration());
+        }
+
+        if(xmlSlide.getNamedItem("start") != null) {
+            slide.getTransitions().setStartTrigger(xmlSlide.getNamedItem("start").getNodeValue());
+            System.out.println("SLIDE start: " + slide.getTransitions().getStartTrigger());
+        }
+
+        if(xmlSlide.getNamedItem("fill") != null) {
+            slide.getColour().setFill(xmlSlide.getNamedItem("fill").getNodeValue());
+            System.out.println("SLIDE fill: " + slide.getColour().getFill());
+        }
+
+        if(xmlSlide.getNamedItem("color") != null) {
+            slide.getColour().setColour(xmlSlide.getNamedItem("color").getNodeValue());
+            System.out.println("SLIDE colour: " + slide.getColour().getColour());
+        }
+
+        if(xmlSlide.getNamedItem("italic") != null)
+        {
+            slide.getFont().setItalic(parseBoolean(xmlSlide.getNamedItem("italic").getNodeValue()));
+            System.out.println("SLIDE italic: " + slide.getFont().isItalic());
+        }
+
+        if(xmlSlide.getNamedItem("bold") != null)
+        {
+            slide.getFont().setBold(parseBoolean(xmlSlide.getNamedItem("bold").getNodeValue()));
+            System.out.println("SLIDE bold: " + slide.getFont().isBold());
+        }
+
+        if(xmlSlide.getNamedItem("underline") != null)
+        {
+            slide.getFont().setUnderline(parseBoolean(xmlSlide.getNamedItem("underline").getNodeValue()));
+            System.out.println("SLIDE underline: " + slide.getFont().isUnderline());
+        }
+
+        if(xmlSlide.getNamedItem("textsize") != null)
+        {
+            slide.getFont().setTextSize(Integer.parseInt(xmlSlide.getNamedItem("textsize").getNodeValue()));
+            System.out.println("SLIDE textsize: " + slide.getFont().getTextSize());
+        }
+
+        if(xmlSlide.getNamedItem("font") != null)
+        {
+            slide.getFont().setFont(xmlSlide.getNamedItem("font").getNodeValue());
+            System.out.println("PRES font: " + slide.getFont().getFont());
+        }
+    }
+
+    public static void setSlideDefaults(Slide slide, Presentation presentation)
+    {
+        //slide.setFont(presentation.getPresDefaultFont());
+        //slide.setColour(presentation.getPresDefaultColour());
+
+        slide.getFont().setFont(presentation.getPresDefaultFont().getFont());
+        slide.getFont().setTextSize(presentation.getPresDefaultFont().getTextSize());
+        slide.getFont().setItalic(presentation.getPresDefaultFont().isItalic());
+        slide.getFont().setBold(presentation.getPresDefaultFont().isBold());
+        slide.getFont().setUnderline(presentation.getPresDefaultFont().isUnderline());
+
+        slide.getColour().setColour(presentation.getPresDefaultColour().getColour());
+        slide.getColour().setFill(presentation.getPresDefaultColour().getFill());
     }
 
 
