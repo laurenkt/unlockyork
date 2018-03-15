@@ -1,6 +1,4 @@
 import models.Presentation;
-import models.Shape;
-import models.Slide;
 import org.junit.Before;
 import org.junit.Test;
 
