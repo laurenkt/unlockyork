@@ -2,9 +2,9 @@ package models;
 
 public class Image {
 
-    String path;
+    String path; //file path for the image file
 
-    Position position;
+    Position position; //position image will appear on a slide
 
     Image(String path, Position position) {
         this.path = path;

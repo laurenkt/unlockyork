@@ -1,8 +1,8 @@
 package models;
 public class Colours {
 
-    String colour;
-    String fill;
+    String colour; //specifies colour as a 6 digit string
+    String fill; //specifies fill, ie gradients
 
     Colours(String colour, String fill) {
         this.colour = colour;

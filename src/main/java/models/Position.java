@@ -2,11 +2,11 @@ package models;
 public class Position
 {
 
-    int xTopLeft;
-    int yTopLeft;
+    int xTopLeft; //top left corner x value
+    int yTopLeft; //top left corner y value
 
-    int xBottomRight;
-    int yBottomRight;
+    int xBottomRight; //bottom right corner x value
+    int yBottomRight; //bottom right corner y value
 
     Position(int xTopLeft, int yTopLeft, int xBottomRight, int yBottomRight)
     {

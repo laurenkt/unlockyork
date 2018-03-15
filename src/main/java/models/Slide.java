@@ -3,16 +3,16 @@ package models;
 import java.util.ArrayList;
 
 public class Slide {
-    Fonts font;
-    Colours colour;
-    Transitions transitions;
+    Fonts font; // font default for the slide
+    Colours colour; // colour default for the slide
+    Transitions transitions; // transition set for the slide
 
     //elements
-    ArrayList<Text> text;
-    ArrayList<Shape> shape;
-    ArrayList<Image> image;
-    ArrayList<Audio> audio;
-    ArrayList<Video> video;
+    ArrayList<Text> text; //all text objects for this slide
+    ArrayList<Shape> shape; //all shape objects for this slide
+    ArrayList<Image> image; //all image objects for this slide
+    ArrayList<Audio> audio; //all audio objects for this slide
+    ArrayList<Video> video; //all video objects for this slide
 
 
     Slide(Fonts font, Colours colour, Transitions transitions, ArrayList<Text> text, ArrayList<Shape> shape, ArrayList<Image> image, ArrayList<Audio> audio, ArrayList<Video> video) {
