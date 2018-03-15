@@ -21,7 +21,7 @@ public class Shape {
     {
         shape = "null";
 
-        stroke = 0;
+        stroke = 1;
 
         position = new Position();
 

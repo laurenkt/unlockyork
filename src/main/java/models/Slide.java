@@ -1,18 +1,21 @@
 package models;
+
+import java.util.ArrayList;
+
 public class Slide {
     Fonts font;
     Colours colour;
     Transitions transitions;
 
     //elements
-    Text[] text;
-    Shape[] shape;
-    Image[] image;
-    Audio[] audio;
-    Video[] video;
+    ArrayList<Text> text;
+    ArrayList<Shape> shape;
+    ArrayList<Image> image;
+    ArrayList<Audio> audio;
+    ArrayList<Video> video;
 
 
-    Slide(Fonts font, Colours colour, Transitions transitions, Text[] text, Shape[] shape, Image[] image, Audio[] audio, Video[] video) {
+    Slide(Fonts font, Colours colour, Transitions transitions, ArrayList<Text> text, ArrayList<Shape> shape, ArrayList<Image> image, ArrayList<Audio> audio, ArrayList<Video> video) {
         this.font = font;
         this.colour = colour;
         this.transitions = transitions;
@@ -29,11 +32,11 @@ public class Slide {
         colour = new Colours();
         transitions = new Transitions();
 
-        text = new Text[0];
-        shape = new Shape[0];
-        image = new Image[0];
-        audio = new Audio[0];
-        video = new Video[0];
+        text = new ArrayList<Text>();
+        shape = new ArrayList<Shape>();
+        image = new ArrayList<Image>();
+        audio = new ArrayList<Audio>();
+        video = new ArrayList<Video>();
     }
 
     public Fonts getFont() {
@@ -60,43 +63,43 @@ public class Slide {
         this.transitions = transitions;
     }
 
-    public Text[] getText() {
+    public ArrayList<Text> getText() {
         return text;
     }
 
-    public void setText(Text[] text) {
+    public void setText(ArrayList<Text> text) {
         this.text = text;
     }
 
-    public Shape[] getShape() {
+    public ArrayList<Shape> getShape() {
         return shape;
     }
 
-    public void setShape(Shape[] shape) {
+    public void setShape(ArrayList<Shape> shape) {
         this.shape = shape;
     }
 
-    public Image[] getImage() {
+    public ArrayList<Image> getImage() {
         return image;
     }
 
-    public void setImage(Image[] image) {
+    public void setImage(ArrayList<Image> image) {
         this.image = image;
     }
 
-    public Audio[] getAudio() {
+    public ArrayList<Audio> getAudio() {
         return audio;
     }
 
-    public void setAudio(Audio[] audio) {
+    public void setAudio(ArrayList<Audio> audio) {
         this.audio = audio;
     }
 
-    public Video[] getVideo() {
+    public ArrayList<Video> getVideo() {
         return video;
     }
 
-    public void setVideo(Video[] video) {
+    public void setVideo(ArrayList<Video> video) {
         this.video = video;
     }
 }
