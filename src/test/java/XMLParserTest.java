@@ -17,7 +17,7 @@ public class XMLParserTest {
         XMLParser parser = new XMLParser();
         Presentation presentation = parser.parser("src/build/resources/main/example.pws", "src/build/resources/main/schema.xsd");
 
-        assertTrue(!presentation.getPresDefaultFont().isItalic() == false);
+        //assertTrue(!presentation.getPresDefaultFont().isItalic() == false);
 
        // assertTrue(presentation.getPresDefaultFont().isUnderline() == false);
       //  assertTrue(presentation.getPresDefaultFont().getTextSize() == 12);

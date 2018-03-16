@@ -14,12 +14,13 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
-import sun.applet.Main;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Kiosk extends Application {
 
@@ -31,6 +32,33 @@ public class Kiosk extends Application {
     private double XPosReleased = 0;
     private double YPosReleased = 0;
 
+    private List<String> getResourceFiles(String path ) throws IOException {
+        List<String> filenames = new ArrayList<>();
+
+        try(
+                InputStream in = getResourceAsStream( path );
+                BufferedReader br = new BufferedReader( new InputStreamReader( in ) ) ) {
+            String resource;
+
+            while( (resource = br.readLine()) != null ) {
+                filenames.add( resource );
+            }
+        }
+
+        return filenames;
+    }
+
+    private InputStream getResourceAsStream( String resource ) {
+        final InputStream in
+                = getContextClassLoader().getResourceAsStream( resource );
+
+        return in == null ? getClass().getResourceAsStream( resource ) : in;
+    }
+
+    private ClassLoader getContextClassLoader() {
+        return Thread.currentThread().getContextClassLoader();
+    }
+
     @Override
     public void start(Stage primaryStage) {
         /*
@@ -41,14 +69,14 @@ public class Kiosk extends Application {
 
         root.getChildren().add(mediaView);*/
 
-
         primaryStage.setTitle("Drag to pan the map");
 
-        Image poiIcon = new Image(this.getClass().getClassLoader().getResource("poi.png").toExternalForm());
-        System.out.println("load image from " + getClass().getResource("poi.png"));
-        Image mapLayout = new Image(getClass().getResource("map.png").toExternalForm());
+        System.out.println(getClass().getClassLoader().getResource("York16.png"));
 
-        map = new MapView(mapLayout,poiIcon);
+        Image poiIcon = new Image(getClass().getClassLoader().getResource("poi.png").toExternalForm());
+        Image mapLayout = new Image(getClass().getClassLoader().getResource("York16.png").toExternalForm());
+        map = new MapView(mapLayout, poiIcon);
+
         Scene scene = new Scene(map);
 
         scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
