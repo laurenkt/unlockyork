@@ -31,6 +31,8 @@ public class MUT1_1 extends ActivityInstrumentationTestCase2<MainActivity>{
 
     }
 
+    // Verify that the text in the textView is not equal to the default string,
+    // meaning a QR code has been scanned.
     private Callable<Boolean> newQRscan(Activity thisActivity) {
         final TextView v = thisActivity.findViewById(R.id.txtResult);
         return new Callable<Boolean>() {
