@@ -1,5 +1,3 @@
-version '1.0-SNAPSHOT'
-
 apply plugin: 'application'
 mainClassName = 'main.java.Kiosk'
 
@@ -33,5 +31,14 @@ sourceSets {
         resources {
             srcDirs = ['test/resources']
         }
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'Kiosk'
+        )
     }
 }
