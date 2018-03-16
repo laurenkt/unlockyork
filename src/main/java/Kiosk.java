@@ -71,11 +71,15 @@ public class Kiosk extends Application {
 
         primaryStage.setTitle("Drag to pan the map");
 
-        System.out.println(getClass().getClassLoader().getResource("York16.png"));
-
         Image poiIcon = new Image(getClass().getClassLoader().getResource("poi.png").toExternalForm());
-        Image mapLayout = new Image(getClass().getClassLoader().getResource("York16.png").toExternalForm());
-        map = new MapView(mapLayout, poiIcon);
+
+        List<Image> tiles = new ArrayList<Image>();
+        tiles.add(new Image(getClass().getClassLoader().getResource("York16.png").toExternalForm()));
+        tiles.add(new Image(getClass().getClassLoader().getResource("York17.png").toExternalForm()));
+        tiles.add(new Image(getClass().getClassLoader().getResource("York18.png").toExternalForm()));
+        tiles.add(new Image(getClass().getClassLoader().getResource("York20.png").toExternalForm()));
+
+        map = new MapView(tiles, poiIcon);
 
         Scene scene = new Scene(map);
 

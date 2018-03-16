@@ -21,6 +21,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
+import java.util.List;
+
 public class MapView extends ScrollPane {
     private double scaleValue = 0.7;
     private double zoomIntensity = 0.02;
@@ -31,12 +33,14 @@ public class MapView extends ScrollPane {
     private Node target2;
     private Group root;
     private Bounds boundsInScene;
+    private List<Image> tiles;
 
-    public MapView(Image tiles, Image poiIcon) {
+    public MapView(List<Image> tiles, Image poiIcon) {
         super();
 
+        this.tiles = tiles;
         mapView = new ImageView();
-        mapView.setImage(tiles);
+        mapView.setImage(tiles.get(0));
 
         poi = new ImageView();
         poi.setFitHeight(100);
@@ -94,7 +98,6 @@ public class MapView extends ScrollPane {
         outerNode.setOnScroll(e -> {
             e.consume();
             onScroll(e.getDeltaY(), new Point2D(e.getX(), e.getY()));
-           // System.out.println(scaleValue);
 
         });
         return outerNode;
@@ -121,22 +124,25 @@ public class MapView extends ScrollPane {
         double valX = getHvalue() * (innerBounds.getWidth() - viewportBounds.getWidth());
         double valY = getVvalue() * (innerBounds.getHeight() - viewportBounds.getHeight());
 
-        scaleValue = scaleValue * zoomFactor;
-// Upper and lower zoom limits
-        if (scaleValue >= 1.8){
-            scaleValue = 1.8;
-        }
+        // Clamp between values
 
-        if (scaleValue <= 0.17){
-            scaleValue = 0.17;
-        }
+        scaleValue = Math.min(1.8, Math.max(0.17, scaleValue * zoomFactor));
 //Level switching, here there will be street level map base when entering level 2
         if (scaleValue <= 0.9){
             System.out.println("level 1");
+            mapView.setImage(tiles.get(0));
         }
-
-        if (scaleValue >= 0.9){
+        else if (scaleValue <= 1.2) {
             System.out.println("level 2");
+            mapView.setImage(tiles.get(1));
+        }
+        else if (scaleValue <= 1.5) {
+            System.out.println("level 3");
+            mapView.setImage(tiles.get(2));
+        }
+        else if (scaleValue <= 1.8) {
+            System.out.println("level 4");
+            mapView.setImage(tiles.get(3));
         }
 
         updateScale();
