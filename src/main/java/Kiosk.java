@@ -2,6 +2,7 @@ import components.MapView;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.Bounds;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,12 +25,7 @@ import java.io.FileInputStream;
 public class Kiosk extends Application {
 
     private MapView map;
-    private double changeInX = 0;
-    private double changeInY = 0;
-    private double XPosPressed = 0;
-    private double YPosPressed = 0;
-    private double XPosReleased = 0;
-    private double YPosReleased = 0;
+    public EventType testEvent;
 
     @Override
     public void start(Stage primaryStage) {
@@ -51,33 +47,7 @@ public class Kiosk extends Application {
         map = new MapView(mapLayout,poiIcon);
         Scene scene = new Scene(map);
 
-        scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                double EventX = event.getX();
-                double EventY = event.getY();
-                double xPoiMin = map.getXPoiMin();
-                double xPoiMax = map.getXPoiMax();
-                double yPoiMin = map.getYPoiMin();
-                double yPoiMax = map.getYPoiMax();
-                Boolean xMinister = false;
-                Boolean yMinister = false;
-
-                System.out.println("mouse clicked at x = " + EventX + " y = " + EventY);
-                System.out.println("xPoiMin = " + xPoiMin + ", xPoiMax = " + xPoiMax);
-                System.out.println("yPoiMin = " + yPoiMin + " yPoiMax = " + yPoiMax);
-
-                if(EventX >= xPoiMin && EventX <= xPoiMax) {
-                    xMinister = true;
-                }
-                if(EventY >= yPoiMin && EventY <= xPoiMax) {
-                    yMinister = true;
-                }
-                if(xMinister == true && yMinister == true) {
-                    System.out.println("Clicked on the Minister");
-                }
-            }
-        });
+        mouseClick(scene);
 
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -89,6 +59,54 @@ public class Kiosk extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();*/
         //player.play();
+    }
+
+    public void mouseClick(Scene scene) {
+        scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+                double EventX = event.getX();
+                double EventY = event.getY();
+                double xPoiMin = map.getXPoiMin();
+                double xPoiMax = map.getXPoiMax();
+                double yPoiMin = map.getYPoiMin();
+                double yPoiMax = map.getYPoiMax();
+                Boolean xMinister = false;
+                Boolean yMinister = false;
+                setTestEventType(event);
+
+                //check list
+                /*
+                System.out.println(event.getEventType());
+                System.out.println("mouse clicked at x = " + EventX + " y = " + EventY);
+                System.out.println("xPoiMin = " + xPoiMin + ", xPoiMax = " + xPoiMax);
+                System.out.println("yPoiMin = " + yPoiMin + " yPoiMax = " + yPoiMax);
+                */
+
+                // checks to see if the mouse click is within the x coordinate of the POI image
+                if(EventX >= xPoiMin && EventX <= xPoiMax) {
+                    xMinister = true;
+                }
+                // checks to see if the mouse click is within the Y coordinate of the POI image
+                if(EventY >= yPoiMin && EventY <= xPoiMax) {
+                    yMinister = true;
+                }
+                //If the mouse click is within the min and max, X and Y coordinates
+                // the minister has been clicked on
+                if(xMinister == true && yMinister == true) {
+                    System.out.println("Clicked on the Minister");
+                }
+            }
+        });
+    }
+
+    public void setTestEventType(MouseEvent event) {
+        testEvent = event.getEventType();
+    }
+
+    public EventType getTestEventType() {
+        return testEvent;
     }
 
     public static void main(String[] args) {

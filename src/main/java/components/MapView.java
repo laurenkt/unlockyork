@@ -38,6 +38,7 @@ public class MapView extends ScrollPane {
         mapView = new ImageView();
         mapView.setImage(tiles);
 
+        //
         poi = new ImageView();
         poi.setFitHeight(100);
         poi.setFitWidth(100);
