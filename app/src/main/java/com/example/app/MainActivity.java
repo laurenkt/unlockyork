@@ -19,6 +19,9 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 import java.io.IOException;
 
 
+// Main Activity.
+// This screen shows the camera preview, and prompts user to scan QR code.
+
 public class MainActivity extends AppCompatActivity {
 
     SurfaceView cameraPreview;
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     CameraSource cameraSource;
     final int RequestCameraPermissionID = 1001;
 
+
+    // Get permission to use camera
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -49,9 +54,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    // Creating the main activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Setting content view from xml file
         setContentView(R.layout.activity_main);
 
         cameraPreview = (SurfaceView) findViewById(R.id.cameraPreview);
@@ -66,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 .setAutoFocusEnabled(true)
                 .setRequestedPreviewSize(640, 480)
                 .build();
-        //Add Event
+
+        // Add Event
         cameraPreview.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder surfaceHolder) {
@@ -100,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+            // When QR code is scanned
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> qrcode = detections.getDetectedItems();
@@ -107,10 +118,15 @@ public class MainActivity extends AppCompatActivity {
                     txtResult.post(new Runnable() {
                         @Override
                         public void run() {
+                            // Phone vibrates when scan complete
                             Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(100);
                             txtResult.setText(qrcode.valueAt(0).displayValue);
+
+                            // Get text from QR code and call sendText method.
                             sendText(txtResult.getText().toString());
+
+                            // Stop camera preview until current scan information is processed
                             cameraSource.stop();
 
 
@@ -122,6 +138,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    // sendText takes the text from QR code and launches the next activity -
+    // ScanSuccess. ScanSuccess will determine if text passed through matches
+    // an existing location.
     public void sendText(String text){
         Bundle bundle = new Bundle();
         bundle.putString("Location",text);
