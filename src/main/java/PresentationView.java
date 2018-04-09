@@ -1,11 +1,11 @@
-package components;
-
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -19,18 +19,15 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import models.Presentation;
+import models.Slide;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-
-import models.*;
-
-
+import java.util.List;
 
 public class PresentationView extends Application {
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -40,13 +37,23 @@ public class PresentationView extends Application {
         //causes issues with "no such file or directory"
         presentation = parser.parser("src/build/resources/main/example.pws", "src/build/resources/main/schema.xsd");
 
-        //can force an index to select slide still needs work to fix
-        for (int i = 0; i < (presentation.getSlides().size()); i++) {
+        setSlide(primaryStage, presentation.getSlides(), 0);
+        primaryStage.show();
+    }
 
-            primaryStage.setTitle("Slide: " + i);
-            primaryStage.setScene(new Scene(displaySlide(presentation.getSlides().get(i)), 1000, 1000));
-            primaryStage.show();
+    public static void setSlide(Stage stage, List<Slide> slides, int idx) {
+        Scene slide = new Scene(displaySlide(slides.get(idx)), 1000, 1000);
+
+        if (idx + 1 < slides.size()) {
+            slide.setOnKeyPressed(e -> {
+                if (e.getCode() == KeyCode.SPACE) {
+                    PresentationView.setSlide(stage, slides, idx + 1);
+                }
+            });
         }
+
+        stage.setTitle("Slide: " + (idx + 1));
+        stage.setScene(slide);
     }
 
     public static void main(String[] args) {
@@ -95,11 +102,11 @@ public class PresentationView extends Application {
     //need to add in actual colour and fill plus handle gradients
     public static ImageView displayImage(models.Image xmlImage)
     {
-        FileInputStream inputStream = null;
+        InputStream inputStream = null;
         try {
             inputStream = new FileInputStream(xmlImage.getPath());
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            inputStream = PresentationView.class.getResourceAsStream("not_found.png");
         }
 
         Image image = new Image(inputStream);
@@ -169,33 +176,65 @@ public class PresentationView extends Application {
     }
 
     //tested and working, no player controls at the moment, set to autoplay for now
-    public static MediaView displayVideo(models.Video xmlVideo)
+    public static Node displayVideo(models.Video xmlVideo)
     {
-        MediaPlayer player = new MediaPlayer( new Media(Paths.get(xmlVideo.getPath()).toUri().toString()));
-        MediaView mediaView = new MediaView(player);
+        try {
+            MediaPlayer player = new MediaPlayer(new Media(Paths.get(xmlVideo.getPath()).toUri().toString()));
+            MediaView mediaView = new MediaView(player);
 
-        mediaView.setX(xmlVideo.getPosition().getxTopLeft());
-        mediaView.setY(xmlVideo.getPosition().getyTopLeft());
-        mediaView.setFitHeight(xmlVideo.getPosition().getyBottomRight() - xmlVideo.getPosition().getyTopLeft());
-        mediaView.setFitWidth(xmlVideo.getPosition().getxBottomRight() - xmlVideo.getPosition().getxTopLeft());
+            mediaView.setX(xmlVideo.getPosition().getxTopLeft());
+            mediaView.setY(xmlVideo.getPosition().getyTopLeft());
+            mediaView.setFitHeight(xmlVideo.getPosition().getyBottomRight() - xmlVideo.getPosition().getyTopLeft());
+            mediaView.setFitWidth(xmlVideo.getPosition().getxBottomRight() - xmlVideo.getPosition().getxTopLeft());
 
-        player.autoPlayProperty().setValue(true);
-        return  mediaView;
+            player.autoPlayProperty().setValue(true);
+            return mediaView;
+        }
+        catch (Exception e) {
+            InputStream inputStream = PresentationView.class.getResourceAsStream("not_found.png");
+
+            Image image = new Image(inputStream);
+
+            ImageView imageView = new ImageView(image);
+
+            imageView.setX(xmlVideo.getPosition().getxTopLeft());
+            imageView.setY(xmlVideo.getPosition().getyTopLeft());
+            imageView.setFitHeight(xmlVideo.getPosition().getyBottomRight() - xmlVideo.getPosition().getyTopLeft());
+            imageView.setFitWidth(xmlVideo.getPosition().getxBottomRight() - xmlVideo.getPosition().getxTopLeft());
+
+            return imageView;
+        }
     }
 
     //tested and working, no player controls at the moment, set to autoplay for now
-    public static MediaView displayAudio(models.Audio xmlAudio)
+    public static Node displayAudio(models.Audio xmlAudio)
     {
-        MediaPlayer player = new MediaPlayer( new Media(Paths.get(xmlAudio.getPath()).toUri().toString()));
-        MediaView mediaView = new MediaView(player);
+        try {
+            MediaPlayer player = new MediaPlayer(new Media(Paths.get(xmlAudio.getPath()).toUri().toString()));
+            MediaView mediaView = new MediaView(player);
 
-        mediaView.setX(xmlAudio.getPosition().getxTopLeft());
-        mediaView.setY(xmlAudio.getPosition().getyTopLeft());
-        mediaView.setFitHeight(xmlAudio.getPosition().getyBottomRight() - xmlAudio.getPosition().getyTopLeft());
-        mediaView.setFitWidth(xmlAudio.getPosition().getxBottomRight() - xmlAudio.getPosition().getxTopLeft());
+            mediaView.setX(xmlAudio.getPosition().getxTopLeft());
+            mediaView.setY(xmlAudio.getPosition().getyTopLeft());
+            mediaView.setFitHeight(xmlAudio.getPosition().getyBottomRight() - xmlAudio.getPosition().getyTopLeft());
+            mediaView.setFitWidth(xmlAudio.getPosition().getxBottomRight() - xmlAudio.getPosition().getxTopLeft());
 
-        player.autoPlayProperty().setValue(true);
-        return  mediaView;
+            player.autoPlayProperty().setValue(true);
+            return mediaView;
+        }
+        catch (Exception e) {
+            InputStream inputStream = PresentationView.class.getResourceAsStream("not_found.png");
+
+            Image image = new Image(inputStream);
+
+            ImageView imageView = new ImageView(image);
+
+            imageView.setX(xmlAudio.getPosition().getxTopLeft());
+            imageView.setY(xmlAudio.getPosition().getyTopLeft());
+            imageView.setFitHeight(xmlAudio.getPosition().getyBottomRight() - xmlAudio.getPosition().getyTopLeft());
+            imageView.setFitWidth(xmlAudio.getPosition().getxBottomRight() - xmlAudio.getPosition().getxTopLeft());
+
+            return imageView;
+        }
     }
 
     //prints on top of each other for seperate text elements, format not always correct
