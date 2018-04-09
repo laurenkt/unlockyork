@@ -2,14 +2,14 @@
 <Presentation xmlns="pws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="pws schema.xsd" italic="false" bold="false" underline="false" textsize="12" color="#F341DE" font="Times New Roman">
    <Meta key="author" value="Stuart Porter" />
    <Slide duration="12">
-      <Text textsize="18" underline="true" font="Times New Roman">
+      <Text x="0" y="0" textsize="18" underline="true" font="Times New Roman">
          This is the schema of the
          <Format bold="true" color="#F341DE">PWS</Format>
          file fromat agreed between
          <Format bold="true" color="#F314DE">SWEng</Format>
          groups.
       </Text>
-      <Text>
+      <Text x="200" y="200">
          Text can contain
          <Format font="comic sans">Format</Format>
          tags that change how it is
@@ -42,11 +42,11 @@
       <Shape x="103" y="123" type="ellipse" x2="583" y2="933" stroke="2" color="#000000" fill="gradient(#38AEDE,#3482ED)" />
    </Slide>
    <Slide fill="#FEDDFE" color="#032222">
-      <Image path="../local_file.jpg" x="10" y="35" x2="100" y2="200" />
+      <Image path="./local_file.jpg" x="10" y="35" x2="100" y2="200" />
       <Shape x="103" y="123" type="ellipse" x2="583" y2="933" stroke="2" color="#000000" fill="gradient(#38AEDE,#3482ED)" />
    </Slide>
    <Slide>
-      <Video path="../local_file.mp4" x="10" y="35" x2="100" y2="200" />
-      <Audio path="../local_file.wav" x="50" y="100" x2="10" y2="10" />
+      <Video path="./local_file.mp4" x="10" y="35" x2="100" y2="200" />
+      <Audio path="./local_file.wav" x="50" y="100" x2="10" y2="10" />
    </Slide>
 </Presentation>
