@@ -96,7 +96,6 @@ public class PresentationView extends Application {
         }
 
         return slideElements;
-
     }
 
     //need to add in actual colour and fill plus handle gradients
@@ -248,7 +247,10 @@ public class PresentationView extends Application {
         {
             Text text = new Text();
 
-            text.setText(xmlText.getContent().get(i).getContent());
+            text.setText(
+                    (i > 0 ? " " : "") +
+                    xmlText.getContent().get(i).getContent()
+            );
             text.setUnderline(xmlText.getContent().get(i).getFont().isUnderline());
             Font font = new Font(xmlText.getContent().get(i).getFont().getFont(), xmlText.getContent().get(i).getFont().getTextSize());
             text.setFont(font);
