@@ -255,6 +255,8 @@ public class PresentationView extends Application {
             textList.add(text);
         }
 
+        textFlow.setLayoutX(xmlText.getPosition().getxTopLeft());
+        textFlow.setLayoutY(xmlText.getPosition().getyTopLeft());
         textFlow.setMaxWidth(500);
         textFlow.setVisible(true);
         return textFlow;
