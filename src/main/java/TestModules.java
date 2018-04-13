@@ -1,4 +1,5 @@
 import components.ImageView;
+import components.MovieView;
 import javafx.application.Application;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
@@ -30,22 +31,34 @@ public class TestModules extends Application {
     @Override
     public void start(Stage primaryStage) {
         int width = 1000;
-        int height = 500;
+        int height = 700;
 
         Group root = new Group();
         Scene scene = new Scene(root, width, height, Color.BLACK);
 
-        ImageView imageView = new ImageView(new Image(getClass().getResource("test_image.jpg").toExternalForm(), width, height, false, false));
+        ImageView imageView = new ImageView(
+                new Image(getClass().getResource("test_image.jpg").toExternalForm(), width, height, false, false),
+                100, 500, 200, 200
+        );
         imageView.setLoupeVisible(true);
         root.getChildren().add(imageView);
+
+        MovieView movieView = new MovieView(
+                "./local_file.mp4",
+                10, 10, 640,480
+        );
+        root.getChildren().add(movieView);
 
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        scene.setOnMouseClicked(e -> {
+            imageView.crop(20, 20, 100, 150);
+        });
 
         //FFmpegLogCallback.set();
         //av_log_set_level(AV_LOG_DEBUG);
-        trim_video(5, 10, "./local_file.mp4", "./new_file.mp4");
+        //cut_video(5, 10, "./Danny_Elfman.wmv", "./new_file.wmv");
     }
 
     /**
@@ -156,7 +169,9 @@ public class TestModules extends Application {
             av_dump_format(outputFormatCtx, 0, out_filename, 1);
 
             if (!((outputFormat.flags() & AVFMT_NOFILE) > 0)) {
-                ret = avio_open(outputFormatCtx.pb(), out_filename, AVIO_FLAG_WRITE);
+                AVIOContext pb = new AVIOContext(null);
+                ret = avio_open(pb, out_filename, AVIO_FLAG_WRITE);
+                outputFormatCtx.pb(pb);
                 if (ret < 0) {
                     throw new Exception("Could not open output file");
                 }
