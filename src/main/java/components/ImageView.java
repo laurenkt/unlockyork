@@ -5,19 +5,27 @@ import com.sun.javafx.geom.transform.BaseTransform;
 import com.sun.javafx.jmx.MXNodeAlgorithm;
 import com.sun.javafx.jmx.MXNodeAlgorithmContext;
 import com.sun.javafx.sg.prism.NGNode;
+import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 public class ImageView extends Region {
     private javafx.scene.image.ImageView imageView;
-    private Group maskView;
     private javafx.scene.image.ImageView maskImageView;
+    private Group maskView;
     private Circle mask;
+    private boolean loupeVisible = false;
+    private boolean mouseOver = false;
 
     public boolean isLoupeVisible() {
         return loupeVisible;
@@ -25,12 +33,12 @@ public class ImageView extends Region {
 
     public void setLoupeVisible(boolean loupeVisible) {
         this.loupeVisible = loupeVisible;
-        mask.setVisible(loupeVisible);
     }
 
-    private boolean loupeVisible = false;
 
     public ImageView(Image image, double scale) {
+        setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+
         imageView = new javafx.scene.image.ImageView(image);
         maskView = new Group();
         maskImageView = new javafx.scene.image.ImageView(image);
@@ -38,9 +46,6 @@ public class ImageView extends Region {
         maskImageView.setScaleX(scale);
         maskImageView.setScaleY(scale);
         maskView.getChildren().add(maskImageView);
-
-        // Cursor
-        // maskView.setCursor(Cursor.NONE);
 
         // Mask
         mask = new Circle(0,0,100);
@@ -55,6 +60,8 @@ public class ImageView extends Region {
             if (!loupeVisible)
                 return;
 
+            mask.setVisible(loupeVisible);
+
             // Move zoomed image around underneath cursor to align properly
             maskImageView.setX(maskImageView.getLayoutBounds().getWidth()/scale - e.getX());
             maskImageView.setY(maskImageView.getLayoutBounds().getHeight()/scale - e.getY());
@@ -62,15 +69,29 @@ public class ImageView extends Region {
             mask.setCenterX(e.getX());
             mask.setCenterY(e.getY());
         });
+
+        setOnMouseExited(e -> {
+            mask.setVisible(false);
+        });
     }
 
     public ImageView(Image image, double x, double y, double width, double height) {
         this(image);
 
-        imageView.setX(x);
-        imageView.setY(y);
+        setLayoutX(x);
+        setLayoutY(y);
+        setWidth(width);
+        setMaxWidth(width);
+        setHeight(height);
+        setMaxHeight(height);
+
+        mask.setClip(new Rectangle(width, height));
+
         imageView.setFitWidth(width);
-        imageView.setFitHeight(height);
+        imageView.setFitHeight(width);
+        maskImageView.setFitWidth(width);
+        maskImageView.setFitHeight(width);
+
     }
 
     public ImageView(Image image) {
@@ -78,6 +99,9 @@ public class ImageView extends Region {
     }
 
     public void crop(double top, double left, double bottom, double right) {
-
+        // Have to create the clipping mask twice because JavaFX complains the same
+        // mask is used for two nodes
+        setClip(new Rectangle(top, left, right - left, bottom - top));
+        mask.setClip(new Rectangle(top, left, right - left, bottom - top));
     }
 }
