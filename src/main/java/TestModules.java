@@ -1,26 +1,17 @@
-import components.ImageView;
+import components.PictureView;
 import components.MovieView;
 import javafx.application.Application;
-import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.PixelFormat;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import org.bytedeco.javacv.*;
-import org.omg.IOP.Codec;
 
 import org.bytedeco.javacpp.*;
-
-import java.io.Console;
-import java.io.File;
 
 import static org.bytedeco.javacpp.avcodec.*;
 import static org.bytedeco.javacpp.avformat.*;
 import static org.bytedeco.javacpp.avutil.*;
-import static org.bytedeco.javacpp.swscale.*;
 
 public class TestModules extends Application {
 
@@ -36,12 +27,12 @@ public class TestModules extends Application {
         Group root = new Group();
         Scene scene = new Scene(root, width, height, Color.BLACK);
 
-        ImageView imageView = new ImageView(
-                new Image(getClass().getResource("test_image.jpg").toExternalForm(), width, height, false, false),
+        PictureView pictureView = new PictureView(
+                new Image(getClass().getClassLoader().getResource("test_image.jpg").toExternalForm(), width, height, false, false),
                 100, 500, 200, 200
         );
-        imageView.setLoupeVisible(true);
-        root.getChildren().add(imageView);
+        pictureView.setLoupeVisible(true);
+        root.getChildren().add(pictureView);
 
         MovieView movieView = new MovieView(
                 "./local_file.mp4",
@@ -53,66 +44,12 @@ public class TestModules extends Application {
         primaryStage.show();
 
         scene.setOnMouseClicked(e -> {
-            imageView.crop(20, 20, 100, 150);
+            pictureView.crop(20, 20, 100, 150);
         });
 
         //FFmpegLogCallback.set();
         //av_log_set_level(AV_LOG_DEBUG);
         //cut_video(5, 10, "./Danny_Elfman.wmv", "./new_file.wmv");
-    }
-
-    /**
-     * Approach using JavaCV
-     * @param from_seconds
-     * @param end_seconds
-     * @param in_filename
-     * @param out_filename
-     */
-    void trim_video(long from_seconds, long end_seconds, String in_filename, String out_filename) {
-        long from_seconds_us = from_seconds * 1000 * 1000;
-        long end_seconds_us = end_seconds * 1000 * 1000;
-
-        FrameGrabber grabber = new FFmpegFrameGrabber(in_filename);
-        try {
-            grabber.start();
-            grabber.setTimestamp(from_seconds_us); // Write from specific moment
-
-            File out = new File(out_filename); // Set destination to write
-            FrameRecorder recorder = new FFmpegFrameRecorder(out, grabber.getImageWidth(), grabber.getImageHeight());
-
-            recorder.setFormat(grabber.getFormat());
-            recorder.setFrameRate(grabber.getFrameRate());
-            recorder.setSampleRate(grabber.getSampleRate());
-            recorder.setAspectRatio(grabber.getAspectRatio());
-            // Seems to be the first format that works on my machine --
-            // There must be a way to enumerate compatible sample formats
-            recorder.setSampleFormat(AV_SAMPLE_FMT_FLTP);
-
-            recorder.setAudioCodec(grabber.getAudioCodec());
-            recorder.setAudioBitrate(grabber.getAudioBitrate());
-            recorder.setAudioChannels(grabber.getAudioChannels());
-
-            recorder.setVideoCodec(grabber.getVideoCodec());
-            recorder.setVideoBitrate(grabber.getVideoBitrate());
-
-            recorder.start();
-
-            Frame frame;
-            Long timestamp;
-            Long fullLength = end_seconds_us - from_seconds_us;
-            double percent = 0d, oldPercent = 0d;
-
-            while ((frame = grabber.grabFrame()) != null && (timestamp = grabber.getTimestamp()) <= end_seconds_us) {
-                recorder.setTimestamp(grabber.getTimestamp() - from_seconds_us);
-                recorder.record(frame);
-            }
-
-            grabber.close();
-            recorder.close();
-        }
-        catch (Exception e) {
-            System.err.println(e);
-        }
     }
 
     /**

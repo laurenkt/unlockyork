@@ -24,13 +24,15 @@ public class MovieView extends Region {
     private BorderPane borderPane;
     private HBox toolbar;
 
-    private Button playPauseButton = new Button("Pause");
-    private Button muteButton = new Button("Mute");
+    private Button playPauseButton = new Button();
+    private Button muteButton = new Button();
     private Slider seekSlider = new Slider(0, 1, 0);
     private Slider rateSlider = new Slider(0.5, 2.0, 1);
     private Slider volumeSlider = new Slider(0, 1, 0.8);
 
     public MovieView(String path, double x, double y, double width, double height) {
+        getStyleClass().add("unlock--movieview");
+
         mediaPlayer = new MediaPlayer(new Media(Paths.get(path).toUri().toString()));
         mediaPlayer.autoPlayProperty().setValue(true);
 
@@ -65,15 +67,9 @@ public class MovieView extends Region {
         });
 
         playPauseButton.setOnMouseClicked(e -> {
-            if (playPauseButton.getText() == "Play") {
-                mediaPlayer.play();
-                playPauseButton.setText("Pause");
-            }
-            else {
-                mediaPlayer.pause();
-                playPauseButton.setText("Play");
-            }
+            mediaPlayer.pause();
         });
+        playPauseButton.getStyleClass().add("button--playpause");
 
         muteButton.setOnMouseClicked(e -> {
             if (muteButton.getText() == "Mute") {
@@ -85,11 +81,8 @@ public class MovieView extends Region {
                 muteButton.setText("Mute");
             }
         });
+        muteButton.getStyleClass().add("button--mute");
 
-        seekSlider.setShowTickLabels(true);
-        seekSlider.setShowTickMarks(true);
-        seekSlider.setMajorTickUnit(60);
-        seekSlider.setMinorTickCount(0);
         seekSlider.maxProperty().bind(
                 Bindings.createDoubleBinding(
                     () -> mediaPlayer.getTotalDuration() == null ?
@@ -99,12 +92,21 @@ public class MovieView extends Region {
                 )
         );
         toolbar.setHgrow(seekSlider, Priority.ALWAYS);
+        toolbar.getStyleClass().add("controls");
         seekSlider.setMaxWidth(Double.POSITIVE_INFINITY);
 
         volumeSlider.setMaxWidth(50);
         rateSlider.setMaxWidth(50);
         mediaPlayer.currentTimeProperty().addListener((ObservableValue<? extends Duration> ov, Duration old_val, Duration new_val) -> {
-            seekSlider.setValue(new_val.toSeconds());
+            if (!seekSlider.isValueChanging()) {
+                seekSlider.setValue(new_val.toSeconds());
+            }
+        });
+        seekSlider.valueProperty().addListener(ov -> {
+            if (seekSlider.isValueChanging()) {
+                // multiply duration by percentage calculated by slider position
+                mediaPlayer.seek(Duration.seconds(seekSlider.getValue()));
+            }
         });
         /*
         seekSlider.setOnMouseClicked(e -> {
@@ -156,5 +158,9 @@ public class MovieView extends Region {
         toolBar.setStyle("-fx-background-color: Black");
 
         return toolBar;
+    }
+
+    @Override public String getUserAgentStylesheet() {
+        return getClass().getClassLoader().getResource("css/MovieView.css").toExternalForm();
     }
 }

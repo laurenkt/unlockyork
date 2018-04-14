@@ -1,15 +1,7 @@
 package components;
 
-import com.sun.javafx.geom.BaseBounds;
-import com.sun.javafx.geom.transform.BaseTransform;
-import com.sun.javafx.jmx.MXNodeAlgorithm;
-import com.sun.javafx.jmx.MXNodeAlgorithmContext;
-import com.sun.javafx.sg.prism.NGNode;
 import javafx.geometry.Insets;
-import javafx.scene.Cursor;
 import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -19,7 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
-public class ImageView extends Region {
+public class PictureView extends Region {
     private javafx.scene.image.ImageView imageView;
     private javafx.scene.image.ImageView maskImageView;
     private Group maskView;
@@ -36,7 +28,7 @@ public class ImageView extends Region {
     }
 
 
-    public ImageView(Image image, double scale) {
+    public PictureView(Image image, double scale) {
         setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
 
         imageView = new javafx.scene.image.ImageView(image);
@@ -75,7 +67,7 @@ public class ImageView extends Region {
         });
     }
 
-    public ImageView(Image image, double x, double y, double width, double height) {
+    public PictureView(Image image, double x, double y, double width, double height) {
         this(image);
 
         setLayoutX(x);
@@ -94,7 +86,7 @@ public class ImageView extends Region {
 
     }
 
-    public ImageView(Image image) {
+    public PictureView(Image image) {
         this(image, 2.0);
     }
 
