@@ -1,0 +1,33 @@
+.unlock--movieview .controls > * {
+    -fx-opacity: 0.6;
+}
+
+.unlock--movieview .controls > *:hover {
+    -fx-opacity: 1;
+}
+
+
+.unlock--movieview .button {
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-min-width: 24px;
+    -fx-min-height: 24px;
+    -fx-max-width: 48px;
+    -fx-max-height: 48px;
+    -fx-graphic-text-gap: 0px;
+    -fx-background-size: 24px 24px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.button--mute {
+    -fx-background-image: url('/icons/volume_off.png');
+}
+
+.button--playpause {
+    -fx-background-image: url('/icons/pause.png');
+}
+
+
