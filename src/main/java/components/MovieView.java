@@ -25,16 +25,24 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-
 import java.nio.file.Paths;
 
+/**
+ *
+ *
+ * @author Unlock (lt696@york.ac.uk)
+ */
 public class MovieView extends Region {
-    private MediaView mediaView = null;
-    private MediaPlayer mediaPlayer = null;
-    private HBox toolbar = null;
+    private MediaView mediaView;
+    private MediaPlayer mediaPlayer;
+    private HBox toolbar;
     private ImageView muteIcon = new ImageView();
+    private TranslateTransition toolbarTransition;
+    private Stage fullscreenWindow;
+    private EventHandler<ActionEvent> onFullScreenAction =
+            e -> setFullScreen();
 
-    /**
+    /*
      * Toolbar icons
      */
     private Button playPauseButton = new Button();
@@ -45,23 +53,27 @@ public class MovieView extends Region {
     private Slider rateSlider = new Slider(0.5, 2.0, 1);
     private Slider volumeSlider = new Slider(0, 1, 0.8);
 
-    private TranslateTransition toolbarTransition;
-
-    private String path;
-    private boolean isFullscreen = false;
-    private Stage fullscreenWindow = null;
-    private EventHandler<ActionEvent> onFullScreenAction = e -> setFullScreen();
-
+    /**
+     *
+     * @param path
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
     public MovieView(String path, double x, double y, double width, double height) {
         this(new MediaPlayer(new Media(Paths.get(path).toUri().toString())), x, y, width, height);
-        this.path = path;
     }
 
+    /**
+     *
+     * @param player
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
     public MovieView(MediaPlayer player, double x, double y, double width, double height) {
-        this(player, x, y, width, height, false);
-    }
-
-    public MovieView(MediaPlayer player, double x, double y, double width, double height, boolean isFullscreen) {
         getStyleClass().add("unlock--movieview");
 
         mediaPlayer = player;
@@ -72,10 +84,9 @@ public class MovieView extends Region {
         mediaView.setFitHeight(height);
         mediaView.setFitWidth(width);
 
-        this.isFullscreen = isFullscreen;
-
         addToolBar();
 
+        // Set layout bounds and positions
         setLayoutX(x);
         setLayoutY(y);
         setWidth(width);
@@ -98,14 +109,18 @@ public class MovieView extends Region {
         box.getChildren().add(mediaView);
 
         pane.getChildren().addAll(box, muteIcon, toolbar);
+
+        pane.setLeftAnchor(toolbar, 0.0);
+        pane.setRightAnchor(toolbar, 0.0);
         pane.setBottomAnchor(toolbar, 0.0);
+
         pane.setBottomAnchor(muteIcon, 10.0);
+
         pane.setTopAnchor(box, 0.0);
-        pane.setBottomAnchor(box, 0.0);
         pane.setLeftAnchor(box, 0.0);
         pane.setRightAnchor(box, 0.0);
-        pane.setRightAnchor(toolbar, 0.0);
-        pane.setLeftAnchor(toolbar, 0.0);
+        pane.setBottomAnchor(box, 0.0);
+
         pane.setMaxHeight(height);
         pane.setMinHeight(height);
         pane.setMinWidth(width);
@@ -117,9 +132,11 @@ public class MovieView extends Region {
         updateMutedState();
         updatePlayingState();
         updatePlaybackRateState();
-
     }
 
+    /**
+     *
+     */
     private void setFullScreen() {
         if (fullscreenWindow == null) {
             Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
@@ -130,8 +147,7 @@ public class MovieView extends Region {
                     primaryScreenBounds.getWidth(),
                     primaryScreenBounds.getHeight()
             );
-            movieView.setOnFullScreenAction(e ->
-                setFullScreen());
+            movieView.setOnFullScreenAction(e -> setFullScreen());
             fullscreenWindow = new Stage(StageStyle.UNDECORATED);
             Scene scene = new Scene(movieView, Color.BLACK);
             scene.setOnKeyPressed(e -> {
@@ -153,6 +169,9 @@ public class MovieView extends Region {
         }
     }
 
+    /**
+     *
+     */
     private void updateMutedState() {
         pseudoClassStateChanged(
                 PseudoClass.getPseudoClass("muted"),
@@ -165,6 +184,9 @@ public class MovieView extends Region {
         muteIcon.setLayoutX(muteButton.getLayoutX());
     }
 
+    /**
+     *
+     */
     private void updatePlayingState() {
         pseudoClassStateChanged(
                 PseudoClass.getPseudoClass("playing"),
@@ -172,6 +194,23 @@ public class MovieView extends Region {
         );
     }
 
+    /**
+     *
+     */
+    private void updatePlaybackRateState() {
+        if (mediaPlayer.getRate() != 1.0) {
+            // Spacing to give room for icon (slightly hacky but simplest solution,
+            // may need to be adjusted if different font is used)
+            rateButton.setText("       " + Double.toString(mediaPlayer.getRate()) + "x");
+        }
+        else {
+            rateButton.setText("");
+        }
+    }
+
+    /**
+     *
+     */
     private void addToolBar() {
         // Only create a toolbar if one doesn't already exist
         if (toolbar != null)
@@ -295,31 +334,41 @@ public class MovieView extends Region {
         );
     }
 
-    private void updatePlaybackRateState() {
-        if (mediaPlayer.getRate() != 1.0) {
-            // Spacing to give room for icon (slightly hacky but simplest solution,
-            // may need to be adjusted if different font is used)
-            rateButton.setText("       " + Double.toString(mediaPlayer.getRate()) + "x");
-        }
-        else {
-            rateButton.setText("");
-        }
-    }
-
+    /**
+     * Convenience method for creating menu items for playback rate menu
+     * @param rate
+     * @return
+     */
     private MenuItem createRateMenuItem(double rate) {
         MenuItem item = new MenuItem(Double.toString(rate) + "x");
         item.setOnAction(e -> mediaPlayer.setRate(rate));
         return item;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override public String getUserAgentStylesheet() {
         return getClass().getClassLoader().getResource("css/MovieView.css").toExternalForm();
     }
 
+    /*
+     * Accessors/mutators
+     */
+
+    /**
+     *
+     * @param onFullScreenAction
+     */
     public void setOnFullScreenAction(EventHandler<ActionEvent> onFullScreenAction) {
         this.onFullScreenAction = onFullScreenAction;
     }
 
+    /**
+     *
+     * @return
+     */
     public MediaPlayer getMediaPlayer() {
         return mediaPlayer;
     }
