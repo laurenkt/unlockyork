@@ -2,9 +2,6 @@ package components;
 
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
-import javafx.beans.binding.Binding;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.ObjectBinding;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -115,11 +112,12 @@ public class MovieView extends Region {
         pane.setMaxWidth(width);
         pane.setClip(new Rectangle(0, 0, width, height));
 
+        getChildren().add(pane);
+
         updateMutedState();
         updatePlayingState();
         updatePlaybackRateState();
 
-        getChildren().add(pane);
     }
 
     private void setFullScreen() {
@@ -321,4 +319,9 @@ public class MovieView extends Region {
     public void setOnFullScreenAction(EventHandler<ActionEvent> onFullScreenAction) {
         this.onFullScreenAction = onFullScreenAction;
     }
+
+    public MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
+    }
+
 }
