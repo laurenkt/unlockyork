@@ -80,9 +80,9 @@ public class PictureView extends Region {
         mask.setClip(new Rectangle(width, height));
 
         imageView.setFitWidth(width);
-        imageView.setFitHeight(width);
+        imageView.setFitHeight(height);
         maskImageView.setFitWidth(width);
-        maskImageView.setFitHeight(width);
+        maskImageView.setFitHeight(height);
 
     }
 

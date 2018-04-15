@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 
 import org.bytedeco.javacpp.*;
 
+import java.nio.file.Paths;
+
 import static org.bytedeco.javacpp.avcodec.*;
 import static org.bytedeco.javacpp.avformat.*;
 import static org.bytedeco.javacpp.avutil.*;
@@ -34,18 +36,26 @@ public class TestModules extends Application {
         pictureView.setLoupeVisible(true);
         root.getChildren().add(pictureView);
 
+        PictureView gifView = new PictureView(
+                new Image(Paths.get("test_gif.gif").toUri().toString(), width, height, false, false),
+                500, 100, 400,300
+        );
+        gifView.setLoupeVisible(true);
+        root.getChildren().add(gifView);
+
         MovieView movieView = new MovieView(
                 "./local_file.mp4",
-                10, 10, 640,480
+                10, 10, 480,360
         );
         root.getChildren().add(movieView);
 
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        /*
         scene.setOnMouseClicked(e -> {
             pictureView.crop(20, 20, 100, 150);
-        });
+        });*/
 
         //FFmpegLogCallback.set();
         //av_log_set_level(AV_LOG_DEBUG);

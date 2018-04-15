@@ -1,57 +1,83 @@
 package components;
 
+import javafx.animation.Interpolator;
+import javafx.animation.TranslateTransition;
+import javafx.beans.binding.Binding;
 import javafx.beans.binding.Bindings;
-import javafx.beans.value.ObservableValue;
-import javafx.geometry.Insets;
+import javafx.beans.binding.ObjectBinding;
+import javafx.css.PseudoClass;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import javafx.util.StringConverter;
 
 import java.nio.file.Paths;
 
 public class MovieView extends Region {
-    private MediaView mediaView;
-    private MediaPlayer mediaPlayer;
-    private BorderPane borderPane;
-    private HBox toolbar;
+    private MediaView mediaView = null;
+    private MediaPlayer mediaPlayer = null;
+    private HBox toolbar = null;
+    private ImageView muteIcon = new ImageView();
 
+    /**
+     * Toolbar icons
+     */
     private Button playPauseButton = new Button();
     private Button muteButton = new Button();
+    private Button rateButton = new Button();
+    private Button fullscreenButton = new Button();
     private Slider seekSlider = new Slider(0, 1, 0);
     private Slider rateSlider = new Slider(0.5, 2.0, 1);
     private Slider volumeSlider = new Slider(0, 1, 0.8);
 
+    private TranslateTransition toolbarTransition;
+
+    private String path;
+    private boolean isFullscreen = false;
+    private Stage fullscreenWindow = null;
+    private EventHandler<ActionEvent> onFullScreenAction = e -> setFullScreen();
+
     public MovieView(String path, double x, double y, double width, double height) {
+        this(new MediaPlayer(new Media(Paths.get(path).toUri().toString())), x, y, width, height);
+        this.path = path;
+    }
+
+    public MovieView(MediaPlayer player, double x, double y, double width, double height) {
+        this(player, x, y, width, height, false);
+    }
+
+    public MovieView(MediaPlayer player, double x, double y, double width, double height, boolean isFullscreen) {
         getStyleClass().add("unlock--movieview");
 
-        mediaPlayer = new MediaPlayer(new Media(Paths.get(path).toUri().toString()));
-        mediaPlayer.autoPlayProperty().setValue(true);
+        mediaPlayer = player;
+        player.autoPlayProperty().setValue(true);
 
         mediaView = new MediaView(mediaPlayer);
-        toolbar = addToolBar();
+        mediaView.setPreserveRatio(true);
+        mediaView.setFitHeight(height);
+        mediaView.setFitWidth(width);
 
-        BorderPane borderPane = new BorderPane();
-        borderPane.setCenter(mediaView);
-        borderPane.setBottom(toolbar);
+        this.isFullscreen = isFullscreen;
 
-        borderPane.setStyle("-fx-background-color: Black");
-
-        toolbar.getChildren().addAll(
-                playPauseButton,
-                seekSlider,
-                rateSlider,
-                muteButton,
-                volumeSlider
-        );
+        addToolBar();
 
         setLayoutX(x);
         setLayoutY(y);
@@ -59,108 +85,240 @@ public class MovieView extends Region {
         setMaxWidth(width);
         setHeight(height);
         setMaxHeight(height);
+        setClip(new Rectangle(0, 0, width, height));
 
-        getChildren().add(borderPane);
-
-        setOnMouseClicked(e -> {
+        mediaView.setOnMouseClicked(e -> {
             mediaPlayer.seek(new Duration(0));
+            mediaPlayer.play();
         });
 
-        playPauseButton.setOnMouseClicked(e -> {
-            mediaPlayer.pause();
-        });
-        playPauseButton.getStyleClass().add("button--playpause");
+        mediaPlayer.statusProperty().addListener(obs ->
+            updatePlayingState());
 
-        muteButton.setOnMouseClicked(e -> {
-            if (muteButton.getText() == "Mute") {
-                mediaPlayer.setMute(true);
-                muteButton.setText("Unmute");
-            }
-            else {
-                mediaPlayer.setMute(false);
-                muteButton.setText("Mute");
-            }
-        });
-        muteButton.getStyleClass().add("button--mute");
+        AnchorPane pane = new AnchorPane();
+        HBox box = new HBox();
+        box.setAlignment(Pos.CENTER);
+        box.getChildren().add(mediaView);
 
-        seekSlider.maxProperty().bind(
-                Bindings.createDoubleBinding(
-                    () -> mediaPlayer.getTotalDuration() == null ?
-                            0 :
-                            mediaPlayer.getTotalDuration().toSeconds(),
-                    mediaPlayer.totalDurationProperty()
-                )
+        pane.getChildren().addAll(box, muteIcon, toolbar);
+        pane.setBottomAnchor(toolbar, 0.0);
+        pane.setBottomAnchor(muteIcon, 10.0);
+        pane.setTopAnchor(box, 0.0);
+        pane.setBottomAnchor(box, 0.0);
+        pane.setLeftAnchor(box, 0.0);
+        pane.setRightAnchor(box, 0.0);
+        pane.setRightAnchor(toolbar, 0.0);
+        pane.setLeftAnchor(toolbar, 0.0);
+        pane.setMaxHeight(height);
+        pane.setMinHeight(height);
+        pane.setMinWidth(width);
+        pane.setMaxWidth(width);
+        pane.setClip(new Rectangle(0, 0, width, height));
+
+        updateMutedState();
+        updatePlayingState();
+        updatePlaybackRateState();
+
+        getChildren().add(pane);
+    }
+
+    private void setFullScreen() {
+        if (fullscreenWindow == null) {
+            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+            MovieView movieView = new MovieView(
+                    mediaPlayer,
+                    0,
+                    0,
+                    primaryScreenBounds.getWidth(),
+                    primaryScreenBounds.getHeight()
+            );
+            movieView.setOnFullScreenAction(e ->
+                setFullScreen());
+            fullscreenWindow = new Stage(StageStyle.UNDECORATED);
+            Scene scene = new Scene(movieView, Color.BLACK);
+            scene.setOnKeyPressed(e -> {
+                if (e.getCode() == KeyCode.ESCAPE)
+                    setFullScreen();
+            });
+            fullscreenWindow.setOnHidden(e -> setFullScreen());
+            fullscreenWindow.setScene(scene);
+            fullscreenWindow.setX(primaryScreenBounds.getMinX());
+            fullscreenWindow.setY(primaryScreenBounds.getMinY());
+            fullscreenWindow.setWidth(primaryScreenBounds.getWidth());
+            fullscreenWindow.setHeight(primaryScreenBounds.getHeight());
+            fullscreenWindow.setMaximized(true);
+            fullscreenWindow.show();
+        }
+        else {
+            fullscreenWindow.close();
+            fullscreenWindow = null;
+        }
+    }
+
+    private void updateMutedState() {
+        pseudoClassStateChanged(
+                PseudoClass.getPseudoClass("muted"),
+                mediaPlayer.isMute()
         );
-        toolbar.setHgrow(seekSlider, Priority.ALWAYS);
-        toolbar.getStyleClass().add("controls");
-        seekSlider.setMaxWidth(Double.POSITIVE_INFINITY);
 
+        // Display a constant mute icon when muted so the user knows why there is no sound
+        muteIcon.setVisible(mediaPlayer.isMute());
+        // Align the icon properly with the actual mute button
+        muteIcon.setLayoutX(muteButton.getLayoutX());
+    }
+
+    private void updatePlayingState() {
+        pseudoClassStateChanged(
+                PseudoClass.getPseudoClass("playing"),
+                mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING
+        );
+    }
+
+    private void addToolBar() {
+        // Only create a toolbar if one doesn't already exist
+        if (toolbar != null)
+            return;
+
+        // Toolbar to display controls on
+        toolbar = new HBox();
+        toolbar.setAlignment(Pos.CENTER);
+        toolbar.alignmentProperty().isBound();
+        toolbar.setSpacing(5);
+
+        // Ensure the seek slider always fills the space
+        toolbar.setHgrow(seekSlider, Priority.ALWAYS);
+        seekSlider.setMaxWidth(Double.POSITIVE_INFINITY);
         volumeSlider.setMaxWidth(50);
         rateSlider.setMaxWidth(50);
-        mediaPlayer.currentTimeProperty().addListener((ObservableValue<? extends Duration> ov, Duration old_val, Duration new_val) -> {
+
+        // Always-present-when-muted icon
+        muteIcon.setImage(new Image(getClass().getClassLoader().getResource("icons/volume_off.png").toExternalForm(), 24.0, 24.0, true, false));
+        muteIcon.setFitHeight(24.0);
+        muteIcon.setFitHeight(24.0);
+
+        // Add CSS classes
+        toolbar.getStyleClass().add("controls");
+        playPauseButton.getStyleClass().add("button--playpause");
+        muteButton.getStyleClass().add("button--mute");
+        fullscreenButton.getStyleClass().add("button--fullscreen");
+        rateButton.getStyleClass().add("button--rate");
+        muteIcon.getStyleClass().add("imageview--mute");
+
+        /*
+         * Ensure the toolbar responds properly to changes in the mediaPlayer
+         */
+
+        // Mute
+        mediaPlayer.muteProperty().addListener(ob -> updateMutedState());
+
+        // Max length
+        mediaPlayer.totalDurationProperty().addListener((ov, prev, val) ->
+            seekSlider.setMax(val.toSeconds()));
+        if (mediaPlayer.getTotalDuration() != null)
+            seekSlider.setMax(mediaPlayer.getTotalDuration().toSeconds());
+
+        // Current time
+        mediaPlayer.currentTimeProperty().addListener((ov, prev, val) -> {
             if (!seekSlider.isValueChanging()) {
-                seekSlider.setValue(new_val.toSeconds());
+                seekSlider.setValue(val.toSeconds());
             }
         });
+
+        // Volume
+        mediaPlayer.volumeProperty().bindBidirectional(volumeSlider.valueProperty());
+
+        // Playback rate
+        mediaPlayer.rateProperty().addListener(obs ->
+            updatePlaybackRateState());
+
+        /*
+         * Ensure the mediaPlayer responds correctly to the toolbar
+         */
+
+        // Toggle mute
+        muteButton.setOnAction(e -> mediaPlayer.setMute(!mediaPlayer.isMute()));
+
+        // Rate (speed) adjust
+        ContextMenu rateMenu = new ContextMenu();
+        rateMenu.getItems().addAll(
+                createRateMenuItem(0.5),
+                createRateMenuItem(0.75),
+                createRateMenuItem(1.0),
+                createRateMenuItem(1.5),
+                createRateMenuItem(2.0)
+        );
+        rateButton.setOnMouseClicked(e -> rateMenu.show(rateButton, e.getScreenX(), e.getScreenY()));
+
+        // Toggle playing
+        playPauseButton.setOnAction(e -> {
+            if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING)
+                mediaPlayer.pause();
+            else
+                mediaPlayer.play();
+        });
+
+        // Adjust transport/seek slider
         seekSlider.valueProperty().addListener(ov -> {
             if (seekSlider.isValueChanging()) {
-                // multiply duration by percentage calculated by slider position
                 mediaPlayer.seek(Duration.seconds(seekSlider.getValue()));
             }
         });
+        seekSlider.setOnMousePressed(e ->
+            mediaPlayer.seek(Duration.seconds(seekSlider.getValue())));
+
+        // Go fullscreen
+        fullscreenButton.setOnAction(e -> this.onFullScreenAction.handle(e));
+
         /*
-        seekSlider.setOnMouseClicked(e -> {
-            mediaPlayer.seek(Duration.seconds(seekSlider.getValue()));
-        });
-        /*
-        seekSlider.valueProperty().addListener((ov, prev_val, new_val) -> {
-            mediaPlayer.seek(mediaPlayer.getTotalDuration().multiply(new_val.doubleValue()));
-        });*/
+         * Show/hide toolbar on movement
+         */
 
-        volumeSlider.valueProperty().addListener((ov, prev_val, new_val) -> {
-            mediaPlayer.setVolume(new_val.doubleValue());
-        });
+        toolbarTransition = new TranslateTransition(Duration.millis(200), toolbar);
+        toolbarTransition.setInterpolator(Interpolator.EASE_IN);
 
-        rateSlider.setShowTickLabels(true);
-        rateSlider.setShowTickMarks(true);
-        rateSlider.setMajorTickUnit(0.25);
-        rateSlider.setMinorTickCount(0);
-        rateSlider.setBlockIncrement(0.25);
-        rateSlider.setSnapToTicks(true);
-        rateSlider.setLabelFormatter(new StringConverter<Double>() {
-            @Override
-            public String toString(Double value) {
-                if (value == 0.5)  return "0.5";
-                if (value == 0.75) return "0.75";
-                if (value == 1.0)  return "1.0";
-                if (value == 1.5)  return "1.5";
-                if (value == 2.0)  return "2.0";
-                return "";
-            }
-
-            @Override
-            public Double fromString(String string) {
-                throw new UnsupportedOperationException();
-            }
-        });
-        rateSlider.valueProperty().addListener((ov, prev_val, new_val) -> {
-            mediaPlayer.setRate(new_val.doubleValue());
+        setOnMouseEntered(e -> {
+            toolbarTransition.setToY(0);
+            toolbarTransition.play();
         });
 
+        setOnMouseExited(e -> {
+            toolbarTransition.setToY(toolbar.getHeight());
+            toolbarTransition.play();
+        });
+
+        // Add icons to toolbar
+        toolbar.getChildren().addAll(
+                playPauseButton,
+                seekSlider,
+                rateButton,
+                muteButton,
+                volumeSlider,
+                fullscreenButton
+        );
     }
 
-    private HBox addToolBar() {
-        HBox toolBar = new HBox();
-        toolBar.setPadding(new Insets(20));
-        toolBar.setAlignment(Pos.CENTER);
-        toolBar.alignmentProperty().isBound();
-        toolBar.setSpacing(5);
-        toolBar.setStyle("-fx-background-color: Black");
+    private void updatePlaybackRateState() {
+        if (mediaPlayer.getRate() != 1.0) {
+            // Spacing to give room for icon (slightly hacky but simplest solution,
+            // may need to be adjusted if different font is used)
+            rateButton.setText("       " + Double.toString(mediaPlayer.getRate()) + "x");
+        }
+        else {
+            rateButton.setText("");
+        }
+    }
 
-        return toolBar;
+    private MenuItem createRateMenuItem(double rate) {
+        MenuItem item = new MenuItem(Double.toString(rate) + "x");
+        item.setOnAction(e -> mediaPlayer.setRate(rate));
+        return item;
     }
 
     @Override public String getUserAgentStylesheet() {
         return getClass().getClassLoader().getResource("css/MovieView.css").toExternalForm();
+    }
+
+    public void setOnFullScreenAction(EventHandler<ActionEvent> onFullScreenAction) {
+        this.onFullScreenAction = onFullScreenAction;
     }
 }
