@@ -28,17 +28,25 @@ import javafx.util.Duration;
 import java.nio.file.Paths;
 
 /**
- *
+ * MovieView is a wrapper around the JavaFX video playback tools with some extra functionality
+ * (sliding transport controls, media controls, full-screen mode).
  *
  * @author Unlock (lt696@york.ac.uk)
  */
 public class MovieView extends Region {
+    // The node that displays the media player
     private MediaView mediaView;
+    // The component which deals with all the practical media commands (play/pause/seek/etc)
     private MediaPlayer mediaPlayer;
+    // Component which all icons are mounted onto
     private HBox toolbar;
+    // The floating 'mute icon' which remains after the toolbar leaves
     private ImageView muteIcon = new ImageView();
+    // Slides the toolbar in and out
     private TranslateTransition toolbarTransition;
+    // Reference to second window if full-screen is engaged
     private Stage fullscreenWindow;
+    // What the fullscreen button does (is changed when in fullscreen mode)
     private EventHandler<ActionEvent> onFullScreenAction =
             e -> setFullScreen();
 
@@ -54,7 +62,7 @@ public class MovieView extends Region {
     private Slider volumeSlider = new Slider(0, 1, 0.8);
 
     /**
-     *
+     * Constructor which takes a filepath
      * @param path
      * @param x
      * @param y
@@ -66,7 +74,7 @@ public class MovieView extends Region {
     }
 
     /**
-     *
+     * Constructor which takes an existing MediaPlayer instance
      * @param player
      * @param x
      * @param y
@@ -74,16 +82,19 @@ public class MovieView extends Region {
      * @param height
      */
     public MovieView(MediaPlayer player, double x, double y, double width, double height) {
+        // Add an overall class to namespace CSS to this module
         getStyleClass().add("unlock--movieview");
 
         mediaPlayer = player;
-        player.autoPlayProperty().setValue(true);
+        player.setAutoPlay(true);
 
+        // Inner nodes
+        // Media
         mediaView = new MediaView(mediaPlayer);
         mediaView.setPreserveRatio(true);
         mediaView.setFitHeight(height);
         mediaView.setFitWidth(width);
-
+        // Toolbar
         addToolBar();
 
         // Set layout bounds and positions
@@ -95,32 +106,41 @@ public class MovieView extends Region {
         setMaxHeight(height);
         setClip(new Rectangle(0, 0, width, height));
 
+        // When the view is clicked, restart playback from beginning
+        // Only do this on the mediaView to avoid problems with the toolbar
         mediaView.setOnMouseClicked(e -> {
             mediaPlayer.seek(new Duration(0));
             mediaPlayer.play();
         });
 
+        // Need to set the listener to update the :playing pseudo-class
         mediaPlayer.statusProperty().addListener(obs ->
             updatePlayingState());
 
-        AnchorPane pane = new AnchorPane();
+        // HBox used to align the video in the center
         HBox box = new HBox();
         box.setAlignment(Pos.CENTER);
         box.getChildren().add(mediaView);
 
+        // AnchorPane used to align the toolbar to the bottom
+        AnchorPane pane = new AnchorPane();
         pane.getChildren().addAll(box, muteIcon, toolbar);
 
+        // Toolbar anchors
         pane.setLeftAnchor(toolbar, 0.0);
         pane.setRightAnchor(toolbar, 0.0);
         pane.setBottomAnchor(toolbar, 0.0);
 
+        // Mute icon anchor
         pane.setBottomAnchor(muteIcon, 10.0);
 
+        // Video box anchors
         pane.setTopAnchor(box, 0.0);
         pane.setLeftAnchor(box, 0.0);
         pane.setRightAnchor(box, 0.0);
         pane.setBottomAnchor(box, 0.0);
 
+        // Set the constraints and clipping on the pane to match the region
         pane.setMaxHeight(height);
         pane.setMinHeight(height);
         pane.setMinWidth(width);
@@ -129,17 +149,26 @@ public class MovieView extends Region {
 
         getChildren().add(pane);
 
+        // Need to update all the states initially so when new windows are created
+        // (full-screen) they have the correct icons
         updateMutedState();
         updatePlayingState();
         updatePlaybackRateState();
     }
 
     /**
-     *
+     * Creates a full-screen window if one doesn't already exist.
+     * Removes it if one does.
      */
     private void setFullScreen() {
         if (fullscreenWindow == null) {
+            // The setFullScreen method doesn't seem to work universally, so
+            // emulate it by fetching the screen bounds and placing the
+            // undecorated window across that area
             Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+            // The new movieView for the full-screen window uses the same mediaPlayer
+            // instance as this one -- that way any changes to the media in one
+            // window are preserved in the other (mute etc)
             MovieView movieView = new MovieView(
                     mediaPlayer,
                     0,
@@ -147,20 +176,29 @@ public class MovieView extends Region {
                     primaryScreenBounds.getWidth(),
                     primaryScreenBounds.getHeight()
             );
+            // Rebind the new windows fullscreen action to re-invoke this method on this window
+            // (which will close the child window)
             movieView.setOnFullScreenAction(e -> setFullScreen());
+
+            // Create the new window/scene
             fullscreenWindow = new Stage(StageStyle.UNDECORATED);
             Scene scene = new Scene(movieView, Color.BLACK);
+            // Respond to ESC key to exit
             scene.setOnKeyPressed(e -> {
                 if (e.getCode() == KeyCode.ESCAPE)
                     setFullScreen();
             });
+            // Close window automatically when window is hidden
             fullscreenWindow.setOnHidden(e -> setFullScreen());
+
+            // Set bounds to be full screen
             fullscreenWindow.setScene(scene);
             fullscreenWindow.setX(primaryScreenBounds.getMinX());
             fullscreenWindow.setY(primaryScreenBounds.getMinY());
             fullscreenWindow.setWidth(primaryScreenBounds.getWidth());
             fullscreenWindow.setHeight(primaryScreenBounds.getHeight());
             fullscreenWindow.setMaximized(true);
+
             fullscreenWindow.show();
         }
         else {
@@ -170,7 +208,7 @@ public class MovieView extends Region {
     }
 
     /**
-     *
+     * Updates the state of the :muted pseudo-class and corrects layout for mute icon
      */
     private void updateMutedState() {
         pseudoClassStateChanged(
@@ -185,7 +223,7 @@ public class MovieView extends Region {
     }
 
     /**
-     *
+     * Updates the state of the :playing pseudo-class
      */
     private void updatePlayingState() {
         pseudoClassStateChanged(
@@ -195,7 +233,8 @@ public class MovieView extends Region {
     }
 
     /**
-     *
+     * Updates the labels on the playback rate button.
+     * If at any other speed than 1.0x, it will display that rate next to the button.
      */
     private void updatePlaybackRateState() {
         if (mediaPlayer.getRate() != 1.0) {
@@ -209,7 +248,7 @@ public class MovieView extends Region {
     }
 
     /**
-     *
+     * Create the toolbar if one doesn't exist already
      */
     private void addToolBar() {
         // Only create a toolbar if one doesn't already exist
@@ -346,7 +385,7 @@ public class MovieView extends Region {
     }
 
     /**
-     *
+     * Link with the stylesheet in /resources
      * @return
      */
     @Override public String getUserAgentStylesheet() {

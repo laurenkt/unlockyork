@@ -1,21 +1,18 @@
 package components;
 
-import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-
 import java.nio.file.Paths;
 
 /**
+ * Wrapper for the JavaFX ImageView which contains extra functionality:
  *
+ * - Cropping using .crop(...) method
+ * - A magnifying loupe which can be enabled/disabled with .setLoupeEnabled(...)
  *
  * @author Unlock (lt696@york.ac.uk)
  */
@@ -37,21 +34,23 @@ public class PictureView extends Region {
      * @param loupeScale
      */
     public PictureView(Image image, double x, double y, double width, double height, double loupeScale) {
+        // Add an overall class to namespace CSS to this module
+        getStyleClass().add("unlock--pictureview");
+
         imageView = new ImageView(image);
         maskView = new Group();
         maskImageView = new ImageView(image);
-        maskImageView.setSmooth(false);
+        maskImageView.setSmooth(false); // Remove smoothing for speed
         setLoupeScape(loupeScale);
         maskView.getChildren().add(maskImageView);
 
-        // Mask
+        // Loupe is effectively a second imageView over the top of the first with a moving clipping mask which
+        // reveals it as the mouse moves
         mask = new Circle(0,0,100);
         mask.setVisible(loupeEnabled);
         maskView.setClip(mask);
 
-        //adding to the root's children
-        getChildren().add(imageView);
-        getChildren().add(maskView);
+        getChildren().addAll(imageView, maskView);
 
         setLayoutX(x);
         setLayoutY(y);
