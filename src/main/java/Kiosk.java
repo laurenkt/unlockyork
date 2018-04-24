@@ -2,17 +2,21 @@ import components.MapView;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Bounds;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
@@ -77,7 +81,67 @@ public class Kiosk extends Application {
         Image mapLayout = new Image(getClass().getClassLoader().getResource("York16.png").toExternalForm());
         map = new MapView(mapLayout, poiIcon);
 
+        BorderPane poiInfo = new BorderPane();
+        HBox UserButtons = new HBox();
+        ScrollPane Info = new ScrollPane();
+
+        Text poiMinister = new Text("York Minister");
+        Text info = new Text("Welcome to the york minister");
+
+        Button back = new Button("Back");
+        Button audioTour = new Button("Audio Tour");
+        Button Video = new Button("Video");
+        Button SubMap = new Button("Sub-map");
+
+        HBox.setHgrow(back, Priority.ALWAYS);
+        HBox.setHgrow(audioTour, Priority.ALWAYS);
+        HBox.setHgrow(Video, Priority.ALWAYS);
+        HBox.setHgrow(SubMap, Priority.ALWAYS);
+        back.setMaxWidth(Double.MAX_VALUE);
+        audioTour.setMaxWidth(Double.MAX_VALUE);
+        Video.setMaxWidth(Double.MAX_VALUE);
+        SubMap.setMaxWidth(Double.MAX_VALUE);
+
+        UserButtons.getChildren().addAll(back,audioTour,Video,SubMap);
+        UserButtons.setAlignment(Pos.CENTER);
+
+        Image YorkMinister = new Image(getClass().getClassLoader().getResource("YorkMinister.jpg").toExternalForm());
+        ImageView YorkMinisterImage = new ImageView(YorkMinister);
+        //String videoPath = new String(getClass().getClassLoader().getResource("unlockyork.mp4)").toExternalForm());
+
+        //Media media = new Media(videoPath);
+        //MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+        MediaPlayer videoPlayer = new MediaPlayer( new Media(getClass().getResource("unlockyork.mp4").toExternalForm()));
+        MediaPlayer audioPlayer = new MediaPlayer( new Media(getClass().getResource("TrialAudio.mp4").toExternalForm()));
+
+        poiInfo.setTop(poiMinister);
+        poiInfo.setAlignment(poiMinister, Pos.CENTER);
+        poiInfo.setCenter(info);
+        poiInfo.setAlignment(info, Pos.CENTER);
+        poiInfo.setBottom(UserButtons);
+        poiInfo.setAlignment(UserButtons, Pos.CENTER);
+
+        Scene scene2 = new Scene(poiInfo);
+
         Scene scene = new Scene(map);
+        back.setOnAction(e -> primaryStage.setScene(scene));
+        Video.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MediaView mediaView = new MediaView(videoPlayer);
+                poiInfo.setCenter(mediaView);
+                videoPlayer.play();
+                }
+        });
+        audioTour.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                poiInfo.setCenter(YorkMinisterImage);
+                audioPlayer.play();
+            }
+        });
+        SubMap.setOnAction(e -> poiInfo.setCenter(YorkMinisterImage));
 
         scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -103,6 +167,8 @@ public class Kiosk extends Application {
                 }
                 if(xMinister == true && yMinister == true) {
                     System.out.println("Clicked on the Minister");
+                    primaryStage.setScene(scene2);
+                    primaryStage.setFullScreen(true);
                 }
             }
         });
