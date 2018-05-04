@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -36,13 +37,12 @@ public class PresentationView extends Application {
         XMLParser parser = new XMLParser();
         //causes issues with "no such file or directory"
         presentation = parser.parser("src/build/resources/main/example.pws", "src/build/resources/main/schema.xsd");
-
         setSlide(primaryStage, presentation.getSlides(), 0);
-        primaryStage.show();
+        //primaryStage.show();
     }
 
     public static void setSlide(Stage stage, List<Slide> slides, int idx) {
-        Scene slide = new Scene(displaySlide(slides.get(idx)), 1000, 1000);
+        Scene slide = new Scene(displaySlide(slides.get(idx)));
 
         if (idx + 1 < slides.size()) {
             slide.setOnKeyPressed(e -> {
