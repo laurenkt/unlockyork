@@ -1,5 +1,7 @@
 import components.MapView;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -26,6 +28,7 @@ import models.Slide;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
@@ -37,12 +40,10 @@ public class Kiosk extends Application {
     private int SlideNum = 0;
     private Presentation presentation;
     private Group group;
-    private double changeInX = 0;
-    private double changeInY = 0;
-    private double XPosPressed = 0;
-    private double YPosPressed = 0;
-    private double XPosReleased = 0;
-    private double YPosReleased = 0;
+    private HBox newSlideForward;
+    private HBox newSlideBack;
+    private double ScaleWidthFactor;
+    private double ScaleHeightFactor;
 
     private List<String> getResourceFiles(String path ) throws IOException {
         List<String> filenames = new ArrayList<>();
@@ -83,6 +84,8 @@ public class Kiosk extends Application {
 
         primaryStage.setTitle("Drag to pan the map");
 
+        ScaleFactor();
+
         System.out.println(getClass().getClassLoader().getResource("York16.png"));
 
         Image poiIcon = new Image(getClass().getClassLoader().getResource("poi.png").toExternalForm());
@@ -98,7 +101,7 @@ public class Kiosk extends Application {
         presentation = parser.parser("src/build/resources/main/example.pws", "src/build/resources/main/schema.xsd");
         InfoView Info = new InfoView();
         group = new Group();
-        group = Info.DisplayPresentationView(presentation,SlideNum);
+        group = Info.DisplayPresentationView(presentation, SlideNum, ScaleWidthFactor, ScaleHeightFactor);
 
         HBox slide = new HBox();
         HBox Buttons = new HBox();
@@ -122,7 +125,11 @@ public class Kiosk extends Application {
         presentationDisplay.setAlignment(slide, Pos.CENTER);
         presentationDisplay.setAlignment(Buttons, Pos.CENTER);
 
-        Scene scene = new Scene(presentationDisplay);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double width = screenSize.getWidth();
+        double height = screenSize.getHeight();
+
+        Scene scene = new Scene(presentationDisplay, width, height);
 
         forward.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -130,7 +137,21 @@ public class Kiosk extends Application {
                 if(SlideNum < presentation.getSlides().size()) {
                     SlideNum = SlideNum + 1;
                 }
-                group = Info.DisplayPresentationView(presentation,SlideNum);
+                newSlideForward = new HBox();
+
+                group = Info.DisplayPresentationView(presentation,SlideNum, ScaleWidthFactor, ScaleHeightFactor);
+                Boolean resizable = group.isResizable();
+                System.out.println("resizable = " + resizable);
+
+
+                newSlideForward.getChildren().add(group);
+
+                presentationDisplay.setCenter(newSlideForward);
+                presentationDisplay.setBottom(Buttons);
+
+                presentationDisplay.setAlignment(newSlideForward, Pos.CENTER);
+                presentationDisplay.setAlignment(Buttons, Pos.CENTER);
+                System.out.println("SlideNum = " + SlideNum);
             }
         });
 
@@ -140,7 +161,20 @@ public class Kiosk extends Application {
                 if(SlideNum > 0) {
                     SlideNum = SlideNum - 1;
                 }
-                group = Info.DisplayPresentationView(presentation,SlideNum);
+                newSlideBack = new HBox();
+
+                group = Info.DisplayPresentationView(presentation,SlideNum, ScaleWidthFactor, ScaleHeightFactor);
+                group.prefHeight(100);
+                group.prefWidth(100);
+                newSlideBack.getChildren().add(group);
+
+                presentationDisplay.setCenter(newSlideBack);
+                presentationDisplay.setBottom(Buttons);
+
+                presentationDisplay.setAlignment(newSlideBack, Pos.CENTER);
+                presentationDisplay.setAlignment(Buttons, Pos.CENTER);
+
+                System.out.println("SlideNum = " + SlideNum);
             }
         });
 
@@ -175,6 +209,7 @@ public class Kiosk extends Application {
         });
 
         primaryStage.setScene(scene);
+        //primaryStage.setFullScreen(true);
         primaryStage.show();
 
         /*
@@ -184,6 +219,18 @@ public class Kiosk extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();*/
         //player.play();
+    }
+
+    public void ScaleFactor() {
+        double DefaultScreenWidth = 1920;
+        double DefaultScreenHeight = 1080;
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double screenWidth = screenSize.getWidth();
+        double screenHeight = screenSize.getHeight();
+
+        ScaleWidthFactor = screenWidth / DefaultScreenWidth;
+        ScaleHeightFactor = screenHeight / DefaultScreenHeight;
     }
 
     public static void main(String[] args) {
