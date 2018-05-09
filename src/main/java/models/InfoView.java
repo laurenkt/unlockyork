@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
@@ -24,11 +25,15 @@ import javafx.stage.Stage;
 import models.Presentation;
 import models.Slide;
 
+import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.nio.file.Paths;
 import java.util.List;
+
+import static javafx.scene.paint.CycleMethod.NO_CYCLE;
+import static javafx.scene.paint.CycleMethod.REPEAT;
 
 public class InfoView {
 
@@ -78,7 +83,7 @@ public class InfoView {
         return slideElements;
     }
 
-    //need to add in actual colour and fill plus handle gradients
+
     public static ImageView displayImage(models.Image xmlImage)
     {
         InputStream inputStream = null;
@@ -100,7 +105,28 @@ public class InfoView {
         return imageView;
     }
 
-    //need to add in actual colour and fill plus handle gradients
+    public static Stop[] gradientHandler(Shape xmlShape)
+    {
+        String colourOneString = "#";
+        String colourTwoString = "#";
+
+        for(int i = 10; i < 16; i++)
+        {
+            colourOneString += xmlShape.colour.fill.charAt(i);
+        }
+
+        for(int i = 18; i < 24; i++)
+        {
+            colourTwoString += xmlShape.colour.fill.charAt(i);
+        }
+
+        System.out.println("GRADIENT colourONE: " + colourOneString + " colourTWO: " + colourTwoString);
+
+        Stop[] stops = { new Stop(0, Color.web(colourOneString)), new Stop(1, Color.web(colourTwoString))};
+
+        return stops;
+    }
+
     public static Rectangle displayRectangle(models.Shape xmlShape)
     {
         Rectangle rectangle = new Rectangle();
@@ -111,12 +137,22 @@ public class InfoView {
         rectangle.setWidth(xmlShape.getPosition().getxBottomRight() - xmlShape.getPosition().getxTopLeft());
 
         rectangle.setStrokeWidth(xmlShape.getStroke());
+        rectangle.setStroke(Color.web(xmlShape.getColour().getColour()));
 
-        rectangle.setFill(Color.web(xmlShape.getColour().getColour()));
+
+        if(xmlShape.colour.fill.charAt(0) == 'g')
+        {
+            LinearGradient linearGradient = new LinearGradient(rectangle.getX(), rectangle.getY(), rectangle.getWidth() + rectangle.getX(), rectangle.getHeight() + rectangle.getY(), false,CycleMethod.REPEAT, gradientHandler(xmlShape));
+            rectangle.setFill(linearGradient);
+        }
+        else
+        {
+            rectangle.setFill(Color.web(xmlShape.getColour().fill));
+        }
+
         return rectangle;
     }
 
-    //need to add in actual colour and fill plus handle gradients
     public static Ellipse displayEllipse(models.Shape xmlShape)
     {
         Ellipse ellipse = new Ellipse();
@@ -128,8 +164,19 @@ public class InfoView {
         ellipse.setRadiusY((xmlShape.getPosition().getyBottomRight() - xmlShape.getPosition().getyTopLeft()) / 2 );
 
         ellipse.setStrokeWidth(xmlShape.getStroke());
+        ellipse.setStroke(Color.web(xmlShape.getColour().getColour()));
 
-        ellipse.setFill(Color.web(xmlShape.getColour().getColour()));
+        if(xmlShape.colour.fill.charAt(0) == 'g')
+        {
+
+            RadialGradient radialGradient = new RadialGradient(0, 0, ellipse.getCenterX(), ellipse.getCenterY(), ellipse.getRadiusY(), false, CycleMethod.REPEAT, gradientHandler(xmlShape));
+            ellipse.setFill(radialGradient);
+
+        }
+        else
+        {
+            ellipse.setFill(Color.web(xmlShape.getColour().fill));
+        }
 
         return ellipse;
 
@@ -147,7 +194,7 @@ public class InfoView {
 
         line.setStrokeWidth(xmlShape.getStroke());
 
-        line.setFill(Color.web(xmlShape.getColour().getColour()));
+        line.setFill(Color.web(xmlShape.getColour().getFill()));
 
         line.setStroke(Color.web(xmlShape.getColour().getColour()));
 
