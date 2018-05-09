@@ -37,46 +37,46 @@ import static javafx.scene.paint.CycleMethod.REPEAT;
 
 public class InfoView {
 
-    public static Group DisplayPresentationView(Presentation presentation, int slideNum) {
+    public static Group DisplayPresentationView(Presentation presentation, int slideNum, double scaleHeightFactor, double scaleWidthFactor) {
     Group pres = new Group();
 
-    pres = displaySlide(presentation.getSlides().get(slideNum));
+    pres = displaySlide(presentation.getSlides().get(slideNum), scaleHeightFactor, scaleWidthFactor);
 
 
     return pres;
     }
 
-    public static Group displaySlide(models.Slide slide)
+    public static Group displaySlide(models.Slide slide, double scaleHeightFactor, double scaleWidthFactor)
     {
         javafx.scene.Group slideElements = new javafx.scene.Group();
         ObservableList list = slideElements.getChildren();
 
         for (int t = 0; t < slide .getText().size(); t++) {
-            list.add(displayText(slide.getText().get(t)));
+            list.add(displayText(slide.getText().get(t), scaleHeightFactor, scaleWidthFactor));
         }
 
         for (int v = 0; v < slide.getVideo().size(); v++) {
-            list.add(displayVideo(slide.getVideo().get(v)));
+            list.add(displayVideo(slide.getVideo().get(v), scaleHeightFactor, scaleWidthFactor));
         }
 
         for (int a = 0; a < slide.getAudio().size(); a++) {
-            list.add(displayAudio(slide.getAudio().get(a)));
+            list.add(displayAudio(slide.getAudio().get(a), scaleHeightFactor, scaleWidthFactor));
         }
 
         for (int im = 0; im < slide.getImage().size(); im++) {
-            list.add(displayImage(slide.getImage().get(im)));
+            list.add(displayImage(slide.getImage().get(im), scaleHeightFactor, scaleWidthFactor));
         }
 
         for (int s = 0; s < slide.getShape().size(); s++) {
 
             if (slide.getShape().get(s).getShape().equals("rectangle")) {
-                list.add(displayRectangle(slide.getShape().get(s)));
+                list.add(displayRectangle(slide.getShape().get(s), scaleHeightFactor, scaleWidthFactor));
 
             } else if (slide.getShape().get(s).getShape().equals("ellipse")) {
-                list.add(displayEllipse(slide.getShape().get(s)));
+                list.add(displayEllipse(slide.getShape().get(s), scaleHeightFactor, scaleWidthFactor));
 
             } else if (slide.getShape().get(s).getShape().equals("line")) {
-                list.add(displayLine(slide.getShape().get(s)));
+                list.add(displayLine(slide.getShape().get(s), scaleHeightFactor, scaleWidthFactor));
             }
         }
 
@@ -84,7 +84,21 @@ public class InfoView {
     }
 
 
-    public static ImageView displayImage(models.Image xmlImage)
+    public static Rectangle displaySlideBackground(models.Slide slide, double scaleHeightFactor, double scaleWidthFactor)
+    {
+        Rectangle background = new Rectangle();
+
+        background.setX(0);
+        background.setY(0);
+        background.setHeight(1080 * scaleHeightFactor);
+        background.setWidth(1920 * scaleWidthFactor);
+
+        background.setFill(Color.web(slide.colour.fill));
+
+        return background;
+    }
+
+    public static ImageView displayImage(models.Image xmlImage, double scaleHeightFactor, double scaleWidthFactor)
     {
         InputStream inputStream = null;
         try {
@@ -97,10 +111,10 @@ public class InfoView {
 
         ImageView imageView = new ImageView(image);
 
-        imageView.setX(xmlImage.getPosition().getxTopLeft());
-        imageView.setY(xmlImage.getPosition().getyTopLeft());
-        imageView.setFitHeight(xmlImage.getPosition().getyBottomRight() - xmlImage.getPosition().getyTopLeft());
-        imageView.setFitWidth(xmlImage.getPosition().getxBottomRight() - xmlImage.getPosition().getxTopLeft());
+        imageView.setX(xmlImage.getPosition().getxTopLeft() * scaleWidthFactor);
+        imageView.setY(xmlImage.getPosition().getyTopLeft() * scaleHeightFactor);
+        imageView.setFitHeight((xmlImage.getPosition().getyBottomRight() - xmlImage.getPosition().getyTopLeft()) * scaleHeightFactor);
+        imageView.setFitWidth((xmlImage.getPosition().getxBottomRight() - xmlImage.getPosition().getxTopLeft()) * scaleWidthFactor);
 
         return imageView;
     }
@@ -127,14 +141,14 @@ public class InfoView {
         return stops;
     }
 
-    public static Rectangle displayRectangle(models.Shape xmlShape)
+    public static Rectangle displayRectangle(models.Shape xmlShape, double scaleHeightFactor, double scaleWidthFactor)
     {
         Rectangle rectangle = new Rectangle();
 
-        rectangle.setX(xmlShape.getPosition().getxTopLeft());
-        rectangle.setY(xmlShape.getPosition().getyTopLeft());
-        rectangle.setHeight(xmlShape.getPosition().getyBottomRight() - xmlShape.getPosition().getyTopLeft());
-        rectangle.setWidth(xmlShape.getPosition().getxBottomRight() - xmlShape.getPosition().getxTopLeft());
+        rectangle.setX(xmlShape.getPosition().getxTopLeft() * scaleWidthFactor);
+        rectangle.setY(xmlShape.getPosition().getyTopLeft() * scaleHeightFactor);
+        rectangle.setHeight((xmlShape.getPosition().getyBottomRight() - xmlShape.getPosition().getyTopLeft()) * scaleHeightFactor);
+        rectangle.setWidth((xmlShape.getPosition().getxBottomRight() - xmlShape.getPosition().getxTopLeft()) * scaleWidthFactor);
 
         rectangle.setStrokeWidth(xmlShape.getStroke());
         rectangle.setStroke(Color.web(xmlShape.getColour().getColour()));
@@ -153,15 +167,15 @@ public class InfoView {
         return rectangle;
     }
 
-    public static Ellipse displayEllipse(models.Shape xmlShape)
+    public static Ellipse displayEllipse(models.Shape xmlShape, double scaleHeightFactor, double scaleWidthFactor)
     {
         Ellipse ellipse = new Ellipse();
 
-        ellipse.setCenterX(((xmlShape.getPosition().getxBottomRight() - xmlShape.getPosition().getxTopLeft()) / 2) + xmlShape.getPosition().getxTopLeft());
-        ellipse.setCenterY(((xmlShape.getPosition().getyBottomRight() - xmlShape.getPosition().getyTopLeft()) / 2 ) + xmlShape.getPosition().getyTopLeft());
+        ellipse.setCenterX((((xmlShape.getPosition().getxBottomRight() - xmlShape.getPosition().getxTopLeft()) / 2) + xmlShape.getPosition().getxTopLeft()) * scaleWidthFactor);
+        ellipse.setCenterY((((xmlShape.getPosition().getyBottomRight() - xmlShape.getPosition().getyTopLeft()) / 2 ) + xmlShape.getPosition().getyTopLeft()) * scaleHeightFactor);
 
-        ellipse.setRadiusX((xmlShape.getPosition().getxBottomRight() - xmlShape.getPosition().getxTopLeft()) / 2);
-        ellipse.setRadiusY((xmlShape.getPosition().getyBottomRight() - xmlShape.getPosition().getyTopLeft()) / 2 );
+        ellipse.setRadiusX(((xmlShape.getPosition().getxBottomRight() - xmlShape.getPosition().getxTopLeft()) / 2) * scaleWidthFactor);
+        ellipse.setRadiusY(((xmlShape.getPosition().getyBottomRight() - xmlShape.getPosition().getyTopLeft()) / 2 ) * scaleHeightFactor);
 
         ellipse.setStrokeWidth(xmlShape.getStroke());
         ellipse.setStroke(Color.web(xmlShape.getColour().getColour()));
@@ -183,14 +197,14 @@ public class InfoView {
     }
 
     //need to add in actual colour and fill plus handle gradients
-    public static Line displayLine(models.Shape xmlShape)
+    public static Line displayLine(models.Shape xmlShape, double scaleHeightFactor, double scaleWidthFactor)
     {
         Line line = new Line();
 
-        line.setStartX(xmlShape.getPosition().getxTopLeft());
-        line.setStartY(xmlShape.getPosition().getyTopLeft());
-        line.setEndX(xmlShape.getPosition().getxBottomRight());
-        line.setEndY(xmlShape.getPosition().getyBottomRight());
+        line.setStartX(xmlShape.getPosition().getxTopLeft() * scaleWidthFactor);
+        line.setStartY(xmlShape.getPosition().getyTopLeft() * scaleHeightFactor);
+        line.setEndX(xmlShape.getPosition().getxBottomRight() * scaleWidthFactor);
+        line.setEndY(xmlShape.getPosition().getyBottomRight() * scaleHeightFactor);
 
         line.setStrokeWidth(xmlShape.getStroke());
 
@@ -202,16 +216,16 @@ public class InfoView {
     }
 
     //tested and working, no player controls at the moment, set to autoplay for now
-    public static Node displayVideo(models.Video xmlVideo)
+    public static Node displayVideo(models.Video xmlVideo , double scaleHeightFactor, double scaleWidthFactor)
     {
         try {
             MediaPlayer player = new MediaPlayer(new Media(Paths.get(xmlVideo.getPath()).toUri().toString()));
             MediaView mediaView = new MediaView(player);
 
-            mediaView.setX(xmlVideo.getPosition().getxTopLeft());
-            mediaView.setY(xmlVideo.getPosition().getyTopLeft());
-            mediaView.setFitHeight(xmlVideo.getPosition().getyBottomRight() - xmlVideo.getPosition().getyTopLeft());
-            mediaView.setFitWidth(xmlVideo.getPosition().getxBottomRight() - xmlVideo.getPosition().getxTopLeft());
+            mediaView.setX(xmlVideo.getPosition().getxTopLeft() * scaleWidthFactor);
+            mediaView.setY(xmlVideo.getPosition().getyTopLeft() * scaleHeightFactor);
+            mediaView.setFitHeight((xmlVideo.getPosition().getyBottomRight() - xmlVideo.getPosition().getyTopLeft()) * scaleHeightFactor);
+            mediaView.setFitWidth((xmlVideo.getPosition().getxBottomRight() - xmlVideo.getPosition().getxTopLeft()) * scaleWidthFactor);
 
             player.autoPlayProperty().setValue(true);
             return mediaView;
@@ -223,26 +237,26 @@ public class InfoView {
 
             ImageView imageView = new ImageView(image);
 
-            imageView.setX(xmlVideo.getPosition().getxTopLeft());
-            imageView.setY(xmlVideo.getPosition().getyTopLeft());
-            imageView.setFitHeight(xmlVideo.getPosition().getyBottomRight() - xmlVideo.getPosition().getyTopLeft());
-            imageView.setFitWidth(xmlVideo.getPosition().getxBottomRight() - xmlVideo.getPosition().getxTopLeft());
+            imageView.setX(xmlVideo.getPosition().getxTopLeft() * scaleWidthFactor);
+            imageView.setY(xmlVideo.getPosition().getyTopLeft() * scaleWidthFactor);
+            imageView.setFitHeight((xmlVideo.getPosition().getyBottomRight() - xmlVideo.getPosition().getyTopLeft()) * scaleHeightFactor);
+            imageView.setFitWidth((xmlVideo.getPosition().getxBottomRight() - xmlVideo.getPosition().getxTopLeft()) * scaleWidthFactor);
 
             return imageView;
         }
     }
 
     //tested and working, no player controls at the moment, set to autoplay for now
-    public static Node displayAudio(models.Audio xmlAudio)
+    public static Node displayAudio(models.Audio xmlAudio, double scaleHeightFactor, double scaleWidthFactor)
     {
         try {
             MediaPlayer player = new MediaPlayer(new Media(Paths.get(xmlAudio.getPath()).toUri().toString()));
             MediaView mediaView = new MediaView(player);
 
-            mediaView.setX(xmlAudio.getPosition().getxTopLeft());
-            mediaView.setY(xmlAudio.getPosition().getyTopLeft());
-            mediaView.setFitHeight(xmlAudio.getPosition().getyBottomRight() - xmlAudio.getPosition().getyTopLeft());
-            mediaView.setFitWidth(xmlAudio.getPosition().getxBottomRight() - xmlAudio.getPosition().getxTopLeft());
+            mediaView.setX(xmlAudio.getPosition().getxTopLeft() * scaleWidthFactor);
+            mediaView.setY(xmlAudio.getPosition().getyTopLeft() * scaleHeightFactor);
+            mediaView.setFitHeight((xmlAudio.getPosition().getyBottomRight() - xmlAudio.getPosition().getyTopLeft()) * scaleHeightFactor);
+            mediaView.setFitWidth((xmlAudio.getPosition().getxBottomRight() - xmlAudio.getPosition().getxTopLeft()) * scaleWidthFactor);
 
             player.autoPlayProperty().setValue(true);
             return mediaView;
@@ -254,17 +268,17 @@ public class InfoView {
 
             ImageView imageView = new ImageView(image);
 
-            imageView.setX(xmlAudio.getPosition().getxTopLeft());
-            imageView.setY(xmlAudio.getPosition().getyTopLeft());
-            imageView.setFitHeight(xmlAudio.getPosition().getyBottomRight() - xmlAudio.getPosition().getyTopLeft());
-            imageView.setFitWidth(xmlAudio.getPosition().getxBottomRight() - xmlAudio.getPosition().getxTopLeft());
+            imageView.setX(xmlAudio.getPosition().getxTopLeft() * scaleWidthFactor);
+            imageView.setY(xmlAudio.getPosition().getyTopLeft() * scaleHeightFactor);
+            imageView.setFitHeight((xmlAudio.getPosition().getyBottomRight() - xmlAudio.getPosition().getyTopLeft()) * scaleHeightFactor);
+            imageView.setFitWidth((xmlAudio.getPosition().getxBottomRight() - xmlAudio.getPosition().getxTopLeft()) * scaleWidthFactor);
 
             return imageView;
         }
     }
 
     //prints on top of each other for seperate text elements, format not always correct
-    public static TextFlow displayText(models.Text xmlText)
+    public static TextFlow displayText(models.Text xmlText, double scaleHeightFactor, double scaleWidthFactor)
     {
         TextFlow textFlow = new TextFlow();
         ObservableList textList = textFlow.getChildren();
@@ -284,9 +298,9 @@ public class InfoView {
             textList.add(text);
         }
 
-        textFlow.setLayoutX(xmlText.getPosition().getxTopLeft());
-        textFlow.setLayoutY(xmlText.getPosition().getyTopLeft());
-        textFlow.setMaxWidth(500);
+        textFlow.setLayoutX(xmlText.getPosition().getxTopLeft() * scaleWidthFactor);
+        textFlow.setLayoutY(xmlText.getPosition().getyTopLeft() * scaleHeightFactor);
+        textFlow.setMaxWidth(1920);
         textFlow.setVisible(true);
         return textFlow;
     }
