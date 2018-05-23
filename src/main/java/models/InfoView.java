@@ -1,14 +1,10 @@
 package models;
 
-import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -21,19 +17,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
-import javafx.stage.Stage;
-import models.Presentation;
-import models.Slide;
 
-import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.nio.file.Paths;
-import java.util.List;
-
-import static javafx.scene.paint.CycleMethod.NO_CYCLE;
-import static javafx.scene.paint.CycleMethod.REPEAT;
 
 public class InfoView {
 
@@ -50,6 +38,8 @@ public class InfoView {
     {
         javafx.scene.Group slideElements = new javafx.scene.Group();
         ObservableList list = slideElements.getChildren();
+
+        //list.add(displaySlideBackground(slide, scaleHeightFactor, scaleWidthFactor));
 
         for (int t = 0; t < slide .getText().size(); t++) {
             list.add(displayText(slide.getText().get(t), scaleHeightFactor, scaleWidthFactor));
@@ -104,7 +94,7 @@ public class InfoView {
         try {
             inputStream = new FileInputStream(xmlImage.getPath());
         } catch (FileNotFoundException e) {
-            inputStream = InfoView.class.getResourceAsStream("not_found.png");
+            inputStream = InfoView.class.getResourceAsStream("/not_found.png");
         }
 
         Image image = new Image(inputStream);
@@ -231,7 +221,7 @@ public class InfoView {
             return mediaView;
         }
         catch (Exception e) {
-            InputStream inputStream = InfoView.class.getResourceAsStream("not_found.png");
+            InputStream inputStream = InfoView.class.getResourceAsStream("/not_found.png");
 
             Image image = new Image(inputStream);
 
@@ -262,7 +252,7 @@ public class InfoView {
             return mediaView;
         }
         catch (Exception e) {
-            InputStream inputStream = InfoView.class.getResourceAsStream("not_found.png");
+            InputStream inputStream = InfoView.class.getResourceAsStream("/not_found.png");
 
             Image image = new Image(inputStream);
 
@@ -300,7 +290,7 @@ public class InfoView {
 
         textFlow.setLayoutX(xmlText.getPosition().getxTopLeft() * scaleWidthFactor);
         textFlow.setLayoutY(xmlText.getPosition().getyTopLeft() * scaleHeightFactor);
-        textFlow.setMaxWidth(1920);
+        textFlow.setMaxWidth(1920 * scaleWidthFactor);
         textFlow.setVisible(true);
         return textFlow;
     }
