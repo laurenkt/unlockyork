@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.io.FileInputStream;
@@ -30,7 +29,7 @@ public class InfoView {
 
     public static Group displaySlide(models.Slide slide, double scaleHeightFactor, double scaleWidthFactor)
     {
-        javafx.scene.Group slideElements = new javafx.scene.Group();
+        Group slideElements = new Group();
         List list = slideElements.getChildren();
 
         //list.add(displaySlideBackground(slide, scaleHeightFactor, scaleWidthFactor));
@@ -134,7 +133,7 @@ public class InfoView {
         rectangle.setWidth((xmlShape.getPosition().getxBottomRight() - xmlShape.getPosition().getxTopLeft()) * scaleWidthFactor);
 
         rectangle.setStrokeWidth(xmlShape.getStroke());
-        rectangle.setStroke(Color.web(xmlShape.getColour().getColour()));
+        rectangle.setStroke(Color.web(xmlShape.getColour().getColor()));
 
 
         if(xmlShape.colour.fill.charAt(0) == 'g')
@@ -161,7 +160,7 @@ public class InfoView {
         ellipse.setRadiusY(((xmlShape.getPosition().getyBottomRight() - xmlShape.getPosition().getyTopLeft()) / 2 ) * scaleHeightFactor);
 
         ellipse.setStrokeWidth(xmlShape.getStroke());
-        ellipse.setStroke(Color.web(xmlShape.getColour().getColour()));
+        ellipse.setStroke(Color.web(xmlShape.getColour().getColor()));
 
         if(xmlShape.colour.fill.charAt(0) == 'g')
         {
@@ -179,7 +178,7 @@ public class InfoView {
 
     }
 
-    //need to add in actual colour and fill plus handle gradients
+    //need to add in actual color and fill plus handle gradients
     public static Node displayLine(models.Shape xmlShape, double scaleHeightFactor, double scaleWidthFactor)
     {
         Line line = new Line();
@@ -193,7 +192,7 @@ public class InfoView {
 
         line.setFill(Color.web(xmlShape.getColour().getFill()));
 
-        line.setStroke(Color.web(xmlShape.getColour().getColour()));
+        line.setStroke(Color.web(xmlShape.getColour().getColor()));
 
         return line;
     }
@@ -203,10 +202,10 @@ public class InfoView {
     {
         return new MovieView(
             Paths.get(xmlVideo.getPath()).toUri().toString(),
-            xmlVideo.getPosition().getxTopLeft() * scaleWidthFactor,
-            xmlVideo.getPosition().getyTopLeft() * scaleHeightFactor,
-            (xmlVideo.getPosition().getxBottomRight() - xmlVideo.getPosition().getxTopLeft()) * scaleWidthFactor,
-            (xmlVideo.getPosition().getyBottomRight() - xmlVideo.getPosition().getyTopLeft()) * scaleHeightFactor
+            xmlVideo.getPosition().x1 * scaleWidthFactor,
+            xmlVideo.getPosition().y1 * scaleHeightFactor,
+            xmlVideo.getPosition().getWidth() * scaleWidthFactor,
+            xmlVideo.getPosition().getHeight() * scaleHeightFactor
         );
     }
 
@@ -214,8 +213,8 @@ public class InfoView {
     public static Node displayAudio(models.Audio xmlAudio, double scaleHeightFactor, double scaleWidthFactor)
     {
         SoundView soundView = new SoundView(new Media(Paths.get(xmlAudio.getPath()).toUri().toString()), false, false, null);
-        soundView.setLayoutX(xmlAudio.getPosition().getxTopLeft() * scaleWidthFactor);
-        soundView.setLayoutY(xmlAudio.getPosition().getyTopLeft() * scaleHeightFactor);
+        soundView.setLayoutX(xmlAudio.getPosition().x1 * scaleWidthFactor);
+        soundView.setLayoutY(xmlAudio.getPosition().y1 * scaleHeightFactor);
         return soundView;
     }
 
@@ -223,8 +222,8 @@ public class InfoView {
     public static Node displayText(models.Text xmlText, double scaleHeightFactor, double scaleWidthFactor)
     {
         return new TextView(
-            xmlText.getPosition().getxTopLeft() * scaleWidthFactor,
-            xmlText.getPosition().getyTopLeft() * scaleHeightFactor,
+            xmlText.getPosition().x1 * scaleWidthFactor,
+            xmlText.getPosition().y1 * scaleHeightFactor,
             500,
             500,
             null,
@@ -235,6 +234,7 @@ public class InfoView {
                 Text text =  new Text(textContent.getContent());
                 text.setFont(textContent.getFont().getFont());
                 text.setUnderline(textContent.getFont().isUnderline());
+                text.setFill(textContent.getColour().getColorPaint());
                 return text;
             }).toArray(size -> new Text[size])
         );

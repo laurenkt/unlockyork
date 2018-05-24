@@ -1,17 +1,16 @@
 package models;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Presentation {
     Meta meta; //presentation meta
     ArrayList<Slide> slides; //all slides inside presentation
     GPS gps; //GPS coordinates for the presentation
-    Fonts presDefaultFont; // presentation defaults for the font of text
-    Colours presDefaultColour; // presentation defaults for colour
+    FontAttrib presDefaultFont; // presentation defaults for the font of text
+    ColorAttrib presDefaultColour; // presentation defaults for color
 
 
-    Presentation(Meta meta, ArrayList<Slide> slides, GPS gps, Fonts presDefaultFont, Colours presDefaultColour) {
+    Presentation(Meta meta, ArrayList<Slide> slides, GPS gps, FontAttrib presDefaultFont, ColorAttrib presDefaultColour) {
         this.meta = meta;
         this.slides = slides;
         this.gps = gps;
@@ -24,23 +23,23 @@ public class Presentation {
         meta = new Meta();
         slides = new ArrayList<Slide>();
         gps = new GPS();
-        presDefaultFont = new Fonts();
-        presDefaultColour = new Colours();
+        presDefaultFont = new FontAttrib();
+        presDefaultColour = new ColorAttrib();
     }
 
-    public Fonts getPresDefaultFont() {
+    public FontAttrib getPresDefaultFont() {
         return presDefaultFont;
     }
 
-    public void setPresDefaultFont(Fonts presDefaultFont) {
+    public void setPresDefaultFont(FontAttrib presDefaultFont) {
         this.presDefaultFont = presDefaultFont;
     }
 
-    public Colours getPresDefaultColour() {
+    public ColorAttrib getPresDefaultColour() {
         return presDefaultColour;
     }
 
-    public void setPresDefaultColour(Colours presDefaultColour) {
+    public void setPresDefaultColour(ColorAttrib presDefaultColour) {
         this.presDefaultColour = presDefaultColour;
     }
 

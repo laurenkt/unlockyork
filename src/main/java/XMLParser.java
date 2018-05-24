@@ -12,7 +12,7 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
 import models.*;
-import models.Position;
+import models.PositionAttrib;
 import models.Slide;
 import models.Text;
 import org.w3c.dom.Document;
@@ -235,17 +235,17 @@ public class XMLParser {
     public static Audio getSlideAudio(Node xmlSlide)
     {
 
-        Position audioPosition = new Position();
+        PositionAttrib audioPositionAttrib = new PositionAttrib();
 
-        audioPosition.setxTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x").getNodeValue()));
-        audioPosition.setyTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y").getNodeValue()));
-        audioPosition.setxBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x2").getNodeValue()));
-        audioPosition.setyBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y2").getNodeValue()));
+        audioPositionAttrib.setxTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x").getNodeValue()));
+        audioPositionAttrib.setyTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y").getNodeValue()));
+        audioPositionAttrib.setxBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x2").getNodeValue()));
+        audioPositionAttrib.setyBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y2").getNodeValue()));
 
         Audio slideAudio = new Audio();
 
         slideAudio.setPath(xmlSlide.getAttributes().getNamedItem("path").getNodeValue());
-        slideAudio.setPosition(audioPosition);
+        slideAudio.setPosition(audioPositionAttrib);
 
         System.out.println("slideAudio");
         System.out.println("    x: " + slideAudio.getPosition().getxTopLeft());
@@ -261,17 +261,17 @@ public class XMLParser {
     //pulls all video information from the dom data structure and saves it into an video object
     public static Video getSlideVideo(Node xmlSlide)
     {
-        Position videoPosition = new Position();
+        PositionAttrib videoPositionAttrib = new PositionAttrib();
 
-        videoPosition.setxTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x").getNodeValue()));
-        videoPosition.setyTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y").getNodeValue()));
-        videoPosition.setxBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x2").getNodeValue()));
-        videoPosition.setyBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y2").getNodeValue()));
+        videoPositionAttrib.setxTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x").getNodeValue()));
+        videoPositionAttrib.setyTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y").getNodeValue()));
+        videoPositionAttrib.setxBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x2").getNodeValue()));
+        videoPositionAttrib.setyBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y2").getNodeValue()));
 
         Video slideVideo = new Video();
 
         slideVideo.setPath(xmlSlide.getAttributes().getNamedItem("path").getNodeValue());
-        slideVideo.setPosition(videoPosition);
+        slideVideo.setPosition(videoPositionAttrib);
 
         System.out.println("slideAudio");
         System.out.println("    x: " + slideVideo.getPosition().getxTopLeft());
@@ -296,12 +296,12 @@ public class XMLParser {
 
         // sets default values for colour from the slide/presentation defaults
         slideShape.getColour().setFill(slide.getColour().getFill());
-        slideShape.getColour().setColour(slide.getColour().getColour());
+        slideShape.getColour().setColor(slide.getColour().getColor());
 
         // if the colour has been specified in the xml, it will overwrite the defaults
         if(xmlSlide.getAttributes().getNamedItem("color") != null)
         {
-            slideShape.getColour().setColour(xmlSlide.getAttributes().getNamedItem("color").getNodeValue());
+            slideShape.getColour().setColor(xmlSlide.getAttributes().getNamedItem("color").getNodeValue());
         }
 
         // if the colour fill has been specified in the xml, it will overwrite the defaults
@@ -325,7 +325,7 @@ public class XMLParser {
         System.out.println("   x2: " + slideShape.getPosition().getxBottomRight());
         System.out.println("   y2: " + slideShape.getPosition().getyBottomRight());
         System.out.println("   stroke: " + slideShape.getStroke());
-        System.out.println("   colour: " + slideShape.getColour().getColour());
+        System.out.println("   colour: " + slideShape.getColour().getColor());
         System.out.println("   fill: " + slideShape.getColour().getFill());
 
         return slideShape;
@@ -334,17 +334,17 @@ public class XMLParser {
     //pulls all image information from the dom data structure and saves it into an image object
     public static Image getSlideImage(Node xmlSlide)
     {
-        Position imagePosition = new Position();
+        PositionAttrib imagePositionAttrib = new PositionAttrib();
 
-        imagePosition.setxTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x").getNodeValue()));
-        imagePosition.setyTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y").getNodeValue()));
-        imagePosition.setxBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x2").getNodeValue()));
-        imagePosition.setyBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y2").getNodeValue()));
+        imagePositionAttrib.setxTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x").getNodeValue()));
+        imagePositionAttrib.setyTopLeft(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y").getNodeValue()));
+        imagePositionAttrib.setxBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("x2").getNodeValue()));
+        imagePositionAttrib.setyBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y2").getNodeValue()));
 
         Image slideImage = new Image();
 
         slideImage.setPath(xmlSlide.getAttributes().getNamedItem("path").getNodeValue());
-        slideImage.setPosition(imagePosition);
+        slideImage.setPosition(imagePositionAttrib);
 
         System.out.println("   x: " + slideImage.getPosition().getxTopLeft());
         System.out.println("   y: " + slideImage.getPosition().getyTopLeft());
@@ -390,15 +390,15 @@ public class XMLParser {
         }
     }
 
-    //gets the attributes for the textContent object element in xml
-    public static void getTextContentAttributes(textContent content, NamedNodeMap xmlSlide)
+    //gets the attributes for the TextFormat object element in xml
+    public static void getTextContentAttributes(TextFormat content, NamedNodeMap xmlSlide)
     {
         if(xmlSlide.getNamedItem("fill") != null) {
             content.getColour().setFill(xmlSlide.getNamedItem("fill").getNodeValue());
         }
 
         if(xmlSlide.getNamedItem("color") != null) {
-            content.getColour().setColour(xmlSlide.getNamedItem("color").getNodeValue());
+            content.getColour().setColor(xmlSlide.getNamedItem("color").getNodeValue());
         }
 
         if(xmlSlide.getNamedItem("italic") != null)
@@ -429,7 +429,7 @@ public class XMLParser {
 
     //sets the defaults from the slide/presentation for the text content objects
     //ensures text always has a format
-    public static void setTextContentDefaults(textContent content, Slide slide)
+    public static void setTextContentDefaults(TextFormat content, Slide slide)
     {
         content.getFont().setBold(slide.getFont().isBold());
         content.getFont().setUnderline(slide.getFont().isUnderline());
@@ -437,7 +437,7 @@ public class XMLParser {
         content.getFont().setTextSize(slide.getFont().getTextSize());
         content.getFont().setFontWithName(slide.getFont().getFontName());
 
-        content.getColour().setColour(slide.getColour().getColour());
+        content.getColour().setColor(slide.getColour().getColor());
         content.getColour().setFill(slide.getColour().getFill());
     }
 
@@ -455,9 +455,9 @@ public class XMLParser {
         //loops through all lines of text written in the xml
         for(int i = 0; i < xmlSlide.getChildNodes().getLength(); i++)
         {
-                textContent contentText = new textContent();
+                TextFormat contentText = new TextFormat();
 
-                //sets the defaults for a new textContent from slide/presentation defaults
+                //sets the defaults for a new TextFormat from slide/presentation defaults
                 setTextContentDefaults(contentText, slide);
 
                 System.out.println("SLIDE DE BOLD: " + slide.getFont().isBold());
@@ -466,45 +466,45 @@ public class XMLParser {
                 getTextContentAttributes(contentText, xmlSlide.getAttributes());
 
                 ///////////////////BOLD/////////////////////////////////////////////////
-                //if a format change is specified for bold this particular textContent will use that format
+                //if a format change is specified for bold this particular TextFormat will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("bold") != null) {
                     contentText.getFont().setBold(parseBoolean(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("bold").getNodeValue()));
                     System.out.println("bold from FORMAT");
                 }
 
                 /////////////////////underline//////////////////////////////////////////
-                //if a format change is specified for underline this particular textContent will use that format
+                //if a format change is specified for underline this particular TextFormat will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("underline") != null) {
                     contentText.getFont().setUnderline(parseBoolean(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("underline").getNodeValue()));
                     System.out.println("underline from FORMAT");
                 }
 
                 ////////////////////italic//////////////////////////////////////////////
-                //if a format change is specified for italic this particular textContent will use that format
+                //if a format change is specified for italic this particular TextFormat will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("italic") != null) {
                     contentText.getFont().setItalic(parseBoolean(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("italic").getNodeValue()));
                     System.out.println("italic from FORMAT");
                 }
 
                 ///////////////////textsize////////////////////////////////////////////
-                //if a format change is specified for textsize this particular textContent will use that format
+                //if a format change is specified for textsize this particular TextFormat will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("textsize") != null) {
                     contentText.getFont().setTextSize(Integer.parseInt(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("textsize").getNodeValue()));
                     System.out.println("textsize from FORMAT");
                 }
 
                 ///////////////////////font///////////////////////////////////////////
-                //if a format change is specified for font this particular textContent will use that format
+                //if a format change is specified for font this particular TextFormat will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("font") != null) {
                     contentText.getFont().setFontWithName(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("font").getNodeValue());
                     System.out.println("font from FORMAT");
                 }
 
                 //////////////////colour/////////////////////////////////////////////
-                //if a format change is specified for colour this particular textContent will use that format
+                //if a format change is specified for colour this particular TextFormat will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("color") != null) {
 
-                    contentText.getColour().setColour(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("color").getNodeValue());
+                    contentText.getColour().setColor(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("color").getNodeValue());
                     System.out.println("colour from FORMAT");
 
                 }
@@ -517,7 +517,7 @@ public class XMLParser {
                 }
                 else
                 {
-                    //if not a line break, the actual text content of the line is added to the textContent object
+                    //if not a line break, the actual text content of the line is added to the TextFormat object
                     contentText.setContent(xmlSlide.getChildNodes().item(i).getTextContent().trim());
                 }
 
@@ -530,7 +530,7 @@ public class XMLParser {
                         + " ,italic: " + contentText.getFont().isItalic()
                         + " ,underline: " + contentText.getFont().isUnderline()
                         + " ,textsize: " + contentText.getFont().getTextSize()
-                        + " ,colour: " + contentText.getColour().getColour()
+                        + " ,colour: " + contentText.getColour().getColor()
                         + " ,fill: " + contentText.getColour().getFill()
                         + " ,font: " + contentText.getFont().getFontName()
                         + " , TEXT: " + contentText.getContent());
@@ -584,8 +584,8 @@ public class XMLParser {
 
         if(xmlDefaults.getNamedItem("color") != null)
         {
-            presentation.getPresDefaultColour().setColour(xmlDefaults.getNamedItem("color").getNodeValue());
-            System.out.println("PRES colour: " + presentation.getPresDefaultColour().getColour());
+            presentation.getPresDefaultColour().setColor(xmlDefaults.getNamedItem("color").getNodeValue());
+            System.out.println("PRES colour: " + presentation.getPresDefaultColour().getColor());
         }
 
         if(xmlDefaults.getNamedItem("font") != null)
@@ -620,8 +620,8 @@ public class XMLParser {
         }
 
         if(xmlSlide.getNamedItem("color") != null) {
-            slide.getColour().setColour(xmlSlide.getNamedItem("color").getNodeValue());
-            System.out.println("SLIDE colour: " + slide.getColour().getColour());
+            slide.getColour().setColor(xmlSlide.getNamedItem("color").getNodeValue());
+            System.out.println("SLIDE colour: " + slide.getColour().getColor());
         }
 
         if(xmlSlide.getNamedItem("italic") != null)
@@ -664,7 +664,7 @@ public class XMLParser {
         slide.getFont().setBold(presentation.getPresDefaultFont().isBold());
         slide.getFont().setUnderline(presentation.getPresDefaultFont().isUnderline());
 
-        slide.getColour().setColour(presentation.getPresDefaultColour().getColour());
+        slide.getColour().setColor(presentation.getPresDefaultColour().getColor());
         slide.getColour().setFill(presentation.getPresDefaultColour().getFill());
     }
 

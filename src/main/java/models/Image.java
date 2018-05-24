@@ -4,18 +4,18 @@ public class Image {
 
     String path; //file path for the image file
 
-    Position position; //position image will appear on a slide
+    PositionAttrib positionAttrib; //positionAttrib image will appear on a slide
 
-    Image(String path, Position position) {
+    Image(String path, PositionAttrib positionAttrib) {
         this.path = path;
-        this.position = position;
+        this.positionAttrib = positionAttrib;
     }
 
     public Image()
     {
         path = "null";
 
-        position = new Position();
+        positionAttrib = new PositionAttrib();
     }
 
     public String getPath() {
@@ -26,11 +26,11 @@ public class Image {
         this.path = path;
     }
 
-    public Position getPosition() {
-        return position;
+    public PositionAttrib getPosition() {
+        return positionAttrib;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setPosition(PositionAttrib positionAttrib) {
+        this.positionAttrib = positionAttrib;
     }
 }

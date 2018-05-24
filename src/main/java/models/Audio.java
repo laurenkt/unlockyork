@@ -4,17 +4,17 @@ public class Audio {
 
     String path; //file path to audio file
 
-    Position position; //position of audio on the slide
+    PositionAttrib positionAttrib; //positionAttrib of audio on the slide
 
-    Audio(String path, Position position) {
+    Audio(String path, PositionAttrib positionAttrib) {
         this.path = path;
-        this.position = position;
+        this.positionAttrib = positionAttrib;
     }
 
     public Audio()
     {
         path = "null";
-        position = new Position();
+        positionAttrib = new PositionAttrib();
     }
 
     public String getPath() {
@@ -25,11 +25,11 @@ public class Audio {
         this.path = path;
     }
 
-    public Position getPosition() {
-        return position;
+    public PositionAttrib getPosition() {
+        return positionAttrib;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setPosition(PositionAttrib positionAttrib) {
+        this.positionAttrib = positionAttrib;
     }
 }

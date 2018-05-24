@@ -4,17 +4,17 @@ public class Video {
 
     String path; // path of the video file
 
-    Position position; // position of video on slide
+    PositionAttrib positionAttrib; // positionAttrib of video on slide
 
-    Video(String path, Position position) {
+    Video(String path, PositionAttrib positionAttrib) {
         this.path = path;
-        this.position = position;
+        this.positionAttrib = positionAttrib;
     }
 
     public Video()
     {
         path = "null";
-        position = new Position();
+        positionAttrib = new PositionAttrib();
     }
 
     public String getPath() {
@@ -25,11 +25,11 @@ public class Video {
         this.path = path;
     }
 
-    public Position getPosition() {
-        return position;
+    public PositionAttrib getPosition() {
+        return positionAttrib;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setPosition(PositionAttrib positionAttrib) {
+        this.positionAttrib = positionAttrib;
     }
 }

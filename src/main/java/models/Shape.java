@@ -6,14 +6,14 @@ public class Shape {
 
     int stroke; //thickness of shape outline
 
-    Position position; // position of the shape on the slide
+    PositionAttrib positionAttrib; // positionAttrib of the shape on the slide
 
-    Colours colour; // colour of the shape
+    ColorAttrib colour; // color of the shape
 
-    Shape(String shape, int stroke, Position position, Colours colour) {
+    Shape(String shape, int stroke, PositionAttrib positionAttrib, ColorAttrib colour) {
         this.shape = shape;
         this.stroke = stroke;
-        this.position = position;
+        this.positionAttrib = positionAttrib;
         this.colour = colour;
     }
 
@@ -23,9 +23,9 @@ public class Shape {
 
         stroke = 1;
 
-        position = new Position();
+        positionAttrib = new PositionAttrib();
 
-        colour = new Colours();
+        colour = new ColorAttrib();
     }
 
     public String getShape() {
@@ -44,19 +44,19 @@ public class Shape {
         this.stroke = stroke;
     }
 
-    public Position getPosition() {
-        return position;
+    public PositionAttrib getPosition() {
+        return positionAttrib;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setPosition(PositionAttrib positionAttrib) {
+        this.positionAttrib = positionAttrib;
     }
 
-    public Colours getColour() {
+    public ColorAttrib getColour() {
         return colour;
     }
 
-    public void setColour(Colours colour) {
+    public void setColour(ColorAttrib colour) {
         this.colour = colour;
     }
 }

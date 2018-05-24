@@ -1,38 +1,38 @@
 package models;
 
-public class textContent {
+public class TextFormat {
 
-    Fonts font; // font for this part of text
-    Colours colour; // colour for this part of text
+    FontAttrib font; // font for this part of text
+    ColorAttrib colour; // color for this part of text
     String content; // actual text content
 
-    textContent(Fonts font, Colours colour, String content)
+    TextFormat(FontAttrib font, ColorAttrib colour, String content)
     {
         this.font = font;
         this.colour = colour;
         this.content = content;
     }
 
-    public textContent()
+    public TextFormat()
     {
-        font = new Fonts();
-        colour = new Colours();
+        font = new FontAttrib();
+        colour = new ColorAttrib();
         content = "null";
     }
 
-    public Fonts getFont() {
+    public FontAttrib getFont() {
         return font;
     }
 
-    public void setFont(Fonts font) {
+    public void setFont(FontAttrib font) {
         this.font = font;
     }
 
-    public Colours getColour() {
+    public ColorAttrib getColour() {
         return colour;
     }
 
-    public void setColour(Colours colour) {
+    public void setColour(ColorAttrib colour) {
         this.colour = colour;
     }
 

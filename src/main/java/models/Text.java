@@ -4,46 +4,46 @@ import java.util.ArrayList;
 
 public class Text {
 
-    Position position; // position of text on this slide
+    PositionAttrib positionAttrib; // positionAttrib of text on this slide
 
-    ArrayList<textContent> content; // array of all the different parts of the text
+    ArrayList<TextFormat> content; // array of all the different parts of the text
 
-    Transitions transition; // transitions for the text
+    TransitionAttrib transition; // transitionAttrib for the text
 
-    Text(Position position, ArrayList<textContent> content, Transitions transition) {
-        this.position = position;
+    Text(PositionAttrib positionAttrib, ArrayList<TextFormat> content, TransitionAttrib transition) {
+        this.positionAttrib = positionAttrib;
         this.content = content;
         this.transition = transition;
     }
 
     public Text()
     {
-        position = new Position();
-        content = new ArrayList<textContent>();
-        transition = new Transitions();
+        positionAttrib = new PositionAttrib();
+        content = new ArrayList<TextFormat>();
+        transition = new TransitionAttrib();
     }
 
-    public Transitions getTransition() {
+    public TransitionAttrib getTransition() {
         return transition;
     }
 
-    public void setTransition(Transitions transition) {
+    public void setTransition(TransitionAttrib transition) {
         this.transition = transition;
     }
 
-    public Position getPosition() {
-        return position;
+    public PositionAttrib getPosition() {
+        return positionAttrib;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setPosition(PositionAttrib positionAttrib) {
+        this.positionAttrib = positionAttrib;
     }
 
-    public ArrayList<textContent> getContent() {
+    public ArrayList<TextFormat> getContent() {
         return content;
     }
 
-    public void setContent(ArrayList<textContent> content) {
+    public void setContent(ArrayList<TextFormat> content) {
         this.content = content;
     }
 }

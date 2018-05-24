@@ -4,9 +4,9 @@
    <Slide duration="12">
       <Text x="0" y="0" textsize="18" underline="true" font="Times New Roman">
          This is the schema of the
-         <Format bold="true" color="#F341DE">PWS</Format>
+         <Format bold="true" color="#41AADE">PWS</Format>
          file fromat agreed between
-         <Format bold="true" color="#F314DE">SWEng</Format>
+         <Format bold="true" color="#DEB002">SWEng</Format>
          groups.
       </Text>
       <Text x="200" y="200">

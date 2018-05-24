@@ -1,16 +1,16 @@
 package models;
-public class Transitions {
+public class TransitionAttrib {
 
     String startTrigger; // if trigger, set by an event
 
     int duration; // time on screen
 
-    Transitions(String startTrigger, int duration) {
+    TransitionAttrib(String startTrigger, int duration) {
         this.startTrigger = startTrigger;
         this.duration = duration;
     }
 
-    public Transitions()
+    public TransitionAttrib()
     {
         startTrigger = "null";
         duration = 0;

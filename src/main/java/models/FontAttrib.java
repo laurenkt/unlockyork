@@ -4,7 +4,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 
-public class Fonts {
+public class FontAttrib {
 
     String fontName;
 
@@ -14,7 +14,7 @@ public class Fonts {
 
     int textSize;
 
-    Fonts(String font, boolean italic, boolean bold, boolean underline, int textSize) {
+    FontAttrib(String font, boolean italic, boolean bold, boolean underline, int textSize) {
         this.fontName = font;
         this.italic = italic;
         this.bold = bold;
@@ -22,7 +22,7 @@ public class Fonts {
         this.textSize = textSize;
     }
 
-    public Fonts()
+    public FontAttrib()
     {
         fontName = "Times New Roman";
 
