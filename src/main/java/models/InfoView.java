@@ -1,5 +1,8 @@
 package models;
 
+import components.MovieView;
+import components.PictureView;
+import components.TextView;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -22,22 +25,19 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class InfoView {
 
     public static Group DisplayPresentationView(Presentation presentation, int slideNum, double scaleHeightFactor, double scaleWidthFactor) {
-    Group pres = new Group();
-
-    pres = displaySlide(presentation.getSlides().get(slideNum), scaleHeightFactor, scaleWidthFactor);
-
-
-    return pres;
+        return displaySlide(presentation.getSlides().get(slideNum), scaleHeightFactor, scaleWidthFactor);
     }
 
     public static Group displaySlide(models.Slide slide, double scaleHeightFactor, double scaleWidthFactor)
     {
         javafx.scene.Group slideElements = new javafx.scene.Group();
-        ObservableList list = slideElements.getChildren();
+        List list = slideElements.getChildren();
 
         //list.add(displaySlideBackground(slide, scaleHeightFactor, scaleWidthFactor));
 
@@ -88,9 +88,9 @@ public class InfoView {
         return background;
     }
 
-    public static ImageView displayImage(models.Image xmlImage, double scaleHeightFactor, double scaleWidthFactor)
+    public static Node displayImage(models.Image xmlImage, double scaleHeightFactor, double scaleWidthFactor)
     {
-        InputStream inputStream = null;
+        InputStream inputStream;
         try {
             inputStream = new FileInputStream(xmlImage.getPath());
         } catch (FileNotFoundException e) {
@@ -99,14 +99,13 @@ public class InfoView {
 
         Image image = new Image(inputStream);
 
-        ImageView imageView = new ImageView(image);
-
-        imageView.setX(xmlImage.getPosition().getxTopLeft() * scaleWidthFactor);
-        imageView.setY(xmlImage.getPosition().getyTopLeft() * scaleHeightFactor);
-        imageView.setFitHeight((xmlImage.getPosition().getyBottomRight() - xmlImage.getPosition().getyTopLeft()) * scaleHeightFactor);
-        imageView.setFitWidth((xmlImage.getPosition().getxBottomRight() - xmlImage.getPosition().getxTopLeft()) * scaleWidthFactor);
-
-        return imageView;
+        return new PictureView(
+                image,
+                xmlImage.getPosition().getxTopLeft() * scaleWidthFactor,
+                xmlImage.getPosition().getyTopLeft() * scaleWidthFactor,
+                (xmlImage.getPosition().getxBottomRight() - xmlImage.getPosition().getxTopLeft()) * scaleWidthFactor,
+                (xmlImage.getPosition().getyBottomRight() - xmlImage.getPosition().getyTopLeft()) * scaleHeightFactor
+        );
     }
 
     public static Stop[] gradientHandler(Shape xmlShape)
@@ -131,7 +130,7 @@ public class InfoView {
         return stops;
     }
 
-    public static Rectangle displayRectangle(models.Shape xmlShape, double scaleHeightFactor, double scaleWidthFactor)
+    public static Node displayRectangle(models.Shape xmlShape, double scaleHeightFactor, double scaleWidthFactor)
     {
         Rectangle rectangle = new Rectangle();
 
@@ -157,7 +156,7 @@ public class InfoView {
         return rectangle;
     }
 
-    public static Ellipse displayEllipse(models.Shape xmlShape, double scaleHeightFactor, double scaleWidthFactor)
+    public static Node displayEllipse(models.Shape xmlShape, double scaleHeightFactor, double scaleWidthFactor)
     {
         Ellipse ellipse = new Ellipse();
 
@@ -187,7 +186,7 @@ public class InfoView {
     }
 
     //need to add in actual colour and fill plus handle gradients
-    public static Line displayLine(models.Shape xmlShape, double scaleHeightFactor, double scaleWidthFactor)
+    public static Node displayLine(models.Shape xmlShape, double scaleHeightFactor, double scaleWidthFactor)
     {
         Line line = new Line();
 
@@ -206,34 +205,15 @@ public class InfoView {
     }
 
     //tested and working, no player controls at the moment, set to autoplay for now
-    public static Node displayVideo(models.Video xmlVideo , double scaleHeightFactor, double scaleWidthFactor)
+    public static Node displayVideo(models.Video xmlVideo, double scaleHeightFactor, double scaleWidthFactor)
     {
-        try {
-            MediaPlayer player = new MediaPlayer(new Media(Paths.get(xmlVideo.getPath()).toUri().toString()));
-            MediaView mediaView = new MediaView(player);
-
-            mediaView.setX(xmlVideo.getPosition().getxTopLeft() * scaleWidthFactor);
-            mediaView.setY(xmlVideo.getPosition().getyTopLeft() * scaleHeightFactor);
-            mediaView.setFitHeight((xmlVideo.getPosition().getyBottomRight() - xmlVideo.getPosition().getyTopLeft()) * scaleHeightFactor);
-            mediaView.setFitWidth((xmlVideo.getPosition().getxBottomRight() - xmlVideo.getPosition().getxTopLeft()) * scaleWidthFactor);
-
-            player.autoPlayProperty().setValue(true);
-            return mediaView;
-        }
-        catch (Exception e) {
-            InputStream inputStream = InfoView.class.getResourceAsStream("/not_found.png");
-
-            Image image = new Image(inputStream);
-
-            ImageView imageView = new ImageView(image);
-
-            imageView.setX(xmlVideo.getPosition().getxTopLeft() * scaleWidthFactor);
-            imageView.setY(xmlVideo.getPosition().getyTopLeft() * scaleWidthFactor);
-            imageView.setFitHeight((xmlVideo.getPosition().getyBottomRight() - xmlVideo.getPosition().getyTopLeft()) * scaleHeightFactor);
-            imageView.setFitWidth((xmlVideo.getPosition().getxBottomRight() - xmlVideo.getPosition().getxTopLeft()) * scaleWidthFactor);
-
-            return imageView;
-        }
+        return new MovieView(
+                Paths.get(xmlVideo.getPath()).toUri().toString(),
+                xmlVideo.getPosition().getxTopLeft() * scaleWidthFactor,
+                xmlVideo.getPosition().getyTopLeft() * scaleHeightFactor,
+                (xmlVideo.getPosition().getxBottomRight() - xmlVideo.getPosition().getxTopLeft()) * scaleWidthFactor,
+                (xmlVideo.getPosition().getyBottomRight() - xmlVideo.getPosition().getyTopLeft()) * scaleHeightFactor
+        );
     }
 
     //tested and working, no player controls at the moment, set to autoplay for now
@@ -268,31 +248,19 @@ public class InfoView {
     }
 
     //prints on top of each other for seperate text elements, format not always correct
-    public static TextFlow displayText(models.Text xmlText, double scaleHeightFactor, double scaleWidthFactor)
+    public static Node displayText(models.Text xmlText, double scaleHeightFactor, double scaleWidthFactor)
     {
-        TextFlow textFlow = new TextFlow();
-        ObservableList textList = textFlow.getChildren();
-        textFlow.setTextAlignment(TextAlignment.JUSTIFY);
-
-        for(int i = 0; i < xmlText.getContent().size(); i++)
-        {
-            Text text = new Text();
-
-            text.setText(
-                    (i > 0 ? " " : "") +
-                            xmlText.getContent().get(i).getContent()
-            );
-            text.setUnderline(xmlText.getContent().get(i).getFont().isUnderline());
-            Font font = new Font(xmlText.getContent().get(i).getFont().getFont(), xmlText.getContent().get(i).getFont().getTextSize());
-            text.setFont(font);
-            textList.add(text);
-        }
-
-        textFlow.setLayoutX(xmlText.getPosition().getxTopLeft() * scaleWidthFactor);
-        textFlow.setLayoutY(xmlText.getPosition().getyTopLeft() * scaleHeightFactor);
-        textFlow.setMaxWidth(1920 * scaleWidthFactor);
-        textFlow.setVisible(true);
-        return textFlow;
+        return new TextView(
+                xmlText.getPosition().getxTopLeft() * scaleWidthFactor,
+                xmlText.getPosition().getyTopLeft() * scaleHeightFactor,
+                500,
+                500,
+                Font.getDefault(),
+                Color.BLACK,
+                0,
+                Double.POSITIVE_INFINITY,
+                xmlText.getContent().stream().map(textContent -> new Text(textContent.getContent())).toArray(size -> new Text[size])
+        );
     }
 
 }
