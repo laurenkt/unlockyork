@@ -128,7 +128,7 @@ public class TextView extends Region {
             // or the previous node didn't end with one, one must be inserted so that the text flows correctly with
             // white space between formatting blocks
             if (lastCharOfNode != '\0') {
-                if (lastCharOfNode != ' ' && textNode.getText().charAt(0) != ' ') {
+                if (lastCharOfNode != ' ' && (textNode.getText().length() == 0 || textNode.getText().charAt(0) != ' ')) {
                     textNode.setText(" " + textNode.getText());
                 }
             }

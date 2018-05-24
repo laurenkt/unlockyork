@@ -19,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class InfoView {
@@ -201,7 +202,7 @@ public class InfoView {
     public static Node displayVideo(models.Video xmlVideo, double scaleHeightFactor, double scaleWidthFactor)
     {
         return new MovieView(
-            Paths.get(xmlVideo.getPath()).toUri().toString(),
+            xmlVideo.getPath(),
             xmlVideo.getPosition().x1 * scaleWidthFactor,
             xmlVideo.getPosition().y1 * scaleHeightFactor,
             xmlVideo.getPosition().getWidth() * scaleWidthFactor,
@@ -212,7 +213,7 @@ public class InfoView {
     //tested and working, no player controls at the moment, set to autoplay for now
     public static Node displayAudio(models.Audio xmlAudio, double scaleHeightFactor, double scaleWidthFactor)
     {
-        SoundView soundView = new SoundView(new Media(Paths.get(xmlAudio.getPath()).toUri().toString()), false, false, null);
+        SoundView soundView = new SoundView(new Media(Paths.get(xmlAudio.getPath()).toUri().toString()), false, false, new ArrayList<Integer>());
         soundView.setLayoutX(xmlAudio.getPosition().x1 * scaleWidthFactor);
         soundView.setLayoutY(xmlAudio.getPosition().y1 * scaleHeightFactor);
         return soundView;

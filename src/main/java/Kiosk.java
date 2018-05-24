@@ -103,8 +103,7 @@ public class Kiosk extends Application {
                 if(SlideNum < presentation.getSlides().size()) {
                     SlideNum = SlideNum + 1;
                 }
-
-                if(SlideNum < 5){
+                else {
                     SlideNum = 0;
                 }
                 newSlideForward = new HBox();
