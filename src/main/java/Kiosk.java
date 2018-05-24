@@ -121,6 +121,9 @@ public class Kiosk extends Application {
 
         Scene scene = new Scene(userView);
 
+        map.prefHeightProperty().bind(userView.maxWidthProperty().divide(2));
+        map.prefWidthProperty().bind(userView.maxWidthProperty().divide(2));
+
         forward.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
