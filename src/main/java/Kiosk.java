@@ -121,14 +121,18 @@ public class Kiosk extends Application {
 
         Scene scene = new Scene(userView);
 
-        map.prefHeightProperty().bind(userView.maxWidthProperty().divide(2));
-        map.prefWidthProperty().bind(userView.maxWidthProperty().divide(2));
+        map.prefHeightProperty().bind(userView.widthProperty().divide(2));
+        map.prefWidthProperty().bind(userView.widthProperty().divide(2));
 
         forward.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 if(SlideNum < presentation.getSlides().size()) {
                     SlideNum = SlideNum + 1;
+                }
+
+                if(SlideNum < 5){
+                    SlideNum = 0;
                 }
                 newSlideForward = new HBox();
 
@@ -150,9 +154,14 @@ public class Kiosk extends Application {
         back.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(SlideNum > 0) {
+                if(SlideNum > -1) {
                     SlideNum = SlideNum - 1;
                 }
+
+                if(SlideNum == -1){
+                    SlideNum = 4;
+                }
+
                 newSlideBack = new HBox();
 
                 group = Info.DisplayPresentationView(presentation,SlideNum, ScaleWidthFactor, ScaleHeightFactor);
