@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -252,7 +251,7 @@ public class PresentationView extends Application {
                     xmlText.getContent().get(i).getContent()
             );
             text.setUnderline(xmlText.getContent().get(i).getFont().isUnderline());
-            Font font = new Font(xmlText.getContent().get(i).getFont().getFont(), xmlText.getContent().get(i).getFont().getTextSize());
+            Font font = new Font(xmlText.getContent().get(i).getFont().getFontName(), xmlText.getContent().get(i).getFont().getTextSize());
             text.setFont(font);
             textList.add(text);
         }

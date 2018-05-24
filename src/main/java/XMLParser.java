@@ -12,8 +12,6 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
 import models.*;
-import models.Colours;
-import models.Fonts;
 import models.Position;
 import models.Slide;
 import models.Text;
@@ -425,7 +423,7 @@ public class XMLParser {
 
         if(xmlSlide.getNamedItem("font") != null)
         {
-            content.getFont().setFont(xmlSlide.getNamedItem("font").getNodeValue());
+            content.getFont().setFontWithName(xmlSlide.getNamedItem("font").getNodeValue());
         }
     }
 
@@ -437,7 +435,7 @@ public class XMLParser {
         content.getFont().setUnderline(slide.getFont().isUnderline());
         content.getFont().setItalic(slide.getFont().isItalic());
         content.getFont().setTextSize(slide.getFont().getTextSize());
-        content.getFont().setFont(slide.getFont().getFont());
+        content.getFont().setFontWithName(slide.getFont().getFontName());
 
         content.getColour().setColour(slide.getColour().getColour());
         content.getColour().setFill(slide.getColour().getFill());
@@ -498,7 +496,7 @@ public class XMLParser {
                 ///////////////////////font///////////////////////////////////////////
                 //if a format change is specified for font this particular textContent will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("font") != null) {
-                    contentText.getFont().setFont(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("font").getNodeValue());
+                    contentText.getFont().setFontWithName(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("font").getNodeValue());
                     System.out.println("font from FORMAT");
                 }
 
@@ -534,7 +532,7 @@ public class XMLParser {
                         + " ,textsize: " + contentText.getFont().getTextSize()
                         + " ,colour: " + contentText.getColour().getColour()
                         + " ,fill: " + contentText.getColour().getFill()
-                        + " ,font: " + contentText.getFont().getFont()
+                        + " ,font: " + contentText.getFont().getFontName()
                         + " , TEXT: " + contentText.getContent());
 
                 slideText.getContent().add(i, contentText);
@@ -592,8 +590,8 @@ public class XMLParser {
 
         if(xmlDefaults.getNamedItem("font") != null)
         {
-            presentation.getPresDefaultFont().setFont(xmlDefaults.getNamedItem("font").getNodeValue());
-            System.out.println("PRES font: " + presentation.getPresDefaultFont().getFont());
+            presentation.getPresDefaultFont().setFontWithName(xmlDefaults.getNamedItem("font").getNodeValue());
+            System.out.println("PRES font: " + presentation.getPresDefaultFont().getFontName());
         }
 
         if(xmlDefaults.getNamedItem("fill") != null)
@@ -652,15 +650,15 @@ public class XMLParser {
 
         if(xmlSlide.getNamedItem("font") != null)
         {
-            slide.getFont().setFont(xmlSlide.getNamedItem("font").getNodeValue());
-            System.out.println("PRES font: " + slide.getFont().getFont());
+            slide.getFont().setFontWithName(xmlSlide.getNamedItem("font").getNodeValue());
+            System.out.println("PRES font: " + slide.getFont().getFontName());
         }
     }
 
     //sets the slide defaults from the presentation defaults
     public static void setSlideDefaults(Slide slide, Presentation presentation)
     {
-        slide.getFont().setFont(presentation.getPresDefaultFont().getFont());
+        slide.getFont().setFontWithName(presentation.getPresDefaultFont().getFontName());
         slide.getFont().setTextSize(presentation.getPresDefaultFont().getTextSize());
         slide.getFont().setItalic(presentation.getPresDefaultFont().isItalic());
         slide.getFont().setBold(presentation.getPresDefaultFont().isBold());
