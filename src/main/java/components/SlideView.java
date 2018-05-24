@@ -23,6 +23,7 @@ import java.util.List;
 public class SlideView extends Region {
     public SlideView(Slide slide, double scaleHeightFactor, double scaleWidthFactor) {
         List list = getChildren();
+        setMouseTransparent(true);
 
         //list.add(displaySlideBackground(slide, scaleHeightFactor, scaleWidthFactor));
 

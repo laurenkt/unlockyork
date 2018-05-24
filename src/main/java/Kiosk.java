@@ -7,10 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import components.SlideView;
 import models.Presentation;
@@ -25,7 +22,7 @@ public class Kiosk extends Application {
     private double ScaleWidthFactor;
     private double ScaleHeightFactor;
     private SlideView[] slides;
-    private BorderPane userView;
+    private StackPane userView;
 
     @Override
     public void start(Stage primaryStage) {
@@ -40,34 +37,31 @@ public class Kiosk extends Application {
         XMLParser parser = new XMLParser();
         presentation = parser.parser("src/build/resources/main/example.pws", "src/build/resources/main/schema.xsd");
 
-        HBox Buttons = new HBox();
-        Button forward = new Button("Next");
-        Button back = new Button("Previous");
-
-        HBox.setHgrow(forward, Priority.ALWAYS);
-        HBox.setHgrow(back, Priority.ALWAYS);
-        forward.setMaxWidth(Double.MAX_VALUE);
-        back.setMaxWidth(Double.MAX_VALUE);
-
-        Buttons.getChildren().addAll(back,forward);
-        Buttons.setAlignment(Pos.CENTER);
-
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double screenWidth = (screenSize.getWidth());
         double screenHeight = (screenSize.getHeight());
 
-        userView = new BorderPane();
+        HBox Buttons = new HBox();
+        Button forward = new Button("Next");
+        Button back = new Button("Previous");
+        HBox.setHgrow(forward, Priority.ALWAYS);
+        HBox.setHgrow(back, Priority.ALWAYS);
+        forward.setMaxWidth(Double.MAX_VALUE);
+        back.setMaxWidth(Double.MAX_VALUE);
+        Buttons.getChildren().addAll(back, forward);
+        //Buttons.setAlignment(Pos.BOTTOM_CENTER);
+        Buttons.setMaxHeight(50);
+        Buttons.setTranslateY(screenHeight/2);
+
+        userView = new StackPane();
         userView.setPrefWidth(screenWidth);
         userView.setPrefHeight(screenHeight);
-        userView.setLeft(map);
-        userView.setBottom(Buttons);
-        userView.setAlignment(map, Pos.CENTER);
-        userView.setAlignment(Buttons, Pos.CENTER);
+        userView.getChildren().addAll(map, Buttons);
 
         Scene scene = new Scene(userView);
 
-        map.prefHeightProperty().bind(userView.widthProperty().divide(2));
-        map.prefWidthProperty().bind(userView.widthProperty().divide(2));
+        //map.prefHeightProperty().bind(userView.widthProperty().divide(2));
+        //map.prefWidthProperty().bind(userView.widthProperty().divide(2));
 
         slides = presentation.getSlides().stream()
                 .map(slide -> new SlideView(slide, ScaleWidthFactor, ScaleHeightFactor))
@@ -146,7 +140,10 @@ public class Kiosk extends Application {
 
     public void setSlideNum(int slideNum) {
         this.slideNum = slideNum;
-        userView.setRight(slides[slideNum]);
+        // Remove existing slide
+        userView.getChildren().removeIf(node -> node instanceof SlideView);
+        // Add new one
+        userView.getChildren().add(slides[slideNum]);
         userView.setAlignment(slides[slideNum], Pos.TOP_LEFT);
         System.out.println("slideNum = " + slideNum);
     }
