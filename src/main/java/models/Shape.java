@@ -20,11 +20,8 @@ public class Shape {
     public Shape()
     {
         shape = "null";
-
         stroke = 1;
-
         positionAttrib = new PositionAttrib();
-
         colour = new ColorAttrib();
     }
 

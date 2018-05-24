@@ -1,6 +1,5 @@
 import components.MapView;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -11,8 +10,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import models.InfoView;
+import components.SlideView;
 import models.Presentation;
 
 import java.awt.*;
@@ -27,7 +27,7 @@ public class Kiosk extends Application {
     private HBox newSlideBack;
     private double ScaleWidthFactor;
     private double ScaleHeightFactor;
-    private Group[] slides;
+    private SlideView[] slides;
     private BorderPane userView;
 
     @Override
@@ -43,7 +43,6 @@ public class Kiosk extends Application {
         presentation = new Presentation();
         XMLParser parser = new XMLParser();
         presentation = parser.parser("src/build/resources/main/example.pws", "src/build/resources/main/schema.xsd");
-        InfoView Info = new InfoView();
 
         HBox Buttons = new HBox();
 
@@ -77,8 +76,8 @@ public class Kiosk extends Application {
         map.prefWidthProperty().bind(userView.widthProperty().divide(2));
 
         slides = presentation.getSlides().stream()
-                .map(slide -> Info.displaySlide(slide, ScaleWidthFactor, ScaleHeightFactor))
-                .toArray(size -> new Group[size]);
+                .map(slide -> new SlideView(slide, ScaleWidthFactor, ScaleHeightFactor))
+                .toArray(size -> new SlideView[size]);
 
         this.setSlideNum(0);
 
