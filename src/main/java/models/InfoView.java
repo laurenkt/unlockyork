@@ -24,10 +24,6 @@ import java.util.List;
 
 public class InfoView {
 
-    public static Group DisplayPresentationView(Presentation presentation, int slideNum, double scaleHeightFactor, double scaleWidthFactor) {
-        return displaySlide(presentation.getSlides().get(slideNum), scaleHeightFactor, scaleWidthFactor);
-    }
-
     public static Group displaySlide(models.Slide slide, double scaleHeightFactor, double scaleWidthFactor)
     {
         Group slideElements = new Group();

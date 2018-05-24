@@ -1,49 +1,34 @@
 import components.MapView;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import models.InfoView;
 import models.Presentation;
-import models.Slide;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Kiosk extends Application {
 
     private MapView map;
-    private int SlideNum = 0;
+    private int slideNum = 0;
     private Presentation presentation;
     private Group group;
     private HBox newSlideForward;
     private HBox newSlideBack;
     private double ScaleWidthFactor;
     private double ScaleHeightFactor;
+    private Group[] slides;
+    private BorderPane userView;
 
     @Override
     public void start(Stage primaryStage) {
@@ -59,10 +44,7 @@ public class Kiosk extends Application {
         XMLParser parser = new XMLParser();
         presentation = parser.parser("src/build/resources/main/example.pws", "src/build/resources/main/schema.xsd");
         InfoView Info = new InfoView();
-        group = new Group();
-        group = Info.DisplayPresentationView(presentation, SlideNum, ScaleWidthFactor, ScaleHeightFactor);
 
-        HBox slide = new HBox();
         HBox Buttons = new HBox();
 
         Button forward = new Button("Forward");
@@ -73,7 +55,6 @@ public class Kiosk extends Application {
         forward.setMaxWidth(Double.MAX_VALUE);
         back.setMaxWidth(Double.MAX_VALUE);
 
-        slide.getChildren().add(group);
         Buttons.getChildren().addAll(back,forward);
         Buttons.setAlignment(Pos.CENTER);
 
@@ -81,15 +62,13 @@ public class Kiosk extends Application {
         double screenWidth = (screenSize.getWidth());
         double screenHeight = (screenSize.getHeight());
 
-        BorderPane userView = new BorderPane();
+        userView = new BorderPane();
         userView.setPrefWidth(screenWidth);
         userView.setPrefHeight(screenHeight);
         userView.setLeft(map);
-        userView.setRight(slide);
         userView.setBottom(Buttons);
 
         userView.setAlignment(map, Pos.CENTER);
-        userView.setAlignment(slide, Pos.CENTER);
         userView.setAlignment(Buttons, Pos.CENTER);
 
         Scene scene = new Scene(userView);
@@ -97,60 +76,32 @@ public class Kiosk extends Application {
         map.prefHeightProperty().bind(userView.widthProperty().divide(2));
         map.prefWidthProperty().bind(userView.widthProperty().divide(2));
 
-        forward.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(SlideNum < presentation.getSlides().size()) {
-                    SlideNum = SlideNum + 1;
-                }
-                else {
-                    SlideNum = 0;
-                }
-                newSlideForward = new HBox();
+        slides = presentation.getSlides().stream()
+                .map(slide -> Info.displaySlide(slide, ScaleWidthFactor, ScaleHeightFactor))
+                .toArray(size -> new Group[size]);
 
-                group = Info.DisplayPresentationView(presentation,SlideNum, ScaleWidthFactor, ScaleHeightFactor);
+        this.setSlideNum(0);
 
-                newSlideForward.getChildren().add(group);
-
-                userView.setLeft(map);
-                userView.setRight(newSlideForward);
-                userView.setBottom(Buttons);
-
-                userView.setAlignment(map, Pos.CENTER);
-                userView.setAlignment(newSlideForward, Pos.CENTER);
-                userView.setAlignment(Buttons, Pos.CENTER);
-                System.out.println("SlideNum = " + SlideNum);
+        forward.setOnAction(event -> {
+            if(slideNum < presentation.getSlides().size() - 1) {
+                slideNum = slideNum + 1;
             }
+            else {
+                slideNum = 0;
+            }
+
+            this.setSlideNum(slideNum);
         });
 
-        back.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(SlideNum > -1) {
-                    SlideNum = SlideNum - 1;
-                }
-
-                if(SlideNum == -1){
-                    SlideNum = 4;
-                }
-
-                newSlideBack = new HBox();
-
-                group = Info.DisplayPresentationView(presentation,SlideNum, ScaleWidthFactor, ScaleHeightFactor);
-                group.prefHeight(100);
-                group.prefWidth(100);
-                newSlideBack.getChildren().add(group);
-
-                userView.setLeft(map);
-                userView.setRight(newSlideBack);
-                userView.setBottom(Buttons);
-
-                userView.setAlignment(map, Pos.CENTER);
-                userView.setAlignment(newSlideBack, Pos.CENTER);
-                userView.setAlignment(Buttons, Pos.CENTER);
-
-                System.out.println("SlideNum = " + SlideNum);
+        back.setOnAction(event -> {
+            if (slideNum > 0) {
+                slideNum = slideNum - 1;
             }
+            else {
+                slideNum = presentation.getSlides().size() - 1;
+            }
+
+            this.setSlideNum(slideNum);
         });
 
         scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -198,6 +149,12 @@ public class Kiosk extends Application {
 
         ScaleWidthFactor = screenWidth / DefaultScreenWidth;
         ScaleHeightFactor = screenHeight / DefaultScreenHeight;
+    }
+
+    public void setSlideNum(int slideNum) {
+        this.slideNum = slideNum;
+        userView.setRight(slides[slideNum]);
+        System.out.println("slideNum = " + slideNum);
     }
 
     public static void main(String[] args) {
