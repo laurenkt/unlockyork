@@ -22,9 +22,6 @@ public class Kiosk extends Application {
     private MapView map;
     private int slideNum = 0;
     private Presentation presentation;
-    private Group group;
-    private HBox newSlideForward;
-    private HBox newSlideBack;
     private double ScaleWidthFactor;
     private double ScaleHeightFactor;
     private SlideView[] slides;
@@ -32,7 +29,7 @@ public class Kiosk extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Drag to pan the map");
+        primaryStage.setTitle("Unlock York");
 
         ScaleFactor();
 
@@ -40,14 +37,12 @@ public class Kiosk extends Application {
         Image mapLayout = new Image(getClass().getClassLoader().getResource("York16.png").toExternalForm());
         map = new MapView(mapLayout, poiIcon);
 
-        presentation = new Presentation();
         XMLParser parser = new XMLParser();
         presentation = parser.parser("src/build/resources/main/example.pws", "src/build/resources/main/schema.xsd");
 
         HBox Buttons = new HBox();
-
-        Button forward = new Button("Forward");
-        Button back = new Button("Back");
+        Button forward = new Button("Next");
+        Button back = new Button("Previous");
 
         HBox.setHgrow(forward, Priority.ALWAYS);
         HBox.setHgrow(back, Priority.ALWAYS);
@@ -66,7 +61,6 @@ public class Kiosk extends Application {
         userView.setPrefHeight(screenHeight);
         userView.setLeft(map);
         userView.setBottom(Buttons);
-
         userView.setAlignment(map, Pos.CENTER);
         userView.setAlignment(Buttons, Pos.CENTER);
 
@@ -153,6 +147,7 @@ public class Kiosk extends Application {
     public void setSlideNum(int slideNum) {
         this.slideNum = slideNum;
         userView.setRight(slides[slideNum]);
+        userView.setAlignment(slides[slideNum], Pos.TOP_LEFT);
         System.out.println("slideNum = " + slideNum);
     }
 

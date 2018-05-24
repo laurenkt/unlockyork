@@ -28,8 +28,6 @@ public class MapView extends ScrollPane {
     private ImageView mapView;
     private Node target;
     private Node zoomNode;
-    private Node target2;
-    private Group root;
     private Bounds boundsInScene;
 
     public MapView(Image tiles, Image poiIcon) {
