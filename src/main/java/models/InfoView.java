@@ -2,15 +2,12 @@ package models;
 
 import components.MovieView;
 import components.PictureView;
+import components.SoundView;
 import components.TextView;
-import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
@@ -18,15 +15,12 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.scene.text.TextFlow;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class InfoView {
 
@@ -82,7 +76,6 @@ public class InfoView {
         background.setY(0);
         background.setHeight(1080 * scaleHeightFactor);
         background.setWidth(1920 * scaleWidthFactor);
-
         background.setFill(Color.web(slide.colour.fill));
 
         return background;
@@ -94,17 +87,18 @@ public class InfoView {
         try {
             inputStream = new FileInputStream(xmlImage.getPath());
         } catch (FileNotFoundException e) {
+            System.err.println("Image could not be found: " + xmlImage.getPath());
             inputStream = InfoView.class.getResourceAsStream("/not_found.png");
         }
 
         Image image = new Image(inputStream);
 
         return new PictureView(
-                image,
-                xmlImage.getPosition().getxTopLeft() * scaleWidthFactor,
-                xmlImage.getPosition().getyTopLeft() * scaleWidthFactor,
-                (xmlImage.getPosition().getxBottomRight() - xmlImage.getPosition().getxTopLeft()) * scaleWidthFactor,
-                (xmlImage.getPosition().getyBottomRight() - xmlImage.getPosition().getyTopLeft()) * scaleHeightFactor
+            image,
+            xmlImage.getPosition().getxTopLeft() * scaleWidthFactor,
+            xmlImage.getPosition().getyTopLeft() * scaleWidthFactor,
+            (xmlImage.getPosition().getxBottomRight() - xmlImage.getPosition().getxTopLeft()) * scaleWidthFactor,
+            (xmlImage.getPosition().getyBottomRight() - xmlImage.getPosition().getyTopLeft()) * scaleHeightFactor
         );
     }
 
@@ -208,58 +202,41 @@ public class InfoView {
     public static Node displayVideo(models.Video xmlVideo, double scaleHeightFactor, double scaleWidthFactor)
     {
         return new MovieView(
-                Paths.get(xmlVideo.getPath()).toUri().toString(),
-                xmlVideo.getPosition().getxTopLeft() * scaleWidthFactor,
-                xmlVideo.getPosition().getyTopLeft() * scaleHeightFactor,
-                (xmlVideo.getPosition().getxBottomRight() - xmlVideo.getPosition().getxTopLeft()) * scaleWidthFactor,
-                (xmlVideo.getPosition().getyBottomRight() - xmlVideo.getPosition().getyTopLeft()) * scaleHeightFactor
+            Paths.get(xmlVideo.getPath()).toUri().toString(),
+            xmlVideo.getPosition().getxTopLeft() * scaleWidthFactor,
+            xmlVideo.getPosition().getyTopLeft() * scaleHeightFactor,
+            (xmlVideo.getPosition().getxBottomRight() - xmlVideo.getPosition().getxTopLeft()) * scaleWidthFactor,
+            (xmlVideo.getPosition().getyBottomRight() - xmlVideo.getPosition().getyTopLeft()) * scaleHeightFactor
         );
     }
 
     //tested and working, no player controls at the moment, set to autoplay for now
     public static Node displayAudio(models.Audio xmlAudio, double scaleHeightFactor, double scaleWidthFactor)
     {
-        try {
-            MediaPlayer player = new MediaPlayer(new Media(Paths.get(xmlAudio.getPath()).toUri().toString()));
-            MediaView mediaView = new MediaView(player);
-
-            mediaView.setX(xmlAudio.getPosition().getxTopLeft() * scaleWidthFactor);
-            mediaView.setY(xmlAudio.getPosition().getyTopLeft() * scaleHeightFactor);
-            mediaView.setFitHeight((xmlAudio.getPosition().getyBottomRight() - xmlAudio.getPosition().getyTopLeft()) * scaleHeightFactor);
-            mediaView.setFitWidth((xmlAudio.getPosition().getxBottomRight() - xmlAudio.getPosition().getxTopLeft()) * scaleWidthFactor);
-
-            player.autoPlayProperty().setValue(true);
-            return mediaView;
-        }
-        catch (Exception e) {
-            InputStream inputStream = InfoView.class.getResourceAsStream("/not_found.png");
-
-            Image image = new Image(inputStream);
-
-            ImageView imageView = new ImageView(image);
-
-            imageView.setX(xmlAudio.getPosition().getxTopLeft() * scaleWidthFactor);
-            imageView.setY(xmlAudio.getPosition().getyTopLeft() * scaleHeightFactor);
-            imageView.setFitHeight((xmlAudio.getPosition().getyBottomRight() - xmlAudio.getPosition().getyTopLeft()) * scaleHeightFactor);
-            imageView.setFitWidth((xmlAudio.getPosition().getxBottomRight() - xmlAudio.getPosition().getxTopLeft()) * scaleWidthFactor);
-
-            return imageView;
-        }
+        SoundView soundView = new SoundView(new Media(Paths.get(xmlAudio.getPath()).toUri().toString()), false, false, null);
+        soundView.setLayoutX(xmlAudio.getPosition().getxTopLeft() * scaleWidthFactor);
+        soundView.setLayoutY(xmlAudio.getPosition().getyTopLeft() * scaleHeightFactor);
+        return soundView;
     }
 
-    //prints on top of each other for seperate text elements, format not always correct
+    //prints on top of each other for separate text elements, format not always correct
     public static Node displayText(models.Text xmlText, double scaleHeightFactor, double scaleWidthFactor)
     {
         return new TextView(
-                xmlText.getPosition().getxTopLeft() * scaleWidthFactor,
-                xmlText.getPosition().getyTopLeft() * scaleHeightFactor,
-                500,
-                500,
-                Font.getDefault(),
-                Color.BLACK,
-                0,
-                Double.POSITIVE_INFINITY,
-                xmlText.getContent().stream().map(textContent -> new Text(textContent.getContent())).toArray(size -> new Text[size])
+            xmlText.getPosition().getxTopLeft() * scaleWidthFactor,
+            xmlText.getPosition().getyTopLeft() * scaleHeightFactor,
+            500,
+            500,
+            null,
+            null,
+            0,
+            Double.POSITIVE_INFINITY,
+            xmlText.getContent().stream().map(textContent -> {
+                Text text =  new Text(textContent.getContent());
+                text.setFont(textContent.getFont().getFont());
+                text.setUnderline(textContent.getFont().isUnderline());
+                return text;
+            }).toArray(size -> new Text[size])
         );
     }
 

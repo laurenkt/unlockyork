@@ -11,7 +11,7 @@
       </Text>
       <Text x="200" y="200">
          Text can contain
-         <Format font="comic sans">Format</Format>
+         <Format font="Comic Sans MS">Format</Format>
          tags that change how it is
          <Format italic="true">rendered</Format>
          .

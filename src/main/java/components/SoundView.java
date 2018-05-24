@@ -15,6 +15,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -35,7 +36,7 @@ import javafx.util.Duration;
  * @author Ben King
  * @version 1.0
  */
-public class SoundView {
+public class SoundView extends Region {
 	
 	// internal variables
 	private Pane rootPane = new Pane();
@@ -205,6 +206,8 @@ public class SoundView {
 				}
 			}
 		});
+
+		getChildren().add(rootPane);
 	}
 
 	/**
@@ -253,6 +256,7 @@ public class SoundView {
 	 * @param state
 	 *            true = GUI is visible, false = GUI is hidden
 	 */
+	/*
 	public void setVisible(boolean state) {
 		if (state == isVisible) {
 			// cancel if already in correct state
@@ -265,6 +269,7 @@ public class SoundView {
 			rootPane.getChildren().remove(visiblePane);
 		}
 	}
+	*/
 
 	/**
 	 * Set CSS style of the Time Indicator
