@@ -1,0 +1,68 @@
+.unlock--movieview {
+    -fx-background-color: black;
+}
+
+.unlock--movieview .controls > * {
+    -fx-opacity: 0.6;
+}
+
+.unlock--movieview .controls > *:hover {
+    -fx-opacity: 1;
+}
+
+.unlock--movieview .controls {
+    -fx-opacity: 0.5;
+    -fx-border-insets: 0;
+    -fx-padding: 10 20 10 20;
+    -fx-background-color: black;
+}
+
+.unlock--movieview .imageview--mute {
+    -fx-opacity: 0;
+}
+
+.unlock--movieview:muted .imageview--mute {
+    -fx-opacity: 0.5;
+}
+
+.unlock--movieview .button {
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-min-width: 24;
+    -fx-min-height: 24;
+    -fx-max-width: 96;
+    -fx-max-height: 96;
+    -fx-graphic-text-gap: 0;
+    -fx-background-size: 24 24;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left center;
+    -fx-border-insets: 0;
+    -fx-padding: 0;
+    -fx-text-fill: white;
+}
+
+.button--playpause {
+    -fx-background-image: url('/icons/play.png');
+}
+
+.button--rate {
+    -fx-background-image: url('/icons/fastforward.png');
+}
+
+.button--mute {
+    -fx-background-image: url('/icons/volume_up.png');
+}
+
+.button--fullscreen {
+    -fx-background-image: url('/icons/fullscreen.png');
+}
+
+.unlock--movieview:playing .button--playpause {
+    -fx-background-image: url('/icons/pause.png');
+}
+
+.unlock--movieview:muted .button--mute {
+    -fx-background-image: url('/icons/volume_off.png');
+}
