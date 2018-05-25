@@ -22,8 +22,11 @@ import java.util.List;
 
 public class SlideView extends Region {
     public SlideView(Slide slide, double scaleHeightFactor, double scaleWidthFactor) {
+        // Clicking on empty areas in the region should pass through to anything behind
+        // clicking on children nodes should process these events
+        setPickOnBounds(false);
+
         List list = getChildren();
-        setMouseTransparent(true);
 
         //list.add(displaySlideBackground(slide, scaleHeightFactor, scaleWidthFactor));
 
