@@ -118,8 +118,8 @@ public class TextView extends Region {
         // Set layout params
         setHeight(height);
         setWidth(width);
-        setLayoutX(x);
-        setLayoutY(y);
+        setTranslateX(x);
+        setTranslateY(y);
         setVisible(false); // Start invisible because it will animate in (this may happen immediately)
 
         char lastCharOfNode = '\0';

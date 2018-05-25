@@ -10,6 +10,8 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Scale;
+import models.PositionAttrib;
 import models.Shape;
 import models.Slide;
 import models.SlideElement;
@@ -24,6 +26,7 @@ import java.util.List;
 public class SlideView extends Region {
     double scaleHeightFactor;
     double scaleWidthFactor;
+    Scale scale = new Scale();
 
     public SlideView(Slide slide, double scaleHeightFactor, double scaleWidthFactor) {
         this.scaleHeightFactor = scaleHeightFactor;
@@ -39,6 +42,16 @@ public class SlideView extends Region {
         for (SlideElement el : slide.getElements()) {
             list.add(renderElementNode(el));
         }
+
+        scale.setPivotX(0);
+        scale.setPivotY(0);
+        scale.setPivotZ(0);
+        getTransforms().add(scale);
+    }
+
+    public void setScale(double s) {
+        scale.setX(s);
+        scale.setY(s);
     }
 
     public Node renderElementNode(SlideElement el) {
@@ -134,14 +147,13 @@ public class SlideView extends Region {
     {
         Rectangle rectangle = new Rectangle();
 
-        rectangle.setX(xmlShape.getPosition().getxTopLeft() * scaleWidthFactor);
-        rectangle.setY(xmlShape.getPosition().getyTopLeft() * scaleHeightFactor);
+        rectangle.setTranslateX(xmlShape.getPosition().getxTopLeft() * scaleWidthFactor);
+        rectangle.setTranslateY(xmlShape.getPosition().getyTopLeft() * scaleHeightFactor);
         rectangle.setHeight((xmlShape.getPosition().getyBottomRight() - xmlShape.getPosition().getyTopLeft()) * scaleHeightFactor);
         rectangle.setWidth((xmlShape.getPosition().getxBottomRight() - xmlShape.getPosition().getxTopLeft()) * scaleWidthFactor);
 
         rectangle.setStrokeWidth(xmlShape.getStroke());
         rectangle.setStroke(Color.web(xmlShape.getColor().getColor()));
-
 
         if(xmlShape.getColor().getFill().charAt(0) == 'g')
         {

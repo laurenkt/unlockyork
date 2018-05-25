@@ -18,6 +18,20 @@ public class Presentation {
         presDefaultColour = new ColorAttrib();
     }
 
+    public double getMaxX2() {
+        return slides.stream()
+                .mapToDouble(slide -> slide.getMaxX2())
+                .max()
+                .orElse(1920);
+    }
+
+    public double getMaxY2() {
+        return slides.stream()
+                .mapToDouble(slide -> slide.getMaxY2())
+                .max()
+                .orElse(1080);
+    }
+
     public FontAttrib getPresDefaultFont() {
         return presDefaultFont;
     }

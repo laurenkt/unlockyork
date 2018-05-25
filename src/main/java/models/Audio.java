@@ -1,6 +1,6 @@
 package models;
 
-public class Audio implements SlideElement {
+public class Audio implements SlideElement, Positionable {
 
     String path; //file path to audio file
 

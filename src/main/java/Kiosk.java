@@ -18,16 +18,14 @@ public class Kiosk extends Application {
     private MapView map;
     private int slideNum = 0;
     private Presentation presentation;
-    private double ScaleWidthFactor;
-    private double ScaleHeightFactor;
+    private double scaleWidthFactor;
+    private double scaleHeightFactor;
     private SlideView[] slides;
     private StackPane userView;
 
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Unlock York");
-
-        ScaleFactor();
 
         Image poiIcon = new Image(getClass().getClassLoader().getResource("poi.png").toExternalForm());
         Image mapLayout = new Image(getClass().getClassLoader().getResource("York16.png").toExternalForm());
@@ -38,6 +36,7 @@ public class Kiosk extends Application {
                     "src/build/resources/main/example.pws",
                     "src/build/resources/main/schema.xsd"
             );
+            scaleFactorForPresentation(presentation);
         }
         catch (Exception e) {
             // Couldn't load data - exit
@@ -48,7 +47,6 @@ public class Kiosk extends Application {
         }
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double screenWidth = screenSize.getWidth();
         double screenHeight = screenSize.getHeight();
 
         HBox Buttons = new HBox();
@@ -64,17 +62,30 @@ public class Kiosk extends Application {
         Buttons.setTranslateY(screenHeight/2);
 
         userView = new StackPane();
-        userView.setPrefWidth(screenWidth);
-        userView.setPrefHeight(screenHeight);
         userView.getChildren().addAll(map, Buttons);
 
+        double minWidth = presentation.getMaxX2();
+        double minHeight = presentation.getMaxY2();
+
         Scene scene = new Scene(userView);
+        primaryStage.widthProperty().addListener((obs, old, val) -> {
+            scaleWidthFactor = val.doubleValue() / minWidth;
+            for (SlideView slide : slides) {
+                slide.setScale(Math.min(scaleWidthFactor, scaleHeightFactor));
+            }
+        });
+        primaryStage.heightProperty().addListener((obs, old, val) -> {
+            scaleHeightFactor = val.doubleValue() / minHeight;
+            for (SlideView slide : slides) {
+                slide.setScale(Math.min(scaleWidthFactor, scaleHeightFactor));
+            }
+        });
 
         //map.prefHeightProperty().bind(userView.widthProperty().divide(2));
         //map.prefWidthProperty().bind(userView.widthProperty().divide(2));
 
         slides = presentation.getSlides().stream()
-                .map(slide -> new SlideView(slide, ScaleWidthFactor, ScaleHeightFactor))
+                .map(slide -> new SlideView(slide, scaleWidthFactor, scaleHeightFactor))
                 .toArray(size -> new SlideView[size]);
 
         this.setSlideNum(0);
@@ -136,16 +147,13 @@ public class Kiosk extends Application {
         primaryStage.show();
     }
 
-    public void ScaleFactor() {
-        double DefaultScreenWidth = 1920;
-        double DefaultScreenHeight = 1080;
-
+    public void scaleFactorForPresentation(Presentation presentation) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double screenWidth = (screenSize.getWidth())/2;
-        double screenHeight = (screenSize.getHeight())/2;
+        double screenWidth = (screenSize.getWidth());
+        double screenHeight = (screenSize.getHeight());
 
-        ScaleWidthFactor = screenWidth / DefaultScreenWidth;
-        ScaleHeightFactor = screenHeight / DefaultScreenHeight;
+        scaleWidthFactor = presentation.getMaxX2() / screenWidth;
+        scaleHeightFactor = presentation.getMaxY2() / screenHeight;
     }
 
     public void setSlideNum(int slideNum) {

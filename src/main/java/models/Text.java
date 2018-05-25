@@ -2,7 +2,7 @@ package models;
 
 import java.util.ArrayList;
 
-public class Text implements SlideElement {
+public class Text implements SlideElement, Positionable {
 
     PositionAttrib positionAttrib; // positionAttrib of text on this slide
 

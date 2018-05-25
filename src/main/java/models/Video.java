@@ -1,6 +1,6 @@
 package models;
 
-public class Video implements SlideElement {
+public class Video implements SlideElement, Positionable {
 
     String path; // path of the video file
 

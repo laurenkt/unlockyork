@@ -45,6 +45,22 @@ public class Slide {
             video.add((Video)el);
     }
 
+    public double getMaxX2() {
+        return elements.stream()
+                .filter(el -> el instanceof Positionable)
+                .mapToDouble(el -> ((Positionable) el).getPosition().x2)
+                .max()
+                .orElse(0);
+    }
+
+    public double getMaxY2() {
+        return elements.stream()
+                .filter(el -> el instanceof Positionable)
+                .mapToDouble(el -> ((Positionable) el).getPosition().y2)
+                .max()
+                .orElse(0);
+    }
+
     public FontAttrib getFont() {
         return font;
     }

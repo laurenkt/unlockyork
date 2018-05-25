@@ -1,6 +1,6 @@
 package models;
 
-public class Image implements SlideElement {
+public class Image implements SlideElement, Positionable {
 
     String path; //file path for the image file
 
