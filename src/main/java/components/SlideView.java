@@ -26,7 +26,6 @@ import java.util.List;
 public class SlideView extends Region {
     double scaleHeightFactor;
     double scaleWidthFactor;
-    Scale scale = new Scale();
 
     public SlideView(Slide slide, double scaleHeightFactor, double scaleWidthFactor) {
         this.scaleHeightFactor = scaleHeightFactor;
@@ -43,15 +42,6 @@ public class SlideView extends Region {
             list.add(renderElementNode(el));
         }
 
-        scale.setPivotX(0);
-        scale.setPivotY(0);
-        scale.setPivotZ(0);
-        getTransforms().add(scale);
-    }
-
-    public void setScale(double s) {
-        scale.setX(s);
-        scale.setY(s);
     }
 
     public Node renderElementNode(SlideElement el) {

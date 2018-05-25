@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import components.SlideView;
 import models.Presentation;
@@ -22,6 +23,7 @@ public class Kiosk extends Application {
     private double scaleHeightFactor;
     private SlideView[] slides;
     private StackPane userView;
+    private Pane slidePane = new Pane();
 
     @Override
     public void start(Stage primaryStage) {
@@ -62,23 +64,28 @@ public class Kiosk extends Application {
         Buttons.setTranslateY(screenHeight/2);
 
         userView = new StackPane();
-        userView.getChildren().addAll(map, Buttons);
+        userView.getChildren().addAll(map, Buttons, slidePane);
 
         double minWidth = presentation.getMaxX2();
         double minHeight = presentation.getMaxY2();
 
+        Scale scale = new Scale();
+        scale.setPivotX(0);
+        scale.setPivotY(0);
+        scale.setPivotZ(0);
+        slidePane.getTransforms().add(scale);
+        slidePane.setPickOnBounds(false);
+
         Scene scene = new Scene(userView);
         primaryStage.widthProperty().addListener((obs, old, val) -> {
             scaleWidthFactor = val.doubleValue() / minWidth;
-            for (SlideView slide : slides) {
-                slide.setScale(Math.min(scaleWidthFactor, scaleHeightFactor));
-            }
+            scale.setX(Math.min(scaleWidthFactor, scaleHeightFactor));
+            scale.setY(Math.min(scaleWidthFactor, scaleHeightFactor));
         });
         primaryStage.heightProperty().addListener((obs, old, val) -> {
             scaleHeightFactor = val.doubleValue() / minHeight;
-            for (SlideView slide : slides) {
-                slide.setScale(Math.min(scaleWidthFactor, scaleHeightFactor));
-            }
+            scale.setX(Math.min(scaleWidthFactor, scaleHeightFactor));
+            scale.setY(Math.min(scaleWidthFactor, scaleHeightFactor));
         });
 
         //map.prefHeightProperty().bind(userView.widthProperty().divide(2));
@@ -159,11 +166,9 @@ public class Kiosk extends Application {
     public void setSlideNum(int slideNum) {
         this.slideNum = slideNum;
         // Remove existing slide
-        userView.getChildren().removeIf(node -> node instanceof SlideView);
+        slidePane.getChildren().clear();
         // Add new one
-        userView.getChildren().add(slides[slideNum]);
-        userView.setAlignment(slides[slideNum], Pos.TOP_LEFT);
-        System.out.println("slideNum = " + slideNum);
+        slidePane.getChildren().add(slides[slideNum]);
     }
 
     public static void main(String[] args) {
