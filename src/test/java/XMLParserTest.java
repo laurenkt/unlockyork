@@ -15,7 +15,7 @@ public class XMLParserTest {
     @Test
     public void testPresentation() {
         XMLParser parser = new XMLParser();
-        Presentation presentation = parser.parser("src/build/resources/main/example.pws", "src/build/resources/main/schema.xsd");
+        Presentation presentation = parser.parse("src/build/resources/main/example.pws", "src/build/resources/main/schema.xsd");
 
         //assertTrue(!presentation.getPresDefaultFont().isItalic() == false);
 

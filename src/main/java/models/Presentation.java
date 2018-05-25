@@ -9,15 +9,6 @@ public class Presentation {
     FontAttrib presDefaultFont; // presentation defaults for the font of text
     ColorAttrib presDefaultColour; // presentation defaults for color
 
-
-    Presentation(Meta meta, ArrayList<Slide> slides, GPS gps, FontAttrib presDefaultFont, ColorAttrib presDefaultColour) {
-        this.meta = meta;
-        this.slides = slides;
-        this.gps = gps;
-        this.presDefaultFont = presDefaultFont;
-        this.presDefaultColour = presDefaultColour;
-    }
-
     public Presentation()
     {
         meta = new Meta();

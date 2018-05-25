@@ -10,8 +10,10 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import models.Audio;
 import models.Shape;
 import models.Slide;
+import models.SlideElement;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,7 +23,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SlideView extends Region {
+    double scaleHeightFactor;
+    double scaleWidthFactor;
+
     public SlideView(Slide slide, double scaleHeightFactor, double scaleWidthFactor) {
+        this.scaleHeightFactor = scaleHeightFactor;
+        this.scaleWidthFactor = scaleWidthFactor;
+
         // Clicking on empty areas in the region should pass through to anything behind
         // clicking on children nodes should process these events
         setPickOnBounds(false);
@@ -29,37 +37,45 @@ public class SlideView extends Region {
         List list = getChildren();
 
         //list.add(displaySlideBackground(slide, scaleHeightFactor, scaleWidthFactor));
-
-        for (int t = 0; t < slide.getText().size(); t++) {
-            list.add(displayText(slide.getText().get(t), scaleHeightFactor, scaleWidthFactor));
-        }
-
-        for (int v = 0; v < slide.getVideo().size(); v++) {
-            list.add(displayVideo(slide.getVideo().get(v), scaleHeightFactor, scaleWidthFactor));
-        }
-
-        for (int a = 0; a < slide.getAudio().size(); a++) {
-            list.add(displayAudio(slide.getAudio().get(a), scaleHeightFactor, scaleWidthFactor));
-        }
-
-        for (int im = 0; im < slide.getImage().size(); im++) {
-            list.add(displayImage(slide.getImage().get(im), scaleHeightFactor, scaleWidthFactor));
-        }
-
-        for (int s = 0; s < slide.getShape().size(); s++) {
-            if (slide.getShape().get(s).getShape().equals("rectangle")) {
-                list.add(displayRectangle(slide.getShape().get(s), scaleHeightFactor, scaleWidthFactor));
-
-            } else if (slide.getShape().get(s).getShape().equals("ellipse")) {
-                list.add(displayEllipse(slide.getShape().get(s), scaleHeightFactor, scaleWidthFactor));
-
-            } else if (slide.getShape().get(s).getShape().equals("line")) {
-                list.add(displayLine(slide.getShape().get(s), scaleHeightFactor, scaleWidthFactor));
-            }
+        for (SlideElement el : slide.getElements()) {
+            list.add(renderElementNode(el));
         }
     }
 
-    public Rectangle displaySlideBackground(Slide slide, double scaleHeightFactor, double scaleWidthFactor)
+    public Node renderElementNode(SlideElement el) {
+        // Resolve element type and dispatch to renderer
+        if (el instanceof models.Text)
+            return renderTextNode((models.Text)el);
+        if (el instanceof models.Shape)
+            return renderShapeNode((models.Shape)el);
+        if (el instanceof models.Image)
+            return renderImageNode((models.Image)el);
+        if (el instanceof models.Audio)
+            return renderAudioNode((models.Audio)el);
+        if (el instanceof models.Video)
+            return renderVideoNode((models.Video)el);
+
+        // None found
+        return null;
+    }
+
+    public Node renderShapeNode(models.Shape shape) {
+        // Resolve shape type
+        String shapeType = shape.getShape();
+
+        // Dispatch to renderer
+        if ("rectangle".equals(shapeType))
+            return renderRectangleNode(shape);
+        if ("ellipse".equals(shapeType))
+            return renderEllipseNode(shape);
+        if ("line".equals(shapeType))
+            return renderLineNode(shape);
+
+        // Nothing found
+        return null;
+    }
+
+    public Rectangle displaySlideBackground(Slide slide)
     {
         Rectangle background = new Rectangle();
 
@@ -72,7 +88,7 @@ public class SlideView extends Region {
         return background;
     }
 
-    public Node displayImage(models.Image xmlImage, double scaleHeightFactor, double scaleWidthFactor)
+    public Node renderImageNode(models.Image xmlImage)
     {
         InputStream inputStream;
         try {
@@ -100,12 +116,12 @@ public class SlideView extends Region {
 
         for(int i = 10; i < 16; i++)
         {
-            colourOneString += xmlShape.getColour().getFill().charAt(i);
+            colourOneString += xmlShape.getColor().getFill().charAt(i);
         }
 
         for(int i = 18; i < 24; i++)
         {
-            colourTwoString += xmlShape.getColour().getFill().charAt(i);
+            colourTwoString += xmlShape.getColor().getFill().charAt(i);
         }
 
         System.out.println("GRADIENT colourONE: " + colourOneString + " colourTWO: " + colourTwoString);
@@ -115,7 +131,7 @@ public class SlideView extends Region {
         return stops;
     }
 
-    public Node displayRectangle(models.Shape xmlShape, double scaleHeightFactor, double scaleWidthFactor)
+    public Node renderRectangleNode(models.Shape xmlShape)
     {
         Rectangle rectangle = new Rectangle();
 
@@ -125,23 +141,23 @@ public class SlideView extends Region {
         rectangle.setWidth((xmlShape.getPosition().getxBottomRight() - xmlShape.getPosition().getxTopLeft()) * scaleWidthFactor);
 
         rectangle.setStrokeWidth(xmlShape.getStroke());
-        rectangle.setStroke(Color.web(xmlShape.getColour().getColor()));
+        rectangle.setStroke(Color.web(xmlShape.getColor().getColor()));
 
 
-        if(xmlShape.getColour().getFill().charAt(0) == 'g')
+        if(xmlShape.getColor().getFill().charAt(0) == 'g')
         {
             LinearGradient linearGradient = new LinearGradient(rectangle.getX(), rectangle.getY(), rectangle.getWidth() + rectangle.getX(), rectangle.getHeight() + rectangle.getY(), false,CycleMethod.REPEAT, gradientHandler(xmlShape));
             rectangle.setFill(linearGradient);
         }
         else
         {
-            rectangle.setFill(Color.web(xmlShape.getColour().getFill()));
+            rectangle.setFill(Color.web(xmlShape.getColor().getFill()));
         }
 
         return rectangle;
     }
 
-    public Node displayEllipse(models.Shape xmlShape, double scaleHeightFactor, double scaleWidthFactor)
+    public Node renderEllipseNode(models.Shape xmlShape)
     {
         Ellipse ellipse = new Ellipse();
 
@@ -152,9 +168,9 @@ public class SlideView extends Region {
         ellipse.setRadiusY(((xmlShape.getPosition().getyBottomRight() - xmlShape.getPosition().getyTopLeft()) / 2 ) * scaleHeightFactor);
 
         ellipse.setStrokeWidth(xmlShape.getStroke());
-        ellipse.setStroke(Color.web(xmlShape.getColour().getColor()));
+        ellipse.setStroke(Color.web(xmlShape.getColor().getColor()));
 
-        if(xmlShape.getColour().getFill().charAt(0) == 'g')
+        if(xmlShape.getColor().getFill().charAt(0) == 'g')
         {
 
             RadialGradient radialGradient = new RadialGradient(0, 0, ellipse.getCenterX(), ellipse.getCenterY(), ellipse.getRadiusY(), false, CycleMethod.REPEAT, gradientHandler(xmlShape));
@@ -163,7 +179,7 @@ public class SlideView extends Region {
         }
         else
         {
-            ellipse.setFill(Color.web(xmlShape.getColour().getFill()));
+            ellipse.setFill(Color.web(xmlShape.getColor().getFill()));
         }
 
         return ellipse;
@@ -171,7 +187,7 @@ public class SlideView extends Region {
     }
 
     //need to add in actual color and fill plus handle gradients
-    public Node displayLine(models.Shape xmlShape, double scaleHeightFactor, double scaleWidthFactor)
+    public Node renderLineNode(models.Shape xmlShape)
     {
         Line line = new Line();
 
@@ -182,15 +198,15 @@ public class SlideView extends Region {
 
         line.setStrokeWidth(xmlShape.getStroke());
 
-        line.setFill(Color.web(xmlShape.getColour().getFill()));
+        line.setFill(Color.web(xmlShape.getColor().getFill()));
 
-        line.setStroke(Color.web(xmlShape.getColour().getColor()));
+        line.setStroke(Color.web(xmlShape.getColor().getColor()));
 
         return line;
     }
 
     //tested and working, no player controls at the moment, set to autoplay for now
-    public Node displayVideo(models.Video xmlVideo, double scaleHeightFactor, double scaleWidthFactor)
+    public Node renderVideoNode(models.Video xmlVideo)
     {
         return new MovieView(
             xmlVideo.getPath(),
@@ -202,7 +218,7 @@ public class SlideView extends Region {
     }
 
     //tested and working, no player controls at the moment, set to autoplay for now
-    public Node displayAudio(models.Audio xmlAudio, double scaleHeightFactor, double scaleWidthFactor)
+    public Node renderAudioNode(models.Audio xmlAudio)
     {
         SoundView soundView = new SoundView(new Media(Paths.get(xmlAudio.getPath()).toUri().toString()), false, false, new ArrayList<Integer>());
         soundView.setLayoutX(xmlAudio.getPosition().x1 * scaleWidthFactor);
@@ -211,7 +227,7 @@ public class SlideView extends Region {
     }
 
     //prints on top of each other for separate text elements, format not always correct
-    public Node displayText(models.Text xmlText, double scaleHeightFactor, double scaleWidthFactor)
+    public Node renderTextNode(models.Text xmlText)
     {
         return new TextView(
             xmlText.getPosition().x1 * scaleWidthFactor,

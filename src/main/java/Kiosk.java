@@ -2,7 +2,6 @@ import components.MapView;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -34,12 +33,23 @@ public class Kiosk extends Application {
         Image mapLayout = new Image(getClass().getClassLoader().getResource("York16.png").toExternalForm());
         map = new MapView(mapLayout, poiIcon);
 
-        XMLParser parser = new XMLParser();
-        presentation = parser.parser("src/build/resources/main/example.pws", "src/build/resources/main/schema.xsd");
+        try {
+            presentation = XMLParser.parse(
+                    "src/build/resources/main/example.pws",
+                    "src/build/resources/main/schema.xsd"
+            );
+        }
+        catch (Exception e) {
+            // Couldn't load data - exit
+            // @TODO show a user friendly error message here explaining the problem (e.g. missing PWS, invalid PWS)
+            System.err.println("Error parsing PWS document");
+            System.err.println(e);
+            System.exit(1);
+        }
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double screenWidth = (screenSize.getWidth());
-        double screenHeight = (screenSize.getHeight());
+        double screenWidth = screenSize.getWidth();
+        double screenHeight = screenSize.getHeight();
 
         HBox Buttons = new HBox();
         Button forward = new Button("Next");

@@ -1,6 +1,6 @@
 package models;
 
-public class Shape {
+public class Shape implements SlideElement {
 
     String shape; //what the shape is ie. triangle
 
@@ -49,7 +49,7 @@ public class Shape {
         this.positionAttrib = positionAttrib;
     }
 
-    public ColorAttrib getColour() {
+    public ColorAttrib getColor() {
         return colour;
     }
 
