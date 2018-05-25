@@ -26,7 +26,7 @@ public class Presentation {
         this.presDefaultFont = presDefaultFont;
     }
 
-    public ColorAttrib getPresDefaultColour() {
+    public ColorAttrib getPresDefaultColor() {
         return presDefaultColour;
     }
 

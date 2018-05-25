@@ -53,7 +53,7 @@ public class Slide {
         this.font = font;
     }
 
-    public ColorAttrib getColour() {
+    public ColorAttrib getColor() {
         return colour;
     }
 

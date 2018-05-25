@@ -220,8 +220,8 @@ public class XMLParser {
         slideShape.getPosition().setyBottomRight(Integer.parseInt(xmlSlide.getAttributes().getNamedItem("y2").getNodeValue()));
 
         // sets default values for colour from the slide/presentation defaults
-        slideShape.getColor().setFill(slide.getColour().getFill());
-        slideShape.getColor().setColor(slide.getColour().getColor());
+        slideShape.getColor().setFill(slide.getColor().getFill());
+        slideShape.getColor().setColor(slide.getColor().getColor());
 
         // if the colour has been specified in the xml, it will overwrite the defaults
         if(xmlSlide.getAttributes().getNamedItem("color") != null)
@@ -319,11 +319,11 @@ public class XMLParser {
     public static void getTextContentAttributes(TextFormat content, NamedNodeMap xmlSlide)
     {
         if(xmlSlide.getNamedItem("fill") != null) {
-            content.getColour().setFill(xmlSlide.getNamedItem("fill").getNodeValue());
+            content.getColor().setFill(xmlSlide.getNamedItem("fill").getNodeValue());
         }
 
         if(xmlSlide.getNamedItem("color") != null) {
-            content.getColour().setColor(xmlSlide.getNamedItem("color").getNodeValue());
+            content.getColor().setColor(xmlSlide.getNamedItem("color").getNodeValue());
         }
 
         if(xmlSlide.getNamedItem("italic") != null)
@@ -362,8 +362,8 @@ public class XMLParser {
         content.getFont().setTextSize(slide.getFont().getTextSize());
         content.getFont().setFontWithName(slide.getFont().getFontName());
 
-        content.getColour().setColor(slide.getColour().getColor());
-        content.getColour().setFill(slide.getColour().getFill());
+        content.getColor().setColor(slide.getColor().getColor());
+        content.getColor().setFill(slide.getColor().getFill());
     }
 
     //pulls the actual text from the text elements from xml
@@ -429,7 +429,7 @@ public class XMLParser {
                 //if a format change is specified for colour this particular TextFormat will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("color") != null) {
 
-                    contentText.getColour().setColor(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("color").getNodeValue());
+                    contentText.getColor().setColor(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("color").getNodeValue());
                     System.out.println("colour from FORMAT");
 
                 }
@@ -455,8 +455,8 @@ public class XMLParser {
                         + " ,italic: " + contentText.getFont().isItalic()
                         + " ,underline: " + contentText.getFont().isUnderline()
                         + " ,textsize: " + contentText.getFont().getTextSize()
-                        + " ,colour: " + contentText.getColour().getColor()
-                        + " ,fill: " + contentText.getColour().getFill()
+                        + " ,colour: " + contentText.getColor().getColor()
+                        + " ,fill: " + contentText.getColor().getFill()
                         + " ,font: " + contentText.getFont().getFontName()
                         + " , TEXT: " + contentText.getContent());
 
@@ -509,8 +509,8 @@ public class XMLParser {
 
         if(xmlDefaults.getNamedItem("color") != null)
         {
-            presentation.getPresDefaultColour().setColor(xmlDefaults.getNamedItem("color").getNodeValue());
-            System.out.println("PRES colour: " + presentation.getPresDefaultColour().getColor());
+            presentation.getPresDefaultColor().setColor(xmlDefaults.getNamedItem("color").getNodeValue());
+            System.out.println("PRES colour: " + presentation.getPresDefaultColor().getColor());
         }
 
         if(xmlDefaults.getNamedItem("font") != null)
@@ -521,8 +521,8 @@ public class XMLParser {
 
         if(xmlDefaults.getNamedItem("fill") != null)
         {
-            presentation.getPresDefaultColour().setFill(xmlDefaults.getNamedItem("fill").getNodeValue());
-            System.out.println("PRES fill: " + presentation.getPresDefaultColour().getFill());
+            presentation.getPresDefaultColor().setFill(xmlDefaults.getNamedItem("fill").getNodeValue());
+            System.out.println("PRES fill: " + presentation.getPresDefaultColor().getFill());
         }
     }
 
@@ -540,13 +540,13 @@ public class XMLParser {
         }
 
         if(xmlSlide.getNamedItem("fill") != null) {
-            slide.getColour().setFill(xmlSlide.getNamedItem("fill").getNodeValue());
-            System.out.println("SLIDE fill: " + slide.getColour().getFill());
+            slide.getColor().setFill(xmlSlide.getNamedItem("fill").getNodeValue());
+            System.out.println("SLIDE fill: " + slide.getColor().getFill());
         }
 
         if(xmlSlide.getNamedItem("color") != null) {
-            slide.getColour().setColor(xmlSlide.getNamedItem("color").getNodeValue());
-            System.out.println("SLIDE colour: " + slide.getColour().getColor());
+            slide.getColor().setColor(xmlSlide.getNamedItem("color").getNodeValue());
+            System.out.println("SLIDE colour: " + slide.getColor().getColor());
         }
 
         if(xmlSlide.getNamedItem("italic") != null)
@@ -589,8 +589,8 @@ public class XMLParser {
         slide.getFont().setBold(presentation.getPresDefaultFont().isBold());
         slide.getFont().setUnderline(presentation.getPresDefaultFont().isUnderline());
 
-        slide.getColour().setColor(presentation.getPresDefaultColour().getColor());
-        slide.getColour().setFill(presentation.getPresDefaultColour().getFill());
+        slide.getColor().setColor(presentation.getPresDefaultColor().getColor());
+        slide.getColor().setFill(presentation.getPresDefaultColor().getFill());
     }
 
     //gets the gps from the dom structure and creates a GPS object and saves it in there

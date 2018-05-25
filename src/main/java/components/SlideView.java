@@ -10,7 +10,6 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import models.Audio;
 import models.Shape;
 import models.Slide;
 import models.SlideElement;
@@ -83,7 +82,7 @@ public class SlideView extends Region {
         background.setY(0);
         background.setHeight(1080 * scaleHeightFactor);
         background.setWidth(1920 * scaleWidthFactor);
-        background.setFill(Color.web(slide.getColour().getFill()));
+        background.setFill(Color.web(slide.getColor().getFill()));
 
         return background;
     }
@@ -242,7 +241,7 @@ public class SlideView extends Region {
                 Text text =  new Text(textContent.getContent());
                 text.setFont(textContent.getFont().getFont());
                 text.setUnderline(textContent.getFont().isUnderline());
-                text.setFill(textContent.getColour().getColorPaint());
+                text.setFill(textContent.getColor().getColorPaint());
                 return text;
             }).toArray(size -> new Text[size])
         );

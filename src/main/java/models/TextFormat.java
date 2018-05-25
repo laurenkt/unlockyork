@@ -28,7 +28,7 @@ public class TextFormat {
         this.font = font;
     }
 
-    public ColorAttrib getColour() {
+    public ColorAttrib getColor() {
         return colour;
     }
 
