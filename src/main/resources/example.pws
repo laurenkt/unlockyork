@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Presentation xmlns="pws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="pws schema.xsd" italic="false" bold="false" underline="false" textsize="12" color="#F341DE" font="Times New Roman">
+<Presentation xmlns="pws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="pws schema.xsd"
+              italic="false" bold="false" underline="false" textsize="12" color="#F341DE" font="Times New Roman">
    <Meta key="author" value="Stuart Porter" />
    <Slide duration="12">
       <Text x="0" y="0" textsize="18" underline="true" font="Times New Roman">
@@ -26,10 +27,10 @@
          !
       </Text>
       <Shape x="203" y="23" type="ellipse" x2="483" y2="533" fill="gradient(#AEDE38,#3482ED)" />
-      <Shape x="403" y="323" type="rectangle" x2="683" y2="833" fill="gradient(#38AEDE,#3482ED)" />
-      <Shape x="603" y="123" type="line" x2="983" y2="333" fill="#382345" />
+      <Shape x="403" y="323" type="rectangle" x2="683" y2="833" fill="gradient(#00AEDE,#3482ED)" />
+      <Shape x="603" y="123" type="line" x2="983" y2="333" fill="#FF0000" />
    </Slide>
-   <Slide fill="#023211" color="#F341DE" duration="20">
+   <Slide fill="#023211" color="#038344" duration="20">
       <Text bold="true" underline="true" textsize="10" duration="12" start="trigger">
          Some text on one line
          <Br />

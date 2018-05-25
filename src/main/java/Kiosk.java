@@ -38,7 +38,6 @@ public class Kiosk extends Application {
                     "src/build/resources/main/example.pws",
                     "src/build/resources/main/schema.xsd"
             );
-            scaleFactorForPresentation(presentation);
         }
         catch (Exception e) {
             // Couldn't load data - exit
@@ -152,15 +151,6 @@ public class Kiosk extends Application {
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
         primaryStage.show();
-    }
-
-    public void scaleFactorForPresentation(Presentation presentation) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double screenWidth = (screenSize.getWidth());
-        double screenHeight = (screenSize.getHeight());
-
-        scaleWidthFactor = presentation.getMaxX2() / screenWidth;
-        scaleHeightFactor = presentation.getMaxY2() / screenHeight;
     }
 
     public void setSlideNum(int slideNum) {
