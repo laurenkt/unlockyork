@@ -19,11 +19,12 @@ public class Kiosk extends Application {
     private MapView map;
     private int slideNum = 0;
     private Presentation presentation;
-    private double scaleWidthFactor;
-    private double scaleHeightFactor;
+    private double scaleWidthFactor = 1;
+    private double scaleHeightFactor = 1;
     private SlideView[] slides;
     private StackPane userView;
     private Pane slidePane = new Pane();
+    private Pane backgroundPane = new Pane();
 
     @Override
     public void start(Stage primaryStage) {
@@ -63,10 +64,13 @@ public class Kiosk extends Application {
         Buttons.setTranslateY(screenHeight/2);
 
         userView = new StackPane();
-        userView.getChildren().addAll(map, Buttons, slidePane);
+        userView.getChildren().addAll(map, Buttons, backgroundPane, slidePane);
 
         double minWidth = presentation.getMaxX2();
         double minHeight = presentation.getMaxY2();
+
+        final double margin = 50;
+        final double offset = .55;
 
         Scale scale = new Scale();
         scale.setPivotX(0);
@@ -74,15 +78,21 @@ public class Kiosk extends Application {
         scale.setPivotZ(0);
         slidePane.getTransforms().add(scale);
         slidePane.setPickOnBounds(false);
+        slidePane.setTranslateY(margin);
+
+        backgroundPane.setMouseTransparent(true);
+        backgroundPane.setStyle(("-fx-background-color: rgba(255,255,255,0.7)"));
 
         Scene scene = new Scene(userView);
         primaryStage.widthProperty().addListener((obs, old, val) -> {
-            scaleWidthFactor = val.doubleValue() / minWidth;
+            backgroundPane.setTranslateX(val.doubleValue()*offset);
+            slidePane.setTranslateX(val.doubleValue()*offset + margin);
+            scaleWidthFactor = (val.doubleValue()*(1-offset) - 2*margin) / (minWidth);
             scale.setX(Math.min(scaleWidthFactor, scaleHeightFactor));
             scale.setY(Math.min(scaleWidthFactor, scaleHeightFactor));
         });
         primaryStage.heightProperty().addListener((obs, old, val) -> {
-            scaleHeightFactor = val.doubleValue() / minHeight;
+            scaleHeightFactor = (val.doubleValue() - 2*margin) / (minHeight);
             scale.setX(Math.min(scaleWidthFactor, scaleHeightFactor));
             scale.setY(Math.min(scaleWidthFactor, scaleHeightFactor));
         });
