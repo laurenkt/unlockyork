@@ -37,6 +37,7 @@ public class MapView extends ScrollPane {
     private Node target;
     private Node zoomNode;
     private Bounds boundsInScene;
+    private Timeline timeline = new Timeline();
     private int level = 0;
 
     private List<Image> tiles;
@@ -59,8 +60,8 @@ public class MapView extends ScrollPane {
         poi = new ImageView();
         poi.setFitHeight(100);
         poi.setFitWidth(100);
-        poi.setTranslateX(-40);
-        poi.setTranslateY(-610);
+        poi.setTranslateX(-150);
+        poi.setTranslateY(-350);
         poi.setImage(poiIcon);
 
         StackPane stack = new StackPane();
@@ -133,9 +134,10 @@ public class MapView extends ScrollPane {
         // Basic interpolation
         // TODO: need to not redo this every scroll frame, just update the target
         // TODO: also need to make sure that the pivot point for the scale is always under the cursor
-        final Timeline timeline = new Timeline();
+        timeline.stop();
+        timeline.getKeyFrames().clear();
         timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(200), new KeyValue(target.scaleXProperty(), scaleValue, Interpolator.EASE_BOTH))
+                new KeyFrame(Duration.millis(200), new KeyValue(target.scaleXProperty(), scaleValue, Interpolator.EASE_OUT))
         );
         timeline.play();
     }
