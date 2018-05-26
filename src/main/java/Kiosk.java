@@ -101,7 +101,7 @@ public class Kiosk extends Application {
         //map.prefWidthProperty().bind(userView.widthProperty().divide(2));
 
         slides = presentation.getSlides().stream()
-                .map(slide -> new SlideView(slide, scaleWidthFactor, scaleHeightFactor))
+                .map(slide -> new SlideView(slide))
                 .toArray(size -> new SlideView[size]);
 
         this.setSlideNum(0);
