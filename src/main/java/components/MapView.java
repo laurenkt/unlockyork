@@ -5,6 +5,10 @@ import com.sun.javafx.geom.transform.BaseTransform;
 import com.sun.javafx.jmx.MXNodeAlgorithm;
 import com.sun.javafx.jmx.MXNodeAlgorithmContext;
 import com.sun.javafx.sg.prism.NGNode;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
@@ -20,6 +24,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +80,10 @@ public class MapView extends ScrollPane {
         setFitToHeight(true); //center
         setFitToWidth(true); //center
 
-        updateScale();
+        // Ensure target scales on both directions together
+        target.scaleYProperty().bind(target.scaleXProperty());
+
+        setScaleValue(scaleValue);
     }
 
     public double getXPoiMin() {
@@ -119,9 +127,17 @@ public class MapView extends ScrollPane {
         return vBox;
     }
 
-    private void updateScale() {
-        target.setScaleX(scaleValue);
-        target.setScaleY(scaleValue);
+    private void setScaleValue(double scaleValue) {
+        this.scaleValue = scaleValue;
+
+        // Basic interpolation
+        // TODO: need to not redo this every scroll frame, just update the target
+        // TODO: also need to make sure that the pivot point for the scale is always under the cursor
+        final Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(200), new KeyValue(target.scaleXProperty(), scaleValue, Interpolator.EASE_BOTH))
+        );
+        timeline.play();
     }
 
     private void onScroll(double wheelDelta, Point2D mousePoint) {
@@ -135,10 +151,9 @@ public class MapView extends ScrollPane {
         double valY = getVvalue() * (innerBounds.getHeight() - viewportBounds.getHeight());
 
         // Bounded scale value
-        scaleValue = Math.min(1.15, Math.max(0.45, scaleValue * zoomFactor));
+        setScaleValue(Math.min(1.15, Math.max(0.45, scaleValue * zoomFactor)));
         this.setLevel((int)(4*scaleValue - 1));
 
-        updateScale();
         layout();// refresh ScrollPane scroll positions & target bounds
         
         // convert target coordinates to zoomTarget coordinates
