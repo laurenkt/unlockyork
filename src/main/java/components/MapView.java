@@ -21,6 +21,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MapView extends ScrollPane {
     private double scaleValue = 0.7;
     private double zoomIntensity = 0.02;
@@ -29,12 +32,24 @@ public class MapView extends ScrollPane {
     private Node target;
     private Node zoomNode;
     private Bounds boundsInScene;
+    private int level = 0;
 
-    public MapView(Image tiles, Image poiIcon) {
+    private List<Image> tiles;
+    private Image poiIcon;
+
+    public MapView() {
         super();
 
+
+        poiIcon = new Image(getClass().getClassLoader().getResource("poi.png").toExternalForm());
+        tiles = new ArrayList<>();
+        tiles.add(new Image(getClass().getClassLoader().getResource("York20.png").toExternalForm()));
+        tiles.add(new Image(getClass().getClassLoader().getResource("York18.png").toExternalForm()));
+        tiles.add(new Image(getClass().getClassLoader().getResource("York17.png").toExternalForm()));
+        tiles.add(new Image(getClass().getClassLoader().getResource("York16.png").toExternalForm()));
+
         mapView = new ImageView();
-        mapView.setImage(tiles);
+        mapView.setImage(tiles.get(level));
 
         poi = new ImageView();
         poi.setFitHeight(100);
@@ -119,23 +134,9 @@ public class MapView extends ScrollPane {
         double valX = getHvalue() * (innerBounds.getWidth() - viewportBounds.getWidth());
         double valY = getVvalue() * (innerBounds.getHeight() - viewportBounds.getHeight());
 
-        scaleValue = scaleValue * zoomFactor;
-// Upper and lower zoom limits
-        if (scaleValue >= 1.8){
-            scaleValue = 1.8;
-        }
-
-        if (scaleValue <= 0.17){
-            scaleValue = 0.17;
-        }
-//Level switching, here there will be street level map base when entering level 2
-        if (scaleValue <= 0.9){
-            System.out.println("level 1");
-        }
-
-        if (scaleValue >= 0.9){
-            System.out.println("level 2");
-        }
+        // Bounded scale value
+        scaleValue = Math.min(1.15, Math.max(0.45, scaleValue * zoomFactor));
+        this.setLevel((int)(4*scaleValue - 1));
 
         updateScale();
         layout();// refresh ScrollPane scroll positions & target bounds
@@ -153,6 +154,13 @@ public class MapView extends ScrollPane {
         setVvalue((valY + adjustment.getY()) / (updatedInnerBounds.getHeight() - viewportBounds.getHeight()));
 
 
+    }
+
+    private void setLevel(int level) {
+        if (level != this.level) {
+            this.level = level;
+            mapView.setImage(tiles.get(Math.min(level, tiles.size() - 1)));
+        }
     }
 
 }

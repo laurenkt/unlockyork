@@ -1,5 +1,6 @@
 import components.MapView;
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -30,9 +31,7 @@ public class Kiosk extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Unlock York");
 
-        Image poiIcon = new Image(getClass().getClassLoader().getResource("poi.png").toExternalForm());
-        Image mapLayout = new Image(getClass().getClassLoader().getResource("York16.png").toExternalForm());
-        map = new MapView(mapLayout, poiIcon);
+        map = new MapView();
 
         try {
             presentation = XMLParser.parse(
@@ -106,61 +105,64 @@ public class Kiosk extends Application {
 
         this.setSlideNum(0);
 
-        forward.setOnAction(event -> {
-            if(slideNum < presentation.getSlides().size() - 1) {
-                slideNum = slideNum + 1;
-            }
-            else {
-                slideNum = 0;
-            }
+        forward.setOnAction(e -> this.onNext(e));
 
-            this.setSlideNum(slideNum);
-        });
+        back.setOnAction(e -> this.onPrevious(e));
 
-        back.setOnAction(event -> {
-            if (slideNum > 0) {
-                slideNum = slideNum - 1;
-            }
-            else {
-                slideNum = presentation.getSlides().size() - 1;
-            }
-
-            this.setSlideNum(slideNum);
-        });
-
-        scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                double EventX = event.getX();
-                double EventY = event.getY();
-                double xPoiMin = map.getXPoiMin();
-                double xPoiMax = map.getXPoiMax();
-                double yPoiMin = map.getYPoiMin();
-                double yPoiMax = map.getYPoiMax();
-                Boolean xMinister = false;
-                Boolean yMinister = false;
-
-                System.out.println("mouse clicked at x = " + EventX + " y = " + EventY);
-                System.out.println("xPoiMin = " + xPoiMin + ", xPoiMax = " + xPoiMax);
-                System.out.println("yPoiMin = " + yPoiMin + " yPoiMax = " + yPoiMax);
-
-                if(EventX >= xPoiMin && EventX <= xPoiMax) {
-                    xMinister = true;
-                }
-                if(EventY >= yPoiMin && EventY <= xPoiMax) {
-                    yMinister = true;
-                }
-                if(xMinister == true && yMinister == true) {
-                    System.out.println("Clicked on the Minister");
-                    //primaryStage.setScene(scene2);
-                    //primaryStage.setFullScreen(true);
-                }
-            }
-        });
+        scene.setOnMouseClicked(e -> this.onClick(e));
 
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
         primaryStage.show();
+    }
+
+    public void onNext(Event event) {
+        if(slideNum < presentation.getSlides().size() - 1) {
+            slideNum = slideNum + 1;
+        }
+        else {
+            slideNum = 0;
+        }
+
+        this.setSlideNum(slideNum);
+    }
+
+    public void onPrevious(Event event) {
+        if (slideNum > 0) {
+            slideNum = slideNum - 1;
+        }
+        else {
+            slideNum = presentation.getSlides().size() - 1;
+        }
+
+        this.setSlideNum(slideNum);
+    }
+
+    public void onClick(MouseEvent event) {
+        double EventX = event.getX();
+        double EventY = event.getY();
+        double xPoiMin = map.getXPoiMin();
+        double xPoiMax = map.getXPoiMax();
+        double yPoiMin = map.getYPoiMin();
+        double yPoiMax = map.getYPoiMax();
+        Boolean xMinister = false;
+        Boolean yMinister = false;
+
+        System.out.println("mouse clicked at x = " + EventX + " y = " + EventY);
+        System.out.println("xPoiMin = " + xPoiMin + ", xPoiMax = " + xPoiMax);
+        System.out.println("yPoiMin = " + yPoiMin + " yPoiMax = " + yPoiMax);
+
+        if(EventX >= xPoiMin && EventX <= xPoiMax) {
+            xMinister = true;
+        }
+        if(EventY >= yPoiMin && EventY <= xPoiMax) {
+            yMinister = true;
+        }
+        if(xMinister == true && yMinister == true) {
+            System.out.println("Clicked on the Minister");
+            //primaryStage.setScene(scene2);
+            //primaryStage.setFullScreen(true);
+        }
     }
 
     public void setSlideNum(int slideNum) {
