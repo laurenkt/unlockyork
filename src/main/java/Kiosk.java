@@ -61,7 +61,9 @@ public class Kiosk extends Application {
 
         scaleSlider.setOrientation(Orientation.VERTICAL);
         scaleSlider.setTranslateX(margin/2);
-        scaleSlider.setMaxHeight(200);
+        scaleSlider.setScaleX(2);
+        scaleSlider.setScaleY(2);
+        scaleSlider.setMaxHeight(100);
 
         userView = new StackPane();
         userView.getStylesheets().add(getClass().getResource("/css/Kiosk.css").toExternalForm());
@@ -104,7 +106,7 @@ public class Kiosk extends Application {
             forward.setTranslateY(val.doubleValue() - margin*2);
             back.setTranslateY(val.doubleValue() - margin*2);
             home.setTranslateY(val.doubleValue() - home.getHeight() - margin/2);
-            scaleSlider.setTranslateY(val.doubleValue() - scaleSlider.getHeight() - margin/2);
+            scaleSlider.setTranslateY(val.doubleValue() - scaleSlider.getHeight()*2 - margin/2);
             scaleHeightFactor = (val.doubleValue() - 2*margin) / (minHeight);
             scale.setX(Math.min(scaleWidthFactor, scaleHeightFactor));
             scale.setY(Math.min(scaleWidthFactor, scaleHeightFactor));

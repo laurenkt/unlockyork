@@ -42,6 +42,9 @@ public class MapView extends ScrollPane {
     private Timeline timeline = new Timeline();
     private int level = 0;
     private Scale scale = new Scale();
+    private Point2D anchorPoint = null;
+
+    private long lastAnchorTime = 0;
 
     private List<Image> tiles;
     private Image poiIcon;
@@ -63,11 +66,12 @@ public class MapView extends ScrollPane {
         poi = new ImageView();
         poi.setFitHeight(100);
         poi.setFitWidth(100);
-        poi.setTranslateX(-150);
-        poi.setTranslateY(-350);
+        poi.setTranslateX(1877-50);
+        poi.setTranslateY(1659-50);
         poi.setImage(poiIcon);
 
         StackPane stack = new StackPane();
+        stack.setAlignment(Pos.TOP_LEFT);
         stack.getChildren().addAll(mapView, poi);
 
         HBox hBox = new HBox();
@@ -93,7 +97,7 @@ public class MapView extends ScrollPane {
         });
         target.getTransforms().add(scale);
 
-        setScaleValue(scaleValue);
+        setScaleValue(scaleValue, 0, 0);
     }
 
     public DoubleProperty scaleProperty() {
@@ -141,7 +145,7 @@ public class MapView extends ScrollPane {
         return vBox;
     }
 
-    private void setScaleValue(double scaleValue) {
+    private void setScaleValue(double scaleValue, double hValue, double vValue) {
         this.scaleValue = scaleValue;
 
         // Basic interpolation
@@ -149,8 +153,10 @@ public class MapView extends ScrollPane {
         // TODO: also need to make sure that the pivot point for the scale is always under the cursor
         timeline.stop();
         timeline.getKeyFrames().clear();
-        timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(200), new KeyValue(scale.xProperty(), scaleValue, Interpolator.EASE_OUT))
+        timeline.getKeyFrames().addAll(
+                new KeyFrame(Duration.millis(200), new KeyValue(scale.xProperty(), scaleValue, Interpolator.LINEAR)),
+                new KeyFrame(Duration.millis(200), new KeyValue(hvalueProperty(), hValue, Interpolator.LINEAR)),
+                new KeyFrame(Duration.millis(200), new KeyValue(vvalueProperty(), vValue, Interpolator.LINEAR))
         );
         timeline.play();
     }
@@ -162,8 +168,10 @@ public class MapView extends ScrollPane {
         Bounds viewportBounds = getViewportBounds();
 
         // calculate pixel offsets from [0, 1] range
-        double valX = getHvalue() * (innerBounds.getWidth() - viewportBounds.getWidth());
-        double valY = getVvalue() * (innerBounds.getHeight() - viewportBounds.getHeight());
+        double valX = this.getHvalue() * (innerBounds.getWidth() - viewportBounds.getWidth());
+        double valY = this.getVvalue() * (innerBounds.getHeight() - viewportBounds.getHeight());
+
+        this.layout(); // refresh ScrollPane scroll positions & target bounds
 
         // convert target coordinates to zoomTarget coordinates
         Point2D posInZoomTarget = target.parentToLocal(zoomNode.parentToLocal(mousePoint));
@@ -171,11 +179,16 @@ public class MapView extends ScrollPane {
         // calculate adjustment of scroll position (pixels)
         Point2D adjustment = target.getLocalToParentTransform().deltaTransform(posInZoomTarget.multiply(zoomFactor - 1));
 
+        // convert back to [0, 1] range
+        // (too large/small values are automatically corrected by ScrollPane)
+        Bounds updatedInnerBounds = zoomNode.getBoundsInLocal();
+
         // Bounded scale value
-        System.out.println(posInZoomTarget);
-        scale.setPivotX(-500);
-        scale.setPivotY(-2000);
-        setScaleValue(Math.min(1.15, Math.max(0.45, scaleValue * zoomFactor)));
+        setScaleValue(
+                Math.min(1.15, Math.max(0.45, scaleValue * zoomFactor)),
+                (valX + adjustment.getX()) / (updatedInnerBounds.getWidth() - viewportBounds.getWidth()),
+                (valY + adjustment.getY()) / (updatedInnerBounds.getHeight() - viewportBounds.getHeight())
+        );
     }
 
     private void setLevel(int level) {
