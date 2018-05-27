@@ -1,10 +1,13 @@
+import components.IconButton;
 import components.MapView;
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -26,9 +29,13 @@ public class Kiosk extends Application {
     private StackPane userView;
     private Pane slidePane = new Pane();
     private Pane backgroundPane = new Pane();
+    private Slider scaleSlider = new Slider(0.45, 1.15, 1);
 
     @Override
     public void start(Stage primaryStage) {
+        final double margin = 50;
+        final double offset = .55;
+
         primaryStage.setTitle("Unlock York");
 
         map = new MapView();
@@ -47,29 +54,30 @@ public class Kiosk extends Application {
             System.exit(1);
         }
 
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double screenHeight = screenSize.getHeight();
+        Button forward = new IconButton("/icons/right.png");
+        Button back = new IconButton("/icons/left.png");
+        Button home = new IconButton("/icons/map_centre.png");
+        home.setTranslateX(margin);
 
-        HBox Buttons = new HBox();
-        Button forward = new Button("Next");
-        Button back = new Button("Previous");
-        HBox.setHgrow(forward, Priority.ALWAYS);
-        HBox.setHgrow(back, Priority.ALWAYS);
-        forward.setMaxWidth(Double.MAX_VALUE);
-        back.setMaxWidth(Double.MAX_VALUE);
-        Buttons.getChildren().addAll(back, forward);
-        //Buttons.setAlignment(Pos.BOTTOM_CENTER);
-        Buttons.setMaxHeight(50);
-        Buttons.setTranslateY(screenHeight/2);
+        scaleSlider.setOrientation(Orientation.VERTICAL);
+        scaleSlider.setTranslateX(margin/2);
+        scaleSlider.setMaxHeight(200);
 
         userView = new StackPane();
-        userView.getChildren().addAll(map, Buttons, backgroundPane, slidePane);
+        userView.getStylesheets().add(getClass().getResource("/css/Kiosk.css").toExternalForm());
+        userView.setAlignment(Pos.TOP_LEFT);
+        userView.getChildren().addAll(
+                map,
+                backgroundPane,
+                slidePane,
+                scaleSlider,
+                back,
+                forward,
+                home
+        );
 
         double minWidth = presentation.getMaxX2();
         double minHeight = presentation.getMaxY2();
-
-        final double margin = 50;
-        final double offset = .55;
 
         Scale scale = new Scale();
         scale.setPivotX(0);
@@ -84,6 +92,8 @@ public class Kiosk extends Application {
 
         Scene scene = new Scene(userView);
         primaryStage.widthProperty().addListener((obs, old, val) -> {
+            forward.setTranslateX(val.doubleValue() - margin*2);
+            back.setTranslateX(val.doubleValue() / 2 + margin*2);
             backgroundPane.setTranslateX(val.doubleValue()*offset);
             slidePane.setTranslateX(val.doubleValue()*offset + margin);
             scaleWidthFactor = (val.doubleValue()*(1-offset) - 2*margin) / (minWidth);
@@ -91,6 +101,10 @@ public class Kiosk extends Application {
             scale.setY(Math.min(scaleWidthFactor, scaleHeightFactor));
         });
         primaryStage.heightProperty().addListener((obs, old, val) -> {
+            forward.setTranslateY(val.doubleValue() - margin*2);
+            back.setTranslateY(val.doubleValue() - margin*2);
+            home.setTranslateY(val.doubleValue() - home.getHeight() - margin/2);
+            scaleSlider.setTranslateY(val.doubleValue() - scaleSlider.getHeight() - margin/2);
             scaleHeightFactor = (val.doubleValue() - 2*margin) / (minHeight);
             scale.setX(Math.min(scaleWidthFactor, scaleHeightFactor));
             scale.setY(Math.min(scaleWidthFactor, scaleHeightFactor));
@@ -106,10 +120,11 @@ public class Kiosk extends Application {
         this.setSlideNum(0);
 
         forward.setOnAction(e -> this.onNext(e));
-
         back.setOnAction(e -> this.onPrevious(e));
-
         scene.setOnMouseClicked(e -> this.onClick(e));
+
+        // Volume
+        map.scaleProperty().bindBidirectional(scaleSlider.valueProperty());
 
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);

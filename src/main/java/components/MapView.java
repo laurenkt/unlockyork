@@ -9,6 +9,7 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.property.DoubleProperty;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
@@ -16,6 +17,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -39,6 +41,7 @@ public class MapView extends ScrollPane {
     private Bounds boundsInScene;
     private Timeline timeline = new Timeline();
     private int level = 0;
+    private Scale scale = new Scale();
 
     private List<Image> tiles;
     private Image poiIcon;
@@ -47,7 +50,7 @@ public class MapView extends ScrollPane {
         super();
 
 
-        poiIcon = new Image(getClass().getClassLoader().getResource("poi.png").toExternalForm());
+        poiIcon = new Image(getClass().getResource("/icons/map_poi.png").toExternalForm());
         tiles = new ArrayList<>();
         tiles.add(new Image(getClass().getClassLoader().getResource("York20.png").toExternalForm()));
         tiles.add(new Image(getClass().getClassLoader().getResource("York18.png").toExternalForm()));
@@ -65,7 +68,7 @@ public class MapView extends ScrollPane {
         poi.setImage(poiIcon);
 
         StackPane stack = new StackPane();
-        stack.getChildren().addAll(mapView,poi);
+        stack.getChildren().addAll(mapView, poi);
 
         HBox hBox = new HBox();
         hBox.getChildren().add(stack);
@@ -82,9 +85,15 @@ public class MapView extends ScrollPane {
         setFitToWidth(true); //center
 
         // Ensure target scales on both directions together
-        target.scaleYProperty().bind(target.scaleXProperty());
+        scale.yProperty().bind(scale.xProperty());
+        scale.xProperty().addListener((obs, old, val) -> this.setLevel((int)(4*val.doubleValue() - 1)));
+        target.getTransforms().add(scale);
 
         setScaleValue(scaleValue);
+    }
+
+    public DoubleProperty scaleProperty() {
+        return scale.xProperty();
     }
 
     public double getXPoiMin() {
@@ -137,7 +146,7 @@ public class MapView extends ScrollPane {
         timeline.stop();
         timeline.getKeyFrames().clear();
         timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(200), new KeyValue(target.scaleXProperty(), scaleValue, Interpolator.EASE_OUT))
+                new KeyFrame(Duration.millis(200), new KeyValue(scale.xProperty(), scaleValue, Interpolator.EASE_OUT))
         );
         timeline.play();
     }
@@ -152,25 +161,17 @@ public class MapView extends ScrollPane {
         double valX = getHvalue() * (innerBounds.getWidth() - viewportBounds.getWidth());
         double valY = getVvalue() * (innerBounds.getHeight() - viewportBounds.getHeight());
 
-        // Bounded scale value
-        setScaleValue(Math.min(1.15, Math.max(0.45, scaleValue * zoomFactor)));
-        this.setLevel((int)(4*scaleValue - 1));
-
-        layout();// refresh ScrollPane scroll positions & target bounds
-        
         // convert target coordinates to zoomTarget coordinates
         Point2D posInZoomTarget = target.parentToLocal(zoomNode.parentToLocal(mousePoint));
 
         // calculate adjustment of scroll position (pixels)
         Point2D adjustment = target.getLocalToParentTransform().deltaTransform(posInZoomTarget.multiply(zoomFactor - 1));
 
-        // convert back to [0, 1] range
-        // (too large/small values are automatically corrected by ScrollPane)
-        Bounds updatedInnerBounds = zoomNode.getBoundsInLocal();
-        setHvalue((valX + adjustment.getX()) / (updatedInnerBounds.getWidth() - viewportBounds.getWidth()));
-        setVvalue((valY + adjustment.getY()) / (updatedInnerBounds.getHeight() - viewportBounds.getHeight()));
-
-
+        // Bounded scale value
+        System.out.println(posInZoomTarget);
+        scale.setPivotX(-500);
+        scale.setPivotY(-2000);
+        setScaleValue(Math.min(1.15, Math.max(0.45, scaleValue * zoomFactor)));
     }
 
     private void setLevel(int level) {
