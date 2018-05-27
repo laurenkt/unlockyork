@@ -86,7 +86,11 @@ public class MapView extends ScrollPane {
 
         // Ensure target scales on both directions together
         scale.yProperty().bind(scale.xProperty());
-        scale.xProperty().addListener((obs, old, val) -> this.setLevel((int)(4*val.doubleValue() - 1)));
+        scale.xProperty().addListener((obs, old, val) -> {
+            poi.setScaleX(0.3 / val.doubleValue());
+            poi.setScaleY(0.3 / val.doubleValue());
+            this.setLevel((int)(4*val.doubleValue() - 1));
+        });
         target.getTransforms().add(scale);
 
         setScaleValue(scaleValue);
