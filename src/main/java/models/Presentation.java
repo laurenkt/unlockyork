@@ -9,10 +9,9 @@ public class Presentation {
     FontAttrib presDefaultFont; // presentation defaults for the font of text
     ColorAttrib presDefaultColour; // presentation defaults for color
 
-    public Presentation()
-    {
+    public Presentation() {
         meta = new Meta();
-        slides = new ArrayList<Slide>();
+        slides = new ArrayList<>();
         gps = new GPS();
         presDefaultFont = new FontAttrib();
         presDefaultColour = new ColorAttrib();

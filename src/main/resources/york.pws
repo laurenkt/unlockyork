@@ -1,52 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Presentation xmlns="pws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="pws schema.xsd"
               italic="false" bold="false" underline="false" textsize="12" color="#000000" font="Arial">
-   <Slide duration="12">
-      <Text x="0" y="0" textsize="64">
-          The Minster
-      </Text>
-      <Text x="0" y="700" textsize="14">
-         <Format bold="true">Opening Times</Format><Br />
-         9:00am — 4:30pm
-      </Text>
-      <Text x="0" y="300" x2="1000" y2="600" textsize="16">
-         Since the 7th century, the Minster has been at the centre of Christianity in the north
-         of England and today remains a thriving church rooted in the daily offering of worship
-         and prayer. The Minster was built for the glory of God. Every aspect of this ancient
-         building - from the exquisite, handcrafted stone through to the unrivalled collection
-         of medieval stained glass - tells the story of Jesus Christ. We invite you to discover
-         this sacred place and the love of God at its heart, which has attracted people from
-         across the globe for more than 1000 years.
-      </Text>
-   </Slide>
-   <Slide duration="12">
-      <Text underline="true" textsize="18" color="#F341DE" font="Times New Roman">
-         The Schema also defines
-         <Format underline="false" textsize="24">Shapes</Format>
-         !
-      </Text>
-      <Shape x="203" y="23" type="ellipse" x2="483" y2="533" fill="gradient(#AEDE38,#3482ED)" />
-      <Shape x="403" y="323" type="rectangle" x2="683" y2="833" fill="gradient(#00AEDE,#3482ED)" />
-      <Shape x="603" y="123" type="line" x2="983" y2="333" fill="#FF0000" />
-   </Slide>
-   <Slide fill="#023211" color="#038344" duration="20">
-      <Text bold="true" underline="true" textsize="10" duration="12" start="trigger">
-         Some text on one line
-         <Br />
-         <Format italic="true" bold="false" textsize="12" color="#F341DE" font="Helvetica">Some</Format>
-         text
-         <Br />
-         <Br />
-         Some more text
-      </Text>
-      <Shape x="103" y="123" type="ellipse" x2="583" y2="933" stroke="2" color="#000000" fill="gradient(#38AEDE,#3482ED)" />
-   </Slide>
-   <Slide fill="#FEDDFE" color="#032222">
-      <Image path="./local_file.jpg" x="10" y="35" x2="100" y2="200" />
-      <Shape x="103" y="123" type="ellipse" x2="583" y2="933" stroke="2" color="#000000" fill="gradient(#38AEDE,#3482ED)" />
-   </Slide>
-   <Slide>
-      <Video path="./local_file.mp4" x="10" y="35" x2="650" y2="515" />
-      <Audio path="./local_file.wav" x="0" y="800" x2="10" y2="10" />
-   </Slide>
+    <Slide duration="12">
+        <Text x="0" y="0" textsize="64" bold="true">
+            The Minster
+        </Text>
+        <Text x="0" y="500" textsize="26">
+            <Format bold="true">Opening Times</Format><Br />
+            9:00am — 4:30pm
+        </Text>
+        <Text x="0" y="150" x2="1000" y2="600" textsize="22">
+            Since the 7th century, the Minster has been at the centre of Christianity in the north
+            of England and today remains a thriving church rooted in the daily offering of worship
+            and prayer. The Minster was built for the glory of God. Every aspect of this ancient
+            building - from the exquisite, handcrafted stone through to the unrivalled collection
+            of medieval stained glass - tells the story of Jesus Christ. We invite you to discover
+            this sacred place and the love of God at its heart, which has attracted people from
+            across the globe for more than 1000 years.
+        </Text>
+        <Video path="./minster.mp4" x="0" y="700" x2="640" y2="1180" />
+    </Slide>
 </Presentation>

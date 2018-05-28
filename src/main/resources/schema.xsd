@@ -61,12 +61,12 @@
       </annotation>
       <attribute name="color" type="pws:colorType">
          <annotation>
-            <documentation>The foreground/stroke/text colour.</documentation>
+            <documentation>The foreground/stroke/text color.</documentation>
          </annotation>
       </attribute>
       <attribute name="fill" type="pws:colorType">
          <annotation>
-            <documentation>The background colour.</documentation>
+            <documentation>The background color.</documentation>
          </annotation>
       </attribute>
    </attributeGroup>
