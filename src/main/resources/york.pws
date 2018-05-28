@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Presentation xmlns="pws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="pws schema.xsd"
-              italic="false" bold="false" underline="false" textsize="12" color="#F341DE" font="Times New Roman">
-   <Meta key="author" value="Stuart Porter" />
+              italic="false" bold="false" underline="false" textsize="12" color="#000000" font="Arial">
    <Slide duration="12">
-      <Text x="0" y="0" textsize="18" underline="true" font="Times New Roman">
-         This is the schema of the
-         <Format bold="true" color="#41AADE">PWS</Format>
-         file fromat agreed between
-         <Format bold="true" color="#DEB002">SWEng</Format>
-         groups.
+      <Text x="0" y="0" textsize="64">
+          The Minster
       </Text>
-      <Text x="200" y="200">
-         Text can contain
-         <Format font="Comic Sans MS">Format</Format>
-         tags that change how it is
-         <Format italic="true">rendered</Format>
-         .
-         <Br />
-         This slide is an example of that.
+      <Text x="0" y="700" textsize="14">
+         <Format bold="true">Opening Times</Format><Br />
+         9:00am — 4:30pm
+      </Text>
+      <Text x="0" y="300" x2="1000" y2="600" textsize="16">
+         Since the 7th century, the Minster has been at the centre of Christianity in the north
+         of England and today remains a thriving church rooted in the daily offering of worship
+         and prayer. The Minster was built for the glory of God. Every aspect of this ancient
+         building - from the exquisite, handcrafted stone through to the unrivalled collection
+         of medieval stained glass - tells the story of Jesus Christ. We invite you to discover
+         this sacred place and the love of God at its heart, which has attracted people from
+         across the globe for more than 1000 years.
       </Text>
    </Slide>
    <Slide duration="12">

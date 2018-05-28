@@ -63,7 +63,8 @@ public class XMLParser {
         getPresentationDefaults(presentation, presDefaults);
 
         //get the meta from the xml
-        presentation.setMeta(getMeta(defaults.getElementsByTagName("Meta").item(0).getAttributes()));
+        // @TODO: fix this - meta is optional and there can be more than one
+        //presentation.setMeta(getMeta(defaults.getElementsByTagName("Meta").item(0).getAttributes()));
 
         //get the gps from the xml
         if(defaults.getElementsByTagName("GPS").item(0) != null)

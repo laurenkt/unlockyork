@@ -32,7 +32,7 @@ public class Kiosk extends Application {
     private Slider scaleSlider = new Slider(0.45, 1.15, 1);
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception {
         final double margin = 50;
         final double offset = .55;
 
@@ -42,7 +42,7 @@ public class Kiosk extends Application {
 
         try {
             presentation = XMLParser.parse(
-                    "src/build/resources/main/example.pws",
+                    "src/build/resources/main/york.pws",
                     "src/build/resources/main/schema.xsd"
             );
         }
@@ -51,7 +51,7 @@ public class Kiosk extends Application {
             // @TODO show a user friendly error message here explaining the problem (e.g. missing PWS, invalid PWS)
             System.err.println("Error parsing PWS document");
             System.err.println(e);
-            System.exit(1);
+            throw e;
         }
 
         Button forward = new IconButton("/icons/right.png");
@@ -163,6 +163,8 @@ public class Kiosk extends Application {
         double yPoiMin = map.getYPoiMin();
         double yPoiMax = map.getYPoiMax();
 
+        // Sometimes the targets can be small so it is worth to set a threshold the point that can still
+        // be used to select it (see Fitts's Law in the literature)
         double width = xPoiMax - xPoiMin;
         double height = yPoiMax - yPoiMin;
         double xAllowedOver = width*0.5;

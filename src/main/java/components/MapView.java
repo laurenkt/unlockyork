@@ -42,7 +42,6 @@ public class MapView extends ScrollPane {
     private Timeline timeline = new Timeline();
     private Timeline activePointTimeline = new Timeline();
     private int level = 0;
-    private Scale scale = new Scale();
     private Point2D anchorPoint = null;
 
     private long lastAnchorTime = 0;
@@ -89,16 +88,14 @@ public class MapView extends ScrollPane {
         setFitToWidth(true); //center
 
         // Ensure target scales on both directions together
-        scale.yProperty().bind(scale.xProperty());
-        scale.xProperty().addListener((obs, old, val) -> {
+        target.scaleYProperty().bind(target.scaleXProperty());
+        target.scaleXProperty().addListener((obs, old, val) -> {
             poi.setScaleX(0.3 / val.doubleValue());
             poi.setScaleY(0.3 / val.doubleValue());
             this.setLevel((int)(4*val.doubleValue() - 1));
         });
-        target.getTransforms().add(scale);
 
         setScaleValue(scaleValue, 0, 0);
-
     }
 
     private boolean isActive = false;
@@ -129,7 +126,7 @@ public class MapView extends ScrollPane {
     }
 
     public DoubleProperty scaleProperty() {
-        return scale.xProperty();
+        return target.scaleXProperty();
     }
 
     public double getXPoiMin() {
@@ -182,7 +179,7 @@ public class MapView extends ScrollPane {
         timeline.stop();
         timeline.getKeyFrames().clear();
         timeline.getKeyFrames().addAll(
-                new KeyFrame(Duration.millis(200), new KeyValue(scale.xProperty(), scaleValue, Interpolator.LINEAR)),
+                new KeyFrame(Duration.millis(200), new KeyValue(target.scaleXProperty(), scaleValue, Interpolator.LINEAR)),
                 new KeyFrame(Duration.millis(200), new KeyValue(hvalueProperty(), hValue, Interpolator.LINEAR)),
                 new KeyFrame(Duration.millis(200), new KeyValue(vvalueProperty(), vValue, Interpolator.LINEAR))
         );
