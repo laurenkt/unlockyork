@@ -1,5 +1,9 @@
 import components.IconButton;
 import components.MapView;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -14,6 +18,7 @@ import javafx.scene.layout.*;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import components.SlideView;
+import javafx.util.Duration;
 import models.Presentation;
 
 import java.awt.*;
@@ -91,6 +96,7 @@ public class Kiosk extends Application {
 
         backgroundPane.setMouseTransparent(true);
         backgroundPane.setStyle(("-fx-background-color: rgba(255,255,255,0.7)"));
+        backgroundPane.visibleProperty().bind(slidePane.visibleProperty());
 
         Scene scene = new Scene(userView);
         primaryStage.widthProperty().addListener((obs, old, val) -> {
@@ -170,10 +176,10 @@ public class Kiosk extends Application {
         double xAllowedOver = width*0.5;
         double yAllowedOver = height*0.5;
 
-        map.setPointActive(
-                (x+xAllowedOver >= xPoiMin && x-xAllowedOver <= xPoiMax) &&
-                (y+yAllowedOver >= yPoiMin && y-yAllowedOver <= yPoiMax)
-        );
+        boolean isActive = (x+xAllowedOver >= xPoiMin && x-xAllowedOver <= xPoiMax) &&
+                (y+yAllowedOver >= yPoiMin && y-yAllowedOver <= yPoiMax);
+        map.setPointActive(isActive);
+        slidePane.setVisible(isActive);
     }
 
     public void setSlideNum(int slideNum) {

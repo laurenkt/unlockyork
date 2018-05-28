@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Presentation xmlns="pws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="pws schema.xsd"
-              italic="false" bold="false" underline="false" textsize="12" color="#000000" font="Arial">
+              italic="false" bold="false" underline="false" textsize="22" color="#000000" font="Arial">
     <Slide duration="12">
         <Text x="0" y="0" textsize="64" bold="true">
             The Minster
@@ -9,7 +9,7 @@
             <Format bold="true">Opening Times</Format><Br />
             9:00am — 4:30pm
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600" textsize="22">
+        <Text x="0" y="150" x2="1000" y2="600">
             Since the 7th century, the Minster has been at the centre of Christianity in the north
             of England and today remains a thriving church rooted in the daily offering of worship
             and prayer. The Minster was built for the glory of God. Every aspect of this ancient

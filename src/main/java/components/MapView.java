@@ -20,10 +20,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -36,7 +33,7 @@ public class MapView extends ScrollPane {
     private double zoomIntensity = 0.02;
     private ImageView poi;
     private ImageView mapView;
-    private Node target;
+    private Region target;
     private Node zoomNode;
     private Bounds boundsInScene;
     private Timeline timeline = new Timeline();
@@ -54,10 +51,10 @@ public class MapView extends ScrollPane {
         super();
 
         tiles = new ArrayList<>();
-        tiles.add(new Image(getClass().getClassLoader().getResource("York20.png").toExternalForm()));
-        tiles.add(new Image(getClass().getClassLoader().getResource("York18.png").toExternalForm()));
-        tiles.add(new Image(getClass().getClassLoader().getResource("York17.png").toExternalForm()));
         tiles.add(new Image(getClass().getClassLoader().getResource("York16.png").toExternalForm()));
+        tiles.add(new Image(getClass().getClassLoader().getResource("York17.png").toExternalForm()));
+        tiles.add(new Image(getClass().getClassLoader().getResource("York18.png").toExternalForm()));
+        tiles.add(new Image(getClass().getClassLoader().getResource("York20.png").toExternalForm()));
 
         mapView = new ImageView();
         mapView.setImage(tiles.get(level));
@@ -96,6 +93,12 @@ public class MapView extends ScrollPane {
         });
 
         setScaleValue(scaleValue, 0, 0);
+
+        System.out.println("HMax");
+        System.out.println(getHmax());
+
+        setHvalue(0.5);
+        setVvalue(0.5);
     }
 
     private boolean isActive = false;
@@ -112,6 +115,19 @@ public class MapView extends ScrollPane {
                     new KeyFrame(Duration.millis(0), new KeyValue(poi.translateYProperty(), previousTranslateY, Interpolator.EASE_BOTH)),
                     new KeyFrame(Duration.millis(500), new KeyValue(poi.translateYProperty(), previousTranslateY - 40, Interpolator.EASE_BOTH))
             );
+
+            System.out.println(poi.getX());
+            System.out.println(poi.getBoundsInLocal().getMinX());
+            System.out.println(poi.getBoundsInParent().getMinX());
+            System.out.println(0.5 * (poi.getBoundsInParent().getMinX() / target.getWidth()));
+
+            Timeline timeline = new Timeline();
+            timeline.getKeyFrames().addAll(
+                    new KeyFrame(Duration.millis(200), new KeyValue(target.scaleXProperty(), 1.25, Interpolator.LINEAR)),
+                    new KeyFrame(Duration.millis(250), new KeyValue(hvalueProperty(), 0.53, Interpolator.EASE_BOTH)),
+                    new KeyFrame(Duration.millis(250), new KeyValue(vvalueProperty(), 0.41, Interpolator.EASE_BOTH))
+            );
+            timeline.play();
         }
         else if (this.isActive) {
             poi.setImage(poiIcon);
