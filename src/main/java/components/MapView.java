@@ -48,13 +48,12 @@ public class MapView extends ScrollPane {
     private long lastAnchorTime = 0;
 
     private List<Image> tiles;
-    private Image poiIcon;
+    private Image poiIcon = new Image(getClass().getResource("/icons/map_poi.png").toExternalForm());
+    private Image activePoiIcon = new Image(getClass().getResource("/icons/map_poi_active.png").toExternalForm());
 
     public MapView() {
         super();
 
-
-        poiIcon = new Image(getClass().getResource("/icons/map_poi.png").toExternalForm());
         tiles = new ArrayList<>();
         tiles.add(new Image(getClass().getClassLoader().getResource("York20.png").toExternalForm()));
         tiles.add(new Image(getClass().getClassLoader().getResource("York18.png").toExternalForm()));
@@ -100,15 +99,32 @@ public class MapView extends ScrollPane {
 
         setScaleValue(scaleValue, 0, 0);
 
-        activePointTimeline.setAutoReverse(true);
-        activePointTimeline.setCycleCount(Timeline.INDEFINITE);
     }
 
+    private boolean isActive = false;
+    private double previousTranslateY = 0;
     public void setPointActive(boolean isActive) {
+        activePointTimeline.stop();
         activePointTimeline.getKeyFrames().clear();
-        activePointTimeline.getKeyFrames().addAll(
-                new KeyFrame(Duration.millis(500), new KeyValue(poi.translateYProperty(), poi.getTranslateY() - 50, Interpolator.EASE_BOTH))
-        );
+        if (isActive && !this.isActive) {
+            previousTranslateY = poi.getTranslateY();
+            poi.setImage(activePoiIcon);
+            activePointTimeline.setAutoReverse(true);
+            activePointTimeline.setCycleCount(Timeline.INDEFINITE);
+            activePointTimeline.getKeyFrames().addAll(
+                    new KeyFrame(Duration.millis(0), new KeyValue(poi.translateYProperty(), previousTranslateY, Interpolator.EASE_BOTH)),
+                    new KeyFrame(Duration.millis(500), new KeyValue(poi.translateYProperty(), previousTranslateY - 40, Interpolator.EASE_BOTH))
+            );
+        }
+        else if (this.isActive) {
+            poi.setImage(poiIcon);
+            activePointTimeline.setAutoReverse(false);
+            activePointTimeline.setCycleCount(1);
+            activePointTimeline.getKeyFrames().add(
+                    new KeyFrame(Duration.millis(100), new KeyValue(poi.translateYProperty(), previousTranslateY, Interpolator.EASE_BOTH))
+            );
+        }
+        this.isActive = isActive;
         activePointTimeline.play();
     }
 

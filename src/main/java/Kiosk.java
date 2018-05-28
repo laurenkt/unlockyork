@@ -175,12 +175,8 @@ public class Kiosk extends Application {
         if(EventY >= yPoiMin && EventY <= xPoiMax) {
             yMinister = true;
         }
-        if(xMinister == true && yMinister == true) {
-            System.out.println("Clicked on the Minister");
-            map.setPointActive(true);
-            //primaryStage.setScene(scene2);
-            //primaryStage.setFullScreen(true);
-        }
+
+        map.setPointActive(xMinister && yMinister);
     }
 
     public void setSlideNum(int slideNum) {
