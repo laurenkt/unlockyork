@@ -40,6 +40,7 @@ public class MapView extends ScrollPane {
     private Node zoomNode;
     private Bounds boundsInScene;
     private Timeline timeline = new Timeline();
+    private Timeline activePointTimeline = new Timeline();
     private int level = 0;
     private Scale scale = new Scale();
     private Point2D anchorPoint = null;
@@ -98,6 +99,17 @@ public class MapView extends ScrollPane {
         target.getTransforms().add(scale);
 
         setScaleValue(scaleValue, 0, 0);
+
+        activePointTimeline.setAutoReverse(true);
+        activePointTimeline.setCycleCount(Timeline.INDEFINITE);
+    }
+
+    public void setPointActive(boolean isActive) {
+        activePointTimeline.getKeyFrames().clear();
+        activePointTimeline.getKeyFrames().addAll(
+                new KeyFrame(Duration.millis(500), new KeyValue(poi.translateYProperty(), poi.getTranslateY() - 50, Interpolator.EASE_BOTH))
+        );
+        activePointTimeline.play();
     }
 
     public DoubleProperty scaleProperty() {
@@ -171,7 +183,7 @@ public class MapView extends ScrollPane {
         double valX = this.getHvalue() * (innerBounds.getWidth() - viewportBounds.getWidth());
         double valY = this.getVvalue() * (innerBounds.getHeight() - viewportBounds.getHeight());
 
-        this.layout(); // refresh ScrollPane scroll positions & target bounds
+        layout(); // refresh ScrollPane scroll positions & target bounds
 
         // convert target coordinates to zoomTarget coordinates
         Point2D posInZoomTarget = target.parentToLocal(zoomNode.parentToLocal(mousePoint));

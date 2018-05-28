@@ -177,6 +177,7 @@ public class Kiosk extends Application {
         }
         if(xMinister == true && yMinister == true) {
             System.out.println("Clicked on the Minister");
+            map.setPointActive(true);
             //primaryStage.setScene(scene2);
             //primaryStage.setFullScreen(true);
         }
