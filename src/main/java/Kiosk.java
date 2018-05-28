@@ -156,27 +156,22 @@ public class Kiosk extends Application {
     }
 
     public void onClick(MouseEvent event) {
-        double EventX = event.getX();
-        double EventY = event.getY();
+        double x = event.getX();
+        double y = event.getY();
         double xPoiMin = map.getXPoiMin();
         double xPoiMax = map.getXPoiMax();
         double yPoiMin = map.getYPoiMin();
         double yPoiMax = map.getYPoiMax();
-        Boolean xMinister = false;
-        Boolean yMinister = false;
 
-        System.out.println("mouse clicked at x = " + EventX + " y = " + EventY);
-        System.out.println("xPoiMin = " + xPoiMin + ", xPoiMax = " + xPoiMax);
-        System.out.println("yPoiMin = " + yPoiMin + " yPoiMax = " + yPoiMax);
+        double width = xPoiMax - xPoiMin;
+        double height = yPoiMax - yPoiMin;
+        double xAllowedOver = width*0.5;
+        double yAllowedOver = height*0.5;
 
-        if(EventX >= xPoiMin && EventX <= xPoiMax) {
-            xMinister = true;
-        }
-        if(EventY >= yPoiMin && EventY <= xPoiMax) {
-            yMinister = true;
-        }
-
-        map.setPointActive(xMinister && yMinister);
+        map.setPointActive(
+                (x+xAllowedOver >= xPoiMin && x-xAllowedOver <= xPoiMax) &&
+                (y+yAllowedOver >= yPoiMin && y-yAllowedOver <= yPoiMax)
+        );
     }
 
     public void setSlideNum(int slideNum) {
