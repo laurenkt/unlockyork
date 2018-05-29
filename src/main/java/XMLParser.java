@@ -108,7 +108,11 @@ public class XMLParser {
             getPresentationDeflaults(presentation, presDeflauts);
 
             //get the meta from the xml
-            presentation.setMeta(getMeta(deflauts.getElementsByTagName("Meta").item(0).getAttributes()));
+            if(deflauts.getElementsByTagName("Meta").item(0) != null)
+            {
+                presentation.setMeta(getMeta(deflauts.getElementsByTagName("Meta").item(0).getAttributes()));
+            }
+
 
             //get the gps from the xml
             if(deflauts.getElementsByTagName("GPS").item(0) != null)
