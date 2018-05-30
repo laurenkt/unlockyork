@@ -3,14 +3,14 @@ package models;
 import java.util.ArrayList;
 
 public class Presentation {
-    Meta meta; //presentation meta
+    ArrayList<Meta> meta; //presentation meta
     ArrayList<Slide> slides; //all slides inside presentation
     GPS gps; //GPS coordinates for the presentation
     FontAttrib presDefaultFont; // presentation defaults for the font of text
     ColorAttrib presDefaultColour; // presentation defaults for color
 
     public Presentation() {
-        meta = new Meta();
+        meta = new ArrayList<>();
         slides = new ArrayList<>();
         gps = new GPS();
         presDefaultFont = new FontAttrib();
@@ -55,11 +55,11 @@ public class Presentation {
         this.slides = slides;
     }
 
-    public Meta getMeta() {
+    public ArrayList<Meta> getMeta() {
         return meta;
     }
 
-    public void setMeta(Meta meta) {
+    public void setMeta(ArrayList<Meta> meta) {
         this.meta = meta;
     }
 
