@@ -1,6 +1,6 @@
 package models;
 
-public class Meta{
+public class Meta implements SlideElement {
 
     String key; //what the value means ie.author
     String value; //value of key ie. authors name

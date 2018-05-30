@@ -1,7 +1,12 @@
 package models;
-public class Fonts {
 
-    String font;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+
+public class FontAttrib {
+
+    String fontName;
 
     boolean italic;
     boolean bold;
@@ -9,17 +14,17 @@ public class Fonts {
 
     int textSize;
 
-    Fonts(String font, boolean italic, boolean bold, boolean underline, int textSize) {
-        this.font = font;
+    FontAttrib(String font, boolean italic, boolean bold, boolean underline, int textSize) {
+        this.fontName = font;
         this.italic = italic;
         this.bold = bold;
         this.underline = underline;
         this.textSize = textSize;
     }
 
-    public Fonts()
+    public FontAttrib()
     {
-        font = "Times New Roman";
+        fontName = "Times New Roman";
 
         italic = false;
         bold = false;
@@ -28,12 +33,20 @@ public class Fonts {
         textSize = 10;
     }
 
-    public String getFont() {
-        return font;
+    public Font getFont() {
+        return Font.font(
+            fontName,
+            bold ? FontWeight.BOLD : FontWeight.NORMAL,
+            italic ? FontPosture.ITALIC : FontPosture.REGULAR,
+            textSize);
     }
 
-    public void setFont(String font) {
-        this.font = font;
+    public String getFontName() {
+        return fontName;
+    }
+
+    public void setFontWithName(String font) {
+        this.fontName = font;
     }
 
     public boolean isItalic() {

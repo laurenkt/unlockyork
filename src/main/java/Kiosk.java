@@ -1,231 +1,193 @@
+import components.IconButton;
 import components.MapView;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
-import javafx.scene.text.Text;
+import javafx.scene.layout.*;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
+import components.SlideView;
 import javafx.util.Duration;
-import models.InfoView;
 import models.Presentation;
-import models.Slide;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Kiosk extends Application {
 
     private MapView map;
-    private int SlideNum = 0;
+    private int slideNum = 0;
     private Presentation presentation;
-    private Group group;
-    private HBox newSlideForward;
-    private HBox newSlideBack;
-    private double ScaleWidthFactor;
-    private double ScaleHeightFactor;
-
-    private List<String> getResourceFiles(String path ) throws IOException {
-        List<String> filenames = new ArrayList<>();
-
-        try(
-                InputStream in = getResourceAsStream( path );
-                BufferedReader br = new BufferedReader( new InputStreamReader( in ) ) ) {
-            String resource;
-
-            while( (resource = br.readLine()) != null ) {
-                filenames.add( resource );
-            }
-        }
-
-        return filenames;
-    }
-
-    private InputStream getResourceAsStream( String resource ) {
-        final InputStream in
-                = getContextClassLoader().getResourceAsStream( resource );
-
-        return in == null ? getClass().getResourceAsStream( resource ) : in;
-    }
-
-    private ClassLoader getContextClassLoader() {
-        return Thread.currentThread().getContextClassLoader();
-    }
+    private double scaleWidthFactor = 1;
+    private double scaleHeightFactor = 1;
+    private SlideView[] slides;
+    private StackPane userView;
+    private Pane slidePane = new Pane();
+    private Pane backgroundPane = new Pane();
+    private Slider scaleSlider = new Slider(0.45, 1.15, 1);
 
     @Override
-    public void start(Stage primaryStage) {
-        primaryStage.setTitle("Drag to pan the map");
+    public void start(Stage primaryStage) throws Exception {
+        final double margin = 50;
+        final double offset = .55;
 
-        ScaleFactor();
+        primaryStage.setTitle("Unlock York");
 
-        Image poiIcon = new Image(getClass().getClassLoader().getResource("poi.png").toExternalForm());
-        Image mapLayout = new Image(getClass().getClassLoader().getResource("York16.png").toExternalForm());
-        map = new MapView(mapLayout, poiIcon);
+        map = new MapView();
 
-        presentation = new Presentation();
-        XMLParser parser = new XMLParser();
-        presentation = parser.parser("src/build/resources/main/example.pws", "src/build/resources/main/schema.xsd");
-        InfoView Info = new InfoView();
-        group = new Group();
-        group = Info.DisplayPresentationView(presentation, SlideNum, ScaleWidthFactor, ScaleHeightFactor);
+        try {
+            presentation = XMLParser.parse(
+                    "src/build/resources/main/york.pws",
+                    "src/build/resources/main/schema.xsd"
+            );
+        }
+        catch (Exception e) {
+            // Couldn't load data - exit
+            // @TODO show a user friendly error message here explaining the problem (e.g. missing PWS, invalid PWS)
+            System.err.println("Error parsing PWS document");
+            System.err.println(e);
+            throw e;
+        }
 
-        HBox slide = new HBox();
-        HBox Buttons = new HBox();
+        Button forward = new IconButton("/icons/right.png");
+        Button back = new IconButton("/icons/left.png");
+        Button home = new IconButton("/icons/map_centre.png");
+        home.setTranslateX(margin);
 
-        Button forward = new Button("Forward");
-        Button back = new Button("Back");
+        scaleSlider.setOrientation(Orientation.VERTICAL);
+        scaleSlider.setTranslateX(margin/2);
+        scaleSlider.setScaleX(2);
+        scaleSlider.setScaleY(2);
+        scaleSlider.setMaxHeight(100);
 
-        HBox.setHgrow(forward, Priority.ALWAYS);
-        HBox.setHgrow(back, Priority.ALWAYS);
-        forward.setMaxWidth(Double.MAX_VALUE);
-        back.setMaxWidth(Double.MAX_VALUE);
+        userView = new StackPane();
+        userView.getStylesheets().add(getClass().getResource("/css/Kiosk.css").toExternalForm());
+        userView.setAlignment(Pos.TOP_LEFT);
+        userView.getChildren().addAll(
+                map,
+                backgroundPane,
+                slidePane,
+                scaleSlider,
+                back,
+                forward,
+                home
+        );
 
-        slide.getChildren().add(group);
-        Buttons.getChildren().addAll(back,forward);
-        Buttons.setAlignment(Pos.CENTER);
+        double minWidth = presentation.getMaxX2();
+        double minHeight = presentation.getMaxY2();
 
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double screenWidth = (screenSize.getWidth());
-        double screenHeight = (screenSize.getHeight());
+        Scale scale = new Scale();
+        scale.setPivotX(0);
+        scale.setPivotY(0);
+        scale.setPivotZ(0);
+        slidePane.getTransforms().add(scale);
+        slidePane.setPickOnBounds(false);
+        slidePane.setTranslateY(margin);
 
-        BorderPane userView = new BorderPane();
-        userView.setPrefWidth(screenWidth);
-        userView.setPrefHeight(screenHeight);
-        userView.setLeft(map);
-        userView.setRight(slide);
-        userView.setBottom(Buttons);
-
-        userView.setAlignment(map, Pos.CENTER);
-        userView.setAlignment(slide, Pos.CENTER);
-        userView.setAlignment(Buttons, Pos.CENTER);
+        backgroundPane.setMouseTransparent(true);
+        backgroundPane.setStyle(("-fx-background-color: rgba(255,255,255,0.7)"));
+        backgroundPane.visibleProperty().bind(slidePane.visibleProperty());
 
         Scene scene = new Scene(userView);
-
-        map.prefHeightProperty().bind(userView.widthProperty().divide(2));
-        map.prefWidthProperty().bind(userView.widthProperty().divide(2));
-
-        forward.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(SlideNum < presentation.getSlides().size()) {
-                    SlideNum = SlideNum + 1;
-                }
-
-                if(SlideNum < 5){
-                    SlideNum = 0;
-                }
-                newSlideForward = new HBox();
-
-                group = Info.DisplayPresentationView(presentation,SlideNum, ScaleWidthFactor, ScaleHeightFactor);
-
-                newSlideForward.getChildren().add(group);
-
-                userView.setLeft(map);
-                userView.setRight(newSlideForward);
-                userView.setBottom(Buttons);
-
-                userView.setAlignment(map, Pos.CENTER);
-                userView.setAlignment(newSlideForward, Pos.CENTER);
-                userView.setAlignment(Buttons, Pos.CENTER);
-                System.out.println("SlideNum = " + SlideNum);
-            }
+        primaryStage.widthProperty().addListener((obs, old, val) -> {
+            forward.setTranslateX(val.doubleValue() - margin*2);
+            back.setTranslateX(val.doubleValue() / 2 + margin*2);
+            backgroundPane.setTranslateX(val.doubleValue()*offset);
+            slidePane.setTranslateX(val.doubleValue()*offset + margin);
+            scaleWidthFactor = (val.doubleValue()*(1-offset) - 2*margin) / (minWidth);
+            scale.setX(Math.min(scaleWidthFactor, scaleHeightFactor));
+            scale.setY(Math.min(scaleWidthFactor, scaleHeightFactor));
+        });
+        primaryStage.heightProperty().addListener((obs, old, val) -> {
+            forward.setTranslateY(val.doubleValue() - margin*2);
+            back.setTranslateY(val.doubleValue() - margin*2);
+            home.setTranslateY(val.doubleValue() - home.getHeight() - margin/2);
+            scaleSlider.setTranslateY(val.doubleValue() - scaleSlider.getHeight()*2 - margin/2);
+            scaleHeightFactor = (val.doubleValue() - 2*margin) / (minHeight);
+            scale.setX(Math.min(scaleWidthFactor, scaleHeightFactor));
+            scale.setY(Math.min(scaleWidthFactor, scaleHeightFactor));
         });
 
-        back.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(SlideNum > -1) {
-                    SlideNum = SlideNum - 1;
-                }
+        //map.prefHeightProperty().bind(userView.widthProperty().divide(2));
+        //map.prefWidthProperty().bind(userView.widthProperty().divide(2));
 
-                if(SlideNum == -1){
-                    SlideNum = 4;
-                }
+        slides = presentation.getSlides().stream()
+                .map(slide -> new SlideView(slide))
+                .toArray(size -> new SlideView[size]);
 
-                newSlideBack = new HBox();
+        this.setSlideNum(0);
 
-                group = Info.DisplayPresentationView(presentation,SlideNum, ScaleWidthFactor, ScaleHeightFactor);
-                group.prefHeight(100);
-                group.prefWidth(100);
-                newSlideBack.getChildren().add(group);
+        forward.setOnAction(e -> this.onNext(e));
+        back.setOnAction(e -> this.onPrevious(e));
+        scene.setOnMouseClicked(e -> this.onClick(e));
 
-                userView.setLeft(map);
-                userView.setRight(newSlideBack);
-                userView.setBottom(Buttons);
-
-                userView.setAlignment(map, Pos.CENTER);
-                userView.setAlignment(newSlideBack, Pos.CENTER);
-                userView.setAlignment(Buttons, Pos.CENTER);
-
-                System.out.println("SlideNum = " + SlideNum);
-            }
-        });
-
-        scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                double EventX = event.getX();
-                double EventY = event.getY();
-                double xPoiMin = map.getXPoiMin();
-                double xPoiMax = map.getXPoiMax();
-                double yPoiMin = map.getYPoiMin();
-                double yPoiMax = map.getYPoiMax();
-                Boolean xMinister = false;
-                Boolean yMinister = false;
-
-                System.out.println("mouse clicked at x = " + EventX + " y = " + EventY);
-                System.out.println("xPoiMin = " + xPoiMin + ", xPoiMax = " + xPoiMax);
-                System.out.println("yPoiMin = " + yPoiMin + " yPoiMax = " + yPoiMax);
-
-                if(EventX >= xPoiMin && EventX <= xPoiMax) {
-                    xMinister = true;
-                }
-                if(EventY >= yPoiMin && EventY <= xPoiMax) {
-                    yMinister = true;
-                }
-                if(xMinister == true && yMinister == true) {
-                    System.out.println("Clicked on the Minister");
-                    //primaryStage.setScene(scene2);
-                    //primaryStage.setFullScreen(true);
-                }
-            }
-        });
+        // Volume
+        map.scaleProperty().bindBidirectional(scaleSlider.valueProperty());
 
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
         primaryStage.show();
     }
 
-    public void ScaleFactor() {
-        double DefaultScreenWidth = 1920;
-        double DefaultScreenHeight = 1080;
+    public void onNext(Event event) {
+        if(slideNum < presentation.getSlides().size() - 1) {
+            slideNum = slideNum + 1;
+        }
+        else {
+            slideNum = 0;
+        }
 
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double screenWidth = (screenSize.getWidth())/2;
-        double screenHeight = (screenSize.getHeight())/2;
+        this.setSlideNum(slideNum);
+    }
 
-        ScaleWidthFactor = screenWidth / DefaultScreenWidth;
-        ScaleHeightFactor = screenHeight / DefaultScreenHeight;
+    public void onPrevious(Event event) {
+        if (slideNum > 0) {
+            slideNum = slideNum - 1;
+        }
+        else {
+            slideNum = presentation.getSlides().size() - 1;
+        }
+
+        this.setSlideNum(slideNum);
+    }
+
+    public void onClick(MouseEvent event) {
+        double x = event.getX();
+        double y = event.getY();
+        double xPoiMin = map.getXPoiMin();
+        double xPoiMax = map.getXPoiMax();
+        double yPoiMin = map.getYPoiMin();
+        double yPoiMax = map.getYPoiMax();
+
+        // Sometimes the targets can be small so it is worth to set a threshold the point that can still
+        // be used to select it (see Fitts's Law in the literature)
+        double width = xPoiMax - xPoiMin;
+        double height = yPoiMax - yPoiMin;
+        double xAllowedOver = width*0.5;
+        double yAllowedOver = height*0.5;
+
+        boolean isActive = (x+xAllowedOver >= xPoiMin && x-xAllowedOver <= xPoiMax) &&
+                (y+yAllowedOver >= yPoiMin && y-yAllowedOver <= yPoiMax);
+        map.setPointActive(isActive);
+        slidePane.setVisible(isActive);
+    }
+
+    public void setSlideNum(int slideNum) {
+        this.slideNum = slideNum;
+        // Remove existing slide
+        slidePane.getChildren().clear();
+        // Add new one
+        slidePane.getChildren().add(slides[slideNum]);
     }
 
     public static void main(String[] args) {

@@ -5,6 +5,11 @@ import com.sun.javafx.geom.transform.BaseTransform;
 import com.sun.javafx.jmx.MXNodeAlgorithm;
 import com.sun.javafx.jmx.MXNodeAlgorithmContext;
 import com.sun.javafx.sg.prism.NGNode;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.beans.property.DoubleProperty;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
@@ -12,41 +17,58 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapView extends ScrollPane {
     private double scaleValue = 0.7;
     private double zoomIntensity = 0.02;
     private ImageView poi;
     private ImageView mapView;
-    private Node target;
+    private Region target;
     private Node zoomNode;
-    private Node target2;
-    private Group root;
     private Bounds boundsInScene;
+    private Timeline timeline = new Timeline();
+    private Timeline activePointTimeline = new Timeline();
+    private int level = 0;
+    private Point2D anchorPoint = null;
 
-    public MapView(Image tiles, Image poiIcon) {
+    private long lastAnchorTime = 0;
+
+    private List<Image> tiles;
+    private Image poiIcon = new Image(getClass().getResource("/icons/map_poi.png").toExternalForm());
+    private Image activePoiIcon = new Image(getClass().getResource("/icons/map_poi_active.png").toExternalForm());
+
+    public MapView() {
         super();
 
+        tiles = new ArrayList<>();
+        tiles.add(new Image(getClass().getClassLoader().getResource("York16.png").toExternalForm()));
+        tiles.add(new Image(getClass().getClassLoader().getResource("York17.png").toExternalForm()));
+        tiles.add(new Image(getClass().getClassLoader().getResource("York18.png").toExternalForm()));
+        tiles.add(new Image(getClass().getClassLoader().getResource("York20.png").toExternalForm()));
+
         mapView = new ImageView();
-        mapView.setImage(tiles);
+        mapView.setImage(tiles.get(level));
 
         poi = new ImageView();
         poi.setFitHeight(100);
         poi.setFitWidth(100);
-        poi.setTranslateX(-40);
-        poi.setTranslateY(-610);
+        poi.setTranslateX(1877-50);
+        poi.setTranslateY(1659-50);
         poi.setImage(poiIcon);
 
         StackPane stack = new StackPane();
-        stack.getChildren().addAll(mapView,poi);
+        stack.setAlignment(Pos.TOP_LEFT);
+        stack.getChildren().addAll(mapView, poi);
 
         HBox hBox = new HBox();
         hBox.getChildren().add(stack);
@@ -62,7 +84,65 @@ public class MapView extends ScrollPane {
         setFitToHeight(true); //center
         setFitToWidth(true); //center
 
-        updateScale();
+        // Ensure target scales on both directions together
+        target.scaleYProperty().bind(target.scaleXProperty());
+        target.scaleXProperty().addListener((obs, old, val) -> {
+            poi.setScaleX(0.3 / val.doubleValue());
+            poi.setScaleY(0.3 / val.doubleValue());
+            this.setLevel((int)(4*val.doubleValue() - 1));
+        });
+
+        setScaleValue(scaleValue, 0, 0);
+
+        System.out.println("HMax");
+        System.out.println(getHmax());
+
+        setHvalue(0.5);
+        setVvalue(0.5);
+    }
+
+    private boolean isActive = false;
+    private double previousTranslateY = 0;
+    public void setPointActive(boolean isActive) {
+        activePointTimeline.stop();
+        activePointTimeline.getKeyFrames().clear();
+        if (isActive && !this.isActive) {
+            previousTranslateY = poi.getTranslateY();
+            poi.setImage(activePoiIcon);
+            activePointTimeline.setAutoReverse(true);
+            activePointTimeline.setCycleCount(Timeline.INDEFINITE);
+            activePointTimeline.getKeyFrames().addAll(
+                    new KeyFrame(Duration.millis(0), new KeyValue(poi.translateYProperty(), previousTranslateY, Interpolator.EASE_BOTH)),
+                    new KeyFrame(Duration.millis(500), new KeyValue(poi.translateYProperty(), previousTranslateY - 40, Interpolator.EASE_BOTH))
+            );
+
+            System.out.println(poi.getX());
+            System.out.println(poi.getBoundsInLocal().getMinX());
+            System.out.println(poi.getBoundsInParent().getMinX());
+            System.out.println(0.5 * (poi.getBoundsInParent().getMinX() / target.getWidth()));
+
+            Timeline timeline = new Timeline();
+            timeline.getKeyFrames().addAll(
+                    new KeyFrame(Duration.millis(200), new KeyValue(target.scaleXProperty(), 1.25, Interpolator.LINEAR)),
+                    new KeyFrame(Duration.millis(250), new KeyValue(hvalueProperty(), 0.53, Interpolator.EASE_BOTH)),
+                    new KeyFrame(Duration.millis(250), new KeyValue(vvalueProperty(), 0.41, Interpolator.EASE_BOTH))
+            );
+            timeline.play();
+        }
+        else if (this.isActive) {
+            poi.setImage(poiIcon);
+            activePointTimeline.setAutoReverse(false);
+            activePointTimeline.setCycleCount(1);
+            activePointTimeline.getKeyFrames().add(
+                    new KeyFrame(Duration.millis(100), new KeyValue(poi.translateYProperty(), previousTranslateY, Interpolator.EASE_BOTH))
+            );
+        }
+        this.isActive = isActive;
+        activePointTimeline.play();
+    }
+
+    public DoubleProperty scaleProperty() {
+        return target.scaleXProperty();
     }
 
     public double getXPoiMin() {
@@ -106,9 +186,20 @@ public class MapView extends ScrollPane {
         return vBox;
     }
 
-    private void updateScale() {
-        target.setScaleX(scaleValue);
-        target.setScaleY(scaleValue);
+    private void setScaleValue(double scaleValue, double hValue, double vValue) {
+        this.scaleValue = scaleValue;
+
+        // Basic interpolation
+        // TODO: need to not redo this every scroll frame, just update the target
+        // TODO: also need to make sure that the pivot point for the scale is always under the cursor
+        timeline.stop();
+        timeline.getKeyFrames().clear();
+        timeline.getKeyFrames().addAll(
+                new KeyFrame(Duration.millis(200), new KeyValue(target.scaleXProperty(), scaleValue, Interpolator.LINEAR)),
+                new KeyFrame(Duration.millis(200), new KeyValue(hvalueProperty(), hValue, Interpolator.LINEAR)),
+                new KeyFrame(Duration.millis(200), new KeyValue(vvalueProperty(), vValue, Interpolator.LINEAR))
+        );
+        timeline.play();
     }
 
     private void onScroll(double wheelDelta, Point2D mousePoint) {
@@ -118,30 +209,11 @@ public class MapView extends ScrollPane {
         Bounds viewportBounds = getViewportBounds();
 
         // calculate pixel offsets from [0, 1] range
-        double valX = getHvalue() * (innerBounds.getWidth() - viewportBounds.getWidth());
-        double valY = getVvalue() * (innerBounds.getHeight() - viewportBounds.getHeight());
+        double valX = this.getHvalue() * (innerBounds.getWidth() - viewportBounds.getWidth());
+        double valY = this.getVvalue() * (innerBounds.getHeight() - viewportBounds.getHeight());
 
-        scaleValue = scaleValue * zoomFactor;
-// Upper and lower zoom limits
-        if (scaleValue >= 1.8){
-            scaleValue = 1.8;
-        }
+        layout(); // refresh ScrollPane scroll positions & target bounds
 
-        if (scaleValue <= 0.17){
-            scaleValue = 0.17;
-        }
-//Level switching, here there will be street level map base when entering level 2
-        if (scaleValue <= 0.9){
-            System.out.println("level 1");
-        }
-
-        if (scaleValue >= 0.9){
-            System.out.println("level 2");
-        }
-
-        updateScale();
-        layout();// refresh ScrollPane scroll positions & target bounds
-        
         // convert target coordinates to zoomTarget coordinates
         Point2D posInZoomTarget = target.parentToLocal(zoomNode.parentToLocal(mousePoint));
 
@@ -151,10 +223,20 @@ public class MapView extends ScrollPane {
         // convert back to [0, 1] range
         // (too large/small values are automatically corrected by ScrollPane)
         Bounds updatedInnerBounds = zoomNode.getBoundsInLocal();
-        setHvalue((valX + adjustment.getX()) / (updatedInnerBounds.getWidth() - viewportBounds.getWidth()));
-        setVvalue((valY + adjustment.getY()) / (updatedInnerBounds.getHeight() - viewportBounds.getHeight()));
 
+        // Bounded scale value
+        setScaleValue(
+                Math.min(1.15, Math.max(0.45, scaleValue * zoomFactor)),
+                (valX + adjustment.getX()) / (updatedInnerBounds.getWidth() - viewportBounds.getWidth()),
+                (valY + adjustment.getY()) / (updatedInnerBounds.getHeight() - viewportBounds.getHeight())
+        );
+    }
 
+    private void setLevel(int level) {
+        if (level != this.level) {
+            this.level = level;
+            mapView.setImage(tiles.get(Math.min(level, tiles.size() - 1)));
+        }
     }
 
 }
