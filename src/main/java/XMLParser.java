@@ -66,13 +66,11 @@ public class XMLParser {
         //get the meta from the xml
         if(defaults.getElementsByTagName("Meta").item(0) != null)
         {
+            //loop through all metas and add them to the presentation
             for(int m = 0; m < defaults.getElementsByTagName("Meta").getLength(); m++)
             {
                 presentation.getMeta().add((getMeta(defaults.getElementsByTagName("Meta").item(m).getAttributes())));
             }
-
-
-            //presentation.setMeta(getMeta(defaults.getElementsByTagName("Meta").item(0).getAttributes()));
         }
         //get the gps from the xml
         if(defaults.getElementsByTagName("GPS").item(0) != null)
