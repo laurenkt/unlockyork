@@ -35,6 +35,8 @@ public class Kiosk extends Application {
     private Pane slidePane = new Pane();
     private Pane backgroundPane = new Pane();
     private Slider scaleSlider = new Slider(0.45, 1.15, 1);
+    private Button forward;
+    private Button back;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -59,8 +61,8 @@ public class Kiosk extends Application {
             throw e;
         }
 
-        Button forward = new IconButton("/icons/right.png");
-        Button back = new IconButton("/icons/left.png");
+        forward = new IconButton("/icons/right.png");
+        back = new IconButton("/icons/left.png");
         Button home = new IconButton("/icons/map_centre.png");
         home.setTranslateX(margin);
 
@@ -82,6 +84,11 @@ public class Kiosk extends Application {
                 forward,
                 home
         );
+
+        //stops the slide from showing on start up
+        slidePane.setVisible(false);
+        forward.setVisible(false);
+        back.setVisible(false);
 
         double minWidth = presentation.getMaxX2();
         double minHeight = presentation.getMaxY2();
@@ -180,6 +187,11 @@ public class Kiosk extends Application {
                 (y+yAllowedOver >= yPoiMin && y-yAllowedOver <= yPoiMax);
         map.setPointActive(isActive);
         slidePane.setVisible(isActive);
+
+        //only show buttons when slide is shown
+        forward.setVisible(isActive);
+        back.setVisible(isActive);
+
     }
 
     public void setSlideNum(int slideNum) {
