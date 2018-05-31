@@ -44,3 +44,4 @@ public class GPS {
         this.elevation = elevation;
     }
 }
+
