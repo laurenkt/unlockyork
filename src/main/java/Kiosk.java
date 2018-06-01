@@ -145,6 +145,12 @@ public class Kiosk extends Application {
         // Volume
         map.scaleProperty().bindBidirectional(scaleSlider.valueProperty());
 
+
+        Slider hValSlider = new Slider();
+        hValSlider.maxProperty().bind(map.hmaxProperty());
+        hValSlider.valueProperty().bindBidirectional(map.hvalueProperty());
+        userView.getChildren().add(hValSlider);
+
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
         primaryStage.show();

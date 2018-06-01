@@ -55,6 +55,7 @@ public class MapView extends ScrollPane {
     private ImageView mapView;
     private Region target;
     private Node zoomNode;
+    private StackPane stack;
     private Bounds boundsInScene;
     private Timeline timeline = new Timeline();
     private Timeline activePointTimeline = new Timeline();
@@ -89,7 +90,7 @@ public class MapView extends ScrollPane {
             poiViews.add(new POIView(POIs.get(i)));
         }
 
-        StackPane stack = new StackPane();
+        stack = new StackPane();
         stack.setAlignment(Pos.TOP_LEFT);
         stack.getChildren().add(mapView);
         stack.getChildren().addAll(poiViews);
@@ -140,6 +141,32 @@ public class MapView extends ScrollPane {
                         Math.abs(poi.getY() - y) < threshold) {
                     onPoiClicked.handle(new POIEvent(poi));
                     setPointActive(poi);
+
+                    // Zoom!
+
+
+                    layout();
+                    double mapWidth = target.getBoundsInParent().getWidth();
+                    double mapHeight = target.getBoundsInParent().getHeight();
+                    double viewportWidth = getViewportBounds().getWidth()/2;
+                    double viewportHeight = getViewportBounds().getHeight();
+                    double xPercent = poi.getX() / target.getWidth();
+                    double yPercent = poi.getY() / target.getHeight();
+                    double xTargetPos = xPercent * mapWidth - viewportWidth/2;
+                    double yTargetPos = yPercent * mapHeight - viewportHeight/2;
+                    double hMax = mapWidth - getViewportBounds().getWidth();
+                    double vMax = mapHeight - getViewportBounds().getHeight();
+                    double xVal = xTargetPos / hMax;
+                    double yVal = yTargetPos / vMax;
+
+                    Timeline timeline = new Timeline();
+                    timeline.getKeyFrames().addAll(
+                            //new KeyFrame(Duration.millis(200), new KeyValue(target.scaleXProperty(), 1.25, Interpolator.LINEAR)),
+                            new KeyFrame(Duration.millis(250), new KeyValue(hvalueProperty(), xVal, Interpolator.EASE_BOTH)),
+                            new KeyFrame(Duration.millis(250), new KeyValue(vvalueProperty(), yVal, Interpolator.EASE_BOTH))
+                    );
+                    timeline.play();
+
                     return;
                 }
             }
@@ -149,8 +176,18 @@ public class MapView extends ScrollPane {
             onPoiClicked.handle(new POIEvent(null));
         });
 
+        layout();
         setHvalue(0.5);
         setVvalue(0.5);
+
+        hmaxProperty().addListener((obs, old, val) -> {
+            System.out.printf("hMax: %f\r\n", val);
+            System.out.flush();
+        });
+        hvalueProperty().addListener((obs, old, val) -> {
+            System.out.printf("hVal: %f\r\n", val);
+            System.out.flush();
+        });
     }
 
     private POIView activePoiView = null;
@@ -185,13 +222,6 @@ public class MapView extends ScrollPane {
             System.out.println(poiViews.get(0).getBoundsInParent().getMinX());
             System.out.println(0.5 * (poiViews.get(0).getBoundsInParent().getMinX() / target.getWidth()));
 
-            Timeline timeline = new Timeline();
-            timeline.getKeyFrames().addAll(
-                    new KeyFrame(Duration.millis(200), new KeyValue(target.scaleXProperty(), 1.25, Interpolator.LINEAR)),
-                    new KeyFrame(Duration.millis(250), new KeyValue(hvalueProperty(), 0.53, Interpolator.EASE_BOTH)),
-                    new KeyFrame(Duration.millis(250), new KeyValue(vvalueProperty(), 0.41, Interpolator.EASE_BOTH))
-            );
-            timeline.play();
         }
         else if (this.isActive) {
             poiViews.get(0).setActive(false);
