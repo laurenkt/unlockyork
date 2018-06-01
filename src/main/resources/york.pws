@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Presentation xmlns="pws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="pws schema.xsd"
               italic="false" bold="false" underline="false" textsize="22" color="#000000" font="Arial">
-    <POI id="minster" latitude="0" longitude="50" />
+    <POI id="minster" latitude="53.96219" longitude="-1.08206" />
     <Slide duration="12" poi="#minster">
         <Text x="0" y="0" textsize="64" bold="true">
             The Minster

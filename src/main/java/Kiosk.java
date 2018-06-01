@@ -47,7 +47,6 @@ public class Kiosk extends Application {
 
         primaryStage.setTitle("Unlock York");
 
-        map = new MapView();
 
         try {
             presentation = XMLParser.parse(
@@ -62,6 +61,8 @@ public class Kiosk extends Application {
             System.err.println(e);
             throw e;
         }
+
+        map = new MapView(presentation.getPOI());
 
         forward = new IconButton("/icons/right.png");
         back = new IconButton("/icons/left.png");

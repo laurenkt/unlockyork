@@ -1,6 +1,6 @@
 package models;
 
-import java.awt.geom.Point2D;
+import javafx.geometry.Point2D;
 
 public class POI {
 
@@ -20,12 +20,21 @@ public class POI {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
+        //-1.101,53.9419,-1.0401,53.9667
+        this.setPoint(this.gpsToPoint(latitude, longitude,
+                53.9667,-1.101,53.9419,-1.0401,
+                6000, 4155));
     }
 
-    POI(double x, double y, String name) {
+    public POI(double x, double y, String name) {
         this.x = x;
         this.y = y;
         this.name = name;
+    }
+
+    public void setPoint(Point2D point) {
+        this.x = point.getX();
+        this.y = point.getY();
     }
 
     public double getX() {
@@ -50,5 +59,18 @@ public class POI {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Point2D gpsToPoint(double latitude, double longitude, double mapTopLeftLatitude, double mapTopLeftLongitude, double mapBottomRightLatitude, double mapBottomRightLongitude, double mapHeight, double mapWidth) {
+        double inputDifferenceLatitude = (mapTopLeftLatitude - latitude);
+        double inputDifferenceLongitude = (mapTopLeftLongitude - longitude);
+
+        double pixelsPerLatitude = (((Math.abs(mapTopLeftLatitude)) - (Math.abs(mapBottomRightLatitude))) / mapHeight);
+        double pixelsPerLongitude = ((Math.abs(mapTopLeftLongitude) - (Math.abs(mapBottomRightLongitude))) / mapWidth);
+
+        double pixelY = Math.round(inputDifferenceLatitude / pixelsPerLatitude);
+        double pixelX = Math.round(Math.abs(inputDifferenceLongitude) / pixelsPerLongitude);
+
+        return new Point2D(pixelX, pixelY);
     }
 }
