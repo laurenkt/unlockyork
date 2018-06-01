@@ -22,7 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SlideView extends Region {
+    private Slide slide;
+
     public SlideView(Slide slide) {
+        this.slide = slide;
+
         // Clicking on empty areas in the region should pass through to anything behind
         // clicking on children nodes should process these events
         setPickOnBounds(false);
@@ -34,6 +38,10 @@ public class SlideView extends Region {
             list.add(renderElementNode(el));
         }
 
+    }
+
+    public Slide getSlide() {
+        return slide;
     }
 
     public Node renderElementNode(SlideElement el) {
