@@ -36,7 +36,7 @@ public class Kiosk extends Application {
     private StackPane userView;
     private Pane slidePane = new Pane();
     private Pane backgroundPane = new Pane();
-    private Slider scaleSlider = new Slider(0.45, 1.15, 1);
+    private Slider scaleSlider = new Slider(0.25, 1.5, 1);
     private Button forward;
     private Button back;
 

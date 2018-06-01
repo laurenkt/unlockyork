@@ -44,18 +44,19 @@ public class MapView extends ScrollPane {
 
     private long lastAnchorTime = 0;
 
-    private List<Image> tiles;
+    private List<Image> tiles = new ArrayList<>();
     private Image poiIcon = new Image(getClass().getResource("/icons/map_poi.png").toExternalForm());
     private Image activePoiIcon = new Image(getClass().getResource("/icons/map_poi_active.png").toExternalForm());
 
     public MapView() {
         super();
 
-        tiles = new ArrayList<>();
-        tiles.add(new Image(getClass().getClassLoader().getResource("York16.png").toExternalForm()));
-        tiles.add(new Image(getClass().getClassLoader().getResource("York17.png").toExternalForm()));
-        tiles.add(new Image(getClass().getClassLoader().getResource("York18.png").toExternalForm()));
-        tiles.add(new Image(getClass().getClassLoader().getResource("York20.png").toExternalForm()));
+        tiles.add(new Image(getClass().getResource("/tiles/16.png").toExternalForm()));
+        tiles.add(new Image(getClass().getResource("/tiles/17.png").toExternalForm()));
+        tiles.add(new Image(getClass().getResource("/tiles/18.png").toExternalForm()));
+        tiles.add(new Image(getClass().getResource("/tiles/19.png").toExternalForm()));
+        tiles.add(new Image(getClass().getResource("/tiles/20.png").toExternalForm()));
+        tiles.add(new Image(getClass().getResource("/tiles/21.png").toExternalForm()));
 
         mapView = new ImageView();
         mapView.setImage(tiles.get(level));
@@ -98,6 +99,7 @@ public class MapView extends ScrollPane {
             poi.setScaleX(0.3 / val.doubleValue());
             poi.setScaleY(0.3 / val.doubleValue());
             this.setLevel((int)(4*val.doubleValue() - 1));
+            System.out.println(val.doubleValue());
         });
 
         setScaleValue(scaleValue, 0, 0);
@@ -237,7 +239,7 @@ public class MapView extends ScrollPane {
 
         // Bounded scale value
         setScaleValue(
-                Math.min(1.15, Math.max(0.45, scaleValue * zoomFactor)),
+                Math.min(1.5, Math.max(0.25, scaleValue * zoomFactor)),
                 (valX + adjustment.getX()) / (updatedInnerBounds.getWidth() - viewportBounds.getWidth()),
                 (valY + adjustment.getY()) / (updatedInnerBounds.getHeight() - viewportBounds.getHeight())
         );
