@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Slide {
@@ -132,5 +133,9 @@ public class Slide {
 
     public List<SlideElement> getElements() {
         return elements;
+    }
+
+    public POI getPOI() {
+        return this.poi;
     }
 }

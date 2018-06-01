@@ -173,11 +173,20 @@ public class Kiosk extends Application {
     }
 
     public void onClickPoi(POI poi) {
-        slidePane.setVisible(true);
-
+        slidePane.setVisible(poi != null);
         //only show buttons when slide is shown
-        forward.setVisible(true);
-        back.setVisible(true);
+        forward.setVisible(poi != null);
+        back.setVisible(poi != null);
+
+        if (poi != null) {
+            for (int i = 0; i < slides.length; i++) {
+                if (slides[i].getSlide().getPOI().equals(poi)) {
+                    slidePane.getChildren().clear();
+                    slidePane.getChildren().add(slides[i]);
+                    break;
+                }
+            }
+        }
     }
 
     public void setSlideNum(int slideNum) {
