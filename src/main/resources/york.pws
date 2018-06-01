@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Presentation xmlns="pws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="pws schema.xsd"
               italic="false" bold="false" underline="false" textsize="22" color="#000000" font="Arial">
-    <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" type="POI" />
-    <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" type="POI" />
     <POI id="bettystearoom" latitude="53.96009" longitude="-1.08418" type="Cafe" />
     <POI id="gatehousecoffee" latitude="53.95515" longitude="-1.07074" type="Cafe" />
     <POI id="sparkyork" latitude="53.95693" longitude="-1.07775" type="Shop" />
@@ -24,7 +22,6 @@
     <POI id="citywalls" latitude="53.95396" longitude="-1.07524" />
     <POI id="citywalls" latitude="53.95418" longitude="-1.08677" />
 
->>>>>>> s07-content
     <Slide duration="12" poi="#minster">
         <Text x="0" y="0" textsize="64" bold="true">
             The Minster
@@ -48,6 +45,12 @@
     <Slide poi="#cliffordstower">
         <Text x="0" y="0" textsize="64" bold="true">
             Cliffords Tower
+        </Text>
+    </Slide>
+
+    <Slide poi="#citywalls">
+        <Text x="0" y="0" textsize="64" bold="true">
+            City Walls
         </Text>
     </Slide>
 

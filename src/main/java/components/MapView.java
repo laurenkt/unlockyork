@@ -169,7 +169,7 @@ public class MapView extends ScrollPane {
         layout();
         double mapWidth = target.getBoundsInParent().getWidth();
         double mapHeight = target.getBoundsInParent().getHeight();
-        double viewportWidth = getViewportBounds().getWidth()/2;
+        double viewportWidth = getViewportBounds().getWidth();
         double viewportHeight = getViewportBounds().getHeight();
         double xPercent = x / target.getWidth();
         double yPercent = y / target.getHeight();
