@@ -140,9 +140,13 @@ public class MapView extends ScrollPane {
                         Math.abs(poi.getY() - y) < threshold) {
                     onPoiClicked.handle(new POIEvent(poi));
                     setPointActive(poi);
-                    break;
+                    return;
                 }
             }
+
+            // Else
+            setPointActive(null);
+            onPoiClicked.handle(new POIEvent(null));
         });
 
         setHvalue(0.5);
