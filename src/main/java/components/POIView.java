@@ -25,7 +25,9 @@ public class POIView extends ImageView {
         this.setImage(this.poiIcon);
 
         for(POI subPOI : poi.getSubPOI()) {
-            subPOIViews.add(new POIView(subPOI));
+            POIView subPoiView = new POIView(subPOI);
+            subPOIViews.add(subPoiView);
+            subPoiView.setVisible(false);
         }
     }
 

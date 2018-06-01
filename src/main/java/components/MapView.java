@@ -115,9 +115,14 @@ public class MapView extends ScrollPane {
         // Ensure target scales on both directions together
         target.scaleYProperty().bind(target.scaleXProperty());
         target.scaleXProperty().addListener((obs, old, val) -> {
-            for(ImageView poi : poiViews) {
+            for(POIView poi : poiViews) {
                 poi.setScaleX(0.3 / val.doubleValue());
                 poi.setScaleY(0.3 / val.doubleValue());
+
+                for(POIView subPoi : poi.getSubPOIViews()) {
+                    subPoi.setScaleX(0.3 / val.doubleValue());
+                    subPoi.setScaleY(0.3 / val.doubleValue());
+                }
             }
             this.setLevel((int)(4*val.doubleValue() - 1));
         });
