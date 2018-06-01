@@ -22,7 +22,8 @@ public class POI {
         this.longitude = longitude;
         //-1.101,53.9419,-1.0401,53.9667
         this.setPoint(this.gpsToPoint(latitude, longitude,
-                53.9667,-1.101,53.9419,-1.0401,
+                53.9667,-1.101,
+                53.9419,-1.0401,
                 6000, 4155));
     }
 
@@ -61,12 +62,12 @@ public class POI {
         this.name = name;
     }
 
-    public Point2D gpsToPoint(double latitude, double longitude, double mapTopLeftLatitude, double mapTopLeftLongitude, double mapBottomRightLatitude, double mapBottomRightLongitude, double mapHeight, double mapWidth) {
-        double inputDifferenceLatitude = (mapTopLeftLatitude - latitude);
-        double inputDifferenceLongitude = (mapTopLeftLongitude - longitude);
+    public Point2D gpsToPoint(double latitude, double longitude, double topLatitude, double leftLongitude, double bottomLatitude, double rightLongitude, double mapWidth, double mapHeight) {
+        double inputDifferenceLatitude = topLatitude - latitude;
+        double inputDifferenceLongitude = leftLongitude - longitude;
 
-        double pixelsPerLatitude = (((Math.abs(mapTopLeftLatitude)) - (Math.abs(mapBottomRightLatitude))) / mapHeight);
-        double pixelsPerLongitude = ((Math.abs(mapTopLeftLongitude) - (Math.abs(mapBottomRightLongitude))) / mapWidth);
+        double pixelsPerLatitude = ((Math.abs(topLatitude) - Math.abs(bottomLatitude)) / mapHeight);
+        double pixelsPerLongitude = ((Math.abs(leftLongitude) - Math.abs(rightLongitude)) / mapWidth);
 
         double pixelY = Math.round(inputDifferenceLatitude / pixelsPerLatitude);
         double pixelX = Math.round(Math.abs(inputDifferenceLongitude) / pixelsPerLongitude);
