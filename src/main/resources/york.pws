@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Presentation xmlns="pws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="pws schema.xsd"
               italic="false" bold="false" underline="false" textsize="22" color="#000000" font="Arial">
-    <POI id="minster" latitude="53.96219" longitude="-1.08206">
-        <POI id="excalibur" latitude="53.963" longitude="-1.04" />
-        <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" />
+    <POI id="minster" latitude="53.96219" longitude="-1.08206" type="POI" >
+        <POI id="excalibur" latitude="53.963" longitude="-1.04" type="subPOI" />
+        <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" type="subPOI"/>
     </POI>
-    <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" />
-    <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" />
+    <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" type="POI" />
+    <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" type="POI" />
+    <POI id="shop" latitude="53.9553363" longitude="-1.0768696" type="Shop" />
+    <POI id="cafe" latitude="53.9553463" longitude="-1.0768696" type="Cafe" />
+    <POI id="pub" latitude="53.9574563" longitude="-1.0768696" type="Pub" />
+    <POI id="restaurant" latitude="53.9583663" longitude="-1.0768696" type="Restaurant" />
+    <POI id="hotel" latitude="53.9593763" longitude="-1.0768696" type="Hotel" />
+    <POI id="errorTest" latitude="53.9603863" longitude="-1.0768696" type="Test" />
     <Slide duration="12" poi="#minster">
         <Text x="0" y="0" textsize="64" bold="true">
             The Minster

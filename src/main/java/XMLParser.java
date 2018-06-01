@@ -508,6 +508,7 @@ public class XMLParser {
                 nodeMap.getNamedItem("id").getNodeValue(),
                 Double.parseDouble(nodeMap.getNamedItem("latitude").getNodeValue()),
                 Double.parseDouble(nodeMap.getNamedItem("longitude").getNodeValue()),
+                nodeMap.getNamedItem("type").getNodeValue(),
                 children.toArray(new POI[0])
         );
     }
