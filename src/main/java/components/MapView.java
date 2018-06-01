@@ -141,32 +141,7 @@ public class MapView extends ScrollPane {
                         Math.abs(poi.getY() - y) < threshold) {
                     onPoiClicked.handle(new POIEvent(poi));
                     setPointActive(poi);
-
-                    // Zoom!
-
-
-                    layout();
-                    double mapWidth = target.getBoundsInParent().getWidth();
-                    double mapHeight = target.getBoundsInParent().getHeight();
-                    double viewportWidth = getViewportBounds().getWidth()/2;
-                    double viewportHeight = getViewportBounds().getHeight();
-                    double xPercent = poi.getX() / target.getWidth();
-                    double yPercent = poi.getY() / target.getHeight();
-                    double xTargetPos = xPercent * mapWidth - viewportWidth/2;
-                    double yTargetPos = yPercent * mapHeight - viewportHeight/2;
-                    double hMax = mapWidth - getViewportBounds().getWidth();
-                    double vMax = mapHeight - getViewportBounds().getHeight();
-                    double xVal = xTargetPos / hMax;
-                    double yVal = yTargetPos / vMax;
-
-                    Timeline timeline = new Timeline();
-                    timeline.getKeyFrames().addAll(
-                            //new KeyFrame(Duration.millis(200), new KeyValue(target.scaleXProperty(), 1.25, Interpolator.LINEAR)),
-                            new KeyFrame(Duration.millis(250), new KeyValue(hvalueProperty(), xVal, Interpolator.EASE_BOTH)),
-                            new KeyFrame(Duration.millis(250), new KeyValue(vvalueProperty(), yVal, Interpolator.EASE_BOTH))
-                    );
-                    timeline.play();
-
+                    centerPoint(poi.getX(), poi.getY());
                     return;
                 }
             }
@@ -188,6 +163,30 @@ public class MapView extends ScrollPane {
             System.out.printf("hVal: %f\r\n", val);
             System.out.flush();
         });
+    }
+
+    private void centerPoint(double x, double y) {
+        layout();
+        double mapWidth = target.getBoundsInParent().getWidth();
+        double mapHeight = target.getBoundsInParent().getHeight();
+        double viewportWidth = getViewportBounds().getWidth()/2;
+        double viewportHeight = getViewportBounds().getHeight();
+        double xPercent = x / target.getWidth();
+        double yPercent = y / target.getHeight();
+        double xTargetPos = xPercent * mapWidth - viewportWidth/2;
+        double yTargetPos = yPercent * mapHeight - viewportHeight/2;
+        double hMax = mapWidth - getViewportBounds().getWidth();
+        double vMax = mapHeight - getViewportBounds().getHeight();
+        double xVal = xTargetPos / hMax;
+        double yVal = yTargetPos / vMax;
+
+        final Timeline timeline = new Timeline();
+        timeline.getKeyFrames().addAll(
+                //new KeyFrame(Duration.millis(200), new KeyValue(target.scaleXProperty(), 1.25, Interpolator.LINEAR)),
+                new KeyFrame(Duration.millis(250), new KeyValue(hvalueProperty(), xVal, Interpolator.EASE_BOTH)),
+                new KeyFrame(Duration.millis(250), new KeyValue(vvalueProperty(), yVal, Interpolator.EASE_BOTH))
+        );
+        timeline.play();
     }
 
     private POIView activePoiView = null;
