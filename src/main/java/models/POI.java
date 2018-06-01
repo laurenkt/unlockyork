@@ -1,5 +1,8 @@
 package models;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import java.awt.geom.Point2D;
 
 public class POI {
@@ -22,7 +25,7 @@ public class POI {
         this.longitude = longitude;
     }
 
-    POI(double x, double y, String name) {
+    public POI(double x, double y, String name) {
         this.x = x;
         this.y = y;
         this.name = name;
