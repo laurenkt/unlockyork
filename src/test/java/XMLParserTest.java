@@ -24,6 +24,8 @@ public class XMLParserTest {
             e.printStackTrace();
         } catch (XMLParser.ValidationException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
