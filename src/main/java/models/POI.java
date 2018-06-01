@@ -4,19 +4,16 @@ import java.awt.geom.Point2D;
 
 public class POI {
 
-    Point2D location;
+    double x;
+    double y;
     String name;
     double latitude;
     double longitude;
 
     public POI() {
-        location = null;
+        x = 0;
+        y = 0;
         name = "Not Set";
-    }
-
-    public POI(Point2D location, String name) {
-        this.location = location;
-        this.name = name;
     }
 
     public POI(String name, double latitude, double longitude) {
@@ -25,16 +22,30 @@ public class POI {
         this.longitude = longitude;
     }
 
-    public Point2D getLocation() {
-        return location;
+    POI(double x, double y, String name) {
+        this.x = x;
+        this.y = y;
+        this.name = name;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setLocation(Point2D location) {
-        this.location = location;
     }
 
     public void setName(String name) {
