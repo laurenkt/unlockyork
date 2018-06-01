@@ -20,7 +20,7 @@ public class POI {
         name = "Not Set";
     }
 
-    public POI(String name, double latitude, double longitude) {
+    public POI(String name, double latitude, double longitude, POI ... children) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -29,6 +29,10 @@ public class POI {
                 53.9667,-1.101,
                 53.9419,-1.0401,
                 6000, 4155));
+
+        if (children.length > 0) {
+
+        }
     }
 
     public List<POI> getSubPOI() {
