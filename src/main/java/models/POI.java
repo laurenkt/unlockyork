@@ -2,11 +2,15 @@ package models;
 
 import javafx.geometry.Point2D;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class POI {
 
     double x;
     double y;
     String name;
+    List<POI> subPOI = new ArrayList<>();
     double latitude;
     double longitude;
 
@@ -16,7 +20,7 @@ public class POI {
         name = "Not Set";
     }
 
-    public POI(String name, double latitude, double longitude) {
+    public POI(String name, double latitude, double longitude, POI ... children) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -25,6 +29,14 @@ public class POI {
                 53.9667,-1.101,
                 53.9419,-1.0401,
                 6000, 4155));
+
+        for (int i = 0; i < children.length; i++) {
+            subPOI.add(children[i]);
+        }
+    }
+
+    public List<POI> getSubPOI() {
+        return subPOI;
     }
 
     public POI(double x, double y, String name) {
