@@ -82,9 +82,11 @@ public class XMLParser {
 
         for(int m = 0; m < defaults.getElementsByTagName("POI").getLength(); m++)
         {
-            presentation.getPOI().add((getPOI(
-                    defaults.getElementsByTagName("POI").item(m)
-            )));
+            Node node = defaults.getElementsByTagName("POI").item(m);
+            // Only add top-level POI, their children will automatically be added
+            if (node.getParentNode().getNodeName() != "POI") {
+                presentation.getPOI().add(getPOI(node));
+            }
         }
 
         // loop through all slide elements
