@@ -4,6 +4,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.POI;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class POIView extends ImageView {
 
     final private Image poiIcon = new Image(getClass().getResource("/icons/map_poi.png").toExternalForm());
@@ -11,6 +14,7 @@ public class POIView extends ImageView {
 
     ImageView POIView;
     POI poi;
+    List<POIView> subPOIViews = new ArrayList<>();
 
     public POIView(POI poi) {
         this.poi = poi;
@@ -20,6 +24,10 @@ public class POIView extends ImageView {
         this.setTranslateX((this.poi.getX())-50);
         this.setTranslateY((this.poi.getY())-50);
         this.setImage(this.poiIcon);
+
+        for(POI subPOI : poi.getSubPOI()) {
+            subPOIViews.add(new POIView(subPOI));
+        }
     }
 
     public void setActive(boolean isActive) {
@@ -29,6 +37,13 @@ public class POIView extends ImageView {
         else {
             this.setImage(poiIcon);
         }
+        for(POIView subPOI : subPOIViews) {
+            subPOI.setVisible(isActive);
+        }
+    }
+
+    public List<components.POIView> getSubPOIViews() {
+        return subPOIViews;
     }
 
     public POI getPOI() {

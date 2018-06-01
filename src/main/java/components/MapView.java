@@ -81,13 +81,22 @@ public class MapView extends ScrollPane {
         mapView.setImage(tiles.get(level));
 
         for(POI poi : POIs) {
+            // poi == POIs.get(i)
             poiViews.add(new POIView(poi));
+        }
+
+        for(int i = 0; i > POIs.size(); i++) {
+            poiViews.add(new POIView(POIs.get(i)));
         }
 
         StackPane stack = new StackPane();
         stack.setAlignment(Pos.TOP_LEFT);
         stack.getChildren().add(mapView);
         stack.getChildren().addAll(poiViews);
+
+        for(POIView SubPOI : poiViews) {
+            stack.getChildren().addAll(SubPOI.getSubPOIViews());
+        }
 
         HBox hBox = new HBox();
         hBox.getChildren().add(stack);
@@ -189,32 +198,6 @@ public class MapView extends ScrollPane {
 
     public DoubleProperty scaleProperty() {
         return target.scaleXProperty();
-    }
-
-    public ArrayList<Bounds> getBoundsInScene() {
-
-        ArrayList<Bounds> boundsInScene = new ArrayList<>();
-
-        boundsInScene.add(0, poiViews.get(0).localToScene(poiViews.get(0).getBoundsInLocal()));
-        return boundsInScene;
-    }
-
-    public double getXPoiMax () {
-        boundsInScene = poiViews.get(0).localToScene(poiViews.get(0).getBoundsInLocal());
-        double xMax = boundsInScene.getMaxX();
-        return xMax;
-    }
-
-    public double getYPoiMin() {
-        boundsInScene = poiViews.get(0).localToScene(poiViews.get(0).getBoundsInLocal());
-        double yMin = boundsInScene.getMinY();
-        return yMin;
-    }
-
-    public double getYPoiMax() {
-        boundsInScene = poiViews.get(0).localToScene(poiViews.get(0).getBoundsInLocal());
-        double yMax = boundsInScene.getMaxY();
-        return yMax;
     }
 
     private Node outerNode(Node node) {

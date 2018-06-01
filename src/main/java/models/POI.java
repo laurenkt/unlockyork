@@ -2,11 +2,15 @@ package models;
 
 import javafx.geometry.Point2D;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class POI {
 
     double x;
     double y;
     String name;
+    List<POI> subPOI = new ArrayList<>();
     double latitude;
     double longitude;
 
@@ -25,6 +29,10 @@ public class POI {
                 53.9667,-1.101,
                 53.9419,-1.0401,
                 6000, 4155));
+    }
+
+    public List<POI> getSubPOI() {
+        return subPOI;
     }
 
     public POI(double x, double y, String name) {
