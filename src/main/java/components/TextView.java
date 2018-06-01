@@ -133,7 +133,9 @@ public class TextView extends Region {
                 }
             }
             // Update the last char
-            lastCharOfNode = textNode.getText().charAt(textNode.getText().length() - 1);
+            if (textNode.getText().length() > 0) {
+                lastCharOfNode = textNode.getText().charAt(textNode.getText().length() - 1);
+            }
 
             // Overwrite formatting if any is set
             if (font != null)

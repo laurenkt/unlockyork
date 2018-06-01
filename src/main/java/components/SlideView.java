@@ -10,8 +10,6 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.scene.transform.Scale;
-import models.PositionAttrib;
 import models.Shape;
 import models.Slide;
 import models.SlideElement;
@@ -24,13 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SlideView extends Region {
-    double scaleHeightFactor;
-    double scaleWidthFactor;
-
-    public SlideView(Slide slide, double scaleHeightFactor, double scaleWidthFactor) {
-        this.scaleHeightFactor = scaleHeightFactor;
-        this.scaleWidthFactor = scaleWidthFactor;
-
+    public SlideView(Slide slide) {
         // Clicking on empty areas in the region should pass through to anything behind
         // clicking on children nodes should process these events
         setPickOnBounds(false);
@@ -83,8 +75,8 @@ public class SlideView extends Region {
 
         background.setX(0);
         background.setY(0);
-        background.setHeight(1080 * scaleHeightFactor);
-        background.setWidth(1920 * scaleWidthFactor);
+        background.setHeight(1080);
+        background.setWidth(1920);
         background.setFill(Color.web(slide.getColor().getFill()));
 
         return background;
@@ -104,10 +96,10 @@ public class SlideView extends Region {
 
         return new PictureView(
             image,
-            xmlImage.getPosition().getxTopLeft() * scaleWidthFactor,
-            xmlImage.getPosition().getyTopLeft() * scaleWidthFactor,
-            (xmlImage.getPosition().getxBottomRight() - xmlImage.getPosition().getxTopLeft()) * scaleWidthFactor,
-            (xmlImage.getPosition().getyBottomRight() - xmlImage.getPosition().getyTopLeft()) * scaleHeightFactor
+            xmlImage.getPosition().getxTopLeft(),
+            xmlImage.getPosition().getyTopLeft(),
+            (xmlImage.getPosition().getxBottomRight() - xmlImage.getPosition().getxTopLeft()),
+            (xmlImage.getPosition().getyBottomRight() - xmlImage.getPosition().getyTopLeft())
         );
     }
 
@@ -137,11 +129,10 @@ public class SlideView extends Region {
     {
         Rectangle rectangle = new Rectangle();
 
-        rectangle.setTranslateX(xmlShape.getPosition().getxTopLeft() * scaleWidthFactor);
-        rectangle.setTranslateY(xmlShape.getPosition().getyTopLeft() * scaleHeightFactor);
-        rectangle.setHeight((xmlShape.getPosition().getyBottomRight() - xmlShape.getPosition().getyTopLeft()) * scaleHeightFactor);
-        rectangle.setWidth((xmlShape.getPosition().getxBottomRight() - xmlShape.getPosition().getxTopLeft()) * scaleWidthFactor);
-
+        rectangle.setTranslateX(xmlShape.getPosition().getxTopLeft());
+        rectangle.setTranslateY(xmlShape.getPosition().getyTopLeft());
+        rectangle.setHeight((xmlShape.getPosition().getyBottomRight() - xmlShape.getPosition().getyTopLeft()));
+        rectangle.setWidth((xmlShape.getPosition().getxBottomRight() - xmlShape.getPosition().getxTopLeft()));
         rectangle.setStrokeWidth(xmlShape.getStroke());
         rectangle.setStroke(Color.web(xmlShape.getColor().getColor()));
 
@@ -162,21 +153,17 @@ public class SlideView extends Region {
     {
         Ellipse ellipse = new Ellipse();
 
-        ellipse.setCenterX((((xmlShape.getPosition().getxBottomRight() - xmlShape.getPosition().getxTopLeft()) / 2) + xmlShape.getPosition().getxTopLeft()) * scaleWidthFactor);
-        ellipse.setCenterY((((xmlShape.getPosition().getyBottomRight() - xmlShape.getPosition().getyTopLeft()) / 2 ) + xmlShape.getPosition().getyTopLeft()) * scaleHeightFactor);
-
-        ellipse.setRadiusX(((xmlShape.getPosition().getxBottomRight() - xmlShape.getPosition().getxTopLeft()) / 2) * scaleWidthFactor);
-        ellipse.setRadiusY(((xmlShape.getPosition().getyBottomRight() - xmlShape.getPosition().getyTopLeft()) / 2 ) * scaleHeightFactor);
-
+        ellipse.setCenterX((((xmlShape.getPosition().getxBottomRight() - xmlShape.getPosition().getxTopLeft()) / 2) + xmlShape.getPosition().getxTopLeft()));
+        ellipse.setCenterY((((xmlShape.getPosition().getyBottomRight() - xmlShape.getPosition().getyTopLeft()) / 2 ) + xmlShape.getPosition().getyTopLeft()));
+        ellipse.setRadiusX(((xmlShape.getPosition().getxBottomRight() - xmlShape.getPosition().getxTopLeft()) / 2));
+        ellipse.setRadiusY(((xmlShape.getPosition().getyBottomRight() - xmlShape.getPosition().getyTopLeft()) / 2));
         ellipse.setStrokeWidth(xmlShape.getStroke());
         ellipse.setStroke(Color.web(xmlShape.getColor().getColor()));
 
         if(xmlShape.getColor().getFill().charAt(0) == 'g')
         {
-
             RadialGradient radialGradient = new RadialGradient(0, 0, ellipse.getCenterX(), ellipse.getCenterY(), ellipse.getRadiusY(), false, CycleMethod.REPEAT, gradientHandler(xmlShape));
             ellipse.setFill(radialGradient);
-
         }
         else
         {
@@ -192,15 +179,12 @@ public class SlideView extends Region {
     {
         Line line = new Line();
 
-        line.setStartX(xmlShape.getPosition().getxTopLeft() * scaleWidthFactor);
-        line.setStartY(xmlShape.getPosition().getyTopLeft() * scaleHeightFactor);
-        line.setEndX(xmlShape.getPosition().getxBottomRight() * scaleWidthFactor);
-        line.setEndY(xmlShape.getPosition().getyBottomRight() * scaleHeightFactor);
-
+        line.setStartX(xmlShape.getPosition().getxTopLeft());
+        line.setStartY(xmlShape.getPosition().getyTopLeft());
+        line.setEndX(xmlShape.getPosition().getxBottomRight());
+        line.setEndY(xmlShape.getPosition().getyBottomRight());
         line.setStrokeWidth(xmlShape.getStroke());
-
         line.setFill(Color.web(xmlShape.getColor().getFill()));
-
         line.setStroke(Color.web(xmlShape.getColor().getColor()));
 
         return line;
@@ -211,10 +195,10 @@ public class SlideView extends Region {
     {
         return new MovieView(
             xmlVideo.getPath(),
-            xmlVideo.getPosition().x1 * scaleWidthFactor,
-            xmlVideo.getPosition().y1 * scaleHeightFactor,
-            xmlVideo.getPosition().getWidth() * scaleWidthFactor,
-            xmlVideo.getPosition().getHeight() * scaleHeightFactor
+            xmlVideo.getPosition().x1,
+            xmlVideo.getPosition().y1,
+            xmlVideo.getPosition().getWidth(),
+            xmlVideo.getPosition().getHeight()
         );
     }
 
@@ -222,8 +206,8 @@ public class SlideView extends Region {
     public Node renderAudioNode(models.Audio xmlAudio)
     {
         SoundView soundView = new SoundView(new Media(Paths.get(xmlAudio.getPath()).toUri().toString()), false, false, new ArrayList<Integer>());
-        soundView.setLayoutX(xmlAudio.getPosition().x1 * scaleWidthFactor);
-        soundView.setLayoutY(xmlAudio.getPosition().y1 * scaleHeightFactor);
+        soundView.setLayoutX(xmlAudio.getPosition().x1);
+        soundView.setLayoutY(xmlAudio.getPosition().y1);
         return soundView;
     }
 
@@ -231,8 +215,8 @@ public class SlideView extends Region {
     public Node renderTextNode(models.Text xmlText)
     {
         return new TextView(
-            xmlText.getPosition().x1 * scaleWidthFactor,
-            xmlText.getPosition().y1 * scaleHeightFactor,
+            xmlText.getPosition().x1,
+            xmlText.getPosition().y1,
             500,
             500,
             null,

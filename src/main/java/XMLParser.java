@@ -23,7 +23,7 @@ public class XMLParser {
     public static class ValidationException extends Exception {}
 
     public static Presentation parse(String xmlPath, String schemaPath)
-            throws IOException, SAXException, ParserConfigurationException, ValidationException
+            throws Exception
     {
         //creates a blank presentation object that will contain the parsed presentation
         Presentation presentation = new Presentation();
@@ -49,8 +49,9 @@ public class XMLParser {
         catch (Exception e) {
             System.err.println("Document could not be validated");
             System.err.println(e);
-            throw new ValidationException();
+            throw e;
         }
+
 
         NodeList slideList = document.getElementsByTagName("Slide");
         NodeList slideElements;
@@ -63,12 +64,23 @@ public class XMLParser {
         getPresentationDefaults(presentation, presDefaults);
 
         //get the meta from the xml
-        presentation.setMeta(getMeta(defaults.getElementsByTagName("Meta").item(0).getAttributes()));
-
+        if(defaults.getElementsByTagName("Meta").item(0) != null)
+        {
+            //loop through all metas and add them to the presentation
+            for(int m = 0; m < defaults.getElementsByTagName("Meta").getLength(); m++)
+            {
+                presentation.getMeta().add((getMeta(defaults.getElementsByTagName("Meta").item(m).getAttributes())));
+            }
+        }
         //get the gps from the xml
         if(defaults.getElementsByTagName("GPS").item(0) != null)
         {
             presentation.setGps(getGps(defaults.getElementsByTagName("GPS").item(0).getAttributes()));
+        }
+
+        for(int m = 0; m < defaults.getElementsByTagName("POI").getLength(); m++)
+        {
+            presentation.getPOI().add((getPOI(defaults.getElementsByTagName("POI").item(m).getAttributes())));
         }
 
         // loop through all slide elements
@@ -76,6 +88,12 @@ public class XMLParser {
             //get the specified slide element from xml
             xmlSlide = slideList.item(i);
             Slide slide = new Slide();
+
+            System.out.println(xmlSlide.getAttributes());
+            Node xmlAttribPoi = xmlSlide.getAttributes().getNamedItem("poi");
+            if (xmlAttribPoi != null) {
+                slide.setPOI(presentation.getPoiWithId(xmlAttribPoi.getNodeValue()));
+            }
 
             // sets the default values found in the presentation
             setSlideDefaults(slide, presentation);
@@ -465,6 +483,16 @@ public class XMLParser {
 
 
         return slideText;
+    }
+
+    //gets the meta from the dom structure and creates a meta object
+    public static POI getPOI(NamedNodeMap nodeMap)
+    {
+        return new POI(
+                nodeMap.getNamedItem("id").getNodeValue(),
+                Double.parseDouble(nodeMap.getNamedItem("latitude").getNodeValue()),
+                Double.parseDouble(nodeMap.getNamedItem("longitude").getNodeValue())
+        );
     }
 
     //gets the meta from the dom structure and creates a meta object

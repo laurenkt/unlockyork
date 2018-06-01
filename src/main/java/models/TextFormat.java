@@ -3,20 +3,20 @@ package models;
 public class TextFormat {
 
     FontAttrib font; // font for this part of text
-    ColorAttrib colour; // color for this part of text
+    ColorAttrib color; // color for this part of text
     String content; // actual text content
 
-    TextFormat(FontAttrib font, ColorAttrib colour, String content)
+    TextFormat(FontAttrib font, ColorAttrib color, String content)
     {
         this.font = font;
-        this.colour = colour;
+        this.color = color;
         this.content = content;
     }
 
     public TextFormat()
     {
         font = new FontAttrib();
-        colour = new ColorAttrib();
+        color = new ColorAttrib();
         content = "null";
     }
 
@@ -29,15 +29,16 @@ public class TextFormat {
     }
 
     public ColorAttrib getColor() {
-        return colour;
+        return color;
     }
 
-    public void setColour(ColorAttrib colour) {
-        this.colour = colour;
+    public void setColor(ColorAttrib color){
+        this.color = color;
     }
 
     public String getContent() {
-        return content;
+        // Strip excess whitespace (compress it)
+        return content.replaceAll("([ \r\n]+)", " ");
     }
 
     public void setContent(String content) {

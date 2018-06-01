@@ -19,7 +19,7 @@ public class Text implements SlideElement, Positionable {
     public Text()
     {
         positionAttrib = new PositionAttrib();
-        content = new ArrayList<TextFormat>();
+        content = new ArrayList<>();
         transition = new TransitionAttrib();
     }
 

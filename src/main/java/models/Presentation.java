@@ -1,18 +1,21 @@
 package models;
 
+import org.w3c.dom.Node;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Presentation {
-    Meta meta; //presentation meta
-    ArrayList<Slide> slides; //all slides inside presentation
+    List<Meta> meta; //presentation meta
+    List<Slide> slides; //all slides inside presentation
     GPS gps; //GPS coordinates for the presentation
     FontAttrib presDefaultFont; // presentation defaults for the font of text
     ColorAttrib presDefaultColour; // presentation defaults for color
+    List<POI> POIs = new ArrayList<>();
 
-    public Presentation()
-    {
-        meta = new Meta();
-        slides = new ArrayList<Slide>();
+    public Presentation() {
+        meta = new ArrayList<>();
+        slides = new ArrayList<>();
         gps = new GPS();
         presDefaultFont = new FontAttrib();
         presDefaultColour = new ColorAttrib();
@@ -48,19 +51,19 @@ public class Presentation {
         this.presDefaultColour = presDefaultColour;
     }
 
-    public ArrayList<Slide> getSlides() {
+    public List<Slide> getSlides() {
         return slides;
     }
 
-    public void setSlides(ArrayList<Slide> slides) {
+    public void setSlides(List<Slide> slides) {
         this.slides = slides;
     }
 
-    public Meta getMeta() {
+    public List<Meta> getMeta() {
         return meta;
     }
 
-    public void setMeta(Meta meta) {
+    public void setMeta(List<Meta> meta) {
         this.meta = meta;
     }
 
@@ -70,6 +73,19 @@ public class Presentation {
 
     public void setGps(GPS gps) {
         this.gps = gps;
+    }
+
+    public List<POI> getPOI() {
+        return POIs;
+    }
+
+    public POI getPoiWithId(String id) {
+        String realId = id.substring(1);
+        for (POI poi : POIs) {
+            if (poi.getName().equals(realId))
+                return poi;
+        }
+        return null;
     }
 }
 

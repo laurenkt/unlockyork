@@ -7,6 +7,7 @@ public class Slide {
     FontAttrib font; // font default for the slide
     ColorAttrib colour; // color default for the slide
     TransitionAttrib transitionAttrib; // transition set for the slide
+    POI poi;
 
     //elements
     List<SlideElement> elements;
@@ -15,6 +16,10 @@ public class Slide {
     List<Image> image; //all image objects for this slide
     List<Audio> audio; //all audio objects for this slide
     List<Video> video; //all video objects for this slide
+
+    public void setPOI(POI poi) {
+        this.poi = poi;
+    }
 
     public Slide()
     {
