@@ -6,26 +6,36 @@
         <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" />
     </POI>
     <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" />
+    <POI id="artgallery" latitude="53.9630" longitude="-1.0863" />
+    <POI id="jorvik" latitude="53.9574" longitude="-1.0803" />
+    <POI id="merchantadventure" latitude="53.9578" longitude="-1.0788" />
+    <POI id="museumgardens" latitude="53.9615" longitude="-1.0883" />
+    <POI id="nrm" latitude="53.9605" longitude="-1.0964" />
+    <POI id="" latitude="53.95582" longitude="-1.079939" />
+    <POI id="yorkshiremuseum" latitude="53.9619" longitude="-1.0874" />
+
+
+
     <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" />
     <Slide duration="12" poi="#minster">
-        <Text x="0" y="0" textsize="64" bold="true">
-            The Minster
-        </Text>
-        <Text x="0" y="500" textsize="26">
-            <Format bold="true">Opening Times</Format><Br />
-            9:00am — 4:30pm
-        </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
-            Since the 7th century, the Minster has been at the centre of Christianity in the north
-            of England and today remains a thriving church rooted in the daily offering of worship
-            and prayer. The Minster was built for the glory of God. Every aspect of this ancient
-            building - from the exquisite, handcrafted stone through to the unrivalled collection
-            of medieval stained glass - tells the story of Jesus Christ. We invite you to discover
-            this sacred place and the love of God at its heart, which has attracted people from
-            across the globe for more than 1000 years.
-        </Text>
-        <Video path="./minster.mp4" x="0" y="700" x2="640" y2="1180" />
-    </Slide>
+    <Text x="0" y="0" textsize="64" bold="true">
+        The Minster
+    </Text>
+    <Text x="0" y="500" textsize="26">
+        <Format bold="true">Opening Times</Format><Br />
+        9:00am — 4:30pm
+    </Text>
+    <Text x="0" y="150" x2="1000" y2="600">
+        Since the 7th century, the Minster has been at the centre of Christianity in the north
+        of England and today remains a thriving church rooted in the daily offering of worship
+        and prayer. The Minster was built for the glory of God. Every aspect of this ancient
+        building - from the exquisite, handcrafted stone through to the unrivalled collection
+        of medieval stained glass - tells the story of Jesus Christ. We invite you to discover
+        this sacred place and the love of God at its heart, which has attracted people from
+        across the globe for more than 1000 years.
+    </Text>
+    <Video path="./minster.mp4" x="0" y="700" x2="640" y2="1180" />
+</Slide>
     <Slide poi="#cliffordstower">
         <Text x="0" y="0" textsize="64" bold="true">
             Cliffords Tower
