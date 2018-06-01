@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Presentation xmlns="pws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="pws schema.xsd"
               italic="false" bold="false" underline="false" textsize="22" color="#000000" font="Arial">
-    <POI id="minster" latitude="53.96219" longitude="-1.08206">
-        <POI id="excalibur" latitude="53.963" longitude="-1.04" />
-        <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" />
+    <POI id="minster" latitude="53.96219" longitude="-1.08206" type="POI" >
+        <POI id="excalibur" latitude="53.963" longitude="-1.04" type="subPOI" />
+        <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" type="subPOI"/>
     </POI>
-    <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" />
-    <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" />
+    <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" type="POI" />
+    <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" type="POI" />
+    <POI id="bettystearoom" latitude="53.96009" longitude="-1.08418" type="Cafe" />
+    <POI id="gatehousecoffee" latitude="53.95515" longitude="-1.07074" type="Cafe" />
+    <POI id="sparkyork" latitude="53.95693" longitude="-1.07775" type="Shop" />
+    <POI id="yorkarmoury" latitude="53.96102" longitude="-1.08303" type="Shop" />
     <Slide duration="12" poi="#minster">
         <Text x="0" y="0" textsize="64" bold="true">
             The Minster
@@ -34,6 +38,56 @@
     <Slide poi="#posterngate">
         <Text x="0" y="0" textsize="64" bold="true">
             Postern Gate
+        </Text>
+    </Slide>
+    <Slide poi="#bettystearoom">
+        <Text x="0" y="0" textsize="64" bold="true">
+            Betty's Tea Room
+        </Text>
+        <Text x="0" y="800" textsize="26">
+            <Format bold="true">Opening Times</Format><Br />
+            9:00am — 9:00pm
+        </Text>
+        <Text x="0" y="150" x2="1000" y2="600">
+            The founder of Bettys, Frederick Belmont, travelled on the maiden voyage of the Queen Mary. He was so impressed by the extravagance of the ship that he commissioned the Queen Mary's designers to turn an old furniture store into his most sophisticated branch yet - an elegant café in the land-locked location of St Helens Square, York.
+            A specially devised menu, an immaculate table-setting, a pianist to serenade you: our luxury Lady Betty Afternoon Tea is a truly unforgettable experience. Book ahead so you can waltz past the queues and dine in the opulent splendour of our Belmont Room.
+            If you're looking for a really special experience, our Lady Betty Afternoon Tea provides just this. Set in the historic and elegant surroundings of the Belmont Room, York, our menu is inspired by Bettys best-loved pâtisserie and favourite Café Tea Rooms specialities.
+        </Text>
+    </Slide>
+    <Slide poi="#gatehousecoffee">
+        <Text x="0" y="0" textsize="64" bold="true">
+            Gatehouse Coffee
+        </Text>
+        <Text x="0" y="500" textsize="26">
+            <Format bold="true">Opening Times</Format><Br />
+            10:00am — 6:00pm
+        </Text>
+        <Text x="0" y="150" x2="1000" y2="600">
+            Gatehouse Coffee is located in Walmgate Bar, within York’s city walls, and is a Christian-run cafe specializing in high quality espresso drinks, friendly service, light pastries and snacks, paninis, seasonal soups and free wifi.
+        </Text>
+    </Slide>
+    <Slide poi="#sparkyork">
+        <Text x="0" y="0" textsize="64" bold="true">
+            Spark York
+        </Text>
+        <Text x="0" y="500" textsize="26">
+            <Format bold="true">Opening Times</Format><Br />
+            8:00am — 10:30pm
+        </Text>
+        <Text x="0" y="150" x2="1000" y2="600">
+            Spark:York CIC is a community of small independent businesses including street food, bars, retail, co-working and entertainment
+        </Text>
+    </Slide>
+    <Slide poi="#yorkarmoury">
+        <Text x="0" y="0" textsize="64" bold="true">
+            York Armoury
+        </Text>
+        <Text x="0" y="500" textsize="26">
+            <Format bold="true">Opening Times</Format><Br />
+            10:00am — 7:00pm
+        </Text>
+        <Text x="0" y="150" x2="1000" y2="600">
+            Home of historical arms and armour, movie swords, anime swords, buckland knives and minamoto katana.
         </Text>
     </Slide>
 </Presentation>

@@ -13,6 +13,7 @@ public class POI {
     List<POI> subPOI = new ArrayList<>();
     double latitude;
     double longitude;
+    String type;
 
     public POI() {
         x = 0;
@@ -20,7 +21,7 @@ public class POI {
         name = "Not Set";
     }
 
-    public POI(String name, double latitude, double longitude, POI ... children) {
+    public POI(String name, double latitude, double longitude, String type, POI ... children) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -29,6 +30,8 @@ public class POI {
                 53.9667,-1.101,
                 53.9419,-1.0401,
                 6000, 4155));
+
+        this.type = type;
 
         for (int i = 0; i < children.length; i++) {
             subPOI.add(children[i]);
@@ -48,6 +51,14 @@ public class POI {
     public void setPoint(Point2D point) {
         this.x = point.getX();
         this.y = point.getY();
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public double getX() {
