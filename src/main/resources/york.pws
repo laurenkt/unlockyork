@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Presentation xmlns="pws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="pws schema.xsd"
               italic="false" bold="false" underline="false" textsize="22" color="#000000" font="Arial">
-    <POI id="minster" latitude="53.96219" longitude="-1.08206" type="POI" >
-        <POI id="excalibur" latitude="53.963" longitude="-1.04" type="subPOI" />
-        <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" type="subPOI"/>
-    </POI>
     <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" type="POI" />
     <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" type="POI" />
     <POI id="bettystearoom" latitude="53.96009" longitude="-1.08418" type="Cafe" />
     <POI id="gatehousecoffee" latitude="53.95515" longitude="-1.07074" type="Cafe" />
     <POI id="sparkyork" latitude="53.95693" longitude="-1.07775" type="Shop" />
     <POI id="yorkarmoury" latitude="53.96102" longitude="-1.08303" type="Shop" />
+    <POI id="minster" latitude="53.96219" longitude="-1.08206">
+        <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" />
+    </POI>
+    <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" />
+    <POI id="artgallery" latitude="53.9630" longitude="-1.0863" />
+    <POI id="jorvik" latitude="53.9574" longitude="-1.0803" />
+    <POI id="merchantadventure" latitude="53.9578" longitude="-1.0788" />
+    <POI id="museumgardens" latitude="53.9615" longitude="-1.0883" />
+    <POI id="nrm" latitude="53.9605" longitude="-1.0964" />
+    <POI id="yorkshiremuseum" latitude="53.9619" longitude="-1.0874" />
+    <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" />
+    <POI id="citywalls" latitude="53.96273" longitude="-1.08508" />
+    <POI id="citywalls" latitude="53.96277" longitude="-1.07854" />
+    <POI id="citywalls" latitude="53.95585" longitude="-1.009091" />
+    <POI id="citywalls" latitude="53.95396" longitude="-1.07524" />
+    <POI id="citywalls" latitude="53.95418" longitude="-1.08677" />
+
+>>>>>>> s07-content
     <Slide duration="12" poi="#minster">
         <Text x="0" y="0" textsize="64" bold="true">
             The Minster
@@ -28,16 +42,48 @@
             this sacred place and the love of God at its heart, which has attracted people from
             across the globe for more than 1000 years.
         </Text>
-        <Video path="./minster.mp4" x="0" y="700" x2="640" y2="1180" />
+        <!--<Video path="./minster.mp4" x="0" y="700" x2="640" y2="1180" />-->
     </Slide>
+
     <Slide poi="#cliffordstower">
         <Text x="0" y="0" textsize="64" bold="true">
             Cliffords Tower
         </Text>
     </Slide>
-    <Slide poi="#posterngate">
+
+    <Slide poi="#artgallery">
         <Text x="0" y="0" textsize="64" bold="true">
-            Postern Gate
+            York Art Gallery
+        </Text>
+    </Slide>
+
+    <Slide poi="#jorvik">
+        <Text x="0" y="0" textsize="64" bold="true">
+            Jorvik Viking Centre
+        </Text>
+    </Slide>
+
+    <Slide poi="#merchantadventure">
+        <Text x="0" y="0" textsize="64" bold="true">
+            Merchant Adventurers Hall
+        </Text>
+    </Slide>
+
+    <Slide poi="#museumgardens">
+        <Text x="0" y="0" textsize="64" bold="true">
+            York Museum Gardens
+        </Text>
+    </Slide>
+
+    <Slide poi="#nrm">
+        <Text x="0" y="0" textsize="64" bold="true">
+            National Rail Museum
+        </Text>
+    </Slide>
+
+    <Slide poi="#yorkshiremuseum">
+        <Text x="0" y="0" textsize="64" bold="true">
+            Yorkshire Museum
         </Text>
     </Slide>
     <Slide poi="#bettystearoom">
