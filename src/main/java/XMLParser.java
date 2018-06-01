@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -80,7 +82,9 @@ public class XMLParser {
 
         for(int m = 0; m < defaults.getElementsByTagName("POI").getLength(); m++)
         {
-            presentation.getPOI().add((getPOI(defaults.getElementsByTagName("POI").item(m).getAttributes())));
+            presentation.getPOI().add((getPOI(
+                    defaults.getElementsByTagName("POI").item(m)
+            )));
         }
 
         // loop through all slide elements
@@ -486,12 +490,23 @@ public class XMLParser {
     }
 
     //gets the meta from the dom structure and creates a meta object
-    public static POI getPOI(NamedNodeMap nodeMap)
+    public static POI getPOI(Node node)
     {
+        NamedNodeMap nodeMap = node.getAttributes();
+        NodeList childNodes = node.getChildNodes();
+
+        List<POI> children = new ArrayList<>();
+        for (int i = 0; i < childNodes.getLength(); i++) {
+            if (childNodes.item(i).getNodeName() == "POI") {
+                children.add(getPOI(childNodes.item(i)));
+            }
+        }
+
         return new POI(
                 nodeMap.getNamedItem("id").getNodeValue(),
                 Double.parseDouble(nodeMap.getNamedItem("latitude").getNodeValue()),
-                Double.parseDouble(nodeMap.getNamedItem("longitude").getNodeValue())
+                Double.parseDouble(nodeMap.getNamedItem("longitude").getNodeValue()),
+                children.toArray(new POI[0])
         );
     }
 
