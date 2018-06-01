@@ -43,18 +43,20 @@ public class MapView extends ScrollPane {
 
     private long lastAnchorTime = 0;
 
-    private List<Image> tiles;
+    private List<Image> tiles = new ArrayList<>();
     private Image poiIcon = new Image(getClass().getResource("/icons/map_poi.png").toExternalForm());
     private Image activePoiIcon = new Image(getClass().getResource("/icons/map_poi_active.png").toExternalForm());
 
     public MapView() {
         super();
 
-        tiles = new ArrayList<>();
-        tiles.add(new Image(getClass().getClassLoader().getResource("York16.png").toExternalForm()));
-        tiles.add(new Image(getClass().getClassLoader().getResource("York17.png").toExternalForm()));
-        tiles.add(new Image(getClass().getClassLoader().getResource("York18.png").toExternalForm()));
-        tiles.add(new Image(getClass().getClassLoader().getResource("York20.png").toExternalForm()));
+        tiles.add(new Image(getClass().getResource("/tiles/16.png").toExternalForm()));
+        tiles.add(new Image(getClass().getResource("/tiles/17.png").toExternalForm()));
+        tiles.add(new Image(getClass().getResource("/tiles/18.png").toExternalForm()));
+        tiles.add(new Image(getClass().getResource("/tiles/19.png").toExternalForm()));
+        tiles.add(new Image(getClass().getResource("/tiles/20.png").toExternalForm()));
+        tiles.add(new Image(getClass().getResource("/tiles/21.png").toExternalForm()));
+        tiles.add(new Image(getClass().getResource("/tiles/22.png").toExternalForm()));
 
         mapView = new ImageView();
         mapView.setImage(tiles.get(level));
