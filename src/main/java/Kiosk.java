@@ -20,6 +20,7 @@ import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import components.SlideView;
 import javafx.util.Duration;
+import models.POI;
 import models.Presentation;
 
 import java.awt.*;
@@ -47,7 +48,6 @@ public class Kiosk extends Application {
 
         primaryStage.setTitle("Unlock York");
 
-        map = new MapView();
 
         try {
             presentation = XMLParser.parse(
@@ -62,6 +62,8 @@ public class Kiosk extends Application {
             System.err.println(e);
             throw e;
         }
+
+        map = new MapView(presentation.getPOI());
 
         forward = new IconButton("/icons/right.png");
         back = new IconButton("/icons/left.png");
@@ -138,7 +140,7 @@ public class Kiosk extends Application {
 
         forward.setOnAction(e -> this.onNext(e));
         back.setOnAction(e -> this.onPrevious(e));
-        scene.setOnMouseClicked(e -> this.onClick(e));
+        map.setOnPoiClicked(e -> this.onClickPoi(e.getPOI()));
 
         // Volume
         map.scaleProperty().bindBidirectional(scaleSlider.valueProperty());
@@ -170,49 +172,12 @@ public class Kiosk extends Application {
         this.setSlideNum(slideNum);
     }
 
-    public void onClick(MouseEvent event) {
-        double x = event.getX();
-        double y = event.getY();
-        ArrayList<Bounds> boundsInScene = map.getBoundsInScene();
-        double[] width = new double[boundsInScene.size()];
-        double[] height = new double[boundsInScene.size()];
-        double[] xAllowedOver = new double[boundsInScene.size()];
-        double[] yAllowedOver = new double[boundsInScene.size()];
-        int j = 0;
-        int i = 0;
-        boolean isActive = false;
-
-        //System.out.println("xMin = " + xPoiMin);
-
-        // Sometimes the targets can be small so it is worth to set a threshold the point that can still
-        // be used to select it (see Fitts's Law in the literature)
-        while(isActive == false && j <= boundsInScene.size()-1) {
-            //System.out.println("j = " + j);
-            //System.out.println("isActive = " + isActive);
-                width[j] = boundsInScene.get(j).getMaxX() - boundsInScene.get(j).getMinX();
-                height[j] = boundsInScene.get(j).getMaxY() - boundsInScene.get(j).getMinY();
-                xAllowedOver[j] = width[j] * 0.5;
-                yAllowedOver[j] = height[j] * 0.5;
-                isActive = (x + xAllowedOver[j] >= boundsInScene.get(j).getMinX() && x - xAllowedOver[j] <= boundsInScene.get(j).getMaxX()) &&
-                        (y + yAllowedOver[j] >= boundsInScene.get(j).getMinY() && y - yAllowedOver[j] <= boundsInScene.get(j).getMaxY());
-                j++;
-            }
-        System.out.println("isActive = " + isActive + "j = " + j);
-        map.setPointActive(isActive);
-        slidePane.setVisible(isActive);
+    public void onClickPoi(POI poi) {
+        slidePane.setVisible(true);
 
         //only show buttons when slide is shown
-        forward.setVisible(isActive);
-        back.setVisible(isActive);
-
-//        double width = xPoiMax - xPoiMin;
-//        double height = yPoiMax - yPoiMin;
-//        double xAllowedOver = width*0.5;
-//        double yAllowedOver = height*0.5;
-
-
-
-
+        forward.setVisible(true);
+        back.setVisible(true);
     }
 
     public void setSlideNum(int slideNum) {
