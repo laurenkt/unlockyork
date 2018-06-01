@@ -1,4 +1,4 @@
-package components;
+package models;
 
 import java.awt.geom.Point2D;
 
@@ -7,11 +7,19 @@ public class POI {
     double x;
     double y;
     String name;
+    double latitude;
+    double longitude;
 
     public POI() {
         x = 0;
         y = 0;
         name = "Not Set";
+    }
+
+    public POI(String name, double latitude, double longitude) {
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     POI(double x, double y, String name) {
