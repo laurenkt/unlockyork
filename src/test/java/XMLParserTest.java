@@ -76,7 +76,18 @@ public class XMLParserTest {
         assertEquals(true, presentation.getSlides().get(0).getText().get(0).getContent().get(0).getFont().isUnderline());
         //test first text field of first slide - font = Times New Roman
         assertEquals("Times New Roman", presentation.getSlides().get(0).getText().get(0).getContent().get(0).getFont().getFontName());
-        //test first text field of first slide -
+        //test first text field of first slide - x position = 0
+        assertEquals(0, presentation.getSlides().get(0).getText().get(0).getPosition().getxTopLeft());
+        //test first text field of first slide - y position = 0
+        assertEquals(0, presentation.getSlides().get(0).getText().get(0).getPosition().getyTopLeft());
+        //test first text field of first slide - content = This is the schema of the
+        assertEquals("This is the schema of the", presentation.getSlides().get(0).getText().get(0).getContent().get(0).getContent());
+    }
+
+    @Test
+    public void testShape(){
+        //test slide 1 shape = ellipse
+        //assertEquals("ellipse", presentation.getSlides().get())
     }
 
 }
