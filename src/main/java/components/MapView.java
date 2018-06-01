@@ -33,6 +33,7 @@ public class MapView extends ScrollPane {
     private double zoomIntensity = 0.02;
     private ImageView poi;
     private ImageView poi2;
+    private ImageView poi3;
     private ImageView mapView;
     private Region target;
     private Node zoomNode;
@@ -61,23 +62,34 @@ public class MapView extends ScrollPane {
         mapView = new ImageView();
         mapView.setImage(tiles.get(level));
 
+        POI poiObject1 = new POI(1877, 1659, "Minister");
+        POI poiObject2= new POI(1500, 1300, "Cliffords tower");
+        POI poiObject3 = new POI(1700, 1500, "Liam's Place");
+
         poi = new ImageView();
         poi.setFitHeight(100);
         poi.setFitWidth(100);
-        poi.setTranslateX(1877-50);
-        poi.setTranslateY(1659-50);
+        poi.setTranslateX((poiObject1.getX())-50);
+        poi.setTranslateY((poiObject1.getY())-50);
         poi.setImage(poiIcon);
 
         poi2 = new ImageView();
         poi2.setFitHeight(100);
         poi2.setFitWidth(100);
-        poi2.setTranslateX(1500-50);
-        poi2.setTranslateY(1300-50);
+        poi2.setTranslateX((poiObject2.getX())-50);
+        poi2.setTranslateY((poiObject2.getY())-50);
         poi2.setImage(poiIcon);
+
+        poi3 = new ImageView();
+        poi3.setFitHeight(100);
+        poi3.setFitWidth(100);
+        poi3.setTranslateX((poiObject3.getX())-50);
+        poi3.setTranslateY((poiObject3.getY())-50);
+        poi3.setImage(poiIcon);
 
         StackPane stack = new StackPane();
         stack.setAlignment(Pos.TOP_LEFT);
-        stack.getChildren().addAll(mapView, poi, poi2);
+        stack.getChildren().addAll(mapView, poi, poi2, poi3);
 
         HBox hBox = new HBox();
         hBox.getChildren().add(stack);
@@ -161,6 +173,7 @@ public class MapView extends ScrollPane {
 
         boundsInScene.add(0, poi.localToScene(poi.getBoundsInLocal()));
         boundsInScene.add(1, poi2.localToScene(poi2.getBoundsInLocal()));
+        boundsInScene.add(2, poi3.localToScene(poi3.getBoundsInLocal()));
         return boundsInScene;
     }
 
