@@ -32,6 +32,7 @@ public class MapView extends ScrollPane {
     private double scaleValue = 0.7;
     private double zoomIntensity = 0.02;
     private ImageView poi;
+    private ImageView poi2;
     private ImageView mapView;
     private Region target;
     private Node zoomNode;
@@ -68,9 +69,16 @@ public class MapView extends ScrollPane {
         poi.setTranslateY(1659-50);
         poi.setImage(poiIcon);
 
+        poi2 = new ImageView();
+        poi2.setFitHeight(100);
+        poi2.setFitWidth(100);
+        poi2.setTranslateX(1500-50);
+        poi2.setTranslateY(1300-50);
+        poi2.setImage(poiIcon);
+
         StackPane stack = new StackPane();
         stack.setAlignment(Pos.TOP_LEFT);
-        stack.getChildren().addAll(mapView, poi);
+        stack.getChildren().addAll(mapView, poi, poi2);
 
         HBox hBox = new HBox();
         hBox.getChildren().add(stack);
@@ -147,10 +155,13 @@ public class MapView extends ScrollPane {
         return target.scaleXProperty();
     }
 
-    public double getXPoiMin() {
-        boundsInScene = poi.localToScene(poi.getBoundsInLocal());
-        double xMin = boundsInScene.getMinX();
-        return xMin;
+    public ArrayList<Bounds> getBoundsInScene() {
+
+        ArrayList<Bounds> boundsInScene = new ArrayList<>();
+
+        boundsInScene.add(0, poi.localToScene(poi.getBoundsInLocal()));
+        boundsInScene.add(1, poi2.localToScene(poi2.getBoundsInLocal()));
+        return boundsInScene;
     }
 
     public double getXPoiMax () {

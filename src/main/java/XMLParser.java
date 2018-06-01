@@ -52,6 +52,7 @@ public class XMLParser {
             throw new ValidationException();
         }
 
+
         NodeList slideList = document.getElementsByTagName("Slide");
         NodeList slideElements;
         Node xmlSlide;
@@ -63,9 +64,14 @@ public class XMLParser {
         getPresentationDefaults(presentation, presDefaults);
 
         //get the meta from the xml
-        // @TODO: fix this - meta is optional and there can be more than one
-        //presentation.setMeta(getMeta(defaults.getElementsByTagName("Meta").item(0).getAttributes()));
-
+        if(defaults.getElementsByTagName("Meta").item(0) != null)
+        {
+            //loop through all metas and add them to the presentation
+            for(int m = 0; m < defaults.getElementsByTagName("Meta").getLength(); m++)
+            {
+                presentation.getMeta().add((getMeta(defaults.getElementsByTagName("Meta").item(m).getAttributes())));
+            }
+        }
         //get the gps from the xml
         if(defaults.getElementsByTagName("GPS").item(0) != null)
         {
