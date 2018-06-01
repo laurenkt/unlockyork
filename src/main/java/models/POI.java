@@ -66,8 +66,8 @@ public class POI {
         double inputDifferenceLatitude = topLatitude - latitude;
         double inputDifferenceLongitude = leftLongitude - longitude;
 
-        double pixelsPerLatitude = ((Math.abs(topLatitude) - Math.abs(bottomLatitude)) / mapHeight);
-        double pixelsPerLongitude = ((Math.abs(leftLongitude) - Math.abs(rightLongitude)) / mapWidth);
+        double pixelsPerLatitude = (Math.abs(topLatitude) - Math.abs(bottomLatitude)) / mapHeight;
+        double pixelsPerLongitude = (Math.abs(leftLongitude) - Math.abs(rightLongitude)) / mapWidth;
 
         double pixelY = Math.round(inputDifferenceLatitude / pixelsPerLatitude);
         double pixelX = Math.round(Math.abs(inputDifferenceLongitude) / pixelsPerLongitude);
