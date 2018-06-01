@@ -12,7 +12,6 @@ public class POIView extends ImageView {
     final private Image poiIcon = new Image(getClass().getResource("/icons/map_poi.png").toExternalForm());
     final private Image activePoiIcon = new Image(getClass().getResource("/icons/map_poi_active.png").toExternalForm());
 
-    ImageView POIView;
     POI poi;
     List<POIView> subPOIViews = new ArrayList<>();
 

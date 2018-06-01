@@ -30,8 +30,8 @@ public class POI {
                 53.9419,-1.0401,
                 6000, 4155));
 
-        if (children.length > 0) {
-
+        for (int i = 0; i < children.length; i++) {
+            subPOI.add(children[i]);
         }
     }
 

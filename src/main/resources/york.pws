@@ -3,6 +3,7 @@
               italic="false" bold="false" underline="false" textsize="22" color="#000000" font="Arial">
     <POI id="minster" latitude="53.96219" longitude="-1.08206">
         <POI id="excalibur" latitude="53.963" longitude="-1.04" />
+        <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" />
     </POI>
     <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" />
     <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" />
