@@ -1,13 +1,19 @@
 package components;
 
+import javafx.geometry.VPos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Region;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextBoundsType;
 import models.POI;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class POIView extends ImageView {
+public class POIView extends Region {
 
     //main POI
     final private Image poiIcon = new Image(getClass().getResource("/icons/map_poi.png").toExternalForm());
@@ -33,21 +39,40 @@ public class POIView extends ImageView {
 
     POI poi;
     List<POIView> subPOIViews = new ArrayList<>();
+    ImageView icon = new ImageView();
+    Text name = new Text();
 
     public POIView(POI poi) {
         this.poi = poi;
 
-        this.setFitHeight(100);
-        this.setFitWidth(100);
+        name.setText(poi.getName());
+        name.setFont(new Font(30));
+        name.setStrokeWidth(10);
+        name.setTextOrigin(VPos.BOTTOM);
+        name.setBoundsType(TextBoundsType.LOGICAL_VERTICAL_CENTER);
+        name.setTextAlignment(TextAlignment.CENTER);
+       // name.getLayoutBounds().getWidth()
+        name.setX(-((name.getLayoutBounds().getWidth()-100) / 2));
+
+
+        //name.setWrappingWidth(100);
+
+        icon.setFitHeight(100);
+        icon.setFitWidth(100);
+        icon.setImage(getImageForType(poi.getType(), false));
+
+        this.setMaxHeight(100);
+        this.setMaxWidth(100);
         this.setTranslateX((this.poi.getX())-50);
         this.setTranslateY((this.poi.getY())-50);
-        this.setImage(getImageForType(poi.getType(), false));
+        this.getChildren().addAll(icon, name);
 
         for(POI subPOI : poi.getSubPOI()) {
             POIView subPoiView = new POIView(subPOI);
             subPOIViews.add(subPoiView);
             subPoiView.setVisible(false);
         }
+
     }
 
     private Image getImageForType(String type, boolean isActive) {
@@ -75,7 +100,7 @@ public class POIView extends ImageView {
     }
 
     public void setActive(boolean isActive) {
-        setImage(getImageForType(poi.getType(), isActive));
+        icon.setImage(getImageForType(poi.getType(), isActive));
 
         for(POIView subPOI : subPOIViews) {
             subPOI.setVisible(isActive);
