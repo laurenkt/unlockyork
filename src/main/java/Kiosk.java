@@ -180,8 +180,6 @@ public class Kiosk extends Application {
     public void onClickPoi(POI poi) {
         slidePane.setVisible(poi != null);
         //only show buttons when slide is shown
-        forward.setVisible(poi != null);
-        back.setVisible(poi != null);
         POISlides.clear();
 
         if (poi != null) {
@@ -193,6 +191,14 @@ public class Kiosk extends Application {
             }
             slidePane.getChildren().clear();
             slidePane.getChildren().add(POISlides.get(0));
+        }
+        if(POISlides.size() > 1) {
+            forward.setVisible(poi != null);
+            back.setVisible(poi != null);
+        }
+        else {
+            forward.setVisible(false);
+            back.setVisible(false);
         }
     }
 
