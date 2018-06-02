@@ -68,7 +68,7 @@ public class MapView extends ScrollPane {
 
     private List<Image> tiles = new ArrayList<>();
 
-    public MapView(List<POI> POIs) {
+    public MapView(List<POI> POIs, POI kioskLOcation) {
         super();
 
         tiles.add(new Image(getClass().getResource("/tiles/16.png").toExternalForm()));
@@ -80,6 +80,9 @@ public class MapView extends ScrollPane {
 
         mapView = new ImageView();
         mapView.setImage(tiles.get(level));
+
+        POIView kioskLocationView = new POIView(kioskLOcation);
+        kioskLocationView.icon.setImage(new Image(getClass().getResource("/icons/map_me.png").toExternalForm()));
 
         for(POI poi : POIs) {
             // poi == POIs.get(i)
@@ -94,6 +97,7 @@ public class MapView extends ScrollPane {
         stack.setAlignment(Pos.TOP_LEFT);
         stack.getChildren().add(mapView);
         stack.getChildren().addAll(poiViews);
+        stack.getChildren().add(kioskLocationView);
 
         for(POIView SubPOI : poiViews) {
             stack.getChildren().addAll(SubPOI.getSubPOIViews());
@@ -163,7 +167,7 @@ public class MapView extends ScrollPane {
         });
     }
 
-    private void centerPoint(double x, double y) {
+    public void centerPoint(double x, double y) {
         layout();
         double mapWidth = target.getBoundsInParent().getWidth();
         double mapHeight = target.getBoundsInParent().getHeight();

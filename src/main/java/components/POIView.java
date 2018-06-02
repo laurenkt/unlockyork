@@ -32,7 +32,7 @@ public class POIView extends Region {
     final private Image hotelIcon = new Image(getClass().getResource("/icons/map_hotel.png").toExternalForm());
     final private Image restaurantIcon = new Image(getClass().getResource("/icons/map_dining.png").toExternalForm());
 
-    private ImageView icon = new ImageView();
+    public ImageView icon = new ImageView();
     private Text name = new Text();
     private POI poi;
     private List<POIView> subPOIViews = new ArrayList<>();
