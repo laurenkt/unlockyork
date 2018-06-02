@@ -1,10 +1,13 @@
 package components;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.VPos;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.scene.Node;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
@@ -41,6 +44,8 @@ public class POIView extends Region {
     private DropShadow dropShadow = new DropShadow(BlurType.GAUSSIAN, Color.BLACK, 5, 0.9, 0, 0);
     private Timeline timeline = new Timeline();
 
+    public DoubleProperty opacityProperty = new SimpleDoubleProperty(1);
+
     public POIView(POI poi) {
         this.poi = poi;
 
@@ -52,15 +57,17 @@ public class POIView extends Region {
         name.setTranslateX(-((name.getLayoutBounds().getWidth()-100) / 2));
         icon.setImage(getImageForType(poi.getType()));
 
-        this.setMaxHeight(100);
-        this.setMaxWidth(100);
-        this.setTranslateX((this.poi.getX())-50);
-        this.setTranslateY((this.poi.getY())-50);
-        this.getChildren().addAll(icon, name);
+        setMaxHeight(100);
+        setMaxWidth(100);
+        setTranslateX((this.poi.getX())-50);
+        setTranslateY((this.poi.getY())-50);
+        getChildren().addAll(icon, name);
         setPickOnBounds(true);
 
         icon.setEffect(colorAdjust);
         setActive(false);
+
+        opacityProperty.addListener((obs, old, val) -> setStyle("-fx-opacity: "+val.toString()));
 
         for(POI subPOI : poi.getSubPOI()) {
             POIView subPoiView = new POIView(subPOI);
@@ -132,9 +139,26 @@ public class POIView extends Region {
             timeline.play();
         }
 
+        Timeline sPoiAppearTimeline = new Timeline();
+        double delay = 0;
         for(POIView subPOI : subPOIViews) {
             subPOI.setVisible(isActive);
+
+            if (isActive) {
+                sPoiAppearTimeline.getKeyFrames().addAll(
+                        new KeyFrame(Duration.millis(0), new KeyValue(subPOI.opacityProperty, 0)),
+                        new KeyFrame(Duration.millis(delay), new KeyValue(subPOI.getIcon().translateYProperty(), -100)),
+                        new KeyFrame(Duration.millis(delay), new KeyValue(subPOI.opacityProperty, 0)),
+                        new KeyFrame(Duration.millis(delay += 100), new KeyValue(subPOI.opacityProperty, 1, Interpolator.EASE_BOTH)),
+                        new KeyFrame(Duration.millis(delay), new KeyValue(subPOI.getIcon().translateYProperty(), 0, Interpolator.EASE_BOTH))
+                );
+            }
         }
+        sPoiAppearTimeline.play();
+    }
+
+    private ImageView getIcon() {
+        return icon;
     }
 
     public List<components.POIView> getSubPOIViews() {

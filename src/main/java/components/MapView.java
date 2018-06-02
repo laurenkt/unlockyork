@@ -165,7 +165,6 @@ public class MapView extends ScrollPane {
         setHvalue(0.5);
         setVvalue(0.5);
 
-        final Timeline animateScaleScroll = new Timeline();
         target.scaleYProperty().addListener((obs, old, val) -> {
             layout();
 
@@ -219,7 +218,6 @@ public class MapView extends ScrollPane {
     }
 
     private POIView activePoiView = null;
-    private double previousTranslateY = 0;
     public void setPointActive(POI poi) {
         if (activePoiView != null) {
             activePoiView.setActive(false);
@@ -232,35 +230,6 @@ public class MapView extends ScrollPane {
                 break;
             }
         }
-        /*
-        activePointTimeline.stop();
-        activePointTimeline.getKeyFrames().clear();
-        if (poi != null && !activePoiView) {
-            previousTranslateY = poiViews.get(0).getTranslateY();
-            poiViews.get(0).setActive(true);
-            activePointTimeline.setAutoReverse(true);
-            activePointTimeline.setCycleCount(Timeline.INDEFINITE);
-            activePointTimeline.getKeyFrames().addAll(
-                    new KeyFrame(Duration.millis(0), new KeyValue(poiViews.get(0).translateYProperty(), previousTranslateY, Interpolator.EASE_BOTH)),
-                    new KeyFrame(Duration.millis(500), new KeyValue(poiViews.get(0).translateYProperty(), previousTranslateY - 40, Interpolator.EASE_BOTH))
-            );
-
-            System.out.println(poiViews.get(0).getX());
-            System.out.println(poiViews.get(0).getBoundsInLocal().getMinX());
-            System.out.println(poiViews.get(0).getBoundsInParent().getMinX());
-            System.out.println(0.5 * (poiViews.get(0).getBoundsInParent().getMinX() / target.getWidth()));
-
-        }
-        else if (this.isActive) {
-            poiViews.get(0).setActive(false);
-            activePointTimeline.setAutoReverse(false);
-            activePointTimeline.setCycleCount(1);
-            activePointTimeline.getKeyFrames().add(
-                    new KeyFrame(Duration.millis(100), new KeyValue(poiViews.get(0).translateYProperty(), previousTranslateY, Interpolator.EASE_BOTH))
-            );
-        }
-        this.isActive = isActive;
-        activePointTimeline.play();*/
     }
 
     public DoubleProperty scaleProperty() {
