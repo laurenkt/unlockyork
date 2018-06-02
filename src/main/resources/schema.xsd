@@ -22,6 +22,7 @@
          <attribute name="latitude" type="string" use="required" />
          <attribute name="longitude" type="string" use="required" />
          <attribute name="type" type="string" />
+         <attribute name="name" type="string" />
       </complexType>
    </element>
    <attributeGroup name="position">

@@ -16,7 +16,7 @@ public class POI {
     private String type;
     private String name = "Unnamed";
 
-    public POI(String id, double latitude, double longitude, String type, POI ... children) {
+    public POI(String id, double latitude, double longitude, String type, String name, POI ... children) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -27,6 +27,7 @@ public class POI {
                 6000, 4155));
 
         this.type = type;
+        this.name = name;
 
         for (int i = 0; i < children.length; i++) {
             subPOI.add(children[i]);
@@ -47,6 +48,10 @@ public class POI {
         this.x = point.getX();
         this.y = point.getY();
     }
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
 
     public String getType() {
         return type;
