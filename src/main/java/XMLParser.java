@@ -99,6 +99,8 @@ public class XMLParser {
             Node xmlAttribPoi = xmlSlide.getAttributes().getNamedItem("poi");
             if (xmlAttribPoi != null) {
                 slide.setPOI(presentation.getPoiWithId(xmlAttribPoi.getNodeValue()));
+                // Extract string after #
+                slide.setPoiId(xmlAttribPoi.getNodeValue().substring(1));
             }
 
             // sets the default values found in the presentation

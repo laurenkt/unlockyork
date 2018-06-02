@@ -188,7 +188,8 @@ public class Kiosk extends Application {
 
         if (poi != null) {
             for (int i = 0; i < slides.length; i++) {
-                if (poi.equals(slides[i].getSlide().getPOI())) {
+                System.out.println(slides[i].getSlide().getPoiId());
+                if (poi.getId().equals(slides[i].getSlide().getPoiId())) {
                     slidePane.getChildren().clear();
                     slidePane.getChildren().add(slides[i]);
                     break;
