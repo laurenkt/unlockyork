@@ -171,7 +171,7 @@ public class MapView extends ScrollPane {
         double viewportHeight = getViewportBounds().getHeight();
         double xPercent = x / target.getWidth();
         double yPercent = y / target.getHeight();
-        double xTargetPos = xPercent * mapWidth - viewportWidth/2;
+        double xTargetPos = xPercent * mapWidth - viewportWidth/2 + viewportWidth/4;
         double yTargetPos = yPercent * mapHeight - viewportHeight/2;
         double hMax = mapWidth - getViewportBounds().getWidth();
         double vMax = mapHeight - getViewportBounds().getHeight();

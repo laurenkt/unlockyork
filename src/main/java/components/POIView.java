@@ -4,9 +4,12 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.scene.effect.BlurType;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import models.POI;
 
@@ -26,12 +29,15 @@ public class POIView extends ImageView {
     private POI poi;
     private List<POIView> subPOIViews = new ArrayList<>();
     private ColorAdjust colorAdjust = new ColorAdjust();
+    private DropShadow dropShadow = new DropShadow(BlurType.GAUSSIAN, Color.BLACK, 5, 0.9, 0, 0);
     private Timeline timeline = new Timeline();
 
     public POIView(POI poi) {
         this.poi = poi;
 
-        setImage(getImageForType(poi.getType(), false));
+        setPickOnBounds(true);
+
+        setImage(getImageForType(poi.getType()));
         setTranslateX(this.poi.getX() - getImage().getWidth()/2);
         setTranslateY(this.poi.getY() - getImage().getHeight()/2);
         setEffect(colorAdjust);
@@ -77,7 +83,7 @@ public class POIView extends ImageView {
         });
     }
 
-    private Image getImageForType(String type, boolean isActive) {
+    private Image getImageForType(String type) {
         type = type.toLowerCase(); // Normalize
 
         if ("spoi".equals(type))       return subPoiIcon;
@@ -91,15 +97,17 @@ public class POIView extends ImageView {
     }
 
     public void setActive(boolean isActive) {
-        setImage(getImageForType(poi.getType(), isActive));
+        setImage(getImageForType(poi.getType()));
 
         if (isActive) {
-            colorAdjust.setBrightness(-0.35);
-            colorAdjust.setHue(-0.2);
-            colorAdjust.setSaturation(0.8);
+            colorAdjust.setInput(dropShadow);
+            colorAdjust.setBrightness(-0.15);
+            colorAdjust.setHue(-0.15);
+            colorAdjust.setSaturation(0.95);
             timeline.stop();
         }
         else {
+            colorAdjust.setInput(null);
             colorAdjust.setBrightness(-1);
             timeline.play();
         }
