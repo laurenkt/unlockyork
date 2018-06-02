@@ -11,10 +11,10 @@ public class POIView extends ImageView {
 
     //main POI
     final private Image poiIcon = new Image(getClass().getResource("/icons/map_poi.png").toExternalForm());
-    final private Image activePoiIcon = new Image(getClass().getResource("/icons/map_poi_active.png").toExternalForm());
+    final private Image activePoiIcon = new Image(getClass().getResource("/icons/map_poi.png").toExternalForm());
     //sub POI
     final private Image subPoiIcon = new Image(getClass().getResource("/icons/map_spoi.png").toExternalForm());
-    final private Image activeSubPoiIcon = new Image(getClass().getResource("/icons/map_spoi.png").toExternalForm());
+    final private Image activeSubPoiIcon = new Image(getClass().getResource("/icons/map_spoi_active.png").toExternalForm());
     //shop
     final private Image shopIcon = new Image(getClass().getResource("/icons/map_shop.png").toExternalForm());
     final private Image activeShopIcon = new Image(getClass().getResource("/icons/map_shop.png").toExternalForm());
@@ -30,10 +30,6 @@ public class POIView extends ImageView {
     //restaurant
     final private Image restaurantIcon = new Image(getClass().getResource("/icons/map_dining.png").toExternalForm());
     final private Image activeRestaurantIcon = new Image(getClass().getResource("/icons/map_dining.png").toExternalForm());
-    //error
-    final private Image errorIcon = new Image(getClass().getResource("/icons/map_poi_active.png").toExternalForm());
-
-
 
     POI poi;
     List<POIView> subPOIViews = new ArrayList<>();
@@ -60,6 +56,7 @@ public class POIView extends ImageView {
 
         type = type.toLowerCase(); // Normalize
         if (!isActive) {
+            if ("spoi".equals(type))       return subPoiIcon;
             if ("shop".equals(type))       return shopIcon;
             if ("cafe".equals(type))       return cafeIcon;
             if ("pub".equals(type))        return pubIcon;
@@ -70,6 +67,7 @@ public class POIView extends ImageView {
         }
 
         // Active
+        if ("spoi".equals(type))       return activeSubPoiIcon;
         if ("shop".equals(type))       return activeShopIcon;
         if ("cafe".equals(type))       return activeCafeIcon;
         if ("pub".equals(type))        return activePubIcon;
