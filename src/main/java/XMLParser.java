@@ -504,10 +504,19 @@ public class XMLParser {
             }
         }
 
+        String type;
+        if (nodeMap.getNamedItem("type") == null) {
+            type = "POI";
+        }
+        else {
+            type = nodeMap.getNamedItem("type").getNodeValue();
+        }
+
         return new POI(
                 nodeMap.getNamedItem("id").getNodeValue(),
                 Double.parseDouble(nodeMap.getNamedItem("latitude").getNodeValue()),
                 Double.parseDouble(nodeMap.getNamedItem("longitude").getNodeValue()),
+                type,
                 children.toArray(new POI[0])
         );
     }

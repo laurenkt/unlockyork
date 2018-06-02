@@ -133,4 +133,8 @@ public class Slide {
     public List<SlideElement> getElements() {
         return elements;
     }
+
+    public POI getPOI() {
+        return this.poi;
+    }
 }
