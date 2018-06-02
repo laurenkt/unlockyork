@@ -3,7 +3,7 @@ package models;
 public class Meta implements SlideElement {
 
     String key; //what the value means ie.author
-    String value; //value of key ie. authors name
+    String value; //value of key ie. authors id
 
 
     Meta(String key, String value) {

@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Presentation xmlns="pws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="pws schema.xsd"
               italic="false" bold="false" underline="false" textsize="22" color="#000000" font="Arial">
-    <POI id="bettystearoom" latitude="53.96009" longitude="-1.08418" type="Cafe" />
-    <POI id="gatehousecoffee" latitude="53.95515" longitude="-1.07074" type="Cafe" />
-    <POI id="sparkyork" latitude="53.95693" longitude="-1.07775" type="Shop" />
-    <POI id="yorkarmoury" latitude="53.96102" longitude="-1.08303" type="Shop" />
-    <POI id="minster" latitude="53.96219" longitude="-1.08206">
-        <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" />
+    <POI id="bettystearoom" latitude="53.96009" longitude="-1.08418" type="Cafe" name="Betty's Tea Room" />
+    <POI id="gatehousecoffee" latitude="53.95515" longitude="-1.07074" type="Cafe" name="Gatehouse Coffee" />
+    <POI id="sparkyork" latitude="53.95693" longitude="-1.07775" type="Shop" name="Spark York" />
+    <POI id="yorkarmoury" latitude="53.96102" longitude="-1.08303" type="Shop" name="York Armoury" />
+    <POI id="minster" latitude="53.96219" longitude="-1.08206" name="Minster">
+        <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" name="Minster Yard" />
+        <POI id="undercroftmuseum" latitude="53.961965" longitude="-1.082039" name="Undercroft Museum" />
+        <POI id="chapterhouse" latitude="53.962643" longitude="-1.081545" name="Chapter House" />
+        <POI id="centraltower" latitude="53.962218" longitude="-1.082081" name="Central Tower" />
+        <POI id="deanspark" latitude="53.96302" longitude="-1.08248" name="Dean's Park" />
     </POI>
-    <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" />
-    <POI id="artgallery" latitude="53.9630" longitude="-1.0863" />
-    <POI id="jorvik" latitude="53.9574" longitude="-1.0803" />
-    <POI id="merchantadventure" latitude="53.9578" longitude="-1.0788" />
-    <POI id="museumgardens" latitude="53.9615" longitude="-1.0883" />
-    <POI id="nrm" latitude="53.9605" longitude="-1.0964" />
-    <POI id="yorkshiremuseum" latitude="53.9619" longitude="-1.0874" />
-    <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" />
-    <POI id="citywalls" latitude="53.96273" longitude="-1.08508" />
-    <POI id="citywalls" latitude="53.96277" longitude="-1.07854" />
-    <POI id="citywalls" latitude="53.95585" longitude="-1.009091" />
-    <POI id="citywalls" latitude="53.95396" longitude="-1.07524" />
-    <POI id="citywalls" latitude="53.95418" longitude="-1.08677" />
+    <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" name="Clifford's Tower" />
+    <POI id="artgallery" latitude="53.9630" longitude="-1.0863" name="Art Gallery" />
+    <POI id="jorvik" latitude="53.9574" longitude="-1.0803" name="Jorvik" />
+    <POI id="merchantadventure" latitude="53.9578" longitude="-1.0788" name="Merchant Adventure" />
+    <POI id="museumgardens" latitude="53.9615" longitude="-1.0883" name="Museum Gardens" />
+    <POI id="nrm" latitude="53.9605" longitude="-1.0964" name="NRM" />
+    <POI id="yorkshiremuseum" latitude="53.9619" longitude="-1.0874" name="Yorkshire Museum" />
+    <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" name="Postern Gate" />
+    <POI id="citywalls" latitude="53.96273" longitude="-1.08508" name="City Walls" />
+    <POI id="citywalls" latitude="53.96277" longitude="-1.07854" name="City Walls" />
+    <POI id="citywalls" latitude="53.95585" longitude="-1.09091" name="City Walls" />
+    <POI id="citywalls" latitude="53.95396" longitude="-1.07524" name="City Walls" />
+    <POI id="citywalls" latitude="53.95418" longitude="-1.08677" name="City Walls" />
 
     <Slide duration="12" poi="#minster">
     <Text x="0" y="0" textsize="64" bold="true">
@@ -41,6 +45,54 @@
     </Text>
     <Video path="./content/minster.mp4" x="0" y="700" x2="640" y2="1180" />
 </Slide>
+
+    <Slide poi="#minsteryard">
+        <Text x="0" y="0" textsize="64" bold="true">
+            Minster Yard
+        </Text>
+        <Text x="0" y="150" x2="1000" y2="600">
+            For this region of the city, known as the Liberty of St. Peter, was enclosed by a high
+            fortified wall in 1285 and given special rights and privileges which survived long after
+            such battlements collapsed. Here the Dean &amp; Chapter could hold their own courts and appoint
+            officials to keep the peace, while the residents were exempt from many tolls.
+        </Text>
+    </Slide>
+
+    <Slide poi="#undercroftmuseum">
+        <Text x="0" y="0" textsize="64" bold="true">
+            Undercroft Museum
+        </Text>
+        <Text x="0" y="150" x2="1000" y2="600">
+            Explore 2,000 years of history housed in state-of-the-art interactive chambers beneath the Minster.
+            Visitors to the Undercroft, which is the only accredited museum in a cathedral in the country, can see
+            the remains of Roman barracks, discover the Minster’s Viking connections and see artefacts never before
+            on public display.
+        </Text>
+    </Slide>
+
+    <Slide poi="#chapterhouse">
+        <Text x="0" y="0" textsize="64" bold="true">
+            Chapter House
+        </Text>
+        <Text x="0" y="150" x2="1000" y2="600">
+            One of York Minster’s architectural gems, the Chapter House contains some of the Minster’s finest carvings
+            and in 1297 was used as the location for the Parliament of King Edward I. The octagonal space dates from the
+            1280s and its magnificent, vaulted ceiling is supported by timbers in the roof, instead of a central column,
+            which is the earliest example of its kind to use this revolutionary engineering technique.
+        </Text>
+    </Slide>
+
+    <Slide poi="#deanspark">
+        <Text x="0" y="0" textsize="64" bold="true">
+            Dean's Park
+        </Text>
+        <Text x="0" y="150" x2="1000" y2="600">
+            Originally built by William the Conqueror to subdue the rebels of the north, it was twice burned to the ground,
+            before being rebuilt by Henry III in the 13th century. The tower takes its name from one grisly incident in its
+            long history, when Roger de Clifford was executed for treason against Edward II and hanged in chains from the
+            tower walls.
+        </Text>
+    </Slide>
 
     <Slide poi="#cliffordstower">
         <Text x="0" y="0" textsize="64" bold="true">

@@ -118,11 +118,9 @@ public class MapView extends ScrollPane {
         target.scaleXProperty().addListener((obs, old, val) -> {
             for(POIView poi : poiViews) {
                 poi.setScaleX(0.3 / val.doubleValue());
-                poi.setScaleY(0.3 / val.doubleValue());
 
                 for(POIView subPoi : poi.getSubPOIViews()) {
                     subPoi.setScaleX(0.3 / val.doubleValue());
-                    subPoi.setScaleY(0.3 / val.doubleValue());
                 }
             }
             this.setLevel((int)(4*val.doubleValue() - 1));
@@ -173,7 +171,7 @@ public class MapView extends ScrollPane {
         double viewportHeight = getViewportBounds().getHeight();
         double xPercent = x / target.getWidth();
         double yPercent = y / target.getHeight();
-        double xTargetPos = xPercent * mapWidth - viewportWidth/2;
+        double xTargetPos = xPercent * mapWidth - viewportWidth/2 + viewportWidth/4;
         double yTargetPos = yPercent * mapHeight - viewportHeight/2;
         double hMax = mapWidth - getViewportBounds().getWidth();
         double vMax = mapHeight - getViewportBounds().getHeight();

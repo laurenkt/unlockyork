@@ -506,7 +506,12 @@ public class XMLParser {
 
         String type;
         if (nodeMap.getNamedItem("type") == null) {
-            type = "POI";
+            if (node.getParentNode().getNodeName().equals("POI")) {
+                type = "SPOI";
+            }
+            else {
+                type = "POI";
+            }
         }
         else {
             type = nodeMap.getNamedItem("type").getNodeValue();
@@ -517,6 +522,7 @@ public class XMLParser {
                 Double.parseDouble(nodeMap.getNamedItem("latitude").getNodeValue()),
                 Double.parseDouble(nodeMap.getNamedItem("longitude").getNodeValue()),
                 type,
+                nodeMap.getNamedItem("name").getNodeValue(),
                 children.toArray(new POI[0])
         );
     }
