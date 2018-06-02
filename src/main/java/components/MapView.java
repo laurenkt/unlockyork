@@ -121,6 +121,10 @@ public class MapView extends ScrollPane {
         setFitToHeight(true); //center
         setFitToWidth(true); //center
 
+        hvalueProperty().addListener((obs, old, val) -> {
+            System.out.printf("hVal %f\r\n", val.doubleValue());
+        });
+
         // Ensure target scales on both directions together
         target.scaleYProperty().bind(target.scaleXProperty());
         target.scaleXProperty().addListener((obs, old, val) -> {
@@ -161,8 +165,9 @@ public class MapView extends ScrollPane {
         setHvalue(0.5);
         setVvalue(0.5);
 
-        target.scaleXProperty().addListener((obs, old, val) -> {
+        target.scaleYProperty().addListener((obs, old, val) -> {
             layout();
+
             double mapWidth = target.getBoundsInParent().getWidth();
             double viewportWidth = getViewportBounds().getWidth();
             double xPercent = xCenter.getValue() / target.getWidth();
@@ -173,7 +178,7 @@ public class MapView extends ScrollPane {
             double mapHeight = target.getBoundsInParent().getHeight();
             double viewportHeight = getViewportBounds().getHeight();
             double yPercent = yCenter.getValue() / target.getHeight();
-            double yTargetPos = yPercent * mapHeight - viewportHeight/2 + viewportHeight/4;
+            double yTargetPos = yPercent * mapHeight - viewportHeight/2;
             double vMax = mapHeight - getViewportBounds().getHeight();
             double yVal = yTargetPos / vMax;
 
