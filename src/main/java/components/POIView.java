@@ -55,7 +55,7 @@ public class POIView extends ImageView {
     }
 
     private Image getImageForType(String type, boolean isActive) {
-        System.out.println(poi.getName());
+        System.out.println(poi.getId());
         System.out.println(type);
 
         type = type.toLowerCase(); // Normalize

@@ -1,7 +1,5 @@
 package models;
 
-import org.w3c.dom.Node;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,7 +80,7 @@ public class Presentation {
     public POI getPoiWithId(String id) {
         String realId = id.substring(1);
         for (POI poi : POIs) {
-            if (poi.getName().equals(realId))
+            if (poi.getId().equals(realId))
                 return poi;
         }
         return null;

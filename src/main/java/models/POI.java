@@ -7,22 +7,17 @@ import java.util.List;
 
 public class POI {
 
-    double x;
-    double y;
-    String name;
-    List<POI> subPOI = new ArrayList<>();
-    double latitude;
-    double longitude;
-    String type;
+    private double x;
+    private double y;
+    private String id;
+    private List<POI> subPOI = new ArrayList<>();
+    private double latitude;
+    private double longitude;
+    private String type;
+    private String name = "Unnamed";
 
-    public POI() {
-        x = 0;
-        y = 0;
-        name = "Not Set";
-    }
-
-    public POI(String name, double latitude, double longitude, String type, POI ... children) {
-        this.name = name;
+    public POI(String id, double latitude, double longitude, String type, POI ... children) {
+        this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
         //-1.101,53.9419,-1.0401,53.9667
@@ -42,10 +37,10 @@ public class POI {
         return subPOI;
     }
 
-    public POI(double x, double y, String name) {
+    public POI(double x, double y, String id) {
         this.x = x;
         this.y = y;
-        this.name = name;
+        this.id = id;
     }
 
     public void setPoint(Point2D point) {
@@ -77,12 +72,12 @@ public class POI {
         this.y = y;
     }
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Point2D gpsToPoint(double latitude, double longitude, double topLatitude, double leftLongitude, double bottomLatitude, double rightLongitude, double mapWidth, double mapHeight) {
