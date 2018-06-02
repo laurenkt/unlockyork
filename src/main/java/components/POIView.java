@@ -11,6 +11,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -44,15 +45,11 @@ public class POIView extends Region {
         this.poi = poi;
 
         name.setText(poi.getName());
-        name.setFont(new Font(30));
-        name.setStrokeWidth(10);
+        name.setFont(new Font(40));
+        name.getStyleClass().add("unlock--poi-label");
         name.setTextOrigin(VPos.BOTTOM);
-        name.setBoundsType(TextBoundsType.LOGICAL_VERTICAL_CENTER);
         name.setTextAlignment(TextAlignment.CENTER);
-        name.setX(-((name.getLayoutBounds().getWidth()-100) / 2));
-
-        //name.setWrappingWidth(100);
-
+        name.setTranslateX(-((name.getLayoutBounds().getWidth()-100) / 2));
         icon.setImage(getImageForType(poi.getType()));
 
         this.setMaxHeight(100);

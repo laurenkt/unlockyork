@@ -165,6 +165,7 @@ public class MapView extends ScrollPane {
         setHvalue(0.5);
         setVvalue(0.5);
 
+        final Timeline animateScaleScroll = new Timeline();
         target.scaleYProperty().addListener((obs, old, val) -> {
             layout();
 
@@ -184,6 +185,7 @@ public class MapView extends ScrollPane {
 
             setHvalue(xVal);
             setVvalue(yVal);
+            layout();
         });
     }
 

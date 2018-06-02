@@ -19,3 +19,9 @@
 .unlock--button:hover {
     -fx-opacity: 0.5;
 }
+
+.unlock--poi-label {
+    -fx-font-size: 40;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, white, 5, 1, 0, 0);
+}
