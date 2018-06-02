@@ -132,8 +132,10 @@ public class POIView extends Region {
             colorAdjust.setHue(-0.15);
             colorAdjust.setSaturation(0.95);
             timeline.stop();
+            name.setVisible(false);
         }
         else {
+            name.setVisible(true);
             colorAdjust.setInput(null);
             colorAdjust.setBrightness(-1);
             timeline.play();

@@ -183,6 +183,7 @@ public class MapView extends ScrollPane {
             double yVal = yTargetPos / vMax;
 
             layout();
+            System.out.printf("Set xVal %f\r\n", xVal);
             setHvalue(xVal);
             setVvalue(yVal);
             layout();
