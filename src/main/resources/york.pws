@@ -16,7 +16,7 @@
     <POI id="jorvik" latitude="53.9574" longitude="-1.0803" name="Jorvik" />
     <POI id="merchantadventure" latitude="53.9578" longitude="-1.0788" name="Merchant Adventure" />
     <POI id="museumgardens" latitude="53.9615" longitude="-1.0883" name="Museum Gardens" />
-    <POI id="nrm" latitude="53.9605" longitude="-1.0964" name="NRM" />
+    <POI id="nrm" latitude="53.9605" longitude="-1.0964" name="National Rail Museum" />
     <POI id="yorkshiremuseum" latitude="53.9619" longitude="-1.0874" name="Yorkshire Museum" />
     <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" name="Postern Gate" />
     <POI id="citywalls" latitude="53.96273" longitude="-1.08508" name="City Walls" />
@@ -42,22 +42,8 @@
             this sacred place and the love of God at its heart, which has attracted people from
             across the globe for more than 1000 years.
         </Text>
-        <!--<Video path="./minster.mp4" x="0" y="700" x2="640" y2="1180" />-->
+        <Video path="./content/minster.mp4" x="0" y="700" x2="640" y2="1180" />
     </Slide>
-    <Slide duration="12" poi="#minster">
-        <Text x="0" y="0" textsize="64" bold="true">
-            The Minster
-        </Text>
-        <Text x="0" y="500" textsize="26">
-            <Format bold="true">Opening Times</Format><Br />
-            9:00am — 4:30pm
-        </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
-            TEST TEST TEST TEST
-        </Text>
-        <!--<Video path="./minster.mp4" x="0" y="700" x2="640" y2="1180" />-->
-    </Slide>
-
     <Slide poi="#minsteryard">
         <Text x="0" y="0" textsize="64" bold="true">
             Minster Yard
@@ -104,55 +90,193 @@
             long history, when Roger de Clifford was executed for treason against Edward II and hanged in chains from the
             tower walls.
         </Text>
+        <Image path="./content/deanpark.jpg" x="0" y="700" x2="640" y2="1180" />
     </Slide>
 
     <Slide poi="#cliffordstower">
         <Text x="0" y="0" textsize="64" bold="true">
             Cliffords Tower
         </Text>
+
+        <Text x="0" y="150" x2="1000" y2="600">
+            Originally built by William the Conqueror to subdue the rebels of the north, it was
+            twice burned to the ground, before being rebuilt by Henry III in the 13th century.
+            The tower takes its name from one grisly incident in its long history, when Roger
+            de Clifford was executed for treason against Edward II and hanged in chains from
+            the tower walls.
+        </Text>
+        <Image path="./content/cliffords.jpg" x="0" y="700" x2="640" y2="1180" />
     </Slide>
 
     <Slide poi="#citywalls">
         <Text x="0" y="0" textsize="64" bold="true">
             City Walls
         </Text>
+
+
+        <Text x="0" y="150" x2="1000" y2="600">
+            The city or ‘bar’ walls of York are the most complete example of medieval city walls still standing in England today.  Beneath the medieval stonework lie the remains of earlier walls dating as far back as the Roman period.
+
+            The Roman walls survived into the 9th century when, in AD 866, York was invaded by the Danish Vikings.  The Vikings buried the existing Roman wall under an earth bank and topped with a palisade – a tall fence of pointed wooden stakes.
+
+            The wooden palisade was replaced in the 13th and 14th centuries with the stone wall we see today.
+
+            The medieval city walls originally included 4 main gates or ‘bars’ (Bootham Bar, Monk Bar, Walmgate Bar and Micklegate Bar), 6 postern or secondary gates and 44 intermediate towers.  The defensive perimeter stretched over 2 miles encompassing the medieval city and castle.
+
+            By the late 18th century, however, the walls were no longer required as defences for the city and had fallen into disrepair.  In 1800, the Corporation of York applied for an Act of Parliament to demolish them.  In addition to the poor condition of the walls at the time, the narrow gateways of the bars were inconvenient and the walls themselves hindered the city’s expansion.
+
+            Many other cities, including London, were removing their outdated, medieval city walls at this time.  In York, however, the city officials met with fierce and influential opposition and by the mid-nineteenth century the Corporation had been forced to back down.
+
+            Unfortunately, the call for preservation came too late for some parts of the walls – the barbicans at all but one of the gateways (Walmgate Bar) had been torn down along with 3 postern gates, 5 towers and 300 yards of the wall itself.
+
+            Since the mid-nineteenth century the walls have been restored and maintained for public access, including the planting of spring flowers on the old Viking embankment. Today the walls are a Scheduled Ancient Monument and a Grade 1 listed building.
+
+        </Text>
+
+        <Image path="./content/walls.jpg" x="550" y="150" x2="1200" y2="680" />
+        <Image path="./content/newwalls.jpg" x="550" y="750" x2="1200" y2="1180" />
+        <Video path="./content/walls.mp4" x="300" y="1200" x2="940" y2="1680" />
+
     </Slide>
 
     <Slide poi="#artgallery">
         <Text x="0" y="0" textsize="64" bold="true">
             York Art Gallery
         </Text>
+
+        <Text x="0" y="150" x2="1000" y2="600">
+            York Art Gallery underwent a major redevelopment prior to it’s grand reopening on
+            August 1 2015. We have increased the gallery’s display space by 60% by creating a
+            new first-floor gallery in the space above the Main Gallery on the ground floor.
+            We have created an entirely new gallery above the existing South Gallery and expanded
+            into the rooms next door to the gallery, formerly occupied by the City Archives.
+            York Art Gallery’s collection of paintings spans more than 600 years and works range
+            from 14th century Italian panels and 17th century Dutch masterpieces to Victorian
+            narrative paintings and 20th century works by LS Lowry and David Hockney.
+        </Text>
+        <Image path="./content/artgallery.jpg" x="0" y="700" x2="640" y2="1180" />
     </Slide>
 
     <Slide poi="#jorvik">
         <Text x="0" y="0" textsize="64" bold="true">
             Jorvik Viking Centre
         </Text>
+
+        <Text x="0" y="150" x2="1000" y2="600">
+            Our knowledge of Viking life was transformed in the late 1970's by the discoveries
+            made on the site of a new shopping centre in Coppergate.
+
+            Digging in the layers of moist, spongy earth, experts from the York Archaeological
+            Trust found it had preserved Viking homes, clothes, games and goods.
+            The remains of timber buildings were laid out along the street of Coppergate, each
+            separated from its neighbour by fences.
+
+            Archaeologists unearthed remarkable evidence of Viking cottage industry, including
+            metalworking, jewellery making and the craft that gave Coppergate its name – the
+            manufacture of wooden cups and bowls. Coppergate means ‘street of the cup-makers’.
+            Atop of this site today lies the Jorvik Viking Centre. This is a museum and visitor
+            attraction in York containing lifelike mannequins and life-size dioramas depicting
+            Viking life in the city.
+        </Text>
+        <Image path="./content/jorvik.jpg" x="0" y="700" x2="640" y2="1180" />
+
     </Slide>
 
     <Slide poi="#merchantadventure">
         <Text x="0" y="0" textsize="64" bold="true">
             Merchant Adventurers Hall
         </Text>
+
+        <Text x="0" y="150" x2="1000" y2="600">
+            Merchant Adventurers’ Hall, a unique building in the heart of historic York.
+            This stunning timber framed building was constructed by a fraternity made up of
+            York citizens to provide a base for charity, worship and business in the centre
+            of the city of the city on the banks of the River Foss. Today, as well as being
+            a fascinating museum it is also a scheduled ancient monument and Grade 1 listed
+            building.
+
+            There have been many additions and changes to the Hall over the years, but the
+            main functions of business and charity remain the same today. There are three main
+            rooms in the Hall. The Great Hall is where the Medieval merchants first gathered
+            to conduct their business and to socialise. The Undercroft used as an almshouse
+            to help the sick and the poor until as late as 1900. The Chapel offering spiritual
+            care to the merchants and the inmates of the almshouse.
+
+            The Merchant Adventurers’ Hall is home to many remarkable collections. Including
+            silver, furniture and paintings, which provide a glimpse into the rich history of
+            the Hall and the people associated with it. A portrait of a Queen sits next to one
+            of a Lord Mayor whilst a Medieval ‘Evidence Chest’ is older than the Hall itself.
+            The Hall also remains the everyday base for the 160 members of the Company of Merchant
+            Adventurers of the City of York. A Merchant Adventurer was someone who risked or
+            ‘adventured’ his or her own money in overseas trade bringing back goods and wealth to
+            York. They invite you to discover the secrets of this unique guild hall and its 660
+            years of history.
+        </Text>
+
+        <Image path="./content/merchanthall.jpg" x="0" y="700" x2="640" y2="1180" />
+
     </Slide>
 
     <Slide poi="#museumgardens">
         <Text x="0" y="0" textsize="64" bold="true">
             York Museum Gardens
         </Text>
+        <Text x="0" y="150" x2="1000" y2="600">
+            Set in the stunning surroundings of the Medieval ruins of St. Mary’s Abbey, the York
+            Museum Gardens are a great space to meet friends and family and enjoy some peace and
+            tranquility in the heart of the city centre.
+
+            There is so much to see and do including a chance to see inside Yorkshire’s oldest
+            working observatory, wander round the gardens and see the vast botanical collection,
+            spot some of the 40 species of bird within the gardens and visit the award winning
+            Yorkshire Museum, which showcases some of Britain’s finest archaeological treasures
+            and many rare animals, birds and fossils, in exciting new displays
+        </Text>
+
+        <Image path="./content/gardens.jpg" x="0" y="700" x2="640" y2="1180" />
+
     </Slide>
 
     <Slide poi="#nrm">
         <Text x="0" y="0" textsize="64" bold="true">
             National Rail Museum
         </Text>
+
+        <Text x="0" y="150" x2="1000" y2="600">
+            The National Railway Museum (NRM) is a museum in York forming part of the British Science
+            Museum Group of National Museums and telling the story of rail transport in Britain and its
+            impact on society. It has won many awards, including the European Museum of the Year Award
+            in 2001. It is the home of the national collection of historically significant railway vehicles,
+            as well as a collection of other artefacts and both written and pictorial records.
+
+            The National Railway Museum in York displays a collection of over 100 locomotives and nearly
+            300 other items of rolling stock, virtually all of which either ran on the railways of Great
+            Britain or were built there. Also on the 20 acres (8.1 ha) site are many hundreds of thousands
+            of other items and records of social, technical, artistic and historical interest, exhibited
+            mostly in three large halls of a former motive power depot next to the East Coast Main Line,
+            near York railway station.
+        </Text>
+        <Image path="./content/nrm.jpg" x="0" y="700" x2="640" y2="1180" />
     </Slide>
 
     <Slide poi="#yorkshiremuseum">
         <Text x="0" y="0" textsize="64" bold="true">
             Yorkshire Museum
         </Text>
+
+        <Text x="0" y="150" x2="1000" y2="600">
+            The Yorkshire Museum sits in the heart of York Museum Gardens, in the centre of York.
+            The museum was opened in 1830 by the Yorkshire Philosophical Society and was one of the
+            first purpose-built museums in the country.
+
+            Reopened on 1 August 2010 following a nine-month £2 million refurbishment project the
+            Museum houses five galleries showcasing some of Britain’s finest archaeological treasures
+            and many rare animals, birds and fossils, in exciting displays.
+        </Text>
+
+        <Image path="./content/yorkshiremuseum.jpg" x="0" y="700" x2="640" y2="1180" />
     </Slide>
+
     <Slide poi="#bettystearoom">
         <Text x="0" y="0" textsize="64" bold="true">
             Betty's Tea Room
@@ -166,7 +290,9 @@
             A specially devised menu, an immaculate table-setting, a pianist to serenade you: our luxury Lady Betty Afternoon Tea is a truly unforgettable experience. Book ahead so you can waltz past the queues and dine in the opulent splendour of our Belmont Room.
             If you're looking for a really special experience, our Lady Betty Afternoon Tea provides just this. Set in the historic and elegant surroundings of the Belmont Room, York, our menu is inspired by Bettys best-loved pâtisserie and favourite Café Tea Rooms specialities.
         </Text>
+        <Image path="./content/bettys.jpg" x="0" y="700" x2="640" y2="1180" />
     </Slide>
+
     <Slide poi="#gatehousecoffee">
         <Text x="0" y="0" textsize="64" bold="true">
             Gatehouse Coffee
@@ -178,7 +304,9 @@
         <Text x="0" y="150" x2="1000" y2="600">
             Gatehouse Coffee is located in Walmgate Bar, within York’s city walls, and is a Christian-run cafe specializing in high quality espresso drinks, friendly service, light pastries and snacks, paninis, seasonal soups and free wifi.
         </Text>
+        <Image path="./content/gatehouse.jpg" x="0" y="700" x2="640" y2="1180" />
     </Slide>
+
     <Slide poi="#sparkyork">
         <Text x="0" y="0" textsize="64" bold="true">
             Spark York
@@ -190,6 +318,7 @@
         <Text x="0" y="150" x2="1000" y2="600">
             Spark:York CIC is a community of small independent businesses including street food, bars, retail, co-working and entertainment
         </Text>
+        <Image path="./content/spark.jpg" x="0" y="700" x2="640" y2="1180" />
     </Slide>
     <Slide poi="#yorkarmoury">
         <Text x="0" y="0" textsize="64" bold="true">
@@ -202,5 +331,7 @@
         <Text x="0" y="150" x2="1000" y2="600">
             Home of historical arms and armour, movie swords, anime swords, buckland knives and minamoto katana.
         </Text>
+        <Image path="./content/yorkarmoury.jpg" x="0" y="700" x2="1000" y2="1580" />
+
     </Slide>
 </Presentation>
