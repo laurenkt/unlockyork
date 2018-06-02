@@ -25,6 +25,7 @@ import models.Presentation;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Kiosk extends Application {
 
@@ -40,6 +41,8 @@ public class Kiosk extends Application {
     private Slider scaleSlider = new Slider(0.25, 1.5, 1);
     private Button forward;
     private Button back;
+    private POI[] kioskPOI = new POI[0];
+    private POI KioskLocation = new POI("kiosk", 53.95582, -1.079939, "POI", "Kiosk Location", kioskPOI);
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -63,7 +66,7 @@ public class Kiosk extends Application {
             throw e;
         }
 
-        map = new MapView(presentation.getPOI());
+        map = new MapView(presentation.getPOI(), KioskLocation);
 
         forward = new IconButton("/icons/right.png");
         back = new IconButton("/icons/left.png");
@@ -141,6 +144,7 @@ public class Kiosk extends Application {
         forward.setOnAction(e -> this.onNext(e));
         back.setOnAction(e -> this.onPrevious(e));
         map.setOnPoiClicked(e -> this.onClickPoi(e.getPOI()));
+        home.setOnAction(e -> this.onHome(e));
 
         // Volume
         map.scaleProperty().bindBidirectional(scaleSlider.valueProperty());
@@ -148,6 +152,10 @@ public class Kiosk extends Application {
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
         primaryStage.show();
+    }
+
+    public void onHome(Event event) {
+        map.centerPoint(KioskLocation.getX(), KioskLocation.getY());
     }
 
     public void onNext(Event event) {
