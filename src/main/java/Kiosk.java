@@ -22,6 +22,7 @@ import components.SlideView;
 import javafx.util.Duration;
 import models.POI;
 import models.Presentation;
+import models.Slide;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class Kiosk extends Application {
     private Slider scaleSlider = new Slider(0.25, 1.5, 1);
     private Button forward;
     private Button back;
+    private List<SlideView> POISlides = new ArrayList();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -138,7 +140,7 @@ public class Kiosk extends Application {
                 .map(slide -> new SlideView(slide))
                 .toArray(size -> new SlideView[size]);
 
-        this.setSlideNum(0);
+        //this.setSlideNum(0);
 
         forward.setOnAction(e -> this.onNext(e));
         back.setOnAction(e -> this.onPrevious(e));
@@ -154,7 +156,7 @@ public class Kiosk extends Application {
     }
 
     public void onNext(Event event) {
-        if(slideNum < presentation.getSlides().size() - 1) {
+        if(slideNum < POISlides.size() - 1) {
             slideNum = slideNum + 1;
         }
         else {
@@ -169,7 +171,7 @@ public class Kiosk extends Application {
             slideNum = slideNum - 1;
         }
         else {
-            slideNum = presentation.getSlides().size() - 1;
+            slideNum = POISlides.size() - 1;
         }
 
         this.setSlideNum(slideNum);
@@ -180,16 +182,17 @@ public class Kiosk extends Application {
         //only show buttons when slide is shown
         forward.setVisible(poi != null);
         back.setVisible(poi != null);
+        POISlides.clear();
 
         if (poi != null) {
             for (int i = 0; i < slides.length; i++) {
                 System.out.println(slides[i].getSlide().getPoiId());
                 if (poi.getId().equals(slides[i].getSlide().getPoiId())) {
-                    slidePane.getChildren().clear();
-                    slidePane.getChildren().add(slides[i]);
-                    break;
+                    POISlides.add(slides[i]);
                 }
             }
+            slidePane.getChildren().clear();
+            slidePane.getChildren().add(POISlides.get(0));
         }
     }
 
@@ -198,7 +201,7 @@ public class Kiosk extends Application {
         // Remove existing slide
         slidePane.getChildren().clear();
         // Add new one
-        slidePane.getChildren().add(slides[slideNum]);
+        slidePane.getChildren().add(POISlides.get(slideNum));
     }
 
     public static void main(String[] args) {

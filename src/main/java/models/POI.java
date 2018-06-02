@@ -16,6 +16,8 @@ public class POI {
     private String type;
     private String name = "Unnamed";
 
+    private static POI[] emptyPOI = new POI[0];
+
     public POI(String id, double latitude, double longitude, String type, String name, POI ... children) {
         this.id = id;
         this.latitude = latitude;

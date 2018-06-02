@@ -45,6 +45,19 @@
         </Text>
         <!--<Video path="./minster.mp4" x="0" y="700" x2="640" y2="1180" />-->
     </Slide>
+    <Slide duration="12" poi="#minster">
+        <Text x="0" y="0" textsize="64" bold="true">
+            The Minster
+        </Text>
+        <Text x="0" y="500" textsize="26">
+            <Format bold="true">Opening Times</Format><Br />
+            9:00am — 4:30pm
+        </Text>
+        <Text x="0" y="150" x2="1000" y2="600">
+            TEST TEST TEST TEST
+        </Text>
+        <!--<Video path="./minster.mp4" x="0" y="700" x2="640" y2="1180" />-->
+    </Slide>
 
     <Slide poi="#minsteryard">
         <Text x="0" y="0" textsize="64" bold="true">
