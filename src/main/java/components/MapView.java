@@ -57,19 +57,11 @@ public class MapView extends ScrollPane {
     private Region target;
     private Node zoomNode;
     private StackPane stack;
-    private Bounds boundsInScene;
     private Timeline timeline = new Timeline();
-    private Timeline activePointTimeline = new Timeline();
     private int level = 0;
-    private Point2D anchorPoint = null;
-
     private DoubleProperty xCenter = new SimpleDoubleProperty(0);
     private DoubleProperty yCenter = new SimpleDoubleProperty(0);
-
     private EventHandler<? super POIEvent> onPoiClicked;
-
-    private long lastAnchorTime = 0;
-
     private List<Image> tiles = new ArrayList<>();
 
     public MapView(List<POI> POIs, POI kioskLocation) {
@@ -281,18 +273,8 @@ public class MapView extends ScrollPane {
     private void onScroll(double wheelDelta, Point2D mousePoint) {
         double zoomFactor = Math.exp(wheelDelta * zoomIntensity);
 
-        Bounds innerBounds = zoomNode.getLayoutBounds();
-        Bounds viewportBounds = getViewportBounds();
-
-        // calculate pixel offsets from [0, 1] range
-        double valX = this.getHvalue() * (innerBounds.getWidth() - viewportBounds.getWidth());
-        double valY = this.getVvalue() * (innerBounds.getHeight() - viewportBounds.getHeight());
-
-        layout(); // refresh ScrollPane scroll positions & target bounds
-
         // convert target coordinates to zoomTarget coordinates
         Point2D posInZoomTarget = target.parentToLocal(zoomNode.parentToLocal(mousePoint));
-
 
         if (System.currentTimeMillis() - debounce > 500) {
             debounce = System.currentTimeMillis();
@@ -300,18 +282,9 @@ public class MapView extends ScrollPane {
             yCenter.setValue(posInZoomTarget.getY());
         }
 
-        // calculate adjustment of scroll position (pixels)
-        Point2D adjustment = target.getLocalToParentTransform().deltaTransform(posInZoomTarget.multiply(zoomFactor - 1));
-
-        // convert back to [0, 1] range
-        // (too large/small values are automatically corrected by ScrollPane)
-        Bounds updatedInnerBounds = zoomNode.getBoundsInLocal();
-
         // Bounded scale value
         setScaleValue(
                 Math.min(1.5, Math.max(0.25, scaleValue * zoomFactor))
-                //(valX + adjustment.getX()) / (updatedInnerBounds.getWidth() - viewportBounds.getWidth()),
-                //(valY + adjustment.getY()) / (updatedInnerBounds.getHeight() - viewportBounds.getHeight())
         );
     }
 
