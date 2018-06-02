@@ -9,7 +9,6 @@
         <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" name="Minster Yard" />
         <POI id="undercroftmuseum" latitude="53.961965" longitude="-1.082039" name="Undercroft Museum" />
         <POI id="chapterhouse" latitude="53.962643" longitude="-1.081545" name="Chapter House" />
-        <POI id="centraltower" latitude="53.962218" longitude="-1.082081" name="Central Tower" />
         <POI id="deanspark" latitude="53.96302" longitude="-1.08248" name="Dean's Park" />
     </POI>
     <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" name="Clifford's Tower" />
