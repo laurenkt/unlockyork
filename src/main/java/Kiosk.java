@@ -190,7 +190,9 @@ public class Kiosk extends Application {
                 }
             }
             slidePane.getChildren().clear();
-            slidePane.getChildren().add(POISlides.get(0));
+            if(POISlides.size() > 0) {
+                slidePane.getChildren().add(POISlides.get(0));
+            }
         }
         if(POISlides.size() > 1) {
             forward.setVisible(poi != null);
