@@ -32,10 +32,8 @@ public class POIView extends Region {
     final private Image hotelIcon = new Image(getClass().getResource("/icons/map_hotel.png").toExternalForm());
     final private Image restaurantIcon = new Image(getClass().getResource("/icons/map_dining.png").toExternalForm());
 
-    POI poi;
-    List<POIView> subPOIViews = new ArrayList<>();
-    ImageView icon = new ImageView();
-    Text name = new Text();
+    private ImageView icon = new ImageView();
+    private ≠Text name = new Text();
     private POI poi;
     private List<POIView> subPOIViews = new ArrayList<>();
     private ColorAdjust colorAdjust = new ColorAdjust();
@@ -59,7 +57,7 @@ public class POIView extends Region {
 
         icon.setFitHeight(100);
         icon.setFitWidth(100);
-        icon.setImage(getImageForType(poi.getType(), false));
+        icon.setImage(getImageForType(poi.getType()));
 
         this.setMaxHeight(100);
         this.setMaxWidth(100);
@@ -68,10 +66,7 @@ public class POIView extends Region {
         this.getChildren().addAll(icon, name);
         setPickOnBounds(true);
 
-        setImage(getImageForType(poi.getType()));
-        setTranslateX(this.poi.getX() - getImage().getWidth()/2);
-        setTranslateY(this.poi.getY() - getImage().getHeight()/2);
-        setEffect(colorAdjust);
+        icon.setEffect(colorAdjust);
         setActive(false);
 
         for(POI subPOI : poi.getSubPOI()) {
@@ -128,8 +123,7 @@ public class POIView extends Region {
     }
 
     public void setActive(boolean isActive) {
-        icon.setImage(getImageForType(poi.getType(), isActive));
-        setImage(getImageForType(poi.getType()));
+        icon.setImage(getImageForType(poi.getType()));
 
         if (isActive) {
             colorAdjust.setInput(dropShadow);
