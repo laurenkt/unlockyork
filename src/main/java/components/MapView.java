@@ -37,6 +37,10 @@ import java.util.List;
 
 public class MapView extends ScrollPane {
 
+    public void centerAtYouAreHere() {
+        this.centerPoint(youAreHereLocation.getX(), youAreHereLocation.getY());
+    }
+
     public class POIEvent extends Event {
         private POI poi;
 
@@ -63,8 +67,18 @@ public class MapView extends ScrollPane {
     private DoubleProperty yCenter = new SimpleDoubleProperty(0);
     private EventHandler<? super POIEvent> onPoiClicked;
     private List<Image> tiles = new ArrayList<>();
+    private Image youAreHereIcon = new Image(getClass().getResource("/icons/map_me.png").toExternalForm());
+    private ImageView youAreHere = new ImageView(youAreHereIcon);
+    private Point2D youAreHereLocation;
 
-    public MapView(List<POI> POIs, POI kioskLocation) {
+    public void setYouAreHere(double latitude, double longitude) {
+        youAreHereLocation = POI.latLongToPoint(latitude, longitude);
+        youAreHere.setTranslateX(youAreHereLocation.getX());
+        youAreHere.setTranslateY(youAreHereLocation.getY());
+        stack.getChildren().add(youAreHere);
+    }
+
+    public MapView(List<POI> POIs) {
         super();
 
         tiles.add(new Image(getClass().getResource("/tiles/16.png").toExternalForm()));
@@ -77,8 +91,6 @@ public class MapView extends ScrollPane {
         mapView = new ImageView();
         mapView.setImage(tiles.get(level));
 
-        POIView kioskLocationView = new POIView(kioskLocation);
-        kioskLocationView.icon.setImage(new Image(getClass().getResource("/icons/map_me.png").toExternalForm()));
 
         for(POI poi : POIs) {
             // poi == POIs.get(i)
@@ -93,7 +105,6 @@ public class MapView extends ScrollPane {
         stack.setAlignment(Pos.TOP_LEFT);
         stack.getChildren().add(mapView);
         stack.getChildren().addAll(poiViews);
-        stack.getChildren().add(kioskLocationView);
 
         for(POIView SubPOI : poiViews) {
             stack.getChildren().addAll(SubPOI.getSubPOIViews());
@@ -110,8 +121,6 @@ public class MapView extends ScrollPane {
         setPannable(true);
         setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        setFitToHeight(true); //center
-        setFitToWidth(true); //center
 
         hvalueProperty().addListener((obs, old, val) -> {
             System.out.printf("hVal %f\r\n", val.doubleValue());
@@ -127,6 +136,8 @@ public class MapView extends ScrollPane {
                     subPoi.setScaleX(0.3 / val.doubleValue());
                 }
             }
+            youAreHere.setScaleX(0.4 / val.doubleValue());
+            youAreHere.setScaleY(0.4 / val.doubleValue());
             this.setLevel((int)(4*val.doubleValue() - 1));
         });
 
@@ -213,8 +224,8 @@ public class MapView extends ScrollPane {
         timeline.getKeyFrames().addAll(
                 new KeyFrame(Duration.millis(250), new KeyValue(target.scaleXProperty(), target.scaleXProperty().getValue())),
                 new KeyFrame(Duration.millis(750), new KeyValue(target.scaleXProperty(), 1.25, Interpolator.EASE_BOTH)),
-                new KeyFrame(Duration.millis(250), new KeyValue(hvalueProperty(), xVal, Interpolator.EASE_IN)),
-                new KeyFrame(Duration.millis(250), new KeyValue(vvalueProperty(), yVal, Interpolator.EASE_IN))
+                new KeyFrame(Duration.millis(249), new KeyValue(hvalueProperty(), xVal, Interpolator.EASE_IN)),
+                new KeyFrame(Duration.millis(249), new KeyValue(vvalueProperty(), yVal, Interpolator.EASE_IN))
         );
         timeline.play();
     }
