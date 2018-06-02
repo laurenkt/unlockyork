@@ -121,6 +121,10 @@ public class MapView extends ScrollPane {
         setFitToHeight(true); //center
         setFitToWidth(true); //center
 
+        hvalueProperty().addListener((obs, old, val) -> {
+            System.out.printf("hVal %f\r\n", val.doubleValue());
+        });
+
         // Ensure target scales on both directions together
         target.scaleYProperty().bind(target.scaleXProperty());
         target.scaleXProperty().addListener((obs, old, val) -> {
@@ -168,15 +172,10 @@ public class MapView extends ScrollPane {
         layout();
         setHvalue(0.5);
         setVvalue(0.5);
-        /*
-        hvalueProperty().addListener((obs, old, val) -> {
-            System.out.printf("hVal: %f\r\n", val);
-            System.out.flush();
-        });*/
 
-        final Timeline xTimeline = new Timeline();
-        target.scaleXProperty().addListener((obs, old, val) -> {
+        target.scaleYProperty().addListener((obs, old, val) -> {
             layout();
+
             double mapWidth = target.getBoundsInParent().getWidth();
             double viewportWidth = getViewportBounds().getWidth();
             double xPercent = xCenter.getValue() / target.getWidth();
@@ -184,41 +183,26 @@ public class MapView extends ScrollPane {
             double hMax = mapWidth - getViewportBounds().getWidth();
             double xVal = xTargetPos / hMax;
 
-            setHvalue(xVal);
-
-            /*
-            xTimeline.stop();
-            xTimeline.getKeyFrames().clear();
-            xTimeline.getKeyFrames().add(
-                    new KeyFrame(Duration.millis(250), new KeyValue(hvalueProperty(), xVal, Interpolator.EASE_BOTH))
-            );
-            xTimeline.play();*/
-        });
-
-        final Timeline yTimeline = new Timeline();
-        target.scaleYProperty().addListener((obs, old, val) -> {
-            layout();
             double mapHeight = target.getBoundsInParent().getHeight();
             double viewportHeight = getViewportBounds().getHeight();
             double yPercent = yCenter.getValue() / target.getHeight();
-            double yTargetPos = yPercent * mapHeight - viewportHeight/2 + viewportHeight/4;
+            double yTargetPos = yPercent * mapHeight - viewportHeight/2;
             double vMax = mapHeight - getViewportBounds().getHeight();
             double yVal = yTargetPos / vMax;
 
+            layout();
+            setHvalue(xVal);
             setVvalue(yVal);
-
-            /*
-            yTimeline.stop();
-            yTimeline.getKeyFrames().clear();
-            yTimeline.getKeyFrames().add(
-                    new KeyFrame(Duration.millis(250), new KeyValue(vvalueProperty(), yVal, Interpolator.EASE_BOTH))
-            );
-            yTimeline.play();*/
+            layout();
         });
     }
 
     public void centerPoint(double x, double y) {
         layout();
+
+        xCenter.setValue(x);
+        yCenter.setValue(y);
+
         double mapWidth = target.getBoundsInParent().getWidth();
         double mapHeight = target.getBoundsInParent().getHeight();
         double viewportWidth = getViewportBounds().getWidth();
@@ -234,15 +218,15 @@ public class MapView extends ScrollPane {
 
         final Timeline timeline = new Timeline();
         timeline.getKeyFrames().addAll(
-                //new KeyFrame(Duration.millis(200), new KeyValue(target.scaleXProperty(), 1.25, Interpolator.LINEAR)),
-                new KeyFrame(Duration.millis(250), new KeyValue(hvalueProperty(), xVal, Interpolator.EASE_BOTH)),
-                new KeyFrame(Duration.millis(250), new KeyValue(vvalueProperty(), yVal, Interpolator.EASE_BOTH))
+                new KeyFrame(Duration.millis(250), new KeyValue(target.scaleXProperty(), target.scaleXProperty().getValue())),
+                new KeyFrame(Duration.millis(750), new KeyValue(target.scaleXProperty(), 1.25, Interpolator.EASE_BOTH)),
+                new KeyFrame(Duration.millis(250), new KeyValue(hvalueProperty(), xVal, Interpolator.EASE_IN)),
+                new KeyFrame(Duration.millis(250), new KeyValue(vvalueProperty(), yVal, Interpolator.EASE_IN))
         );
         timeline.play();
     }
 
     private POIView activePoiView = null;
-    private double previousTranslateY = 0;
     public void setPointActive(POI poi) {
         if (activePoiView != null) {
             activePoiView.setActive(false);
@@ -255,35 +239,6 @@ public class MapView extends ScrollPane {
                 break;
             }
         }
-        /*
-        activePointTimeline.stop();
-        activePointTimeline.getKeyFrames().clear();
-        if (poi != null && !activePoiView) {
-            previousTranslateY = poiViews.get(0).getTranslateY();
-            poiViews.get(0).setActive(true);
-            activePointTimeline.setAutoReverse(true);
-            activePointTimeline.setCycleCount(Timeline.INDEFINITE);
-            activePointTimeline.getKeyFrames().addAll(
-                    new KeyFrame(Duration.millis(0), new KeyValue(poiViews.get(0).translateYProperty(), previousTranslateY, Interpolator.EASE_BOTH)),
-                    new KeyFrame(Duration.millis(500), new KeyValue(poiViews.get(0).translateYProperty(), previousTranslateY - 40, Interpolator.EASE_BOTH))
-            );
-
-            System.out.println(poiViews.get(0).getX());
-            System.out.println(poiViews.get(0).getBoundsInLocal().getMinX());
-            System.out.println(poiViews.get(0).getBoundsInParent().getMinX());
-            System.out.println(0.5 * (poiViews.get(0).getBoundsInParent().getMinX() / target.getWidth()));
-
-        }
-        else if (this.isActive) {
-            poiViews.get(0).setActive(false);
-            activePointTimeline.setAutoReverse(false);
-            activePointTimeline.setCycleCount(1);
-            activePointTimeline.getKeyFrames().add(
-                    new KeyFrame(Duration.millis(100), new KeyValue(poiViews.get(0).translateYProperty(), previousTranslateY, Interpolator.EASE_BOTH))
-            );
-        }
-        this.isActive = isActive;
-        activePointTimeline.play();*/
     }
 
     public DoubleProperty scaleProperty() {
