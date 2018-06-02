@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Presentation xmlns="pws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="pws schema.xsd"
               italic="false" bold="false" underline="false" textsize="22" color="#000000" font="Arial">
-    <POI id="bettystearoom" latitude="53.96009" longitude="-1.08418" type="Cafe" />
-    <POI id="gatehousecoffee" latitude="53.95515" longitude="-1.07074" type="Cafe" />
-    <POI id="sparkyork" latitude="53.95693" longitude="-1.07775" type="Shop" />
-    <POI id="yorkarmoury" latitude="53.96102" longitude="-1.08303" type="Shop" />
-    <POI id="minster" latitude="53.96219" longitude="-1.08206">
-        <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" />
+    <POI id="bettystearoom" latitude="53.96009" longitude="-1.08418" type="Cafe" name="Betty's Tea Room" />
+    <POI id="gatehousecoffee" latitude="53.95515" longitude="-1.07074" type="Cafe" name="Gatehouse Coffee" />
+    <POI id="sparkyork" latitude="53.95693" longitude="-1.07775" type="Shop" name="Spark York" />
+    <POI id="yorkarmoury" latitude="53.96102" longitude="-1.08303" type="Shop" name="York Armoury" />
+    <POI id="minster" latitude="53.96219" longitude="-1.08206" name="Minster">
+        <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" name="Minster Yard" />
     </POI>
-    <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" />
-    <POI id="artgallery" latitude="53.9630" longitude="-1.0863" />
-    <POI id="jorvik" latitude="53.9574" longitude="-1.0803" />
-    <POI id="merchantadventure" latitude="53.9578" longitude="-1.0788" />
-    <POI id="museumgardens" latitude="53.9615" longitude="-1.0883" />
-    <POI id="nrm" latitude="53.9605" longitude="-1.0964" />
-    <POI id="yorkshiremuseum" latitude="53.9619" longitude="-1.0874" />
-    <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" />
-    <POI id="citywalls" latitude="53.96273" longitude="-1.08508" />
-    <POI id="citywalls" latitude="53.96277" longitude="-1.07854" />
-    <POI id="citywalls" latitude="53.95585" longitude="-1.009091" />
-    <POI id="citywalls" latitude="53.95396" longitude="-1.07524" />
-    <POI id="citywalls" latitude="53.95418" longitude="-1.08677" />
+    <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" name="Clifford's Tower" />
+    <POI id="artgallery" latitude="53.9630" longitude="-1.0863" name="Art Gallery" />
+    <POI id="jorvik" latitude="53.9574" longitude="-1.0803" name="Jorvik" />
+    <POI id="merchantadventure" latitude="53.9578" longitude="-1.0788" name="Merchant Adventure" />
+    <POI id="museumgardens" latitude="53.9615" longitude="-1.0883" name="Museum Gardens" />
+    <POI id="nrm" latitude="53.9605" longitude="-1.0964" name="NRM" />
+    <POI id="yorkshiremuseum" latitude="53.9619" longitude="-1.0874" name="Yorkshire Museum" />
+    <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" name="Postern Gate" />
+    <POI id="citywalls" latitude="53.96273" longitude="-1.08508" name="City Walls" />
+    <POI id="citywalls" latitude="53.96277" longitude="-1.07854" name="City Walls" />
+    <POI id="citywalls" latitude="53.95585" longitude="-1.009091" name="City Walls" />
+    <POI id="citywalls" latitude="53.95396" longitude="-1.07524" name="City Walls" />
+    <POI id="citywalls" latitude="53.95418" longitude="-1.08677" name="City Walls" />
 
     <Slide duration="12" poi="#minster">
         <Text x="0" y="0" textsize="64" bold="true">

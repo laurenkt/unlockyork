@@ -522,6 +522,7 @@ public class XMLParser {
                 Double.parseDouble(nodeMap.getNamedItem("latitude").getNodeValue()),
                 Double.parseDouble(nodeMap.getNamedItem("longitude").getNodeValue()),
                 type,
+                nodeMap.getNamedItem("name").getNodeValue(),
                 children.toArray(new POI[0])
         );
     }
