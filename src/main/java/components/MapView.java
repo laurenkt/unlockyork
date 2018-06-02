@@ -10,6 +10,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -61,6 +62,9 @@ public class MapView extends ScrollPane {
     private Timeline activePointTimeline = new Timeline();
     private int level = 0;
     private Point2D anchorPoint = null;
+
+    private DoubleProperty xCenter = new SimpleDoubleProperty(0);
+    private DoubleProperty yCenter = new SimpleDoubleProperty(0);
 
     private EventHandler<? super POIEvent> onPoiClicked;
 
@@ -126,7 +130,7 @@ public class MapView extends ScrollPane {
             this.setLevel((int)(4*val.doubleValue() - 1));
         });
 
-        setScaleValue(scaleValue, 0, 0);
+        setScaleValue(scaleValue);
 
         stack.setOnMouseClicked(e -> {
             final double threshold = 50;
@@ -152,14 +156,52 @@ public class MapView extends ScrollPane {
         layout();
         setHvalue(0.5);
         setVvalue(0.5);
-
-        hmaxProperty().addListener((obs, old, val) -> {
-            System.out.printf("hMax: %f\r\n", val);
-            System.out.flush();
-        });
+        /*
         hvalueProperty().addListener((obs, old, val) -> {
             System.out.printf("hVal: %f\r\n", val);
             System.out.flush();
+        });*/
+
+        final Timeline xTimeline = new Timeline();
+        target.scaleXProperty().addListener((obs, old, val) -> {
+            layout();
+            double mapWidth = target.getBoundsInParent().getWidth();
+            double viewportWidth = getViewportBounds().getWidth();
+            double xPercent = xCenter.getValue() / target.getWidth();
+            double xTargetPos = xPercent * mapWidth - viewportWidth/2 + viewportWidth/4;
+            double hMax = mapWidth - getViewportBounds().getWidth();
+            double xVal = xTargetPos / hMax;
+
+            setHvalue(xVal);
+
+            /*
+            xTimeline.stop();
+            xTimeline.getKeyFrames().clear();
+            xTimeline.getKeyFrames().add(
+                    new KeyFrame(Duration.millis(250), new KeyValue(hvalueProperty(), xVal, Interpolator.EASE_BOTH))
+            );
+            xTimeline.play();*/
+        });
+
+        final Timeline yTimeline = new Timeline();
+        target.scaleYProperty().addListener((obs, old, val) -> {
+            layout();
+            double mapHeight = target.getBoundsInParent().getHeight();
+            double viewportHeight = getViewportBounds().getHeight();
+            double yPercent = yCenter.getValue() / target.getHeight();
+            double yTargetPos = yPercent * mapHeight - viewportHeight/2 + viewportHeight/4;
+            double vMax = mapHeight - getViewportBounds().getHeight();
+            double yVal = yTargetPos / vMax;
+
+            setVvalue(yVal);
+
+            /*
+            yTimeline.stop();
+            yTimeline.getKeyFrames().clear();
+            yTimeline.getKeyFrames().add(
+                    new KeyFrame(Duration.millis(250), new KeyValue(vvalueProperty(), yVal, Interpolator.EASE_BOTH))
+            );
+            yTimeline.play();*/
         });
     }
 
@@ -253,7 +295,7 @@ public class MapView extends ScrollPane {
         return vBox;
     }
 
-    private void setScaleValue(double scaleValue, double hValue, double vValue) {
+    private void setScaleValue(double scaleValue) {
         this.scaleValue = scaleValue;
 
         // Basic interpolation
@@ -262,13 +304,12 @@ public class MapView extends ScrollPane {
         timeline.stop();
         timeline.getKeyFrames().clear();
         timeline.getKeyFrames().addAll(
-                new KeyFrame(Duration.millis(200), new KeyValue(target.scaleXProperty(), scaleValue, Interpolator.LINEAR)),
-                new KeyFrame(Duration.millis(200), new KeyValue(hvalueProperty(), hValue, Interpolator.LINEAR)),
-                new KeyFrame(Duration.millis(200), new KeyValue(vvalueProperty(), vValue, Interpolator.LINEAR))
+                new KeyFrame(Duration.millis(200), new KeyValue(target.scaleXProperty(), scaleValue, Interpolator.LINEAR))
         );
         timeline.play();
     }
 
+    private long debounce = 0;
     private void onScroll(double wheelDelta, Point2D mousePoint) {
         double zoomFactor = Math.exp(wheelDelta * zoomIntensity);
 
@@ -284,6 +325,13 @@ public class MapView extends ScrollPane {
         // convert target coordinates to zoomTarget coordinates
         Point2D posInZoomTarget = target.parentToLocal(zoomNode.parentToLocal(mousePoint));
 
+
+        if (System.currentTimeMillis() - debounce > 500) {
+            debounce = System.currentTimeMillis();
+            xCenter.setValue(posInZoomTarget.getX());
+            yCenter.setValue(posInZoomTarget.getY());
+        }
+
         // calculate adjustment of scroll position (pixels)
         Point2D adjustment = target.getLocalToParentTransform().deltaTransform(posInZoomTarget.multiply(zoomFactor - 1));
 
@@ -293,9 +341,9 @@ public class MapView extends ScrollPane {
 
         // Bounded scale value
         setScaleValue(
-                Math.min(1.5, Math.max(0.25, scaleValue * zoomFactor)),
-                (valX + adjustment.getX()) / (updatedInnerBounds.getWidth() - viewportBounds.getWidth()),
-                (valY + adjustment.getY()) / (updatedInnerBounds.getHeight() - viewportBounds.getHeight())
+                Math.min(1.5, Math.max(0.25, scaleValue * zoomFactor))
+                //(valX + adjustment.getX()) / (updatedInnerBounds.getWidth() - viewportBounds.getWidth()),
+                //(valY + adjustment.getY()) / (updatedInnerBounds.getHeight() - viewportBounds.getHeight())
         );
     }
 
