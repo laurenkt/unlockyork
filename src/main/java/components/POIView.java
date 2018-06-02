@@ -49,14 +49,10 @@ public class POIView extends Region {
         name.setTextOrigin(VPos.BOTTOM);
         name.setBoundsType(TextBoundsType.LOGICAL_VERTICAL_CENTER);
         name.setTextAlignment(TextAlignment.CENTER);
-       // name.getLayoutBounds().getWidth()
         name.setX(-((name.getLayoutBounds().getWidth()-100) / 2));
-
 
         //name.setWrappingWidth(100);
 
-        icon.setFitHeight(100);
-        icon.setFitWidth(100);
         icon.setImage(getImageForType(poi.getType()));
 
         this.setMaxHeight(100);
@@ -77,12 +73,13 @@ public class POIView extends Region {
 
         // Maintain aspect ratio: anything done to scale X should do to scale Y
         scaleYProperty().bind(scaleXProperty());
+        icon.scaleYProperty().bind(icon.scaleXProperty());
 
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.setAutoReverse(true);
         timeline.getKeyFrames().addAll(
-                new KeyFrame(Duration.millis(0), new KeyValue(scaleXProperty(), 1, Interpolator.EASE_BOTH)),
-                new KeyFrame(Duration.millis(500 + (Math.random()-0.5)*100), new KeyValue(scaleXProperty(), 1.1, Interpolator.EASE_BOTH))
+                new KeyFrame(Duration.millis(0), new KeyValue(icon.scaleXProperty(), 1, Interpolator.EASE_BOTH)),
+                new KeyFrame(Duration.millis(500 + (Math.random()-0.5)*100), new KeyValue(icon.scaleXProperty(), 1.1, Interpolator.EASE_BOTH))
         );
         timeline.play();
 
@@ -92,7 +89,7 @@ public class POIView extends Region {
             timeline.setCycleCount(1);
             timeline.setAutoReverse(false);
             timeline.getKeyFrames().add(
-                    new KeyFrame(Duration.millis(100), new KeyValue(scaleXProperty(), 1.5, Interpolator.EASE_BOTH))
+                    new KeyFrame(Duration.millis(100), new KeyValue(icon.scaleXProperty(), 1.5, Interpolator.EASE_BOTH))
             );
             timeline.play();
         });
@@ -102,8 +99,8 @@ public class POIView extends Region {
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.setAutoReverse(true);
             timeline.getKeyFrames().addAll(
-                    new KeyFrame(Duration.millis(0), new KeyValue(scaleXProperty(), 1, Interpolator.EASE_BOTH)),
-                    new KeyFrame(Duration.millis(500 + (Math.random()-0.5)*100), new KeyValue(scaleXProperty(), 1.1, Interpolator.EASE_BOTH))
+                    new KeyFrame(Duration.millis(0), new KeyValue(icon.scaleXProperty(), 1, Interpolator.EASE_BOTH)),
+                    new KeyFrame(Duration.millis(500 + (Math.random()-0.5)*100), new KeyValue(icon.scaleXProperty(), 1.1, Interpolator.EASE_BOTH))
             );
             timeline.play();
         });
