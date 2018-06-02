@@ -51,9 +51,6 @@ public class POIView extends ImageView {
     }
 
     private Image getImageForType(String type, boolean isActive) {
-        System.out.println(poi.getId());
-        System.out.println(type);
-
         type = type.toLowerCase(); // Normalize
         if (!isActive) {
             if ("spoi".equals(type))       return subPoiIcon;
