@@ -38,7 +38,7 @@
         this sacred place and the love of God at its heart, which has attracted people from
         across the globe for more than 1000 years.
     </Text>
-    <Video path="./minster.mp4" x="0" y="700" x2="640" y2="1180" />
+    <Video path="./content/minster.mp4" x="0" y="700" x2="640" y2="1180" />
 </Slide>
 
     <Slide poi="#cliffordstower">
@@ -53,7 +53,7 @@
             de Clifford was executed for treason against Edward II and hanged in chains from
             the tower walls.
         </Text>
-
+        <Image path="./content/cliffords.jpg" x="0" y="700" x2="640" y2="1180" />
     </Slide>
 
     <Slide poi="#artgallery">
@@ -177,7 +177,6 @@
             of other items and records of social, technical, artistic and historical interest, exhibited
             mostly in three large halls of a former motive power depot next to the East Coast Main Line,
             near York railway station.
-
         </Text>
 
     </Slide>
