@@ -132,8 +132,13 @@ public class POIView extends Region {
             colorAdjust.setHue(-0.15);
             colorAdjust.setSaturation(0.95);
             timeline.stop();
+
+            // If there's sPOIs, then hide the text label
+            if (subPOIViews.size() > 0)
+                name.setVisible(false);
         }
         else {
+            name.setVisible(true);
             colorAdjust.setInput(null);
             colorAdjust.setBrightness(-1);
             timeline.play();
