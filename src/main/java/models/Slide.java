@@ -8,6 +8,7 @@ public class Slide {
     ColorAttrib colour; // color default for the slide
     TransitionAttrib transitionAttrib; // transition set for the slide
     POI poi;
+    String poiId;
 
     //elements
     List<SlideElement> elements;
@@ -136,5 +137,13 @@ public class Slide {
 
     public POI getPOI() {
         return this.poi;
+    }
+
+    public void setPoiId(String poiId) {
+        this.poiId = poiId;
+    }
+
+    public String getPoiId() {
+        return poiId;
     }
 }

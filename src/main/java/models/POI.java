@@ -16,15 +16,14 @@ public class POI {
     private String type;
     private String name = "Unnamed";
 
+    private static POI[] emptyPOI = new POI[0];
+
     public POI(String id, double latitude, double longitude, String type, String name, POI ... children) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
         //-1.101,53.9419,-1.0401,53.9667
-        this.setPoint(this.gpsToPoint(latitude, longitude,
-                53.9667,-1.101,
-                53.9419,-1.0401,
-                6000, 4155));
+        this.setPoint(POI.latLongToPoint(latitude, longitude));
 
         this.type = type;
         this.name = name;
@@ -85,7 +84,14 @@ public class POI {
         this.id = id;
     }
 
-    public Point2D gpsToPoint(double latitude, double longitude, double topLatitude, double leftLongitude, double bottomLatitude, double rightLongitude, double mapWidth, double mapHeight) {
+    static public Point2D latLongToPoint(double latitude, double longitude) {
+       return POI.gpsToPoint(latitude, longitude,
+                53.9667,-1.101,
+                53.9419,-1.0401,
+                6000, 4155);
+    }
+
+    static public Point2D gpsToPoint(double latitude, double longitude, double topLatitude, double leftLongitude, double bottomLatitude, double rightLongitude, double mapWidth, double mapHeight) {
         double inputDifferenceLatitude = topLatitude - latitude;
         double inputDifferenceLongitude = leftLongitude - longitude;
 

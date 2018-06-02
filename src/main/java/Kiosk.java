@@ -22,9 +22,11 @@ import components.SlideView;
 import javafx.util.Duration;
 import models.POI;
 import models.Presentation;
+import models.Slide;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Kiosk extends Application {
 
@@ -40,6 +42,7 @@ public class Kiosk extends Application {
     private Slider scaleSlider = new Slider(0.25, 1.5, 1);
     private Button forward;
     private Button back;
+    private List<SlideView> POISlides = new ArrayList();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -64,6 +67,7 @@ public class Kiosk extends Application {
         }
 
         map = new MapView(presentation.getPOI());
+        map.setYouAreHere(53.95582, -1.079939);
 
         forward = new IconButton("/icons/right.png");
         back = new IconButton("/icons/left.png");
@@ -136,11 +140,12 @@ public class Kiosk extends Application {
                 .map(slide -> new SlideView(slide))
                 .toArray(size -> new SlideView[size]);
 
-        this.setSlideNum(0);
+        //this.setSlideNum(0);
 
         forward.setOnAction(e -> this.onNext(e));
         back.setOnAction(e -> this.onPrevious(e));
         map.setOnPoiClicked(e -> this.onClickPoi(e.getPOI()));
+        home.setOnAction(e -> map.centerAtYouAreHere());
 
         // Volume
         map.scaleProperty().bindBidirectional(scaleSlider.valueProperty());
@@ -151,7 +156,7 @@ public class Kiosk extends Application {
     }
 
     public void onNext(Event event) {
-        if(slideNum < presentation.getSlides().size() - 1) {
+        if(slideNum < POISlides.size() - 1) {
             slideNum = slideNum + 1;
         }
         else {
@@ -166,7 +171,7 @@ public class Kiosk extends Application {
             slideNum = slideNum - 1;
         }
         else {
-            slideNum = presentation.getSlides().size() - 1;
+            slideNum = POISlides.size() - 1;
         }
 
         this.setSlideNum(slideNum);
@@ -175,17 +180,25 @@ public class Kiosk extends Application {
     public void onClickPoi(POI poi) {
         slidePane.setVisible(poi != null);
         //only show buttons when slide is shown
-        forward.setVisible(poi != null);
-        back.setVisible(poi != null);
+        POISlides.clear();
 
         if (poi != null) {
             for (int i = 0; i < slides.length; i++) {
-                if (poi.equals(slides[i].getSlide().getPOI())) {
-                    slidePane.getChildren().clear();
-                    slidePane.getChildren().add(slides[i]);
-                    break;
+                System.out.println(slides[i].getSlide().getPoiId());
+                if (poi.getId().equals(slides[i].getSlide().getPoiId())) {
+                    POISlides.add(slides[i]);
                 }
             }
+            slidePane.getChildren().clear();
+            slidePane.getChildren().add(POISlides.get(0));
+        }
+        if(POISlides.size() > 1) {
+            forward.setVisible(poi != null);
+            back.setVisible(poi != null);
+        }
+        else {
+            forward.setVisible(false);
+            back.setVisible(false);
         }
     }
 
@@ -194,7 +207,7 @@ public class Kiosk extends Application {
         // Remove existing slide
         slidePane.getChildren().clear();
         // Add new one
-        slidePane.getChildren().add(slides[slideNum]);
+        slidePane.getChildren().add(POISlides.get(slideNum));
     }
 
     public static void main(String[] args) {
