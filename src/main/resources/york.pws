@@ -5,6 +5,8 @@
     <POI id="gatehousecoffee" latitude="53.95515" longitude="-1.07074" type="Cafe" name="Gatehouse Coffee" />
     <POI id="sparkyork" latitude="53.95693" longitude="-1.07775" type="Shop" name="Spark York" />
     <POI id="yorkarmoury" latitude="53.96102" longitude="-1.08303" type="Shop" name="York Armoury" />
+    <POI id="houseofthetremblingmadness" latitude="53.961262" longitude="-1.082935" type="pub" name="House of the Trembling Madness" />
+    <POI id="minsterhotel" latitude="53.964343" longitude="-1.088331" type="hotel" name="Minster Hotel" />
     <POI id="minster" latitude="53.96219" longitude="-1.08206" name="Minster">
         <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" name="Minster Yard" />
         <POI id="undercroftmuseum" latitude="53.961965" longitude="-1.082039" name="Undercroft Museum" />
