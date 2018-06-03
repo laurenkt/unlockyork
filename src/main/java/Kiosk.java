@@ -119,7 +119,7 @@ public class Kiosk extends Application {
         Scene scene = new Scene(userView);
         primaryStage.widthProperty().addListener((obs, old, val) -> {
             forward.setTranslateX(val.doubleValue() - margin*2);
-            back.setTranslateX(val.doubleValue() / 2 + margin*2);
+            back.setTranslateX(val.doubleValue()*offset);
             backgroundPane.setTranslateX(val.doubleValue()*offset);
             slidePane.setTranslateX(val.doubleValue()*offset + margin);
             scaleWidthFactor = (val.doubleValue()*(1-offset) - 2*margin) / (minWidth);
@@ -136,14 +136,9 @@ public class Kiosk extends Application {
             scale.setY(Math.min(scaleWidthFactor, scaleHeightFactor));
         });
 
-        //map.prefHeightProperty().bind(userView.widthProperty().divide(2));
-        //map.prefWidthProperty().bind(userView.widthProperty().divide(2));
-
         slides = presentation.getSlides().stream()
                 .map(slide -> new SlideView(slide))
                 .toArray(size -> new SlideView[size]);
-
-        //this.setSlideNum(0);
 
         forward.setOnAction(e -> this.onNext(e));
         back.setOnAction(e -> this.onPrevious(e));

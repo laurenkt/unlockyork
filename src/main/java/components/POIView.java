@@ -152,6 +152,11 @@ public class POIView extends Region {
             colorAdjust.setInput(null);
             colorAdjust.setBrightness(-1);
             timeline.play();
+
+            // Unset all sPoi active
+            for (POIView subPoiView : subPOIViews) {
+                subPoiView.setActive(false);
+            }
         }
 
         Timeline sPoiAppearTimeline = new Timeline();
