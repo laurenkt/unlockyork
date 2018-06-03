@@ -768,14 +768,22 @@
         <Image path="./content/yorkarmoury.jpg" x="0" y="700" x2="1000" y2="1580" />
     </Slide>
     <Slide poi="#chocolatestory">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             York's Chocolate Story
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             At York’s Chocolate Story you can discover the stories behind the greatest names in chocolate, unwrap the secrets of chocolate making, and even learn the art of the chocolatier for yourself. A fully guided tour and three floors of interactive exploration take you on a journey through the city where chocolate made history.
+        </Text>
+        <Image path="./content/chocolatestory1.png" x="0" y="700" x2="1000" y2="1580" />
+    </Slide>
+    <Slide poi="#chocolatestory">
+        <Text x="0" y="0" textsize="100" bold="true">
+            York's Chocolate Story
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             While other British cities were built on steel, coal or wool, York’s fame and fortune have rested on chocolate for almost 300 years: thanks to the vision and invention of its great entrepreneurial families, not to mention the industry and dedication of its people. Though much has changed over the centuries, York remains the UK’s home of chocolate.
         </Text>
-        <Image path="./content/chocolatestory.png" x="0" y="700" x2="1000" y2="1580" />
+        <Image path="./content/chocolatestory2.png" x="0" y="700" x2="1000" y2="1580" />
     </Slide>
 
     <Slide poi="#theshambles">
