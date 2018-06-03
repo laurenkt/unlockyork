@@ -28,18 +28,18 @@
     <POI id="presentation" latitude="53.947641" longitude="-1.057154" type="POI" name="Sales Presentation" />
 
     <Slide duration="12" poi="#minster">
-        <Text x="0" y="0" textsize="100" bold="true">
+        <Text x="0" y="0" textsize="150" bold="true">
             The Minster
         </Text>
-        <Image path="./content/YorkMinster.jpg" x="0" y="250" x2="1000" y2="1750" />
-        <Text x="0" y="1950" textsize="50">
+        <Image path="./content/YorkMinster.jpg" x="0" y="250" x2="2000" y2="1750" />
+        <Text x="0" y="1950" textsize="100">
             <Format bold="true">Opening Times</Format><Br />
             9:00am — 4:30pm
         </Text>
     </Slide>
 
     <Slide poi="#minster">
-        <Text x="0" y="200" x2="2000" y2="400" textsize="50">
+        <Text x="0" y="200" x2="2000" y2="1800" textsize="100">
             The great Gothic cathedral towers over the surrounding area and at its tallest point reaches a height of 71 metres.
             Constructed over the course of two and a half centuries, the Minster dates from a period when York was the significant
             economic and political – as well as religious – capital in the North. Whilst the city’s influence has waned somewhat since
@@ -47,20 +47,22 @@
             England’s ministry in the north of the country.
         </Text>
 
-        <Text x="0" y="600" x2="2000" y2="800" textsize="50">
+        <Text x="0" y="2000" x2="2000" y2="3800" textsize="100">
             York Minster has its own Stoneyard which serves to replace the constantly wearing exterior of the building. There is a long
             history of Christianity on this site, with the first wooden chapel being constructed for the baptism of King Edward of
             Northumbria in 627. This was later replaced with a stone church which was built on the site of a Roman basilica – the remains
             of which can still be seen today in the Minster’s crypt.
         </Text>
+    </Slide>
 
-        <Text x="0" y="1000" x2="2000" y2="1200" textsize="50">
+    <Slide poi="#minster">
+        <Text x="0" y="200" x2="2000" y2="1400" textsize="100">
             Destroyed by the Danes during the turbulent period that followed the invasion of William The Conqueror, it was rebuilt in the
             Norman manner favoured by England’s new rulers. With the new Gothic style sweeping across Europe, another rebuild was ordered
             in the 13th century. It was hoped this new structure would rival the elegance of the new cathedral constructed in Canterbury.
         </Text>
 
-        <Text x="0" y="1400" x2="2000" y2="1600" textsize="50">
+        <Text x="0" y="1600" x2="2000" y2="2800" textsize="100">
             Built from limestone quarried from nearby Tadcaster, the building we can see today was constructed over a period of 250 years,
             between 1220 and 1472, although it has undergone a considerable number of repairs and restorations since then.
         </Text>
@@ -71,10 +73,10 @@
     </Slide>
 
     <Slide poi="#minsteryard">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="150" bold="true">
             Minster Yard
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="100">
             For this region of the city, known as the Liberty of St. Peter, was enclosed by a high
             fortified wall in 1285 and given special rights and privileges which survived long after
             such battlements collapsed. Here the Dean &amp; Chapter could hold their own courts and appoint
