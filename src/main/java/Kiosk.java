@@ -13,6 +13,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
@@ -74,6 +76,12 @@ public class Kiosk extends Application {
         map = new MapView(presentation.getPOI());
         map.setYouAreHere(53.95582, -1.079939);
 
+        ImageView logo = new ImageView(new Image(getClass().getResource("/logo.png").toExternalForm()));
+        logo.setTranslateX(margin/2);
+        logo.setTranslateY(margin/2);
+        logo.setOpacity(0.2);
+        logo.setMouseTransparent(true);
+
         forward = new IconButton("/icons/right.png");
         back = new IconButton("/icons/left.png");
         home = new IconButton("/icons/map_centre.png");
@@ -95,7 +103,8 @@ public class Kiosk extends Application {
                 scaleSlider,
                 back,
                 forward,
-                home
+                home,
+                logo
         );
 
         //stops the slide from showing on start up
