@@ -47,7 +47,7 @@ public class Kiosk extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         final double margin = 50;
-        final double offset = .55;
+        final double offset = .5;
 
         primaryStage.setTitle("Unlock York");
 
