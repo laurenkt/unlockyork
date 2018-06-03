@@ -667,4 +667,95 @@
         </Text>
         <Image path="./content/chocolatestory.png" x="0" y="700" x2="1000" y2="1580" />
     </Slide>
+    <Slide poi="#presentation">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Unlock: York
+        </Text>
+        <Image path="./content/unlocklogo.png" x="0" y="500" x2="800" y2="1300" />
+    </Slide>
+    <Slide poi="#presentation">
+        <Text x="0" y="0" textsize="100" bold="true">
+            What is unlock: york?
+        </Text>
+    </Slide>
+    <Slide poi="#presentation">
+        <Text x="0" y="0" textsize="100" bold="true">
+            ⦁ Mobile app - portable sources of information
+
+        </Text>
+        <Text x="0" y="500" textsize="100" bold="true">
+            ⦁ Kiosk - stationary sources of information
+
+        </Text>
+    </Slide>
+    <Slide poi="#presentation">
+        <Text x="0" y="0" textsize="100" bold="true">
+            The kiosk
+        </Text>
+        <Text x="0" y="500" x2="1000" y2="600" italic="true" textsize="50">
+            Demonstration
+
+        </Text>
+    </Slide>
+    <Slide poi="#presentation">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Mobile App
+
+        </Text>
+        <Text x="0" y="500" x2="1000" y2="600" italic="true" textsize="50">
+            Demonstration
+        </Text>
+    </Slide>
+    <Slide poi="#presentation">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Finances
+
+        </Text>
+    </Slide>
+    <Slide poi="#presentation">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Revenue Streams
+
+        </Text>
+        <Text x="0" y="500" x2="1000" y2="600" textsize="50">
+            ⦁ split into 3
+        </Text>
+        <Text x="0" y="600" x2="1000" y2="600" textsize="50">
+            ⦁ Indoor and outdoor kiosks
+        </Text>
+        <Text x="0" y="700" x2="1000" y2="600" textsize="50">
+            ⦁ Show casing local companies
+        </Text>
+    </Slide>
+    <Slide poi="#presentation">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Kiosks
+
+        </Text>
+        <Text x="0" y="300" x2="1000" y2="350" textsize="50" bold="true">
+            ⦁ Indoor Kiosk - £7000
+        </Text>
+        <Text x="40" y="360" x2="1000" y2="410" textsize="50">
+            - cost of sales for indoor kiosk - £4250
+        </Text>
+        <Text x="100" y="420" x2="1000" y2="470" textsize="50" italic="true">
+            - hardware - £2500
+        </Text>
+        <Text x="100" y="480" x2="1000" y2="530" textsize="50" italic="true">
+            - labour cost to design bespoke content £1750
+        </Text>
+        <Text x="0" y="800" x2="1000" y2="850" textsize="50" bold="true">
+            ⦁ Outdoor Kiosk - £15000
+        </Text>
+        <Text x="40" y="860" x2="1000" y2="910" textsize="50">
+            - cost of sales for outdoor kiosk - £11250
+        </Text>
+        <Text x="100" y="920" x2="1000" y2="970" textsize="50" italic="true">
+            - hardware - £9500
+        </Text>
+        <Text x="100" y="980" x2="1000" y2="1030" textsize="50" italic="true">
+            - labour cost to design bespoke content £1750
+        </Text>
+    </Slide>
+
 </Presentation>
