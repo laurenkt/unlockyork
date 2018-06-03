@@ -5,41 +5,47 @@
     <POI id="gatehousecoffee" latitude="53.95515" longitude="-1.07074" type="Cafe" name="Gatehouse Coffee" />
     <POI id="sparkyork" latitude="53.95693" longitude="-1.07775" type="Shop" name="Spark York" />
     <POI id="yorkarmoury" latitude="53.96102" longitude="-1.08303" type="Shop" name="York Armoury" />
-    <POI id="minster" latitude="53.96219" longitude="-1.08206" type="POI" name="Minster">
-        <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" type="sPOI" name="Minster Yard" />
-        <POI id="undercroftmuseum" latitude="53.961965" longitude="-1.082039" type="sPOI" name="Undercroft Museum" />
-        <POI id="chapterhouse" latitude="53.962643" longitude="-1.081545" type="sPOI" name="Chapter House" />
-        <POI id="deanspark" latitude="53.96302" longitude="-1.08248" type="sPOI" name="Dean's Park" />
+    <POI id="minster" latitude="53.96219" longitude="-1.08206" name="Minster">
+        <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" name="Minster Yard" />
+        <POI id="undercroftmuseum" latitude="53.961965" longitude="-1.082039" name="Undercroft Museum" />
+        <POI id="chapterhouse" latitude="53.962643" longitude="-1.081545" name="Chapter House" />
+        <POI id="deanspark" latitude="53.96302" longitude="-1.08248" name="Dean's Park" />
     </POI>
-    <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" type="POI" name="Clifford's Tower" />
-    <POI id="artgallery" latitude="53.9630" longitude="-1.0863" type="POI" name="Art Gallery" />
-    <POI id="jorvik" latitude="53.9574" longitude="-1.0803" type="POI" name="Jorvik" />
-    <POI id="merchantadventure" latitude="53.9578" longitude="-1.0788" type="POI" name="Merchant Adventure" />
-    <POI id="nrm" latitude="53.9605" longitude="-1.0964" type="POI" name="National Rail Museum" />
-    <POI id="yorkshiremuseum" latitude="53.9619" longitude="-1.0874" type="POI" name="Yorkshire Museum" >
-        <POI id="museumgardens" latitude="53.9615" longitude="-1.0883" type="sPOI" name="Museum Gardens" />
+    <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" name="Clifford's Tower" />
+    <POI id="artgallery" latitude="53.9630" longitude="-1.0863" name="Art Gallery" />
+    <POI id="jorvik" latitude="53.9574" longitude="-1.0803" name="Jorvik" />
+    <POI id="merchantadventure" latitude="53.9578" longitude="-1.0788" name="Merchant Adventure" />
+    <POI id="museumgardens" latitude="53.9615" longitude="-1.0883" name="Museum Gardens" />
+    <POI id="nrm" latitude="53.9605" longitude="-1.0964" type="POI" name="National Rail Museum" >
+        <POI id="trainroad" latitude="53.959557482751315" longitude="-1.0960042476654053" type="sPOI" name="The York Road Train | NRM" />
+        <POI id="mallardcafe" latitude="53.960135061220846" longitude="-1.0959291458129883" type="sPOI" name="The Mallard Cafe" />
+        <POI id="friendsnrm" latitude="53.960718943889745" longitude="-1.0971254110336304" type="sPOI" name="Friends Of The National Railway Museum" />
     </POI>
+    <POI id="yorkshiremuseum" latitude="53.9619" longitude="-1.0874" name="Yorkshire Museum" />
+    <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" name="Postern Gate" />
+    <POI id="citywalls" latitude="53.96273" longitude="-1.08508" name="City Walls" />
+    <POI id="citywalls" latitude="53.96277" longitude="-1.07854" name="City Walls" />
+    <POI id="citywalls" latitude="53.95585" longitude="-1.09091" name="City Walls" />
+    <POI id="citywalls" latitude="53.95396" longitude="-1.07524" name="City Walls" />
+    <POI id="citywalls" latitude="53.95418" longitude="-1.08677" name="City Walls" />
+    <POI id="artgallery" latitude="53.9630" longitude="-1.0863" name="Art Gallery" />
+    <POI id="theshambles" latitude="53.959393" longitude="-1.080093" name="The Shambles" />
     <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" type="POI" name="Postern Gate" />
-    <POI id="citywalls" latitude="53.96273" longitude="-1.08508" type="POI" name="City Walls" />
-    <POI id="citywalls" latitude="53.96277" longitude="-1.07854" type="POI" name="City Walls" />
-    <POI id="citywalls" latitude="53.95585" longitude="-1.09091" type="POI" name="City Walls" />
-    <POI id="citywalls" latitude="53.95396" longitude="-1.07524" type="POI" name="City Walls" />
-    <POI id="citywalls" latitude="53.95418" longitude="-1.08677" type="POI" name="City Walls" />
     <POI id="presentation" latitude="53.947641" longitude="-1.057154" type="POI" name="Sales Presentation" />
 
     <Slide duration="12" poi="#minster">
-        <Text x="0" y="0" textsize="100" bold="true">
+        <Text x="0" y="0" textsize="150" bold="true">
             The Minster
         </Text>
-        <Image path="./content/YorkMinster.jpg" x="0" y="250" x2="1000" y2="1750" />
-        <Text x="0" y="1950" textsize="50">
+        <Image path="./content/YorkMinster.jpg" x="0" y="250" x2="2000" y2="1750" />
+        <Text x="0" y="1950" textsize="100">
             <Format bold="true">Opening Times</Format><Br />
             9:00am — 4:30pm
         </Text>
     </Slide>
 
     <Slide poi="#minster">
-        <Text x="0" y="200" x2="2000" y2="400" textsize="50">
+        <Text x="0" y="200" x2="2000" y2="1800" textsize="100">
             The great Gothic cathedral towers over the surrounding area and at its tallest point reaches a height of 71 metres.
             Constructed over the course of two and a half centuries, the Minster dates from a period when York was the significant
             economic and political – as well as religious – capital in the North. Whilst the city’s influence has waned somewhat since
@@ -47,20 +53,22 @@
             England’s ministry in the north of the country.
         </Text>
 
-        <Text x="0" y="600" x2="2000" y2="800" textsize="50">
+        <Text x="0" y="2000" x2="2000" y2="3800" textsize="100">
             York Minster has its own Stoneyard which serves to replace the constantly wearing exterior of the building. There is a long
             history of Christianity on this site, with the first wooden chapel being constructed for the baptism of King Edward of
             Northumbria in 627. This was later replaced with a stone church which was built on the site of a Roman basilica – the remains
             of which can still be seen today in the Minster’s crypt.
         </Text>
+    </Slide>
 
-        <Text x="0" y="1000" x2="2000" y2="1200" textsize="50">
+    <Slide poi="#minster">
+        <Text x="0" y="200" x2="2000" y2="1400" textsize="100">
             Destroyed by the Danes during the turbulent period that followed the invasion of William The Conqueror, it was rebuilt in the
             Norman manner favoured by England’s new rulers. With the new Gothic style sweeping across Europe, another rebuild was ordered
             in the 13th century. It was hoped this new structure would rival the elegance of the new cathedral constructed in Canterbury.
         </Text>
 
-        <Text x="0" y="1400" x2="2000" y2="1600" textsize="50">
+        <Text x="0" y="1600" x2="2000" y2="2800" textsize="100">
             Built from limestone quarried from nearby Tadcaster, the building we can see today was constructed over a period of 250 years,
             between 1220 and 1472, although it has undergone a considerable number of repairs and restorations since then.
         </Text>
@@ -71,10 +79,10 @@
     </Slide>
 
     <Slide poi="#minsteryard">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="150" bold="true">
             Minster Yard
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="100">
             For this region of the city, known as the Liberty of St. Peter, was enclosed by a high
             fortified wall in 1285 and given special rights and privileges which survived long after
             such battlements collapsed. Here the Dean &amp; Chapter could hold their own courts and appoint
@@ -266,11 +274,11 @@
     </Slide>
 
     <Slide poi="#nrm">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" x2="1000" textsize="50" bold="true">
             National Rail Museum
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="30">
             The National Railway Museum (NRM) is a museum in York forming part of the British Science
             Museum Group of National Museums and telling the story of rail transport in Britain and its
             impact on society. It has won many awards, including the European Museum of the Year Award
@@ -284,9 +292,74 @@
             mostly in three large halls of a former motive power depot next to the East Coast Main Line,
             near York railway station.
         </Text>
-        <Image path="./content/nrm.jpg" x="0" y="700" x2="640" y2="1180" />
+        <Image path="./content/nrm.jpg" x="0" y="1000" x2="1000" y2="1800" />
     </Slide>
+    <Slide poi="#nrm">
+        <Text x="0" y="0" x2="1000" textsize="50" bold="true">
+            EXPLORE... LOCOMOTIVES
+        </Text>
 
+        <Text x="0" y="150" x2="1000" y2="600" textsize="30">
+            These incredible inventions underpin our collection of over a million railway-related objects. Among them are the world's fastest steam engine Mallard, the exquisitely streamlined Duchess of Hamilton, a replica of George Stephenson's pioneering Rocket and the only bullet train to be found outside of Japan.
+        </Text>
+        <Image path="./content/NRMslide2-2.jpg" x="0" y="700" x2="500" y2="1180" />
+        <Image path="./content/NRMslide2-1.jpg" x="200" y="1200" x2="1000" y2="1800" />
+    </Slide>
+    <Slide poi="#nrm">
+        <Text x="0" y="0" x2="1000" textsize="50" bold="true">
+            Engineering Drawings
+        </Text>
+
+        <Text x="0" y="150" x2="1000" y2="600" textsize="30">
+            Our historic collection of railway engineering drawings is an invaluable tool for anyone restoring a steam locomotive.
+            When overhauling a loco, a good drawing can save thousands of pounds and hundreds of hours of hard graft. Without a drawing you’ll need to reproduce new drawings, which requires a lot of expertise and time, plus a great deal of confidence that you’ve got your measurements right. Original drawings give you certainty that you can manufacture exactly what came out of the workshop a hundred years ago. Moreover they can teach you all the lessons that the original engineers learned over the locomotive’s life – the small incremental changes they made to the design to improve performance and safety.
+        </Text>
+        <Image path="./content/NRMslide3-1.jpg" x="0" y="800" x2="1000" y2="1300" />
+        <Image path="./content/NRMslide3-2.jpg" x="0" y="1300" x2="1000" y2="1800" />
+    </Slide>
+    <Slide poi="#trainroad">
+        <Text x="0" y="0" x2="1000" textsize="50" bold="true">
+            The York Road Train | NRM
+        </Text>
+
+        <Text x="0" y="150" x2="1000" y2="600" textsize="30">
+            Make the most of your day in York by taking our quick, convenient road train between the museum and the Minster.
+            Arrive at the museum in style and return to the centre of York with ease after your fun-filled day.
+            Buy your tickets from the train guard, or from our reception desk if you wish to pay by card.
+            TIMETABLE
+            Leaves the museum every 30 minutes, 11.00–16.00
+            Leaves Duncombe Place every 30 minutes, 11.15–16.15
+            AVAILABILITY
+            While we make every effort to keep our road train running, the service is subject to availability and maintenance work. Road Train is subject to a vehicle special order and we are unable to change our existing route between the National Railway Museum and Duncombe Place, next to York Minster.
+
+        </Text>
+        <Image path="./content/roadtrain2.jpg" x="0" y="1300" x2="1000" y2="1800" />
+    </Slide>
+    <Slide poi="#mallardcafe">
+        <Text x="0" y="0" x2="1000" textsize="50" bold="true">
+            The Mallard Cafe
+        </Text>
+
+        <Text x="0" y="150" x2="1000" y2="600" textsize="30">
+            Dine in the splendid comfort of a Victorian-inspired dining car or enjoy an ice cream in our quirky outdoor container café. We believe in sourcing the best local ingredients—almost half of our produce is from Yorkshire suppliers.
+
+            OPENING TIMES: 10.00–17.30
+        </Text>
+        <Image path="./content/mallardcafe.jpg" x="0" y="1000" x2="1000" y2="1600" />
+    </Slide>
+    <Slide poi="#friendsnrm">
+        <Text x="0" y="0" x2="1000" textsize="50" bold="true">
+            Friends Of The National Railway Museum
+        </Text>
+
+        <Text x="0" y="150" x2="1000" y2="600" textsize="30">
+            We support the National Railway Museum conserve and create exhibits with financial assistance and volunteers
+            Membership of the Friends of the National Railway Museum brings the satisfaction of being involved in preserving, displaying and interpreting the best of Britain's heritage.
+            Your subscription helps to finance work in the Museum that would otherwise not be possible. The Friends contribute significant amounts to large projects and support other activities on a regular basis.
+
+        </Text>
+        <Image path="./content/friendsofthenationalrailwaymuseum1.jpg" x="0" y="1000" x2="1000" y2="1800" />
+    </Slide>
     <Slide poi="#yorkshiremuseum">
         <Text x="0" y="0" textsize="64" bold="true">
             Yorkshire Museum
@@ -360,6 +433,5 @@
             Home of historical arms and armour, movie swords, anime swords, buckland knives and minamoto katana.
         </Text>
         <Image path="./content/yorkarmoury.jpg" x="0" y="700" x2="1000" y2="1580" />
-
     </Slide>
 </Presentation>
