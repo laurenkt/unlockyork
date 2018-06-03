@@ -566,10 +566,20 @@
             National Rail Museum
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             The National Railway Museum (NRM) is a museum in York forming part of the British Science
             Museum Group of National Museums and telling the story of rail transport in Britain and its
-            impact on society. It has won many awards, including the European Museum of the Year Award
+            impact on society.
+        </Text>
+        <Image path="./content/nrm.jpg" x="0" y="700" x2="1000" y2="1300" />
+    </Slide>
+    <Slide poi="#nrm">
+        <Text x="0" y="0" x2="1000" textsize="100" bold="true">
+            National Rail Museum
+        </Text>
+
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            It has won many awards, including the European Museum of the Year Award
             in 2001. It is the home of the national collection of historically significant railway vehicles,
             as well as a collection of other artefacts and both written and pictorial records.
 
@@ -580,58 +590,68 @@
             mostly in three large halls of a former motive power depot next to the East Coast Main Line,
             near York railway station.
         </Text>
-        <Image path="./content/nrm.jpg" x="0" y="1000" x2="1000" y2="1600" />
     </Slide>
     <Slide poi="#nrm">
-        <Text x="0" y="0" x2="1000" textsize="50" bold="true">
+        <Text x="0" y="0" x2="1000" textsize="100" bold="true">
             EXPLORE... LOCOMOTIVES
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             These incredible inventions underpin our collection of over a million railway-related objects. Among them are the
             world's fastest steam engine Mallard, the exquisitely streamlined Duchess of Hamilton, a replica of George Stephenson's
             pioneering Rocket and the only bullet train to be found outside of Japan.
         </Text>
         <Image path="./content/NRMslide2-2.jpg" x="0" y="700" x2="500" y2="1180" />
-        <Image path="./content/NRMslide2-1.jpg" x="200" y="1200" x2="1000" y2="1600" />
+        <Image path="./content/NRMslide2-1.jpg" x="300" y="1200" x2="1000" y2="1600" />
     </Slide>
     <Slide poi="#nrm">
-        <Text x="0" y="0" x2="1000" textsize="50" bold="true">
+        <Text x="0" y="0" x2="1000" textsize="100" bold="true">
             Engineering Drawings
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
-            Our historic collection of railway engineering drawings is an invaluable tool for anyone restoring a steam locomotive.
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            The museum has a historic collection of railway engineering drawings is an invaluable tool for anyone restoring a steam locomotive.
             When overhauling a loco, a good drawing can save thousands of pounds and hundreds of hours of hard graft. Without a drawing
             you’ll need to reproduce new drawings, which requires a lot of expertise and time, plus a great deal of confidence that
-            you’ve got your measurements right. Original drawings give you certainty that you can manufacture exactly what came out of
+            you’ve got your measurements right.
+        </Text>
+        <Image path="./content/NRMslide3-2.jpg" x="0" y="900" x2="1000" y2="1400" />
+    </Slide>
+    <Slide poi="#nrm">
+        <Text x="0" y="0" x2="1000" textsize="100" bold="true">
+            Engineering Drawings
+        </Text>
+
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            Original drawings give you certainty that you can manufacture exactly what came out of
             the workshop a hundred years ago. Moreover they can teach you all the lessons that the original engineers learned over the
             locomotive’s life – the small incremental changes they made to the design to improve performance and safety.
         </Text>
         <Image path="./content/NRMslide3-1.jpg" x="0" y="800" x2="1000" y2="1300" />
-        <Image path="./content/NRMslide3-2.jpg" x="0" y="1300" x2="1000" y2="1600" />
     </Slide>
     <Slide poi="#trainroad">
-        <Text x="0" y="0" x2="1000" textsize="50" bold="true">
+        <Text x="0" y="0" x2="1000" textsize="100" bold="true">
             The York Road Train | NRM
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             Make the most of your day in York by taking our quick, convenient road train between the museum and the Minster.
             Arrive at the museum in style and return to the centre of York with ease after your fun-filled day.
             Buy your tickets from the train guard, or from our reception desk if you wish to pay by card.
-            TIMETABLE
-            Leaves the museum every 30 minutes, 11.00–16.00
-            Leaves Duncombe Place every 30 minutes, 11.15–16.15
-            AVAILABILITY
-            While we make every effort to keep our road train running, the service is subject to availability and maintenance work.
-            Road Train is subject to a vehicle special order and we are unable to change our existing route between the National Railway
-             Museum and Duncombe Place, next to York Minster.
         </Text>
-        <Image path="./content/roadtrain2.jpg" x="0" y="1300" x2="1000" y2="1600" />
+        <Text x="0" y="700" x2="1000" y2="1000" textsize="50">
+            <Format bold="true">TIMETABLE</Format>
+        </Text>
+        <Text x="0" y="800" x2="1000" y2="1000" textsize="50">
+            ⦁ Leaves the museum every 30 minutes - 11.00–16.00
+        </Text>
+        <Text x="0" y="900" x2="1000" y2="1000" textsize="50">
+            ⦁ Leaves Duncombe Place every 30 minutes - 11.15–16.15
+        </Text>
+        <Image path="./content/roadtrain2.jpg" x="0" y="1100" x2="1000" y2="1500" />
     </Slide>
     <Slide poi="#mallardcafe">
-        <Text x="0" y="0" x2="1000" textsize="50" bold="true">
+        <Text x="0" y="0" x2="1000" textsize="100" bold="true">
             The Mallard Cafe
         </Text>
 
@@ -644,16 +664,16 @@
         <Image path="./content/mallardcafe.jpg" x="0" y="1000" x2="1000" y2="1600" />
     </Slide>
     <Slide poi="#friendsnrm">
-        <Text x="0" y="0" x2="1000" textsize="50" bold="true">
+        <Text x="0" y="0" x2="1000" textsize="100" bold="true">
             Friends Of The National Railway Museum
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
+        <Text x="0" y="350" x2="1000" y2="600" textsize="50">
             We support the National Railway Museum conserve and create exhibits with financial assistance and volunteers
             Membership of the Friends of the National Railway Museum brings the satisfaction of being involved in preserving,
             displaying and interpreting the best of Britain's heritage.
             Your subscription helps to finance work in the Museum that would otherwise not be possible. The Friends contribute
-            significant amounts to large projects and support other activities on a regular basis.
+            significant amounts to large projects and support other activities.
 
         </Text>
         <Image path="./content/friendsofthenationalrailwaymuseum1.jpg" x="0" y="1000" x2="1000" y2="1600" />
