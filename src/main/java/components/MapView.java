@@ -20,6 +20,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.transform.Transform;
+import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 import models.POI;
 import java.util.ArrayList;
@@ -147,7 +149,7 @@ public class MapView extends ScrollPane {
                     if (Math.abs(subPoi.getX() - x) < threshold &&
                             Math.abs(subPoi.getY() - y) < threshold) {
                         onPoiClicked.handle(new POIEvent(subPoi));
-                        setPointActive(poi);
+                        setPointActive(subPoi);
                         return;
                     }
                 }
@@ -162,7 +164,19 @@ public class MapView extends ScrollPane {
         setHvalue(0.5);
         setVvalue(0.5);
 
+        // Animate 'You Are Here' icon
+        final Timeline youAreHereTimeline = new Timeline();
+        final Translate youAreHereTransform = new Translate(0, 0);
+        youAreHere.getTransforms().add(youAreHereTransform);
+        youAreHereTimeline.setCycleCount(Timeline.INDEFINITE);
+        youAreHereTimeline.setAutoReverse(true);
+        youAreHereTimeline.getKeyFrames().addAll(
+            new KeyFrame(Duration.millis(0), new KeyValue(youAreHereTransform.yProperty(), 0, Interpolator.EASE_BOTH)),
+            new KeyFrame(Duration.millis(500), new KeyValue(youAreHereTransform.yProperty(), -20, Interpolator.EASE_BOTH))
+        );
+        youAreHereTimeline.play();
 
+        // When the view scales, update scroll positions to counteract movement
         target.scaleYProperty().addListener((obs, old, val) -> {
             layout();
             setVvalue(getScrollYForTarget(yCenter.getValue()));
@@ -231,15 +245,25 @@ public class MapView extends ScrollPane {
 
     private POIView activePoiView = null;
     public void setPointActive(POI poi) {
-        if (activePoiView != null) {
-            activePoiView.setActive(false);
-        }
-
         for (POIView view : poiViews) {
             if (view.getPOI().equals(poi)) {
+                if (activePoiView != view && activePoiView != null) {
+                    activePoiView.setActive(false);
+                }
                 activePoiView = view;
                 view.setActive(true);
                 break;
+            }
+            else {
+                for (POIView subView : view.getSubPOIViews()) {
+                    if (subView.getPOI().equals(poi)) {
+                        for (POIView otherViews : view.getSubPOIViews()) {
+                            otherViews.setActive(false);
+                        }
+                        subView.setActive(true);
+                        break;
+                    }
+                }
             }
         }
     }

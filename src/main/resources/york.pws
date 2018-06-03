@@ -544,7 +544,7 @@
             Merchant Adventurers Hall
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             Merchant Adventurers’ Hall, a unique building in the heart of historic York.
             This stunning timber framed building was constructed by a fraternity made up of
             York citizens to provide a base for charity, worship and business in the centre
@@ -552,12 +552,30 @@
             a fascinating museum it is also a scheduled ancient monument and Grade 1 listed
             building.
 
+        </Text>
+        <Image path="./content/merchanthall.jpg" x="0" y="900" x2="1000" y2="1500" />
+    </Slide>
+    <Slide poi="#merchantadventure">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Merchant Adventurers Hall
+        </Text>
+
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             There have been many additions and changes to the Hall over the years, but the
             main functions of business and charity remain the same today. There are three main
             rooms in the Hall. The Great Hall is where the Medieval merchants first gathered
             to conduct their business and to socialise. The Undercroft used as an almshouse
             to help the sick and the poor until as late as 1900. The Chapel offering spiritual
             care to the merchants and the inmates of the almshouse.
+
+        </Text>
+    </Slide>
+    <Slide poi="#merchantadventure">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Merchant Adventurers Hall
+        </Text>
+
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
 
             The Merchant Adventurers’ Hall is home to many remarkable collections. Including
             silver, furniture and paintings, which provide a glimpse into the rich history of
@@ -569,19 +587,27 @@
             York. They invite you to discover the secrets of this unique guild hall and its 660
             years of history.
         </Text>
-
-        <Image path="./content/merchanthall.jpg" x="0" y="700" x2="1000" y2="1600" />
-
     </Slide>
 
     <Slide poi="#museumgardens">
         <Text x="0" y="0" textsize="100" bold="true">
             York Museum Gardens
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             Set in the stunning surroundings of the Medieval ruins of St. Mary’s Abbey, the York
             Museum Gardens are a great space to meet friends and family and enjoy some peace and
             tranquility in the heart of the city centre.
+
+        </Text>
+
+        <Image path="./content/gardens.jpg" x="0" y="600" x2="1000" y2="1500" />
+
+    </Slide>
+    <Slide poi="#museumgardens">
+        <Text x="0" y="0" textsize="100" bold="true">
+            York Museum Gardens
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
 
             There is so much to see and do including a chance to see inside Yorkshire’s oldest
             working observatory, wander round the gardens and see the vast botanical collection,
@@ -590,8 +616,6 @@
             and many rare animals, birds and fossils, in exciting new displays
         </Text>
 
-        <Image path="./content/gardens.jpg" x="0" y="700" x2="1000" y2="1600" />
-
     </Slide>
 
     <Slide poi="#nrm">
@@ -599,10 +623,20 @@
             National Rail Museum
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             The National Railway Museum (NRM) is a museum in York forming part of the British Science
             Museum Group of National Museums and telling the story of rail transport in Britain and its
-            impact on society. It has won many awards, including the European Museum of the Year Award
+            impact on society.
+        </Text>
+        <Image path="./content/nrm.jpg" x="0" y="700" x2="1000" y2="1300" />
+    </Slide>
+    <Slide poi="#nrm">
+        <Text x="0" y="0" x2="1000" textsize="100" bold="true">
+            National Rail Museum
+        </Text>
+
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            It has won many awards, including the European Museum of the Year Award
             in 2001. It is the home of the national collection of historically significant railway vehicles,
             as well as a collection of other artefacts and both written and pictorial records.
 
@@ -613,58 +647,68 @@
             mostly in three large halls of a former motive power depot next to the East Coast Main Line,
             near York railway station.
         </Text>
-        <Image path="./content/nrm.jpg" x="0" y="1000" x2="1000" y2="1600" />
     </Slide>
     <Slide poi="#nrm">
-        <Text x="0" y="0" x2="1000" textsize="50" bold="true">
+        <Text x="0" y="0" x2="1000" textsize="100" bold="true">
             EXPLORE... LOCOMOTIVES
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             These incredible inventions underpin our collection of over a million railway-related objects. Among them are the
             world's fastest steam engine Mallard, the exquisitely streamlined Duchess of Hamilton, a replica of George Stephenson's
             pioneering Rocket and the only bullet train to be found outside of Japan.
         </Text>
         <Image path="./content/NRMslide2-2.jpg" x="0" y="700" x2="500" y2="1180" />
-        <Image path="./content/NRMslide2-1.jpg" x="200" y="1200" x2="1000" y2="1600" />
+        <Image path="./content/NRMslide2-1.jpg" x="300" y="1200" x2="1000" y2="1600" />
     </Slide>
     <Slide poi="#nrm">
-        <Text x="0" y="0" x2="1000" textsize="50" bold="true">
+        <Text x="0" y="0" x2="1000" textsize="100" bold="true">
             Engineering Drawings
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
-            Our historic collection of railway engineering drawings is an invaluable tool for anyone restoring a steam locomotive.
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            The museum has a historic collection of railway engineering drawings is an invaluable tool for anyone restoring a steam locomotive.
             When overhauling a loco, a good drawing can save thousands of pounds and hundreds of hours of hard graft. Without a drawing
             you’ll need to reproduce new drawings, which requires a lot of expertise and time, plus a great deal of confidence that
-            you’ve got your measurements right. Original drawings give you certainty that you can manufacture exactly what came out of
+            you’ve got your measurements right.
+        </Text>
+        <Image path="./content/NRMslide3-2.jpg" x="0" y="900" x2="1000" y2="1400" />
+    </Slide>
+    <Slide poi="#nrm">
+        <Text x="0" y="0" x2="1000" textsize="100" bold="true">
+            Engineering Drawings
+        </Text>
+
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            Original drawings give you certainty that you can manufacture exactly what came out of
             the workshop a hundred years ago. Moreover they can teach you all the lessons that the original engineers learned over the
             locomotive’s life – the small incremental changes they made to the design to improve performance and safety.
         </Text>
         <Image path="./content/NRMslide3-1.jpg" x="0" y="800" x2="1000" y2="1300" />
-        <Image path="./content/NRMslide3-2.jpg" x="0" y="1300" x2="1000" y2="1600" />
     </Slide>
     <Slide poi="#trainroad">
-        <Text x="0" y="0" x2="1000" textsize="50" bold="true">
+        <Text x="0" y="0" x2="1000" textsize="100" bold="true">
             The York Road Train | NRM
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             Make the most of your day in York by taking our quick, convenient road train between the museum and the Minster.
             Arrive at the museum in style and return to the centre of York with ease after your fun-filled day.
             Buy your tickets from the train guard, or from our reception desk if you wish to pay by card.
-            TIMETABLE
-            Leaves the museum every 30 minutes, 11.00–16.00
-            Leaves Duncombe Place every 30 minutes, 11.15–16.15
-            AVAILABILITY
-            While we make every effort to keep our road train running, the service is subject to availability and maintenance work.
-            Road Train is subject to a vehicle special order and we are unable to change our existing route between the National Railway
-             Museum and Duncombe Place, next to York Minster.
         </Text>
-        <Image path="./content/roadtrain2.jpg" x="0" y="1300" x2="1000" y2="1600" />
+        <Text x="0" y="700" x2="1000" y2="1000" textsize="50">
+            <Format bold="true">TIMETABLE</Format>
+        </Text>
+        <Text x="0" y="800" x2="1000" y2="1000" textsize="50">
+            ⦁ Leaves the museum every 30 minutes - 11.00–16.00
+        </Text>
+        <Text x="0" y="900" x2="1000" y2="1000" textsize="50">
+            ⦁ Leaves Duncombe Place every 30 minutes - 11.15–16.15
+        </Text>
+        <Image path="./content/roadtrain2.jpg" x="0" y="1100" x2="1000" y2="1500" />
     </Slide>
     <Slide poi="#mallardcafe">
-        <Text x="0" y="0" x2="1000" textsize="50" bold="true">
+        <Text x="0" y="0" x2="1000" textsize="100" bold="true">
             The Mallard Cafe
         </Text>
 
@@ -677,16 +721,16 @@
         <Image path="./content/mallardcafe.jpg" x="0" y="1000" x2="1000" y2="1600" />
     </Slide>
     <Slide poi="#friendsnrm">
-        <Text x="0" y="0" x2="1000" textsize="50" bold="true">
+        <Text x="0" y="0" x2="1000" textsize="100" bold="true">
             Friends Of The National Railway Museum
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
+        <Text x="0" y="350" x2="1000" y2="600" textsize="50">
             We support the National Railway Museum conserve and create exhibits with financial assistance and volunteers
             Membership of the Friends of the National Railway Museum brings the satisfaction of being involved in preserving,
             displaying and interpreting the best of Britain's heritage.
             Your subscription helps to finance work in the Museum that would otherwise not be possible. The Friends contribute
-            significant amounts to large projects and support other activities on a regular basis.
+            significant amounts to large projects and support other activities.
 
         </Text>
         <Image path="./content/friendsofthenationalrailwaymuseum1.jpg" x="0" y="1000" x2="1000" y2="1600" />
@@ -706,7 +750,7 @@
             and many rare animals, birds and fossils, in exciting displays.
         </Text>
 
-        <Image path="./content/yorkshiremuseum.jpg" x="0" y="700" x2="1000" y2="1600" />
+        <Image path="./content/yorkshiremuseum.jpg" x="0" y="900" x2="1000" y2="1600" />
     </Slide>
 
     <Slide poi="#bettystearoom">
@@ -719,10 +763,17 @@
         </Text>
         <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             The founder of Bettys, Frederick Belmont, travelled on the maiden voyage of the Queen Mary. He was so impressed by the extravagance of the ship that he commissioned the Queen Mary's designers to turn an old furniture store into his most sophisticated branch yet - an elegant café in the land-locked location of St Helens Square, York.
+        </Text>
+        <Image path="./content/bettys.jpg" x="0" y="700" x2="1000" y2="1180" />
+    </Slide>
+    <Slide poi="#bettystearoom">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Betty's Tea Room
+        </Text>
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             A specially devised menu, an immaculate table-setting, a pianist to serenade you: our luxury Lady Betty Afternoon Tea is a truly unforgettable experience. Book ahead so you can waltz past the queues and dine in the opulent splendour of our Belmont Room.
             If you're looking for a really special experience, our Lady Betty Afternoon Tea provides just this. Set in the historic and elegant surroundings of the Belmont Room, York, our menu is inspired by Bettys best-loved pâtisserie and favourite Café Tea Rooms specialities.
         </Text>
-        <Image path="./content/bettys.jpg" x="0" y="700" x2="1000" y2="1180" />
     </Slide>
 
     <Slide poi="#gatehousecoffee">
@@ -733,10 +784,10 @@
             <Format bold="true">Opening Times</Format><Br />
             10:00am — 6:00pm
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             Gatehouse Coffee is located in Walmgate Bar, within York’s city walls, and is a Christian-run cafe specializing in high quality espresso drinks, friendly service, light pastries and snacks, paninis, seasonal soups and free wifi.
         </Text>
-        <Image path="./content/gatehouse.jpg" x="0" y="700" x2="1000" y2="1180" />
+        <Image path="./content/gatehouse.jpg" x="0" y="700" x2="1000" y2="1300" />
     </Slide>
 
     <Slide poi="#sparkyork">
@@ -747,10 +798,10 @@
             <Format bold="true">Opening Times</Format><Br />
             8:00am — 10:30pm
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             Spark:York CIC is a community of small independent businesses including street food, bars, retail, co-working and entertainment
         </Text>
-        <Image path="./content/spark.jpg" x="0" y="700" x2="640" y2="1180" />
+        <Image path="./content/spark.jpg" x="0" y="700" x2="1000" y2="1500" />
     </Slide>
     <Slide poi="#yorkarmoury">
         <Text x="0" y="0" textsize="100" bold="true">
@@ -760,21 +811,77 @@
             <Format bold="true">Opening Times</Format><Br />
             10:00am — 7:00pm
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             Home of historical arms and armour, movie swords, anime swords, buckland knives and minamoto katana.
         </Text>
         <Image path="./content/yorkarmoury.jpg" x="0" y="700" x2="1000" y2="1580" />
     </Slide>
     <Slide poi="#chocolatestory">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             York's Chocolate Story
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             At York’s Chocolate Story you can discover the stories behind the greatest names in chocolate, unwrap the secrets of chocolate making, and even learn the art of the chocolatier for yourself. A fully guided tour and three floors of interactive exploration take you on a journey through the city where chocolate made history.
+        </Text>
+        <Image path="./content/chocolatestory1.png" x="0" y="700" x2="1000" y2="1580" />
+    </Slide>
+    <Slide poi="#chocolatestory">
+        <Text x="0" y="0" textsize="100" bold="true">
+            York's Chocolate Story
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             While other British cities were built on steel, coal or wool, York’s fame and fortune have rested on chocolate for almost 300 years: thanks to the vision and invention of its great entrepreneurial families, not to mention the industry and dedication of its people. Though much has changed over the centuries, York remains the UK’s home of chocolate.
         </Text>
-        <Image path="./content/chocolatestory.png" x="0" y="700" x2="1000" y2="1580" />
+        <Image path="./content/chocolatestory2.png" x="0" y="700" x2="1000" y2="1580" />
     </Slide>
+
+    <Slide poi="#theshambles">
+        <Text x="0" y="0" textsize="100" bold="true">
+            The Shambles
+        </Text>
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
+            The Shambles (officially known as just Shambles[1]) is an old street in York, England, with overhanging timber-framed buildings, some dating back as far as the fourteenth century. It was once known as The Great Flesh Shambles, probably from the Anglo-Saxon Fleshammels (literally 'flesh-shelves'), the word for the shelves that butchers used to display their meat. As recently as 1872 twenty-five butchers' shops were located along the street, but now none remain.
+            Among the buildings of the Shambles is a shrine to Saint Margaret Clitherow, who was married to a butcher who owned and lived in a shop there at No. 10 Shambles.
+
+        </Text>
+        <Image path="./content/theshambles1.jpg" x="0" y="1100" x2="700" y2="1500" />
+    </Slide>
+    <Slide poi="#theshambles">
+        <Text x="0" y="0" textsize="100" bold="true">
+            The Shambles
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            Her home is now a cufflinks shop, Cuffs and Co, and features the priest hole fireplace that ultimately led to her death.
+            Although the butchers have now vanished, a number of the shops on the street still have meat-hooks hanging outside and, below them, shelves on which meat would have been displayed. The shops currently include a mixture of eateries and souvenir sellers, but there is also a bookshop and a bakery. Five snickelways lead off the Shambles.
+
+        </Text>
+        <Image path="./content/theshambles2.jpg" x="0" y="900" x2="1000" y2="1400" />
+    </Slide>
+
+    <Slide poi="#posterngate">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Fishergate Postern Tower
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            Fishergate Postern Tower, at the end of Piccadilly, is a 4 storey stone tower built around 1504. This is the second Postern Tower on this site. The first was erected some time after 1345 The first tower was named the Talken Tower, after Robert de Talken, a wine merchant, who was York mayor in 1399.
+            Fishergate postern was only a minor gateway into the city as there was a larger entrance just round the corner at Fishergate Bar. However, in 1489 Fishergate Bar suffered considerable damage in the Yorkshire peasants’ revolt against Henry VII. The rebels burned the gates of the bar after murdering the Earl of Northumberland.
+
+        </Text>
+        <Image path="./content/posterngate.jpg" x="0" y="1100" x2="700" y2="1500" />
+    </Slide>
+    <Slide poi="#posterngate">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Fishergate Postern Tower
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            The murder was at a meeting he had arranged with them to hear their complaints about the King’s new taxes. Some say 5,000 peasants went on to attack York’s Walls but soon after this the revolt failed The damaged gateway was bricked up soon after and wasn’t reopened until 1834, to give better access for the cattle market.
+            When Fishergate Bar was bricked up, another gateway was needed fairly urgently. After 1489 it would seem likely that traffic congestion increased, and as the river Foss was silting up, there was the urgent need for a new entry through the walls to be made.
+
+            In 1501/2 the Mayor and Corporation of York ordered that a new tower be made in stone. The stone Fishergate Postern Tower as we see it today, but without the tiled roof, was built between 1504 and 1507. At the start of the 19th century the Postern Tower clearly had no defensive function and was “now inhabited by a poor Freeman of the City”.
+
+        </Text>
+    </Slide>
+
     <Slide poi="#presentation">
         <Text x="0" y="0" textsize="100" bold="true">
             Unlock: York
@@ -865,5 +972,7 @@
             - labour cost to design bespoke content £1750
         </Text>
     </Slide>
+
+
 
 </Presentation>
