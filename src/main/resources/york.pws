@@ -5,6 +5,8 @@
     <POI id="gatehousecoffee" latitude="53.95515" longitude="-1.07074" type="Cafe" name="Gatehouse Coffee" />
     <POI id="sparkyork" latitude="53.95693" longitude="-1.07775" type="Shop" name="Spark York" />
     <POI id="yorkarmoury" latitude="53.96102" longitude="-1.08303" type="Shop" name="York Armoury" />
+    <POI id="houseofthetremblingmadness" latitude="53.961262" longitude="-1.082935" type="pub" name="House of the Trembling Madness" />
+    <POI id="minsterhotel" latitude="53.964343" longitude="-1.088331" type="hotel" name="Minster Hotel" />
     <POI id="minster" latitude="53.96219" longitude="-1.08206" name="Minster">
         <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" name="Minster Yard" />
         <POI id="undercroftmuseum" latitude="53.961965" longitude="-1.082039" name="Undercroft Museum" />
@@ -37,8 +39,8 @@
         <Text x="0" y="0" textsize="100" bold="true">
             The Minster
         </Text>
-        <Image path="./content/YorkMinster.jpg" x="0" y="250" x2="1000" y2="1250" />
-        <Text x="0" y="1350" textsize="50">
+        <Image path="./content/YorkMinster.jpg" x="0" y="250" x2="1000" y2="1000" />
+        <Text x="0" y="1150" textsize="50">
             <Format bold="true">Opening Times</Format><Br />
             9:00am — 4:30pm
         </Text>
@@ -91,11 +93,11 @@
     </Slide>
 
     <Slide poi="#undercroftmuseum">
-        <Text x="0" y="0" textsize="50" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             Undercroft Museum
         </Text>
-        <Image path="./content/MinsterUndercroft.jpg" x="0" y="250" x2="1000" y2="1600" />
-        <Text x="0" y="250" x2="1000" y2="1600" textsize="50">
+        <Image path="./content/MinsterUndercroft.jpg" x="0" y="200" x2="1000" y2="950" />
+        <Text x="0" y="1050" x2="1000" y2="1600" textsize="50">
             Explore 2,000 years of history housed in state-of-the-art interactive chambers beneath the Minster.
             Visitors to the Undercroft, which is the only accredited museum in a cathedral in the country, can see
             the remains of Roman barracks, discover the Minster’s Viking connections and see artefacts never before
@@ -107,8 +109,8 @@
         <Text x="0" y="0" textsize="100" bold="true">
             Chapter House
         </Text>
-        <Image path="./content/MinsterChapterHouse.jpg" x="0" y="250" x2="1000" y2="1600" />
-        <Text x="0" y="250" x2="1000" y2="1600" textsize="50">
+        <Image path="./content/MinsterChapterHouse.jpg" x="0" y="200" x2="1000" y2="950" />
+        <Text x="0" y="1050" x2="1000" y2="1600" textsize="50">
             One of York Minster’s architectural gems, the Chapter House contains some of the Minster’s finest carvings
             and in 1297 was used as the location for the Parliament of King Edward I. The octagonal space dates from the
             1280s and its magnificent, vaulted ceiling is supported by timbers in the roof, instead of a central column,
@@ -120,8 +122,8 @@
         <Text x="0" y="0" textsize="100" bold="true">
             Dean's Park
         </Text>
-        <Image path="./content/deanpark.jpg" x="0" y="250" x2="1000" y2="1600" />
-        <Text x="0" y="250" x2="1000" y2="1600" textsize="50">
+        <Image path="./content/deanpark.jpg" x="0" y="200" x2="1000" y2="950" />
+        <Text x="0" y="1050" x2="1000" y2="1600" textsize="50">
             Originally built by William the Conqueror to subdue the rebels of the north, it was twice burned to the ground,
             before being rebuilt by Henry III in the 13th century. The tower takes its name from one grisly incident in its
             long history, when Roger de Clifford was executed for treason against Edward II and hanged in chains from the
