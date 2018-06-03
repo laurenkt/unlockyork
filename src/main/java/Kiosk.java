@@ -101,6 +101,9 @@ public class Kiosk extends Application {
         double minWidth = presentation.getMaxX2();
         double minHeight = presentation.getMaxY2();
 
+        System.out.println("minWidth = " + minWidth);
+        System.out.println("minHeight = " + minHeight);
+
         Scale scale = new Scale();
         scale.setPivotX(0);
         scale.setPivotY(0);

@@ -165,29 +165,31 @@ public class MapView extends ScrollPane {
 
         target.scaleYProperty().addListener((obs, old, val) -> {
             layout();
-
-            double mapHeight = target.getBoundsInParent().getHeight();
-            double viewportHeight = getViewportBounds().getHeight();
-            double yPercent = yCenter.getValue() / target.getHeight();
-            double yTargetPos = yPercent * mapHeight - viewportHeight/2;
-            double vMax = mapHeight - getViewportBounds().getHeight();
-            double yVal = yTargetPos / vMax;
-
-            setVvalue(yVal);
+            setVvalue(getScrollYForTarget(yCenter.getValue()));
         });
 
         target.scaleXProperty().addListener((obs, old, val) -> {
             layout();
-
-            double mapWidth = target.getBoundsInParent().getWidth();
-            double viewportWidth = getViewportBounds().getWidth();
-            double xPercent = xCenter.getValue() / target.getWidth();
-            double xTargetPos = xPercent * mapWidth - viewportWidth/2 + (leftAligned ? viewportWidth/4 : 0);
-            double hMax = mapWidth - getViewportBounds().getWidth();
-            double xVal = xTargetPos / hMax;
-
-            setHvalue(xVal);
+            setHvalue(getScrollXForTarget(xCenter.getValue()));
         });
+    }
+
+    private double getScrollXForTarget(double x) {
+        double mapWidth = target.getBoundsInParent().getWidth();
+        double viewportWidth = getViewportBounds().getWidth();
+        double xPercent = x / target.getWidth();
+        double xTargetPos = xPercent * mapWidth - viewportWidth/2 + (leftAligned ? viewportWidth/4 : 0);
+        double hMax = mapWidth - getViewportBounds().getWidth();
+        return xTargetPos / hMax;
+    }
+
+    private double getScrollYForTarget(double y) {
+        double mapHeight = target.getBoundsInParent().getHeight();
+        double viewportHeight = getViewportBounds().getHeight();
+        double yPercent = y / target.getHeight();
+        double yTargetPos = yPercent * mapHeight - viewportHeight/2;
+        double vMax = mapHeight - getViewportBounds().getHeight();
+        return yTargetPos / vMax;
     }
 
     public void centerPoint(double x, double y) {
@@ -196,21 +198,8 @@ public class MapView extends ScrollPane {
         xCenter.setValue(x);
         yCenter.setValue(y);
 
-        double mapWidth = target.getBoundsInParent().getWidth();
-        double mapHeight = target.getBoundsInParent().getHeight();
-        double viewportWidth = getViewportBounds().getWidth();
-        double viewportHeight = getViewportBounds().getHeight();
-        double xPercent = x / target.getWidth();
-        double yPercent = y / target.getHeight();
-        double xTargetPos = xPercent * mapWidth - viewportWidth/2 + (leftAligned ? viewportWidth/4 : 0);
-        double yTargetPos = yPercent * mapHeight - viewportHeight/2;
-        double hMax = mapWidth - getViewportBounds().getWidth();
-        double vMax = mapHeight - getViewportBounds().getHeight();
-        double xVal = xTargetPos / hMax;
-        double yVal = yTargetPos / vMax;
-
         final double targetScale = 1.25;
-        final Duration animationDuration = Duration.millis(400);
+        final Duration animationDuration = Duration.millis(1000);
 
         final Timeline timeline = new Timeline();
         // If it's at a different scale, zoom to it
@@ -221,6 +210,9 @@ public class MapView extends ScrollPane {
         }
         // If it's at the same scale, then scroll to the location
         else {
+            double xVal = getScrollXForTarget(x);
+            double yVal = getScrollYForTarget(y);
+
             timeline.getKeyFrames().addAll(
                     new KeyFrame(animationDuration, new KeyValue(hvalueProperty(), xVal, Interpolator.EASE_BOTH)),
                     new KeyFrame(animationDuration, new KeyValue(vvalueProperty(), yVal, Interpolator.EASE_BOTH))
