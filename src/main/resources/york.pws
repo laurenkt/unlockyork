@@ -31,7 +31,7 @@
         <Text x="0" y="0" textsize="100" bold="true">
             The Minster
         </Text>
-        <Image path="./content/YorkMinster.jpg" x="0" y="250" x2="2000" y2="1750" />
+        <Image path="./content/YorkMinster.jpg" x="0" y="250" x2="1000" y2="1750" />
         <Text x="0" y="1950" textsize="50">
             <Format bold="true">Opening Times</Format><Br />
             9:00am — 4:30pm
@@ -96,10 +96,11 @@
     </Slide>
 
     <Slide poi="#chapterhouse">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             Chapter House
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Image path="./content/MinsterChapterHouse.jpg" x="0" y="250" x2="2000" y2="1750" />
+        <Text x="0" y="1950" x2="2000" y2="2150" textsize="50">
             One of York Minster’s architectural gems, the Chapter House contains some of the Minster’s finest carvings
             and in 1297 was used as the location for the Parliament of King Edward I. The octagonal space dates from the
             1280s and its magnificent, vaulted ceiling is supported by timbers in the roof, instead of a central column,
@@ -108,24 +109,24 @@
     </Slide>
 
     <Slide poi="#deanspark">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             Dean's Park
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Image path="./content/deanpark.jpg" x="0" y="250" x2="2000" y2="1750" />
+        <Text x="0" y="1950" x2="2000" y2="2150" textsize="50">
             Originally built by William the Conqueror to subdue the rebels of the north, it was twice burned to the ground,
             before being rebuilt by Henry III in the 13th century. The tower takes its name from one grisly incident in its
             long history, when Roger de Clifford was executed for treason against Edward II and hanged in chains from the
             tower walls.
         </Text>
-        <Image path="./content/deanpark.jpg" x="0" y="700" x2="640" y2="1180" />
     </Slide>
 
     <Slide poi="#cliffordstower">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             Cliffords Tower
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             Originally built by William the Conqueror to subdue the rebels of the north, it was
             twice burned to the ground, before being rebuilt by Henry III in the 13th century.
             The tower takes its name from one grisly incident in its long history, when Roger
