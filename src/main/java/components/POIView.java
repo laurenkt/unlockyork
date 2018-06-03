@@ -73,7 +73,7 @@ public class POIView extends Region {
         icon.setEffect(colorAdjust);
         setActive(false);
 
-        opacityProperty.addListener((obs, old, val) -> setStyle("-fx-opacity: "+val.toString()));
+        opacityProperty.addListener((obs, old, val) -> setStyle("-fx-opacity: "+(Math.round(val.doubleValue() * 100.0)/100.0)));
 
         for(POI subPOI : poi.getSubPOI()) {
             POIView subPoiView = new POIView(subPOI);
