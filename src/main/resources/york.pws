@@ -31,7 +31,6 @@
     <POI id="citywalls" latitude="53.95396" longitude="-1.07524" name="City Walls" />
     <POI id="citywalls" latitude="53.95418" longitude="-1.08677" name="City Walls" />
     <POI id="theshambles" latitude="53.959393" longitude="-1.080093" name="The Shambles" />
-    <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" type="POI" name="Postern Gate" />
     <POI id="chocolatestory" latitude="53.960037" longitude="-1.080415" type="POI" name="York's Chocolate Story" />
     <POI id="presentation" latitude="53.947641" longitude="-1.057154" type="POI" name="Sales Presentation" />
 
@@ -331,9 +330,13 @@
         <Text x="0" y="0" textsize="100" bold="true">
             City Walls
         </Text>
+        <Image path="./content/walls.jpg" x="0" y="200" x2="500" y2="650" />
+        <Image path="./content/newwalls.jpg" x="500" y="200" x2="1000" y2="650" />
+        <Video path="./content/walls.mp4" x="0" y="650" x2="1000" y2="1400" />
+    </Slide>
 
-
-        <Text x="0" y="150" x2="1000" y2="1600" textsize="50">
+     <Slide poi="#citywalls">
+        <Text x="0" y="0" x2="1000" y2="1400" textsize="50">
             The city or ‘bar’ walls of York are the most complete example of medieval city walls still standing in England today.
             Beneath the medieval stonework lie the remains of earlier walls dating as far back as the Roman period.
 
@@ -349,7 +352,13 @@
 
             By the late 18th century, however, the walls were no longer required as defences for the city and had fallen into disrepair.
             In 1800, the Corporation of York applied for an Act of Parliament to demolish them.  In addition to the poor condition of
-            the walls at the time, the narrow gateways of the bars were inconvenient and the walls themselves hindered the city’s
+            the walls at the time,
+        </Text>
+   </Slide>
+
+    <Slide poi="#citywalls">
+        <Text x="0" y="0" x2="1000" y2="1400" textsize="50">
+            the narrow gateways of the bars were inconvenient and the walls themselves hindered the city’s
             expansion.
 
             Many other cities, including London, were removing their outdated, medieval city walls at this time.  In York, however, the
@@ -361,31 +370,29 @@
 
             Since the mid-nineteenth century the walls have been restored and maintained for public access, including the planting of
             spring flowers on the old Viking embankment. Today the walls are a Scheduled Ancient Monument and a Grade 1 listed building.
-
         </Text>
-
-        <Image path="./content/walls.jpg" x="550" y="150" x2="1000" y2="680" />
-        <Image path="./content/newwalls.jpg" x="550" y="750" x2="1000" y2="1180" />
-        <Video path="./content/walls.mp4" x="300" y="1200" x2="1000" y2="1600" />
-
     </Slide>
 
     <Slide poi="#artgallery">
         <Text x="0" y="0" textsize="100" bold="true">
             York Art Gallery
         </Text>
-
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Image path="./content/artgallery.jpg" x="0" y="200" x2="1000" y2="1000" />
+        <Text x="0" y="1050" x2="1000" y2="1400" textsize="50">
             York Art Gallery underwent a major redevelopment prior to it’s grand reopening on
             August 1 2015. We have increased the gallery’s display space by 60% by creating a
             new first-floor gallery in the space above the Main Gallery on the ground floor.
             We have created an entirely new gallery above the existing South Gallery and expanded
+        </Text>
+    </Slide>
+
+    <Slide poi="#artgallery">
+        <Text x="0" y="1050" x2="1000" y2="1400" textsize="50">
             into the rooms next door to the gallery, formerly occupied by the City Archives.
             York Art Gallery’s collection of paintings spans more than 600 years and works range
             from 14th century Italian panels and 17th century Dutch masterpieces to Victorian
             narrative paintings and 20th century works by LS Lowry and David Hockney.
         </Text>
-        <Image path="./content/artgallery.jpg" x="0" y="700" x2="1000" y2="1600" />
     </Slide>
 
     <Slide poi="#jorvik">
