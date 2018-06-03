@@ -1,5 +1,6 @@
 package components;
 
+import events.POIEvent;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -20,7 +21,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.transform.Transform;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 import models.POI;
@@ -31,19 +31,6 @@ public class MapView extends ScrollPane {
 
     public void centerAtYouAreHere() {
         this.centerPoint(youAreHereLocation.getX(), youAreHereLocation.getY());
-    }
-
-    public class POIEvent extends Event {
-        private POI poi;
-
-        public POIEvent(POI poi) {
-            super(EventType.ROOT);
-            this.poi = poi;
-        }
-
-        public POI getPOI() {
-            return this.poi;
-        }
     }
 
     private double scaleValue = 0.7;
@@ -59,11 +46,11 @@ public class MapView extends ScrollPane {
     private DoubleProperty xCenter = new SimpleDoubleProperty(0);
     private DoubleProperty yCenter = new SimpleDoubleProperty(0);
     private DoubleProperty scaleProperty = new SimpleDoubleProperty(1);
-    private EventHandler<? super POIEvent> onPoiClicked;
     private List<Image> tiles = new ArrayList<>();
     private Image youAreHereIcon = new Image(getClass().getResource("/icons/map_me.png").toExternalForm());
     private ImageView youAreHere = new ImageView(youAreHereIcon);
     private Point2D youAreHereLocation;
+    private EventHandler<? super POIEvent> onPoiClicked;
 
     public void setYouAreHere(double latitude, double longitude) {
         youAreHereLocation = POI.latLongToPoint(latitude, longitude);
@@ -132,7 +119,7 @@ public class MapView extends ScrollPane {
         setScaleValue(scaleValue);
 
         stack.setOnMouseClicked(e -> {
-            final double threshold = 50;
+/*            final double threshold = 50;
 
             double x = e.getX();
             double y = e.getY();
@@ -153,11 +140,13 @@ public class MapView extends ScrollPane {
                         return;
                     }
                 }
-            }
+            }*/
 
             // Else
             setPointActive(null);
-            onPoiClicked.handle(new POIEvent(null));
+            if (onPoiClicked != null) {
+                onPoiClicked.handle(new POIEvent(null));
+            }
         });
 
         layout();
@@ -328,7 +317,14 @@ public class MapView extends ScrollPane {
     }
 
     public void setOnPoiClicked(EventHandler<? super POIEvent> handler) {
-        this.onPoiClicked = handler;
+        onPoiClicked = handler;
+        for(POIView poiView : poiViews) {
+            poiView.setOnClicked(e -> {
+                handler.handle(e);
+                setPointActive(e.getPOI());
+                centerPoint(e.getPOI().getX(), e.getPOI().getY());
+            });
+        }
     }
 
     private void setLevel(int level) {
