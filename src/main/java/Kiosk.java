@@ -136,14 +136,9 @@ public class Kiosk extends Application {
             scale.setY(Math.min(scaleWidthFactor, scaleHeightFactor));
         });
 
-        //map.prefHeightProperty().bind(userView.widthProperty().divide(2));
-        //map.prefWidthProperty().bind(userView.widthProperty().divide(2));
-
         slides = presentation.getSlides().stream()
                 .map(slide -> new SlideView(slide))
                 .toArray(size -> new SlideView[size]);
-
-        //this.setSlideNum(0);
 
         forward.setOnAction(e -> this.onNext(e));
         back.setOnAction(e -> this.onPrevious(e));
