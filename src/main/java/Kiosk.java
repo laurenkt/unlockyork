@@ -50,6 +50,9 @@ public class Kiosk extends Application {
         final double margin = 50;
         final double offset = .5;
 
+        // Load custom font
+        javafx.scene.text.Font.loadFont(getClass().getResource("/fonts/OFLGoudyStM.otf").toExternalForm(), 10);
+
         primaryStage.setTitle("Unlock York");
 
         try {
