@@ -116,7 +116,7 @@ public class Kiosk extends Application {
         slidePane.setTranslateY(margin);
 
         backgroundPane.setMouseTransparent(true);
-        backgroundPane.setStyle(("-fx-background-color: rgba(255,255,255,0.7)"));
+        backgroundPane.setStyle(("-fx-background-color: rgba(255,255,255,0.8)"));
         backgroundPane.visibleProperty().bind(slidePane.visibleProperty());
 
         Scene scene = new Scene(userView);

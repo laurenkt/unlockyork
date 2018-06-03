@@ -266,6 +266,13 @@ public class MapView extends ScrollPane {
                 }
             }
         }
+
+        if (poi == null) {
+            // Set all inactive
+            for (POIView view : poiViews) {
+                view.setActive(false);
+            }
+        }
     }
 
     public DoubleProperty scaleProperty() {
