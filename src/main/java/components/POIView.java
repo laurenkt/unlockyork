@@ -7,7 +7,6 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.scene.Node;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
@@ -15,11 +14,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.media.AudioClip;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.scene.text.TextBoundsType;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import models.POI;
@@ -119,12 +116,12 @@ public class POIView extends Region {
     private Image getImageForType(String type) {
         type = type.toLowerCase(); // Normalize
 
-        if ("spoi".equals(type))       return subPoiIcon;
-        if ("shop".equals(type))       return shopIcon;
-        if ("cafe".equals(type))       return cafeIcon;
-        if ("pub".equals(type))        return pubIcon;
-        if ("hotel".equals(type))      return hotelIcon;
-        if ("restaurant".equals(type)) return restaurantIcon;
+        if ("spoi".equals(type))   return subPoiIcon;
+        if ("shop".equals(type))   return shopIcon;
+        if ("cafe".equals(type))   return cafeIcon;
+        if ("pub".equals(type))    return pubIcon;
+        if ("hotel".equals(type))  return hotelIcon;
+        if ("dining".equals(type)) return restaurantIcon;
 
         return poiIcon;
     }

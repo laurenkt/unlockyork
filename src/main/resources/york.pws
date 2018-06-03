@@ -3,7 +3,7 @@
               italic="false" bold="false" underline="false" textsize="22" color="#000000" font="OFL Sorts Mill Goudy">
     <POI id="bettystearoom" latitude="53.96009" longitude="-1.08418" type="Cafe" name="Betty's Tea Room" />
     <POI id="gatehousecoffee" latitude="53.95515" longitude="-1.07074" type="Cafe" name="Gatehouse Coffee" />
-    <POI id="sparkyork" latitude="53.95693" longitude="-1.07775" type="Shop" name="Spark York" />
+    <POI id="sparkyork" latitude="53.95693" longitude="-1.07775" type="dining" name="Spark York" />
     <POI id="yorkarmoury" latitude="53.96102" longitude="-1.08303" type="Shop" name="York Armoury" />
     <POI id="houseofthetremblingmadness" latitude="53.961262" longitude="-1.082935" type="pub" name="House of the Trembling Madness" />
     <POI id="minsterhotel" latitude="53.964343" longitude="-1.088331" type="hotel" name="Minster Hotel" />
