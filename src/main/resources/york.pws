@@ -387,7 +387,7 @@
     </Slide>
 
     <Slide poi="#artgallery">
-        <Text x="0" y="1050" x2="1000" y2="1400" textsize="50">
+        <Text x="0" y="0" x2="1000" y2="450" textsize="50">
             into the rooms next door to the gallery, formerly occupied by the City Archives.
             York Art Gallery’s collection of paintings spans more than 600 years and works range
             from 14th century Italian panels and 17th century Dutch masterpieces to Victorian
@@ -399,14 +399,19 @@
         <Text x="0" y="0" textsize="100" bold="true">
             Jorvik Viking Centre
         </Text>
-
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Image path="./content/jorvikslide1.jpg" x="0" y="200" x2="1000" y2="950" />
+        <Text x="0" y="1050" x2="1000" y2="1400" textsize="50">
             Our knowledge of Viking life was transformed in the late 1970's by the discoveries
             made on the site of a new shopping centre in Coppergate.
 
             Digging in the layers of moist, spongy earth, experts from the York Archaeological
             Trust found it had preserved Viking homes, clothes, games and goods.
-            The remains of timber buildings were laid out along the street of Coppergate, each
+            The remains of timber buildings
+        </Text>
+    </Slide>
+    <Slide poi="#jorvik">
+        <Text x="0" y="0" x2="1000" y2="650" textsize="50">
+            were laid out along the street of Coppergate, each
             separated from its neighbour by fences.
 
             Archaeologists unearthed remarkable evidence of Viking cottage industry, including
@@ -416,94 +421,122 @@
             attraction in York containing lifelike mannequins and life-size dioramas depicting
             Viking life in the city.
         </Text>
-        <Image path="./content/jorvikslide1.jpg" x="0" y="700" x2="640" y2="1600" />
-
-    </Slide>
-    <Slide poi="#jorvik">
-        <Text x="0" y="0" textsize="100" bold="true">
-            1978: Coppergate Dig
-        </Text>
-
-        <Text x="0" y="150" x2="1000" y2="600">
+       <Text x="0" y="850" textsize="100" bold="true">
+                   1978: Coppergate Dig
+               </Text>
+       <Text x="0" y="1150" x2="1000" y2="1400" textsize="50">
             This small excavation by York Archaeological Trust identified three new and exciting facts:
-            In this area of York there is up to 9m of archaeological layers which mostly date to the Viking Age. This great depth is highly unusual.
-            These layers are both moist and peaty and so preserve the organic remains of timber buildings, textiles from clothing and leather shoes; things which rot away to dust on most archaeological sites.
-            The moist peaty layers also preserve seeds, insect remains, plants, animal bones, human parasite eggs and pollen; providing evidence that gives us information about past climate, diet, health, the countryside and other features of the ancient environment.
-
+            In this area of York there is up to 9m of archaeological layers which mostly date to the Viking Age. This great depth
+            is highly unusual.
         </Text>
-        <Image path="./content/jorvikslide2.jpg" x="0" y="700" x2="640" y2="1600" />
+    </Slide>
+
+    <Slide poi="#jorvik">
+        <Text x="0" y="0" x2="1000" y2="600" textsize="50">
+            This small excavation by York Archaeological Trust identified three new and exciting facts:
+            In this area of York there is up to 9m of archaeological layers which mostly date to the Viking Age. This great depth
+            is highly unusual.
+            These layers are both moist and peaty and so preserve the organic remains of timber buildings, textiles from clothing and
+            leather shoes; things which rot away to dust on most archaeological sites.
+            The moist peaty layers also preserve seeds, insect remains, plants, animal bones, human parasite eggs and pollen; providing
+            evidence that gives us information about past climate, diet, health, the countryside and other features of the ancient
+            environment.
+        </Text>
+        <Image path="./content/jorvikslide2.jpg" x="0" y="1000" x2="640" y2="1400" />
 
     </Slide>
     <Slide poi="#jorvik">
         <Text x="0" y="0" textsize="100" bold="true">
             1984: JORVIK Opens
         </Text>
-
-        <Text x="0" y="150" x2="1000" y2="600">
-            Many ideas were floated around but one thing was clear, they wanted to create a heritage experience as unique as the artefacts that would be on show and as exciting as the period it would be showcasing. The result was a historic attraction that was more like a film set than a museum. Instead of walking around looking at exhibits, the visitor would sit in specially designed time-cars, and move around the “set” of a Viking village, taking it in from all angles, and witnessing Viking life up-close.
-
+        <Text x="0" y="200" x2="1000" y2="800" textsize="50">
+            Many ideas were floated around but one thing was clear, they wanted to create a heritage experience as unique as
+            the artefacts that would be on show and as exciting as the period it would be showcasing. The result was a historic
+            attraction that was more like a film set than a museum. Instead of walking around looking at exhibits, the visitor would
+            sit in specially designed time-cars, and move around the “set” of a Viking village, taking it in from all angles, and
+            witnessing Viking life up-close.
         </Text>
-        <Image path="./content/jorvikslide3.jpg" x="0" y="700" x2="640" y2="1600" />
+        <Image path="./content/jorvikslide3.jpg" x="0" y="900" x2="640" y2="1400" />
 
     </Slide>
     <Slide poi="#jorvik">
         <Text x="0" y="0" textsize="100" bold="true">
             2001: Time Machine Travels
         </Text>
-
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="250" x2="1000" y2="1000" textsize="50">
             Another 16 years of academic research told us even more about Viking-Age York helping us to update the JORVIK experience.
-            Opened 7th April 2001 visitors could get even closer to understanding what life was like for inhabitants of JORVIK, as they journeyed through Viking life as it was at 5:30pm, 25th October, AD975.
-            On arrival at JORVIK Viking Centre visitors were invited to board a specially commissioned time machine the doors were sealed and with some degree of light turbulence, you  were hurtled backwards through time, creating the very real sensation of high-speed time travel! In-flight entertainment consisted of a film showing the changing style and appearance of York’s streets and residents, as passengers were taken backwards in time through the centuries. With a sudden jolt the time machine malfunctioned and sped back too far, to the year 866AD, the year when Vikings invaded the city of York!
-
+            Opened 7th April 2001 visitors could get even closer to understanding what life was like for inhabitants of JORVIK, as
+            they journeyed through Viking life as it was at 5:30pm, 25th October, AD975.
+            On arrival at JORVIK Viking Centre visitors were invited to board a specially commissioned time machine the doors were
+            sealed and with some degree of light turbulence, you  were hurtled backwards through time, creating the very real sensation
+            of high-speed time travel! In-flight entertainment consisted of a film showing the changing style and appearance of York’s
+            streets and residents, as passengers were taken backwards in time through the centuries. With a sudden jolt the time machine
+            malfunctioned and sped back too far, to the year 866AD, the year when Vikings invaded the city of York!
         </Text>
-        <Image path="./content/jorvikslide4.jpg" x="0" y="700" x2="640" y2="1600" />
-
     </Slide>
     <Slide poi="#jorvik">
-        <Text x="0" y="0" textsize="100" bold="true">
+        <Image path="./content/jorvikslide4.jpg" x="0" y="0" x2="640" y2="550" />
+        <Text x="0" y="600" textsize="100" bold="true">
             2010: New Norse
         </Text>
-
-        <Text x="0" y="150" x2="1000" y2="600">
-            JORVIK Viking Centre reopened on 13th February 2010 following a £1million refurbishment to bring archaeology back to the forefront of the attraction.
+        <Text x="0" y="750" x2="1000" y2="1400" textsize="50">
+            JORVIK Viking Centre reopened on 13th February 2010 following a £1million refurbishment to bring archaeology back to the
+            forefront of the attraction.
             New Features Included:
-            A brand new glass-floored gallery that incorporated an underfoot recreation of the original Coppergate excavation, enabling visitors to see exactly how the Viking Age remains were discovered
+            A brand new glass-floored gallery that incorporated an underfoot recreation of the original Coppergate excavation,
+            enabling visitors to see exactly how the Viking Age remains were discovered
             1,000 year old timbers that once formed the wall of a Viking house
-            Displays of never before seen objects discovered during the Coppergate excavation that gave new and fascinating insights into Viking-Age life
-            Seven new state of the art animatronics who interact with visitors in Old Norse
-            A new Viking Age house and back yard, based on evidence of an amber worker’s house discovered during the Coppergate excavation
-
+            Displays of never before seen objects discovered during the Coppergate excavation that gave new and fascinating
         </Text>
-        <Image path="./content/jorvikslide5.jpg" x="0" y="700" x2="640" y2="1600" />
 
     </Slide>
     <Slide poi="#jorvik">
-        <Text x="0" y="0" textsize="100" bold="true">
+        <Text x="0" y="0" x2="1000" y2="300" textsize="50">
+            insights into Viking-Age life
+            Seven new state of the art animatronics who interact with visitors in Old Norse
+            A new Viking Age house and back yard, based on evidence of an amber worker’s house discovered during the Coppergate excavation.
+        </Text>
+        <Image path="./content/jorvikslide5.jpg" x="0" y="400" x2="640" y2="950" />
+        <Text x="0" y="1000" textsize="100" bold="true">
             2015: The JORVIK Flood
         </Text>
-
-        <Text x="0" y="150" x2="1000" y2="600">
-            When staff opened JORVIK Viking Centre on Sunday 27th December they were expecting a normal day helping visitors explore the impact of the Vikings, what they didn’t know was that an event would take place that would affect so many people and result in the centre remaining closed for over a year…
-            Unfortunately JORVIK, like many other homes and businesses in York, was affected by the heavy flooding that besieged the city at Christmas 2015. Water started to enter the basement of the building from the loading bay door, off Piccadilly, when the River Foss burst its banks following heavy rainfall on Boxing Day.  The technical team at the centre managed to create a makeshift flood barrier which held the water back long enough for a team of curators and volunteers to remove all of the irreplaceable artefacts from the underground galleries, but by the morning of 28 December, much of the recreation of Viking-age York was under up to a metre of water.
-
+        <Text x="0" y="1250" x2="1000" y2="1400" textsize="50">
+            When staff opened JORVIK Viking Centre on Sunday 27th December they were expecting a normal day helping visitors explore
+            the impact of the Vikings, what they didn’t know was that an event would take place
         </Text>
-        <Image path="./content/jorvikslide6.jpg" x="0" y="700" x2="640" y2="1600" />
 
+    </Slide>
+    <Slide poi="#jorvik">
+         <Text x="0" y="0" x2="1000" y2="1000" textsize="50">
+            that would affect so many people and
+            result in the centre remaining closed for over a year…
+            Unfortunately JORVIK, like many other homes and businesses in York, was affected by the heavy flooding that besieged the
+            city at Christmas 2015. Water started to enter the basement of the building from the loading bay door, off Piccadilly, when
+            the River Foss burst its banks following heavy rainfall on Boxing Day.  The technical team at the centre managed to create a
+            makeshift flood barrier which held the water back long enough for a team of curators and volunteers to remove all of the
+            irreplaceable artefacts from the underground galleries, but by the morning of 28 December, much of the recreation of
+            Viking-age York was under up to a metre of water.
+        </Text>
+        <Image path="./content/jorvikslide6.jpg" x="0" y="1100" x2="640" y2="1400" />
     </Slide>
     <Slide poi="#jorvik">
         <Text x="0" y="0" textsize="100" bold="true">
             2017: Return of the Vikings
         </Text>
+        <Text x="0" y="250" x2="1000" y2="1400" textsize="50">
+            With an updated ride experience and state-of-the art galleries showcasing our unique collection of 1,000 year old
+            artefacts visit the newly re-imagined JORVIK Viking Centre and discover York’s fascinating Viking legacy.
 
-        <Text x="0" y="150" x2="1000" y2="600">
-            With an updated ride experience and state-of-the art galleries showcasing our unique collection of 1,000 year old artefacts visit the newly re-imagined JORVIK Viking Centre and discover York’s fascinating Viking legacy.
-
-            At JORVIK Viking Centre you are standing on the site which revealed some of the most famous and astounding discoveries in modern archaeology, so, it is fitting that your first experience at JORVIK is an exploration of the Coppergate dig, with a fully immersive display taking you back to the 1970s. Here you will hear the stories of the archaeologists who were involved in this revolutionary excavation and helped piece together the story of the Vikings of Jorvik, where they came from, how they lived, died and where they travelled to.
-
+            At JORVIK Viking Centre you are standing on the site which revealed some of the most famous and astounding discoveries
+            in modern archaeology, so, it is fitting that your first experience at JORVIK is an exploration of the Coppergate dig,
+            with a fully immersive display taking you back to the 1970s. Here you will hear the stories of the archaeologists who were
+            involved in this revolutionary excavation and helped piece together the story of the Vikings of Jorvik, where they came from,
+            how they lived, died and where they travelled to.
         </Text>
-        <Image path="./content/jorvikslide7.jpg" x="0" y="700" x2="640" y2="1600" />
+    </Slide>
 
+    <Slide poi="#jorvik">
+        <Image path="./content/jorvikslide7.jpg" x="0" y="0" x2="640" y2="550" />
     </Slide>
 
     <Slide poi="#merchantadventure">
@@ -511,7 +544,7 @@
             Merchant Adventurers Hall
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             Merchant Adventurers’ Hall, a unique building in the heart of historic York.
             This stunning timber framed building was constructed by a fraternity made up of
             York citizens to provide a base for charity, worship and business in the centre
@@ -519,12 +552,30 @@
             a fascinating museum it is also a scheduled ancient monument and Grade 1 listed
             building.
 
+        </Text>
+        <Image path="./content/merchanthall.jpg" x="0" y="900" x2="1000" y2="1500" />
+    </Slide>
+    <Slide poi="#merchantadventure">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Merchant Adventurers Hall
+        </Text>
+
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             There have been many additions and changes to the Hall over the years, but the
             main functions of business and charity remain the same today. There are three main
             rooms in the Hall. The Great Hall is where the Medieval merchants first gathered
             to conduct their business and to socialise. The Undercroft used as an almshouse
             to help the sick and the poor until as late as 1900. The Chapel offering spiritual
             care to the merchants and the inmates of the almshouse.
+
+        </Text>
+    </Slide>
+    <Slide poi="#merchantadventure">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Merchant Adventurers Hall
+        </Text>
+
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
 
             The Merchant Adventurers’ Hall is home to many remarkable collections. Including
             silver, furniture and paintings, which provide a glimpse into the rich history of
@@ -536,19 +587,27 @@
             York. They invite you to discover the secrets of this unique guild hall and its 660
             years of history.
         </Text>
-
-        <Image path="./content/merchanthall.jpg" x="0" y="700" x2="1000" y2="1600" />
-
     </Slide>
 
     <Slide poi="#museumgardens">
         <Text x="0" y="0" textsize="100" bold="true">
             York Museum Gardens
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             Set in the stunning surroundings of the Medieval ruins of St. Mary’s Abbey, the York
             Museum Gardens are a great space to meet friends and family and enjoy some peace and
             tranquility in the heart of the city centre.
+
+        </Text>
+
+        <Image path="./content/gardens.jpg" x="0" y="600" x2="1000" y2="1500" />
+
+    </Slide>
+    <Slide poi="#museumgardens">
+        <Text x="0" y="0" textsize="100" bold="true">
+            York Museum Gardens
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
 
             There is so much to see and do including a chance to see inside Yorkshire’s oldest
             working observatory, wander round the gardens and see the vast botanical collection,
@@ -556,8 +615,6 @@
             Yorkshire Museum, which showcases some of Britain’s finest archaeological treasures
             and many rare animals, birds and fossils, in exciting new displays
         </Text>
-
-        <Image path="./content/gardens.jpg" x="0" y="700" x2="1000" y2="1600" />
 
     </Slide>
 
@@ -693,7 +750,7 @@
             and many rare animals, birds and fossils, in exciting displays.
         </Text>
 
-        <Image path="./content/yorkshiremuseum.jpg" x="0" y="700" x2="1000" y2="1600" />
+        <Image path="./content/yorkshiremuseum.jpg" x="0" y="900" x2="1000" y2="1600" />
     </Slide>
 
     <Slide poi="#bettystearoom">
@@ -706,10 +763,17 @@
         </Text>
         <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             The founder of Bettys, Frederick Belmont, travelled on the maiden voyage of the Queen Mary. He was so impressed by the extravagance of the ship that he commissioned the Queen Mary's designers to turn an old furniture store into his most sophisticated branch yet - an elegant café in the land-locked location of St Helens Square, York.
+        </Text>
+        <Image path="./content/bettys.jpg" x="0" y="700" x2="1000" y2="1180" />
+    </Slide>
+    <Slide poi="#bettystearoom">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Betty's Tea Room
+        </Text>
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             A specially devised menu, an immaculate table-setting, a pianist to serenade you: our luxury Lady Betty Afternoon Tea is a truly unforgettable experience. Book ahead so you can waltz past the queues and dine in the opulent splendour of our Belmont Room.
             If you're looking for a really special experience, our Lady Betty Afternoon Tea provides just this. Set in the historic and elegant surroundings of the Belmont Room, York, our menu is inspired by Bettys best-loved pâtisserie and favourite Café Tea Rooms specialities.
         </Text>
-        <Image path="./content/bettys.jpg" x="0" y="700" x2="1000" y2="1180" />
     </Slide>
 
     <Slide poi="#gatehousecoffee">
@@ -720,10 +784,10 @@
             <Format bold="true">Opening Times</Format><Br />
             10:00am — 6:00pm
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             Gatehouse Coffee is located in Walmgate Bar, within York’s city walls, and is a Christian-run cafe specializing in high quality espresso drinks, friendly service, light pastries and snacks, paninis, seasonal soups and free wifi.
         </Text>
-        <Image path="./content/gatehouse.jpg" x="0" y="700" x2="1000" y2="1180" />
+        <Image path="./content/gatehouse.jpg" x="0" y="700" x2="1000" y2="1300" />
     </Slide>
 
     <Slide poi="#sparkyork">
@@ -734,10 +798,10 @@
             <Format bold="true">Opening Times</Format><Br />
             8:00am — 10:30pm
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             Spark:York CIC is a community of small independent businesses including street food, bars, retail, co-working and entertainment
         </Text>
-        <Image path="./content/spark.jpg" x="0" y="700" x2="640" y2="1180" />
+        <Image path="./content/spark.jpg" x="0" y="700" x2="1000" y2="1500" />
     </Slide>
     <Slide poi="#yorkarmoury">
         <Text x="0" y="0" textsize="100" bold="true">
@@ -747,21 +811,77 @@
             <Format bold="true">Opening Times</Format><Br />
             10:00am — 7:00pm
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             Home of historical arms and armour, movie swords, anime swords, buckland knives and minamoto katana.
         </Text>
         <Image path="./content/yorkarmoury.jpg" x="0" y="700" x2="1000" y2="1580" />
     </Slide>
     <Slide poi="#chocolatestory">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             York's Chocolate Story
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             At York’s Chocolate Story you can discover the stories behind the greatest names in chocolate, unwrap the secrets of chocolate making, and even learn the art of the chocolatier for yourself. A fully guided tour and three floors of interactive exploration take you on a journey through the city where chocolate made history.
+        </Text>
+        <Image path="./content/chocolatestory1.png" x="0" y="700" x2="1000" y2="1580" />
+    </Slide>
+    <Slide poi="#chocolatestory">
+        <Text x="0" y="0" textsize="100" bold="true">
+            York's Chocolate Story
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             While other British cities were built on steel, coal or wool, York’s fame and fortune have rested on chocolate for almost 300 years: thanks to the vision and invention of its great entrepreneurial families, not to mention the industry and dedication of its people. Though much has changed over the centuries, York remains the UK’s home of chocolate.
         </Text>
-        <Image path="./content/chocolatestory.png" x="0" y="700" x2="1000" y2="1580" />
+        <Image path="./content/chocolatestory2.png" x="0" y="700" x2="1000" y2="1580" />
     </Slide>
+
+    <Slide poi="#theshambles">
+        <Text x="0" y="0" textsize="100" bold="true">
+            The Shambles
+        </Text>
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
+            The Shambles (officially known as just Shambles[1]) is an old street in York, England, with overhanging timber-framed buildings, some dating back as far as the fourteenth century. It was once known as The Great Flesh Shambles, probably from the Anglo-Saxon Fleshammels (literally 'flesh-shelves'), the word for the shelves that butchers used to display their meat. As recently as 1872 twenty-five butchers' shops were located along the street, but now none remain.
+            Among the buildings of the Shambles is a shrine to Saint Margaret Clitherow, who was married to a butcher who owned and lived in a shop there at No. 10 Shambles.
+
+        </Text>
+        <Image path="./content/theshambles1.jpg" x="0" y="1100" x2="700" y2="1500" />
+    </Slide>
+    <Slide poi="#theshambles">
+        <Text x="0" y="0" textsize="100" bold="true">
+            The Shambles
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            Her home is now a cufflinks shop, Cuffs and Co, and features the priest hole fireplace that ultimately led to her death.
+            Although the butchers have now vanished, a number of the shops on the street still have meat-hooks hanging outside and, below them, shelves on which meat would have been displayed. The shops currently include a mixture of eateries and souvenir sellers, but there is also a bookshop and a bakery. Five snickelways lead off the Shambles.
+
+        </Text>
+        <Image path="./content/theshambles2.jpg" x="0" y="900" x2="1000" y2="1400" />
+    </Slide>
+
+    <Slide poi="#posterngate">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Fishergate Postern Tower
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            Fishergate Postern Tower, at the end of Piccadilly, is a 4 storey stone tower built around 1504. This is the second Postern Tower on this site. The first was erected some time after 1345 The first tower was named the Talken Tower, after Robert de Talken, a wine merchant, who was York mayor in 1399.
+            Fishergate postern was only a minor gateway into the city as there was a larger entrance just round the corner at Fishergate Bar. However, in 1489 Fishergate Bar suffered considerable damage in the Yorkshire peasants’ revolt against Henry VII. The rebels burned the gates of the bar after murdering the Earl of Northumberland.
+
+        </Text>
+        <Image path="./content/posterngate.jpg" x="0" y="1100" x2="700" y2="1500" />
+    </Slide>
+    <Slide poi="#posterngate">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Fishergate Postern Tower
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            The murder was at a meeting he had arranged with them to hear their complaints about the King’s new taxes. Some say 5,000 peasants went on to attack York’s Walls but soon after this the revolt failed The damaged gateway was bricked up soon after and wasn’t reopened until 1834, to give better access for the cattle market.
+            When Fishergate Bar was bricked up, another gateway was needed fairly urgently. After 1489 it would seem likely that traffic congestion increased, and as the river Foss was silting up, there was the urgent need for a new entry through the walls to be made.
+
+            In 1501/2 the Mayor and Corporation of York ordered that a new tower be made in stone. The stone Fishergate Postern Tower as we see it today, but without the tiled roof, was built between 1504 and 1507. At the start of the 19th century the Postern Tower clearly had no defensive function and was “now inhabited by a poor Freeman of the City”.
+
+        </Text>
+    </Slide>
+
     <Slide poi="#presentation">
         <Text x="0" y="0" textsize="100" bold="true">
             Unlock: York
@@ -852,5 +972,7 @@
             - labour cost to design bespoke content £1750
         </Text>
     </Slide>
+
+
 
 </Presentation>
