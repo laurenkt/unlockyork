@@ -511,7 +511,7 @@
             Merchant Adventurers Hall
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             Merchant Adventurers’ Hall, a unique building in the heart of historic York.
             This stunning timber framed building was constructed by a fraternity made up of
             York citizens to provide a base for charity, worship and business in the centre
@@ -519,12 +519,30 @@
             a fascinating museum it is also a scheduled ancient monument and Grade 1 listed
             building.
 
+        </Text>
+        <Image path="./content/merchanthall.jpg" x="0" y="900" x2="1000" y2="1500" />
+    </Slide>
+    <Slide poi="#merchantadventure">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Merchant Adventurers Hall
+        </Text>
+
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             There have been many additions and changes to the Hall over the years, but the
             main functions of business and charity remain the same today. There are three main
             rooms in the Hall. The Great Hall is where the Medieval merchants first gathered
             to conduct their business and to socialise. The Undercroft used as an almshouse
             to help the sick and the poor until as late as 1900. The Chapel offering spiritual
             care to the merchants and the inmates of the almshouse.
+
+        </Text>
+    </Slide>
+    <Slide poi="#merchantadventure">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Merchant Adventurers Hall
+        </Text>
+
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
 
             The Merchant Adventurers’ Hall is home to many remarkable collections. Including
             silver, furniture and paintings, which provide a glimpse into the rich history of
@@ -536,9 +554,6 @@
             York. They invite you to discover the secrets of this unique guild hall and its 660
             years of history.
         </Text>
-
-        <Image path="./content/merchanthall.jpg" x="0" y="700" x2="1000" y2="1600" />
-
     </Slide>
 
     <Slide poi="#museumgardens">
@@ -762,6 +777,30 @@
         </Text>
         <Image path="./content/chocolatestory.png" x="0" y="700" x2="1000" y2="1580" />
     </Slide>
+
+    <Slide poi="#theshambles">
+        <Text x="0" y="0" textsize="100" bold="true">
+            The Shambles
+        </Text>
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
+            The Shambles (officially known as just Shambles[1]) is an old street in York, England, with overhanging timber-framed buildings, some dating back as far as the fourteenth century. It was once known as The Great Flesh Shambles, probably from the Anglo-Saxon Fleshammels (literally 'flesh-shelves'), the word for the shelves that butchers used to display their meat. As recently as 1872 twenty-five butchers' shops were located along the street, but now none remain.
+            Among the buildings of the Shambles is a shrine to Saint Margaret Clitherow, who was married to a butcher who owned and lived in a shop there at No. 10 Shambles.
+
+        </Text>
+        <Image path="./content/theshambles1.jpg" x="0" y="1100" x2="700" y2="1500" />
+    </Slide>
+    <Slide poi="#theshambles">
+        <Text x="0" y="0" textsize="100" bold="true">
+            The Shambles
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            Her home is now a cufflinks shop, Cuffs and Co, and features the priest hole fireplace that ultimately led to her death.
+            Although the butchers have now vanished, a number of the shops on the street still have meat-hooks hanging outside and, below them, shelves on which meat would have been displayed. The shops currently include a mixture of eateries and souvenir sellers, but there is also a bookshop and a bakery. Five snickelways lead off the Shambles.
+
+        </Text>
+        <Image path="./content/theshambles2.jpg" x="0" y="900" x2="1000" y2="1400" />
+    </Slide>
+
     <Slide poi="#presentation">
         <Text x="0" y="0" textsize="100" bold="true">
             Unlock: York
@@ -852,5 +891,7 @@
             - labour cost to design bespoke content £1750
         </Text>
     </Slide>
+
+
 
 </Presentation>
