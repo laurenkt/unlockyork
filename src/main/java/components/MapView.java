@@ -83,21 +83,15 @@ public class MapView extends ScrollPane {
 
 
         for(POI poi : POIs) {
-            // poi == POIs.get(i)
             poiViews.add(new POIView(poi));
-        }
-
-        for(int i = 0; i > POIs.size(); i++) {
-            poiViews.add(new POIView(POIs.get(i)));
         }
 
         stack = new StackPane();
         stack.setAlignment(Pos.TOP_LEFT);
         stack.getChildren().add(mapView);
         stack.getChildren().addAll(poiViews);
-
-        for(POIView subPOI : poiViews) {
-            stack.getChildren().addAll(subPOI.getSubPOIViews());
+        for(POIView poiView : poiViews) {
+            stack.getChildren().addAll(poiView.getSubPOIViews());
         }
 
         HBox hBox = new HBox();
