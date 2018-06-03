@@ -1,7 +1,11 @@
 package components;
 
+import events.POIEvent;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.VPos;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -46,6 +50,7 @@ public class POIView extends Region {
     private DropShadow dropShadow = new DropShadow(BlurType.GAUSSIAN, Color.BLACK, 5, 0.9, 0, 0);
     private Timeline timeline = new Timeline();
     private boolean isActive;
+    private EventHandler<? super POIEvent> onClicked;
 
     public DoubleProperty opacityProperty = new SimpleDoubleProperty(1);
 
@@ -90,7 +95,8 @@ public class POIView extends Region {
         );
         timeline.play();
 
-        this.setOnMouseEntered(e -> {
+        icon.setPickOnBounds(true);
+        icon.setOnMouseEntered(e -> {
             timeline.stop();
             timeline.getKeyFrames().clear();
             timeline.setCycleCount(1);
@@ -100,7 +106,7 @@ public class POIView extends Region {
             );
             timeline.play();
         });
-        this.setOnMouseExited(e -> {
+        icon.setOnMouseExited(e -> {
             timeline.stop();
             timeline.getKeyFrames().clear();
             timeline.setCycleCount(Timeline.INDEFINITE);
@@ -110,6 +116,16 @@ public class POIView extends Region {
                     new KeyFrame(Duration.millis(500 + (Math.random()-0.5)*100), new KeyValue(icon.scaleXProperty(), 1.1, Interpolator.EASE_BOTH))
             );
             timeline.play();
+        });
+    }
+
+    public void setOnClicked(EventHandler<? super POIEvent> handler) {
+        for(POIView subPoiView : subPOIViews) {
+            subPoiView.setOnClicked(handler);
+        }
+        icon.setOnMouseClicked(e -> {
+            handler.handle(new POIEvent(poi));
+            e.consume();
         });
     }
 
