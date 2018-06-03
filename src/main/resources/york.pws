@@ -387,7 +387,7 @@
     </Slide>
 
     <Slide poi="#artgallery">
-        <Text x="0" y="1050" x2="1000" y2="1400" textsize="50">
+        <Text x="0" y="0" x2="1000" y2="450" textsize="50">
             into the rooms next door to the gallery, formerly occupied by the City Archives.
             York Art Gallery’s collection of paintings spans more than 600 years and works range
             from 14th century Italian panels and 17th century Dutch masterpieces to Victorian
@@ -399,14 +399,19 @@
         <Text x="0" y="0" textsize="100" bold="true">
             Jorvik Viking Centre
         </Text>
-
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Image path="./content/jorvikslide1.jpg" x="0" y="200" x2="1000" y2="950" />
+        <Text x="0" y="1050" x2="1000" y2="1400" textsize="50">
             Our knowledge of Viking life was transformed in the late 1970's by the discoveries
             made on the site of a new shopping centre in Coppergate.
 
             Digging in the layers of moist, spongy earth, experts from the York Archaeological
             Trust found it had preserved Viking homes, clothes, games and goods.
-            The remains of timber buildings were laid out along the street of Coppergate, each
+            The remains of timber buildings
+        </Text>
+    </Slide>
+    <Slide poi="#jorvik">
+        <Text x="0" y="0" x2="1000" y2="650" textsize="50">
+            were laid out along the street of Coppergate, each
             separated from its neighbour by fences.
 
             Archaeologists unearthed remarkable evidence of Viking cottage industry, including
@@ -416,94 +421,122 @@
             attraction in York containing lifelike mannequins and life-size dioramas depicting
             Viking life in the city.
         </Text>
-        <Image path="./content/jorvikslide1.jpg" x="0" y="700" x2="640" y2="1600" />
-
-    </Slide>
-    <Slide poi="#jorvik">
-        <Text x="0" y="0" textsize="100" bold="true">
-            1978: Coppergate Dig
-        </Text>
-
-        <Text x="0" y="150" x2="1000" y2="600">
+       <Text x="0" y="850" textsize="100" bold="true">
+                   1978: Coppergate Dig
+               </Text>
+       <Text x="0" y="1150" x2="1000" y2="1400" textsize="50">
             This small excavation by York Archaeological Trust identified three new and exciting facts:
-            In this area of York there is up to 9m of archaeological layers which mostly date to the Viking Age. This great depth is highly unusual.
-            These layers are both moist and peaty and so preserve the organic remains of timber buildings, textiles from clothing and leather shoes; things which rot away to dust on most archaeological sites.
-            The moist peaty layers also preserve seeds, insect remains, plants, animal bones, human parasite eggs and pollen; providing evidence that gives us information about past climate, diet, health, the countryside and other features of the ancient environment.
-
+            In this area of York there is up to 9m of archaeological layers which mostly date to the Viking Age. This great depth
+            is highly unusual.
         </Text>
-        <Image path="./content/jorvikslide2.jpg" x="0" y="700" x2="640" y2="1600" />
+    </Slide>
+
+    <Slide poi="#jorvik">
+        <Text x="0" y="0" x2="1000" y2="600" textsize="50">
+            This small excavation by York Archaeological Trust identified three new and exciting facts:
+            In this area of York there is up to 9m of archaeological layers which mostly date to the Viking Age. This great depth
+            is highly unusual.
+            These layers are both moist and peaty and so preserve the organic remains of timber buildings, textiles from clothing and
+            leather shoes; things which rot away to dust on most archaeological sites.
+            The moist peaty layers also preserve seeds, insect remains, plants, animal bones, human parasite eggs and pollen; providing
+            evidence that gives us information about past climate, diet, health, the countryside and other features of the ancient
+            environment.
+        </Text>
+        <Image path="./content/jorvikslide2.jpg" x="0" y="1000" x2="640" y2="1400" />
 
     </Slide>
     <Slide poi="#jorvik">
         <Text x="0" y="0" textsize="100" bold="true">
             1984: JORVIK Opens
         </Text>
-
-        <Text x="0" y="150" x2="1000" y2="600">
-            Many ideas were floated around but one thing was clear, they wanted to create a heritage experience as unique as the artefacts that would be on show and as exciting as the period it would be showcasing. The result was a historic attraction that was more like a film set than a museum. Instead of walking around looking at exhibits, the visitor would sit in specially designed time-cars, and move around the “set” of a Viking village, taking it in from all angles, and witnessing Viking life up-close.
-
+        <Text x="0" y="200" x2="1000" y2="800" textsize="50">
+            Many ideas were floated around but one thing was clear, they wanted to create a heritage experience as unique as
+            the artefacts that would be on show and as exciting as the period it would be showcasing. The result was a historic
+            attraction that was more like a film set than a museum. Instead of walking around looking at exhibits, the visitor would
+            sit in specially designed time-cars, and move around the “set” of a Viking village, taking it in from all angles, and
+            witnessing Viking life up-close.
         </Text>
-        <Image path="./content/jorvikslide3.jpg" x="0" y="700" x2="640" y2="1600" />
+        <Image path="./content/jorvikslide3.jpg" x="0" y="900" x2="640" y2="1400" />
 
     </Slide>
     <Slide poi="#jorvik">
         <Text x="0" y="0" textsize="100" bold="true">
             2001: Time Machine Travels
         </Text>
-
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="250" x2="1000" y2="1000" textsize="50">
             Another 16 years of academic research told us even more about Viking-Age York helping us to update the JORVIK experience.
-            Opened 7th April 2001 visitors could get even closer to understanding what life was like for inhabitants of JORVIK, as they journeyed through Viking life as it was at 5:30pm, 25th October, AD975.
-            On arrival at JORVIK Viking Centre visitors were invited to board a specially commissioned time machine the doors were sealed and with some degree of light turbulence, you  were hurtled backwards through time, creating the very real sensation of high-speed time travel! In-flight entertainment consisted of a film showing the changing style and appearance of York’s streets and residents, as passengers were taken backwards in time through the centuries. With a sudden jolt the time machine malfunctioned and sped back too far, to the year 866AD, the year when Vikings invaded the city of York!
-
+            Opened 7th April 2001 visitors could get even closer to understanding what life was like for inhabitants of JORVIK, as
+            they journeyed through Viking life as it was at 5:30pm, 25th October, AD975.
+            On arrival at JORVIK Viking Centre visitors were invited to board a specially commissioned time machine the doors were
+            sealed and with some degree of light turbulence, you  were hurtled backwards through time, creating the very real sensation
+            of high-speed time travel! In-flight entertainment consisted of a film showing the changing style and appearance of York’s
+            streets and residents, as passengers were taken backwards in time through the centuries. With a sudden jolt the time machine
+            malfunctioned and sped back too far, to the year 866AD, the year when Vikings invaded the city of York!
         </Text>
-        <Image path="./content/jorvikslide4.jpg" x="0" y="700" x2="640" y2="1600" />
-
     </Slide>
     <Slide poi="#jorvik">
-        <Text x="0" y="0" textsize="100" bold="true">
+        <Image path="./content/jorvikslide4.jpg" x="0" y="0" x2="640" y2="550" />
+        <Text x="0" y="600" textsize="100" bold="true">
             2010: New Norse
         </Text>
-
-        <Text x="0" y="150" x2="1000" y2="600">
-            JORVIK Viking Centre reopened on 13th February 2010 following a £1million refurbishment to bring archaeology back to the forefront of the attraction.
+        <Text x="0" y="750" x2="1000" y2="1400" textsize="50">
+            JORVIK Viking Centre reopened on 13th February 2010 following a £1million refurbishment to bring archaeology back to the
+            forefront of the attraction.
             New Features Included:
-            A brand new glass-floored gallery that incorporated an underfoot recreation of the original Coppergate excavation, enabling visitors to see exactly how the Viking Age remains were discovered
+            A brand new glass-floored gallery that incorporated an underfoot recreation of the original Coppergate excavation,
+            enabling visitors to see exactly how the Viking Age remains were discovered
             1,000 year old timbers that once formed the wall of a Viking house
-            Displays of never before seen objects discovered during the Coppergate excavation that gave new and fascinating insights into Viking-Age life
-            Seven new state of the art animatronics who interact with visitors in Old Norse
-            A new Viking Age house and back yard, based on evidence of an amber worker’s house discovered during the Coppergate excavation
-
+            Displays of never before seen objects discovered during the Coppergate excavation that gave new and fascinating
         </Text>
-        <Image path="./content/jorvikslide5.jpg" x="0" y="700" x2="640" y2="1600" />
 
     </Slide>
     <Slide poi="#jorvik">
-        <Text x="0" y="0" textsize="100" bold="true">
+        <Text x="0" y="0" x2="1000" y2="300" textsize="50">
+            insights into Viking-Age life
+            Seven new state of the art animatronics who interact with visitors in Old Norse
+            A new Viking Age house and back yard, based on evidence of an amber worker’s house discovered during the Coppergate excavation.
+        </Text>
+        <Image path="./content/jorvikslide5.jpg" x="0" y="400" x2="640" y2="950" />
+        <Text x="0" y="1000" textsize="100" bold="true">
             2015: The JORVIK Flood
         </Text>
-
-        <Text x="0" y="150" x2="1000" y2="600">
-            When staff opened JORVIK Viking Centre on Sunday 27th December they were expecting a normal day helping visitors explore the impact of the Vikings, what they didn’t know was that an event would take place that would affect so many people and result in the centre remaining closed for over a year…
-            Unfortunately JORVIK, like many other homes and businesses in York, was affected by the heavy flooding that besieged the city at Christmas 2015. Water started to enter the basement of the building from the loading bay door, off Piccadilly, when the River Foss burst its banks following heavy rainfall on Boxing Day.  The technical team at the centre managed to create a makeshift flood barrier which held the water back long enough for a team of curators and volunteers to remove all of the irreplaceable artefacts from the underground galleries, but by the morning of 28 December, much of the recreation of Viking-age York was under up to a metre of water.
-
+        <Text x="0" y="1250" x2="1000" y2="1400" textsize="50">
+            When staff opened JORVIK Viking Centre on Sunday 27th December they were expecting a normal day helping visitors explore
+            the impact of the Vikings, what they didn’t know was that an event would take place
         </Text>
-        <Image path="./content/jorvikslide6.jpg" x="0" y="700" x2="640" y2="1600" />
 
+    </Slide>
+    <Slide poi="#jorvik">
+         <Text x="0" y="0" x2="1000" y2="1000" textsize="50">
+            that would affect so many people and
+            result in the centre remaining closed for over a year…
+            Unfortunately JORVIK, like many other homes and businesses in York, was affected by the heavy flooding that besieged the
+            city at Christmas 2015. Water started to enter the basement of the building from the loading bay door, off Piccadilly, when
+            the River Foss burst its banks following heavy rainfall on Boxing Day.  The technical team at the centre managed to create a
+            makeshift flood barrier which held the water back long enough for a team of curators and volunteers to remove all of the
+            irreplaceable artefacts from the underground galleries, but by the morning of 28 December, much of the recreation of
+            Viking-age York was under up to a metre of water.
+        </Text>
+        <Image path="./content/jorvikslide6.jpg" x="0" y="1100" x2="640" y2="1400" />
     </Slide>
     <Slide poi="#jorvik">
         <Text x="0" y="0" textsize="100" bold="true">
             2017: Return of the Vikings
         </Text>
+        <Text x="0" y="250" x2="1000" y2="1400" textsize="50">
+            With an updated ride experience and state-of-the art galleries showcasing our unique collection of 1,000 year old
+            artefacts visit the newly re-imagined JORVIK Viking Centre and discover York’s fascinating Viking legacy.
 
-        <Text x="0" y="150" x2="1000" y2="600">
-            With an updated ride experience and state-of-the art galleries showcasing our unique collection of 1,000 year old artefacts visit the newly re-imagined JORVIK Viking Centre and discover York’s fascinating Viking legacy.
-
-            At JORVIK Viking Centre you are standing on the site which revealed some of the most famous and astounding discoveries in modern archaeology, so, it is fitting that your first experience at JORVIK is an exploration of the Coppergate dig, with a fully immersive display taking you back to the 1970s. Here you will hear the stories of the archaeologists who were involved in this revolutionary excavation and helped piece together the story of the Vikings of Jorvik, where they came from, how they lived, died and where they travelled to.
-
+            At JORVIK Viking Centre you are standing on the site which revealed some of the most famous and astounding discoveries
+            in modern archaeology, so, it is fitting that your first experience at JORVIK is an exploration of the Coppergate dig,
+            with a fully immersive display taking you back to the 1970s. Here you will hear the stories of the archaeologists who were
+            involved in this revolutionary excavation and helped piece together the story of the Vikings of Jorvik, where they came from,
+            how they lived, died and where they travelled to.
         </Text>
-        <Image path="./content/jorvikslide7.jpg" x="0" y="700" x2="640" y2="1600" />
+    </Slide>
 
+    <Slide poi="#jorvik">
+        <Image path="./content/jorvikslide7.jpg" x="0" y="0" x2="640" y2="550" />
     </Slide>
 
     <Slide poi="#merchantadventure">
