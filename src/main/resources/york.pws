@@ -34,18 +34,18 @@
     <POI id="presentation" latitude="53.947641" longitude="-1.057154" type="POI" name="Sales Presentation" />
 
     <Slide duration="12" poi="#minster">
-        <Text x="0" y="0" textsize="150" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             The Minster
         </Text>
-        <Image path="./content/YorkMinster.jpg" x="0" y="250" x2="2000" y2="1750" />
-        <Text x="0" y="1950" textsize="100">
+        <Image path="./content/YorkMinster.jpg" x="0" y="250" x2="1000" y2="1250" />
+        <Text x="0" y="1350" textsize="50">
             <Format bold="true">Opening Times</Format><Br />
             9:00am — 4:30pm
         </Text>
     </Slide>
 
     <Slide poi="#minster">
-        <Text x="0" y="200" x2="2000" y2="1800" textsize="100">
+        <Text x="0" y="200" x2="1000" y2="1600" textsize="50">
             The great Gothic cathedral towers over the surrounding area and at its tallest point reaches a height of 71 metres.
             Constructed over the course of two and a half centuries, the Minster dates from a period when York was the significant
             economic and political – as well as religious – capital in the North. Whilst the city’s influence has waned somewhat since
@@ -53,7 +53,7 @@
             England’s ministry in the north of the country.
         </Text>
 
-        <Text x="0" y="2000" x2="2000" y2="3800" textsize="100">
+        <Text x="0" y="2000" x2="1000" y2="1600" textsize="50">
             York Minster has its own Stoneyard which serves to replace the constantly wearing exterior of the building. There is a long
             history of Christianity on this site, with the first wooden chapel being constructed for the baptism of King Edward of
             Northumbria in 627. This was later replaced with a stone church which was built on the site of a Roman basilica – the remains
@@ -62,27 +62,27 @@
     </Slide>
 
     <Slide poi="#minster">
-        <Text x="0" y="200" x2="2000" y2="1400" textsize="100">
+        <Text x="0" y="200" x2="1000" y2="1600" textsize="50">
             Destroyed by the Danes during the turbulent period that followed the invasion of William The Conqueror, it was rebuilt in the
             Norman manner favoured by England’s new rulers. With the new Gothic style sweeping across Europe, another rebuild was ordered
             in the 13th century. It was hoped this new structure would rival the elegance of the new cathedral constructed in Canterbury.
         </Text>
 
-        <Text x="0" y="1600" x2="2000" y2="2800" textsize="100">
+        <Text x="0" y="1600" x2="1000" y2="1600" textsize="50">
             Built from limestone quarried from nearby Tadcaster, the building we can see today was constructed over a period of 250 years,
             between 1220 and 1472, although it has undergone a considerable number of repairs and restorations since then.
         </Text>
     </Slide>
 
     <Slide poi="#minster">
-         <Video path="./content/minster.mp4" x="0" y="200" x2="2000" y2="1700"/>
+         <Video path="./content/minster.mp4" x="0" y="200" x2="1000" y2="1600"/>
     </Slide>
 
     <Slide poi="#minsteryard">
-        <Text x="0" y="0" textsize="150" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             Minster Yard
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600" textsize="100">
+        <Text x="0" y="150" x2="1000" y2="1600" textsize="50">
             For this region of the city, known as the Liberty of St. Peter, was enclosed by a high
             fortified wall in 1285 and given special rights and privileges which survived long after
             such battlements collapsed. Here the Dean &amp; Chapter could hold their own courts and appoint
@@ -91,11 +91,11 @@
     </Slide>
 
     <Slide poi="#undercroftmuseum">
-        <Text x="0" y="0" textsize="100" bold="true">
+        <Text x="0" y="0" textsize="50" bold="true">
             Undercroft Museum
         </Text>
-        <Image path="./content/MinsterUndercroft.jpg" x="0" y="250" x2="2000" y2="1750" />
-        <Text x="0" y="1950" x2="2000" y2="2150" textsize="50">
+        <Image path="./content/MinsterUndercroft.jpg" x="0" y="250" x2="1000" y2="1600" />
+        <Text x="0" y="250" x2="1000" y2="1600" textsize="50">
             Explore 2,000 years of history housed in state-of-the-art interactive chambers beneath the Minster.
             Visitors to the Undercroft, which is the only accredited museum in a cathedral in the country, can see
             the remains of Roman barracks, discover the Minster’s Viking connections and see artefacts never before
@@ -107,8 +107,8 @@
         <Text x="0" y="0" textsize="100" bold="true">
             Chapter House
         </Text>
-        <Image path="./content/MinsterChapterHouse.jpg" x="0" y="250" x2="2000" y2="1750" />
-        <Text x="0" y="1950" x2="2000" y2="2150" textsize="50">
+        <Image path="./content/MinsterChapterHouse.jpg" x="0" y="250" x2="1000" y2="1600" />
+        <Text x="0" y="250" x2="1000" y2="1600" textsize="50">
             One of York Minster’s architectural gems, the Chapter House contains some of the Minster’s finest carvings
             and in 1297 was used as the location for the Parliament of King Edward I. The octagonal space dates from the
             1280s and its magnificent, vaulted ceiling is supported by timbers in the roof, instead of a central column,
@@ -120,8 +120,8 @@
         <Text x="0" y="0" textsize="100" bold="true">
             Dean's Park
         </Text>
-        <Image path="./content/deanpark.jpg" x="0" y="250" x2="2000" y2="1750" />
-        <Text x="0" y="1950" x2="2000" y2="2150" textsize="50">
+        <Image path="./content/deanpark.jpg" x="0" y="250" x2="1000" y2="1600" />
+        <Text x="0" y="250" x2="1000" y2="1600" textsize="50">
             Originally built by William the Conqueror to subdue the rebels of the north, it was twice burned to the ground,
             before being rebuilt by Henry III in the 13th century. The tower takes its name from one grisly incident in its
             long history, when Roger de Clifford was executed for treason against Edward II and hanged in chains from the
@@ -141,42 +141,54 @@
             de Clifford was executed for treason against Edward II and hanged in chains from
             the tower walls.
         </Text>
-        <Image path="./content/cliffords.jpg" x="0" y="700" x2="640" y2="1180" />
+        <Image path="./content/cliffords.jpg" x="0" y="700" x2="640" y2="1600" />
     </Slide>
 
     <Slide poi="#citywalls">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             City Walls
         </Text>
 
 
-        <Text x="0" y="150" x2="1000" y2="600">
-            The city or ‘bar’ walls of York are the most complete example of medieval city walls still standing in England today.  Beneath the medieval stonework lie the remains of earlier walls dating as far back as the Roman period.
+        <Text x="0" y="150" x2="1000" y2="1600" textsize="50">
+            The city or ‘bar’ walls of York are the most complete example of medieval city walls still standing in England today.
+            Beneath the medieval stonework lie the remains of earlier walls dating as far back as the Roman period.
 
-            The Roman walls survived into the 9th century when, in AD 866, York was invaded by the Danish Vikings.  The Vikings buried the existing Roman wall under an earth bank and topped with a palisade – a tall fence of pointed wooden stakes.
+            The Roman walls survived into the 9th century when, in AD 866, York was invaded by the Danish Vikings.
+            The Vikings buried the existing Roman wall under an earth bank and topped with a palisade – a tall fence of pointed
+            wooden stakes.
 
             The wooden palisade was replaced in the 13th and 14th centuries with the stone wall we see today.
 
-            The medieval city walls originally included 4 main gates or ‘bars’ (Bootham Bar, Monk Bar, Walmgate Bar and Micklegate Bar), 6 postern or secondary gates and 44 intermediate towers.  The defensive perimeter stretched over 2 miles encompassing the medieval city and castle.
+            The medieval city walls originally included 4 main gates or ‘bars’ (Bootham Bar, Monk Bar, Walmgate Bar and Micklegate Bar),
+            6 postern or secondary gates and 44 intermediate towers.  The defensive perimeter stretched over 2 miles encompassing the
+            medieval city and castle.
 
-            By the late 18th century, however, the walls were no longer required as defences for the city and had fallen into disrepair.  In 1800, the Corporation of York applied for an Act of Parliament to demolish them.  In addition to the poor condition of the walls at the time, the narrow gateways of the bars were inconvenient and the walls themselves hindered the city’s expansion.
+            By the late 18th century, however, the walls were no longer required as defences for the city and had fallen into disrepair.
+            In 1800, the Corporation of York applied for an Act of Parliament to demolish them.  In addition to the poor condition of
+            the walls at the time, the narrow gateways of the bars were inconvenient and the walls themselves hindered the city’s
+            expansion.
 
-            Many other cities, including London, were removing their outdated, medieval city walls at this time.  In York, however, the city officials met with fierce and influential opposition and by the mid-nineteenth century the Corporation had been forced to back down.
+            Many other cities, including London, were removing their outdated, medieval city walls at this time.  In York, however, the
+            city officials met with fierce and influential opposition and by the mid-nineteenth century the Corporation had been forced
+            to back down.
 
-            Unfortunately, the call for preservation came too late for some parts of the walls – the barbicans at all but one of the gateways (Walmgate Bar) had been torn down along with 3 postern gates, 5 towers and 300 yards of the wall itself.
+            Unfortunately, the call for preservation came too late for some parts of the walls – the barbicans at all but one of the
+            gateways (Walmgate Bar) had been torn down along with 3 postern gates, 5 towers and 300 yards of the wall itself.
 
-            Since the mid-nineteenth century the walls have been restored and maintained for public access, including the planting of spring flowers on the old Viking embankment. Today the walls are a Scheduled Ancient Monument and a Grade 1 listed building.
+            Since the mid-nineteenth century the walls have been restored and maintained for public access, including the planting of
+            spring flowers on the old Viking embankment. Today the walls are a Scheduled Ancient Monument and a Grade 1 listed building.
 
         </Text>
 
-        <Image path="./content/walls.jpg" x="550" y="150" x2="1200" y2="680" />
-        <Image path="./content/newwalls.jpg" x="550" y="750" x2="1200" y2="1180" />
-        <Video path="./content/walls.mp4" x="300" y="1200" x2="940" y2="1680" />
+        <Image path="./content/walls.jpg" x="550" y="150" x2="1000" y2="680" />
+        <Image path="./content/newwalls.jpg" x="550" y="750" x2="1000" y2="1180" />
+        <Video path="./content/walls.mp4" x="300" y="1200" x2="1000" y2="1600" />
 
     </Slide>
 
     <Slide poi="#artgallery">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             York Art Gallery
         </Text>
 
@@ -190,11 +202,11 @@
             from 14th century Italian panels and 17th century Dutch masterpieces to Victorian
             narrative paintings and 20th century works by LS Lowry and David Hockney.
         </Text>
-        <Image path="./content/artgallery.jpg" x="0" y="700" x2="640" y2="1180" />
+        <Image path="./content/artgallery.jpg" x="0" y="700" x2="1000" y2="1600" />
     </Slide>
 
     <Slide poi="#jorvik">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             Jorvik Viking Centre
         </Text>
 
@@ -214,12 +226,12 @@
             attraction in York containing lifelike mannequins and life-size dioramas depicting
             Viking life in the city.
         </Text>
-        <Image path="./content/jorvik.jpg" x="0" y="700" x2="640" y2="1180" />
+        <Image path="./content/jorvik.jpg" x="0" y="700" x2="640" y2="1600" />
 
     </Slide>
 
     <Slide poi="#merchantadventure">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             Merchant Adventurers Hall
         </Text>
 
@@ -249,12 +261,12 @@
             years of history.
         </Text>
 
-        <Image path="./content/merchanthall.jpg" x="0" y="700" x2="640" y2="1180" />
+        <Image path="./content/merchanthall.jpg" x="0" y="700" x2="1000" y2="1600" />
 
     </Slide>
 
     <Slide poi="#museumgardens">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             York Museum Gardens
         </Text>
         <Text x="0" y="150" x2="1000" y2="600">
@@ -269,16 +281,16 @@
             and many rare animals, birds and fossils, in exciting new displays
         </Text>
 
-        <Image path="./content/gardens.jpg" x="0" y="700" x2="640" y2="1180" />
+        <Image path="./content/gardens.jpg" x="0" y="700" x2="1000" y2="1600" />
 
     </Slide>
 
     <Slide poi="#nrm">
-        <Text x="0" y="0" x2="1000" textsize="50" bold="true">
+        <Text x="0" y="0" x2="1000" textsize="100" bold="true">
             National Rail Museum
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600" textsize="30">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             The National Railway Museum (NRM) is a museum in York forming part of the British Science
             Museum Group of National Museums and telling the story of rail transport in Britain and its
             impact on society. It has won many awards, including the European Museum of the Year Award
@@ -292,37 +304,43 @@
             mostly in three large halls of a former motive power depot next to the East Coast Main Line,
             near York railway station.
         </Text>
-        <Image path="./content/nrm.jpg" x="0" y="1000" x2="1000" y2="1800" />
+        <Image path="./content/nrm.jpg" x="0" y="1000" x2="1000" y2="1600" />
     </Slide>
     <Slide poi="#nrm">
         <Text x="0" y="0" x2="1000" textsize="50" bold="true">
             EXPLORE... LOCOMOTIVES
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600" textsize="30">
-            These incredible inventions underpin our collection of over a million railway-related objects. Among them are the world's fastest steam engine Mallard, the exquisitely streamlined Duchess of Hamilton, a replica of George Stephenson's pioneering Rocket and the only bullet train to be found outside of Japan.
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
+            These incredible inventions underpin our collection of over a million railway-related objects. Among them are the
+            world's fastest steam engine Mallard, the exquisitely streamlined Duchess of Hamilton, a replica of George Stephenson's
+            pioneering Rocket and the only bullet train to be found outside of Japan.
         </Text>
         <Image path="./content/NRMslide2-2.jpg" x="0" y="700" x2="500" y2="1180" />
-        <Image path="./content/NRMslide2-1.jpg" x="200" y="1200" x2="1000" y2="1800" />
+        <Image path="./content/NRMslide2-1.jpg" x="200" y="1200" x2="1000" y2="1600" />
     </Slide>
     <Slide poi="#nrm">
         <Text x="0" y="0" x2="1000" textsize="50" bold="true">
             Engineering Drawings
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600" textsize="30">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             Our historic collection of railway engineering drawings is an invaluable tool for anyone restoring a steam locomotive.
-            When overhauling a loco, a good drawing can save thousands of pounds and hundreds of hours of hard graft. Without a drawing you’ll need to reproduce new drawings, which requires a lot of expertise and time, plus a great deal of confidence that you’ve got your measurements right. Original drawings give you certainty that you can manufacture exactly what came out of the workshop a hundred years ago. Moreover they can teach you all the lessons that the original engineers learned over the locomotive’s life – the small incremental changes they made to the design to improve performance and safety.
+            When overhauling a loco, a good drawing can save thousands of pounds and hundreds of hours of hard graft. Without a drawing
+            you’ll need to reproduce new drawings, which requires a lot of expertise and time, plus a great deal of confidence that
+            you’ve got your measurements right. Original drawings give you certainty that you can manufacture exactly what came out of
+            the workshop a hundred years ago. Moreover they can teach you all the lessons that the original engineers learned over the
+            locomotive’s life – the small incremental changes they made to the design to improve performance and safety.
         </Text>
         <Image path="./content/NRMslide3-1.jpg" x="0" y="800" x2="1000" y2="1300" />
-        <Image path="./content/NRMslide3-2.jpg" x="0" y="1300" x2="1000" y2="1800" />
+        <Image path="./content/NRMslide3-2.jpg" x="0" y="1300" x2="1000" y2="1600" />
     </Slide>
     <Slide poi="#trainroad">
         <Text x="0" y="0" x2="1000" textsize="50" bold="true">
             The York Road Train | NRM
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600" textsize="30">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             Make the most of your day in York by taking our quick, convenient road train between the museum and the Minster.
             Arrive at the museum in style and return to the centre of York with ease after your fun-filled day.
             Buy your tickets from the train guard, or from our reception desk if you wish to pay by card.
@@ -330,18 +348,20 @@
             Leaves the museum every 30 minutes, 11.00–16.00
             Leaves Duncombe Place every 30 minutes, 11.15–16.15
             AVAILABILITY
-            While we make every effort to keep our road train running, the service is subject to availability and maintenance work. Road Train is subject to a vehicle special order and we are unable to change our existing route between the National Railway Museum and Duncombe Place, next to York Minster.
-
+            While we make every effort to keep our road train running, the service is subject to availability and maintenance work.
+            Road Train is subject to a vehicle special order and we are unable to change our existing route between the National Railway
+             Museum and Duncombe Place, next to York Minster.
         </Text>
-        <Image path="./content/roadtrain2.jpg" x="0" y="1300" x2="1000" y2="1800" />
+        <Image path="./content/roadtrain2.jpg" x="0" y="1300" x2="1000" y2="1600" />
     </Slide>
     <Slide poi="#mallardcafe">
         <Text x="0" y="0" x2="1000" textsize="50" bold="true">
             The Mallard Cafe
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600" textsize="30">
-            Dine in the splendid comfort of a Victorian-inspired dining car or enjoy an ice cream in our quirky outdoor container café. We believe in sourcing the best local ingredients—almost half of our produce is from Yorkshire suppliers.
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
+            Dine in the splendid comfort of a Victorian-inspired dining car or enjoy an ice cream in our quirky outdoor container
+            café. We believe in sourcing the best local ingredients—almost half of our produce is from Yorkshire suppliers.
 
             OPENING TIMES: 10.00–17.30
         </Text>
@@ -352,20 +372,22 @@
             Friends Of The National Railway Museum
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600" textsize="30">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             We support the National Railway Museum conserve and create exhibits with financial assistance and volunteers
-            Membership of the Friends of the National Railway Museum brings the satisfaction of being involved in preserving, displaying and interpreting the best of Britain's heritage.
-            Your subscription helps to finance work in the Museum that would otherwise not be possible. The Friends contribute significant amounts to large projects and support other activities on a regular basis.
+            Membership of the Friends of the National Railway Museum brings the satisfaction of being involved in preserving,
+            displaying and interpreting the best of Britain's heritage.
+            Your subscription helps to finance work in the Museum that would otherwise not be possible. The Friends contribute
+            significant amounts to large projects and support other activities on a regular basis.
 
         </Text>
-        <Image path="./content/friendsofthenationalrailwaymuseum1.jpg" x="0" y="1000" x2="1000" y2="1800" />
+        <Image path="./content/friendsofthenationalrailwaymuseum1.jpg" x="0" y="1000" x2="1000" y2="1600" />
     </Slide>
     <Slide poi="#yorkshiremuseum">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             Yorkshire Museum
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             The Yorkshire Museum sits in the heart of York Museum Gardens, in the centre of York.
             The museum was opened in 1830 by the Yorkshire Philosophical Society and was one of the
             first purpose-built museums in the country.
@@ -375,44 +397,44 @@
             and many rare animals, birds and fossils, in exciting displays.
         </Text>
 
-        <Image path="./content/yorkshiremuseum.jpg" x="0" y="700" x2="640" y2="1180" />
+        <Image path="./content/yorkshiremuseum.jpg" x="0" y="700" x2="1000" y2="1600" />
     </Slide>
 
     <Slide poi="#bettystearoom">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             Betty's Tea Room
         </Text>
-        <Text x="0" y="800" textsize="26">
+        <Text x="0" y="800" textsize="50">
             <Format bold="true">Opening Times</Format><Br />
             9:00am — 9:00pm
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             The founder of Bettys, Frederick Belmont, travelled on the maiden voyage of the Queen Mary. He was so impressed by the extravagance of the ship that he commissioned the Queen Mary's designers to turn an old furniture store into his most sophisticated branch yet - an elegant café in the land-locked location of St Helens Square, York.
             A specially devised menu, an immaculate table-setting, a pianist to serenade you: our luxury Lady Betty Afternoon Tea is a truly unforgettable experience. Book ahead so you can waltz past the queues and dine in the opulent splendour of our Belmont Room.
             If you're looking for a really special experience, our Lady Betty Afternoon Tea provides just this. Set in the historic and elegant surroundings of the Belmont Room, York, our menu is inspired by Bettys best-loved pâtisserie and favourite Café Tea Rooms specialities.
         </Text>
-        <Image path="./content/bettys.jpg" x="0" y="700" x2="640" y2="1180" />
+        <Image path="./content/bettys.jpg" x="0" y="700" x2="1000" y2="1180" />
     </Slide>
 
     <Slide poi="#gatehousecoffee">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             Gatehouse Coffee
         </Text>
-        <Text x="0" y="500" textsize="26">
+        <Text x="0" y="500" textsize="50">
             <Format bold="true">Opening Times</Format><Br />
             10:00am — 6:00pm
         </Text>
         <Text x="0" y="150" x2="1000" y2="600">
             Gatehouse Coffee is located in Walmgate Bar, within York’s city walls, and is a Christian-run cafe specializing in high quality espresso drinks, friendly service, light pastries and snacks, paninis, seasonal soups and free wifi.
         </Text>
-        <Image path="./content/gatehouse.jpg" x="0" y="700" x2="640" y2="1180" />
+        <Image path="./content/gatehouse.jpg" x="0" y="700" x2="1000" y2="1180" />
     </Slide>
 
     <Slide poi="#sparkyork">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             Spark York
         </Text>
-        <Text x="0" y="500" textsize="26">
+        <Text x="0" y="500" textsize="50">
             <Format bold="true">Opening Times</Format><Br />
             8:00am — 10:30pm
         </Text>
@@ -422,16 +444,16 @@
         <Image path="./content/spark.jpg" x="0" y="700" x2="640" y2="1180" />
     </Slide>
     <Slide poi="#yorkarmoury">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             York Armoury
         </Text>
-        <Text x="0" y="500" textsize="26">
+        <Text x="0" y="500" textsize="50">
             <Format bold="true">Opening Times</Format><Br />
             10:00am — 7:00pm
         </Text>
         <Text x="0" y="150" x2="1000" y2="600">
             Home of historical arms and armour, movie swords, anime swords, buckland knives and minamoto katana.
         </Text>
-        <Image path="./content/yorkarmoury.jpg" x="0" y="700" x2="1000" y2="1580" />
+        <Image path="./content/yorkarmoury.jpg" x="0" y="700" x2="1000" y2="1600" />
     </Slide>
 </Presentation>
