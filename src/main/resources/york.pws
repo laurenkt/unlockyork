@@ -9,31 +9,32 @@
     <POI id="houseofthetremblingmadness" latitude="53.961262" longitude="-1.082935" type="pub" name="House of the Trembling Madness" />
     -->
     <POI id="minsterhotel" latitude="53.964343" longitude="-1.088331" type="hotel" name="Minster Hotel" />
-    <POI id="minster" latitude="53.96219" longitude="-1.08206" name="Minster">
-        <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" name="Minster Yard" />
-        <POI id="undercroftmuseum" latitude="53.961965" longitude="-1.082039" name="Undercroft Museum" />
-        <POI id="chapterhouse" latitude="53.962643" longitude="-1.081545" name="Chapter House" />
-        <POI id="deanspark" latitude="53.96302" longitude="-1.08248" name="Dean's Park" />
+    <POI id="minster" latitude="53.96219" longitude="-1.08206" type="POI" name="Minster">
+        <POI id="minsteryard" latitude="53.96175" longitude="-1.08277" type="sPOI" name="Minster Yard" />
+        <POI id="undercroftmuseum" latitude="53.961965" longitude="-1.082039" type="sPOI" name="Undercroft Museum" />
+        <POI id="chapterhouse" latitude="53.962643" longitude="-1.081545" type="sPOI" name="Chapter House" />
+        <POI id="deanspark" latitude="53.96302" longitude="-1.08248" type="sPOI" name="Dean's Park" />
     </POI>
-    <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" name="Clifford's Tower" />
-    <POI id="artgallery" latitude="53.9630" longitude="-1.0863" name="Art Gallery" />
-    <POI id="jorvik" latitude="53.9574" longitude="-1.0803" name="Jorvik" />
-    <POI id="merchantadventure" latitude="53.9578" longitude="-1.0788" name="Merchant Adventure" />
-    <POI id="museumgardens" latitude="53.9615" longitude="-1.0883" name="Museum Gardens" />
+    <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" type="POI" name="Clifford's Tower" />
+    <POI id="artgallery" latitude="53.9630" longitude="-1.0863" type="POI" name="Art Gallery" />
+    <POI id="jorvik" latitude="53.9574" longitude="-1.0803" type="POI" name="Jorvik" />
+    <POI id="merchantadventure" latitude="53.9578" longitude="-1.0788" type="POI" name="Merchant Adventure" />
+    <POI id="museumgardens" latitude="53.9615" longitude="-1.0883" type="POI" name="Museum Gardens" />
     <POI id="nrm" latitude="53.9605" longitude="-1.0964" type="POI" name="National Rail Museum" >
         <POI id="trainroad" latitude="53.959557482751315" longitude="-1.0960042476654053" type="sPOI" name="The York Road Train | NRM" />
         <POI id="mallardcafe" latitude="53.960135061220846" longitude="-1.0959291458129883" type="sPOI" name="The Mallard Cafe" />
         <POI id="friendsnrm" latitude="53.960718943889745" longitude="-1.0971254110336304" type="sPOI" name="Friends Of The NRM" />
     </POI>
-    <POI id="yorkshiremuseum" latitude="53.9619" longitude="-1.0874" name="Yorkshire Museum" />
-    <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" name="Postern Gate" />
-    <POI id="citywalls" latitude="53.96273" longitude="-1.08508" name="City Walls" />
-    <POI id="citywalls" latitude="53.96277" longitude="-1.07854" name="City Walls" />
-    <POI id="citywalls" latitude="53.95585" longitude="-1.09091" name="City Walls" />
-    <POI id="citywalls" latitude="53.95396" longitude="-1.07524" name="City Walls" />
-    <POI id="citywalls" latitude="53.95418" longitude="-1.08677" name="City Walls" />
-    <POI id="theshambles" latitude="53.959393" longitude="-1.080093" name="The Shambles" />
+    <POI id="yorkshiremuseum" latitude="53.9619" longitude="-1.0874" type="POI" name="Yorkshire Museum" />
+    <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" type="POI" name="Postern Gate" />
+    <POI id="citywalls" latitude="53.96273" longitude="-1.08508" type="POI" name="City Walls" />
+    <POI id="citywalls" latitude="53.96277" longitude="-1.07854" type="POI" name="City Walls" />
+    <POI id="citywalls" latitude="53.95585" longitude="-1.09091" type="POI" name="City Walls" />
+    <POI id="citywalls" latitude="53.95396" longitude="-1.07524" type="POI" name="City Walls" />
+    <POI id="citywalls" latitude="53.95418" longitude="-1.08677" type="POI" name="City Walls" />
+    <POI id="theshambles" latitude="53.959393" longitude="-1.080093" type="POI" name="The Shambles" />
     <POI id="chocolatestory" latitude="53.960037" longitude="-1.080415" type="POI" name="York's Chocolate Story" />
+    <POI id="kingsarms" latitude="53.957128725061686" longitude="-1.0830625891685486" type="pub" name="Kings Arms" />
     <POI id="presentation" latitude="53.947641" longitude="-1.057154" type="POI" name="Sales Presentation" />
 
     <Slide duration="12" poi="#minster">
@@ -547,6 +548,36 @@
             where they came from, how they lived, died and where they travelled to.
         </Text>
         <Image path="./content/jorvikslide7.jpg" x="0" y="200" x2="640" y2="750" />
+    </Slide>
+
+    <Slide poi="#kingsarms">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Kings Arms Pub
+        </Text>
+
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            The Kings Arms is a traditional Sam Smiths pub with probably the most prestigious position of any pub in York,
+            known nationally as “The Pub that Floods” it’s prime riverside location makes it a mecca for locals and tourists
+            alike on warm sunny days, especially pulling in the crowds when the Races are on with the rich lot being able to
+            park their boats out front.
+
+        </Text>
+        <Image path="./content/kingsarms.jpg" x="0" y="900" x2="1000" y2="1500" />
+    </Slide>
+    <Slide poi="#kingsarms">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Kings Arms Pub
+        </Text>
+
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            It is interesting to see the tide marks from previous flooding and how the pub has
+            coped by fitting plugs halfway up the wall and tiling the whole area, their cellar is even on the first floor.
+            It’s kind of one of those pubs with such a reputation it’d be rude not to pop in for a drink or if you’re lucky
+            on warm days get a seat outside.
+
+            York Ghost tours meet outside the Kings Arms Pub at 8pm every day.
+
+        </Text>
     </Slide>
 
     <Slide poi="#merchantadventure">
