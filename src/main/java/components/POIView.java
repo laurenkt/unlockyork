@@ -14,6 +14,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -25,8 +26,12 @@ import models.POI;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class POIView extends Region {
+    final static private AudioClip appearClip = new AudioClip(POIView.class.getResource("/sounds/dart.aiff").toExternalForm());
+    final static private AudioClip activeClip = new AudioClip(POIView.class.getResource("/sounds/click.aiff").toExternalForm());
 
     final private Image poiIcon = new Image(getClass().getResource("/icons/map_poi.png").toExternalForm());
     final private Image subPoiIcon = new Image(getClass().getResource("/icons/map_spoi.png").toExternalForm());
@@ -43,6 +48,7 @@ public class POIView extends Region {
     private ColorAdjust colorAdjust = new ColorAdjust();
     private DropShadow dropShadow = new DropShadow(BlurType.GAUSSIAN, Color.BLACK, 5, 0.9, 0, 0);
     private Timeline timeline = new Timeline();
+    private boolean isActive;
 
     public DoubleProperty opacityProperty = new SimpleDoubleProperty(1);
 
@@ -136,6 +142,10 @@ public class POIView extends Region {
             // If there's sPOIs, then hide the text label
             if (subPOIViews.size() > 0)
                 name.setVisible(false);
+
+            if (!this.isActive) {
+                activeClip.play();
+            }
         }
         else {
             name.setVisible(true);
@@ -145,21 +155,28 @@ public class POIView extends Region {
         }
 
         Timeline sPoiAppearTimeline = new Timeline();
-        double delay = 0;
+        double delay = 500; // Initial delay + accumulator
         for(POIView subPOI : subPOIViews) {
             subPOI.setVisible(isActive);
 
-            if (isActive) {
+            if (isActive && !this.isActive) {
                 sPoiAppearTimeline.getKeyFrames().addAll(
                         new KeyFrame(Duration.millis(0), new KeyValue(subPOI.opacityProperty, 0)),
                         new KeyFrame(Duration.millis(delay), new KeyValue(subPOI.getIcon().translateYProperty(), -100)),
                         new KeyFrame(Duration.millis(delay), new KeyValue(subPOI.opacityProperty, 0)),
-                        new KeyFrame(Duration.millis(delay += 100), new KeyValue(subPOI.opacityProperty, 1, Interpolator.EASE_BOTH)),
+                        new KeyFrame(Duration.millis(delay += 200), new KeyValue(subPOI.opacityProperty, 1, Interpolator.EASE_BOTH)),
                         new KeyFrame(Duration.millis(delay), new KeyValue(subPOI.getIcon().translateYProperty(), 0, Interpolator.EASE_BOTH))
                 );
+
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run () { POIView.appearClip.play(); }
+                }, (long) delay);
             }
         }
         sPoiAppearTimeline.play();
+
+        this.isActive = isActive;
     }
 
     private ImageView getIcon() {
