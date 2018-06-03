@@ -1,5 +1,7 @@
 package components;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
@@ -102,13 +104,16 @@ public class SlideView extends Region {
 
         Image image = new Image(inputStream);
 
-        return new PictureView(
+        PictureView pictureView = new PictureView(
             image,
             xmlImage.getPosition().getxTopLeft(),
             xmlImage.getPosition().getyTopLeft(),
             (xmlImage.getPosition().getxBottomRight() - xmlImage.getPosition().getxTopLeft()),
             (xmlImage.getPosition().getyBottomRight() - xmlImage.getPosition().getyTopLeft())
         );
+        pictureView.setLoupeEnabled(true);
+
+        return pictureView;
     }
 
     public Stop[] gradientHandler(Shape xmlShape)

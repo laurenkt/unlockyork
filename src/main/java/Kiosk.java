@@ -7,24 +7,24 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.geometry.Bounds;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
-import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.AudioClip;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import components.SlideView;
 import javafx.util.Duration;
 import models.POI;
 import models.Presentation;
-import models.Slide;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +43,9 @@ public class Kiosk extends Application {
     private Button forward;
     private Button back;
     private Button home;
-    private List<SlideView> POISlides = new ArrayList();
+    private List<SlideView> poiSlideViews = new ArrayList();
+
+    final static private AudioClip slideClip = new AudioClip(Kiosk.class.getResource("/sounds/swoosh.aiff").toExternalForm());
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -104,9 +106,6 @@ public class Kiosk extends Application {
         double minWidth = presentation.getMaxX2();
         double minHeight = presentation.getMaxY2();
 
-        System.out.println("minWidth = " + minWidth);
-        System.out.println("minHeight = " + minHeight);
-
         Scale scale = new Scale();
         scale.setPivotX(0);
         scale.setPivotY(0);
@@ -114,6 +113,7 @@ public class Kiosk extends Application {
         slidePane.getTransforms().add(scale);
         slidePane.setPickOnBounds(false);
         slidePane.setTranslateY(margin);
+        slidePane.setClip(new Rectangle(5000, 5000));
 
         backgroundPane.setMouseTransparent(true);
         backgroundPane.setStyle(("-fx-background-color: rgba(255,255,255,0.8)"));
@@ -143,10 +143,23 @@ public class Kiosk extends Application {
                 .map(slide -> new SlideView(slide))
                 .toArray(size -> new SlideView[size]);
 
-        forward.setOnAction(e -> this.onNext(e));
-        back.setOnAction(e -> this.onPrevious(e));
+        forward.setOnAction(e -> this.onNext());
+        back.setOnAction(e -> this.onPrevious());
         map.setOnPoiClicked(e -> this.onClickPoi(e.getPOI()));
         home.setOnAction(e -> map.centerAtYouAreHere());
+
+        // Keyboard events
+        primaryStage.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+            if (e.getCode() == KeyCode.RIGHT || e.getCode() == KeyCode.SPACE) {
+                this.onNext();
+                e.consume();
+            }
+            else if (e.getCode() == KeyCode.LEFT) {
+                this.onPrevious();
+                e.consume();
+            }
+
+        });
 
         // Volume
         map.scaleProperty().bindBidirectional(scaleSlider.valueProperty());
@@ -156,49 +169,36 @@ public class Kiosk extends Application {
         primaryStage.show();
     }
 
-    public void onNext(Event event) {
-        if(slideNum < POISlides.size() - 1) {
-            slideNum = slideNum + 1;
+    public void onNext() {
+        if (this.slideNum < poiSlideViews.size() - 1) {
+            this.setSlideNum(this.slideNum + 1);
         }
-        else {
-            slideNum = 0;
-        }
-
-        this.setSlideNum(slideNum);
     }
 
-    public void onPrevious(Event event) {
-        if (slideNum > 0) {
-            slideNum = slideNum - 1;
+    public void onPrevious() {
+        if (this.slideNum > 0) {
+            this.setSlideNum(slideNum = this.slideNum - 1);
         }
-        else {
-            slideNum = POISlides.size() - 1;
-        }
-
-        this.setSlideNum(slideNum);
     }
 
     public void onClickPoi(POI poi) {
         slidePane.setVisible(poi != null);
         map.setLeftAligned(slidePane.isVisible());
         //only show buttons when slide is shown
-        POISlides.clear();
+        poiSlideViews.clear();
 
         if (poi != null) {
             for (int i = 0; i < slides.length; i++) {
-                System.out.println(slides[i].getSlide().getPoiId());
                 if (poi.getId().equals(slides[i].getSlide().getPoiId())) {
-                    POISlides.add(slides[i]);
+                    poiSlideViews.add(slides[i]);
                 }
             }
             slidePane.getChildren().clear();
-            if(POISlides.size() > 0) {
-                slidePane.getChildren().add(POISlides.get(0));
+            if (poiSlideViews.size() > 0) {
+                slidePane.getChildren().add(poiSlideViews.get(0));
+                back.setVisible(false);
+                forward.setVisible(poiSlideViews.size() > 1);
             }
-        }
-        if(POISlides.size() > 1) {
-            forward.setVisible(poi != null);
-            back.setVisible(poi != null);
         }
         else {
             forward.setVisible(false);
@@ -207,11 +207,44 @@ public class Kiosk extends Application {
     }
 
     public void setSlideNum(int slideNum) {
+        double direction = slideNum > this.slideNum ? 1 : -1;
+
+        final Timeline timeline = new Timeline();
+        final Duration swipeDuration = Duration.millis(300);
+        timeline.getKeyFrames().clear();
+
         this.slideNum = slideNum;
         // Remove existing slide
-        slidePane.getChildren().clear();
+        if (slidePane.getChildren().size() > 1) {
+            slidePane.getChildren().remove(0);
+        }
+        Node prev = slidePane.getChildren().get(0);
+        if (prev != null) {
+            timeline.getKeyFrames().addAll(
+                    new KeyFrame(swipeDuration, new KeyValue(prev.translateXProperty(), direction * -backgroundPane.getWidth(), Interpolator.EASE_BOTH)),
+                    new KeyFrame(swipeDuration, new KeyValue(prev.opacityProperty(), 0, Interpolator.EASE_BOTH))
+            );
+        }
+        //slidePane.getChildren().clear();
         // Add new one
-        slidePane.getChildren().add(POISlides.get(slideNum));
+        Node next = poiSlideViews.get(slideNum);
+
+        if (prev != next) {
+            slidePane.getChildren().add(next);
+
+            timeline.getKeyFrames().addAll(
+                    new KeyFrame(Duration.millis(0), new KeyValue(next.translateXProperty(), direction * backgroundPane.getWidth(), Interpolator.EASE_BOTH)),
+                    new KeyFrame(Duration.millis(0), new KeyValue(next.opacityProperty(), 0, Interpolator.EASE_BOTH)),
+                    new KeyFrame(swipeDuration, new KeyValue(next.translateXProperty(), 0, Interpolator.EASE_BOTH)),
+                    new KeyFrame(swipeDuration, new KeyValue(next.opacityProperty(), 1, Interpolator.EASE_BOTH))
+            );
+        }
+
+        timeline.play();
+        slideClip.play();
+
+        forward.setVisible(slideNum < poiSlideViews.size() - 1);
+        back.setVisible(slideNum > 0);
     }
 
     public static void main(String[] args) {
