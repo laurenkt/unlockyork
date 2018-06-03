@@ -1,10 +1,5 @@
 package components;
 
-import com.sun.javafx.geom.BaseBounds;
-import com.sun.javafx.geom.transform.BaseTransform;
-import com.sun.javafx.jmx.MXNodeAlgorithm;
-import com.sun.javafx.jmx.MXNodeAlgorithmContext;
-import com.sun.javafx.sg.prism.NGNode;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -14,24 +9,19 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
-import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import javafx.scene.transform.Scale;
-import javafx.stage.Stage;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import models.POI;
-
-import javax.swing.event.DocumentEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +45,7 @@ public class MapView extends ScrollPane {
     }
 
     private double scaleValue = 0.7;
-    private double zoomIntensity = 0.02;
+    private double zoomIntensity = 0.01;
     private List<POIView> poiViews = new ArrayList<>();
     private ImageView mapView;
     private Region target;
@@ -179,13 +169,6 @@ public class MapView extends ScrollPane {
         target.scaleYProperty().addListener((obs, old, val) -> {
             layout();
 
-            double mapWidth = target.getBoundsInParent().getWidth();
-            double viewportWidth = getViewportBounds().getWidth();
-            double xPercent = xCenter.getValue() / target.getWidth();
-            double xTargetPos = xPercent * mapWidth - viewportWidth/2 + viewportWidth/4;
-            double hMax = mapWidth - getViewportBounds().getWidth();
-            double xVal = xTargetPos / hMax;
-
             double mapHeight = target.getBoundsInParent().getHeight();
             double viewportHeight = getViewportBounds().getHeight();
             double yPercent = yCenter.getValue() / target.getHeight();
@@ -193,11 +176,20 @@ public class MapView extends ScrollPane {
             double vMax = mapHeight - getViewportBounds().getHeight();
             double yVal = yTargetPos / vMax;
 
-            layout();
-            System.out.printf("Set xVal %f\r\n", xVal);
-            setHvalue(xVal);
             setVvalue(yVal);
+        });
+
+        target.scaleXProperty().addListener((obs, old, val) -> {
             layout();
+
+            double mapWidth = target.getBoundsInParent().getWidth();
+            double viewportWidth = getViewportBounds().getWidth();
+            double xPercent = xCenter.getValue() / target.getWidth();
+            double xTargetPos = xPercent * mapWidth - viewportWidth/2 + viewportWidth/4;
+            double hMax = mapWidth - getViewportBounds().getWidth();
+            double xVal = xTargetPos / hMax;
+
+            setHvalue(xVal);
         });
     }
 
@@ -254,8 +246,6 @@ public class MapView extends ScrollPane {
         outerNode.setOnScroll(e -> {
             e.consume();
             onScroll(e.getDeltaY(), new Point2D(e.getX(), e.getY()));
-           // System.out.println(scaleValue);
-
         });
         return outerNode;
     }
@@ -275,7 +265,7 @@ public class MapView extends ScrollPane {
         timeline.stop();
         timeline.getKeyFrames().clear();
         timeline.getKeyFrames().addAll(
-                new KeyFrame(Duration.millis(200), new KeyValue(target.scaleXProperty(), scaleValue, Interpolator.LINEAR))
+                new KeyFrame(Duration.millis(50), new KeyValue(target.scaleXProperty(), scaleValue, Interpolator.LINEAR))
         );
         timeline.play();
     }
