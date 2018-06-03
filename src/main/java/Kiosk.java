@@ -42,6 +42,7 @@ public class Kiosk extends Application {
     private Slider scaleSlider = new Slider(0.25, 1.5, 1);
     private Button forward;
     private Button back;
+    private Button home;
     private List<SlideView> POISlides = new ArrayList();
 
     @Override
@@ -50,7 +51,6 @@ public class Kiosk extends Application {
         final double offset = .5;
 
         primaryStage.setTitle("Unlock York");
-
 
         try {
             presentation = XMLParser.parse(
@@ -71,13 +71,13 @@ public class Kiosk extends Application {
 
         forward = new IconButton("/icons/right.png");
         back = new IconButton("/icons/left.png");
-        Button home = new IconButton("/icons/map_centre.png");
-        home.setTranslateX(margin);
+        home = new IconButton("/icons/map_centre.png");
+        home.setTranslateX(margin*1.2);
 
         scaleSlider.setOrientation(Orientation.VERTICAL);
         scaleSlider.setTranslateX(margin/2);
-        scaleSlider.setScaleX(2);
-        scaleSlider.setScaleY(2);
+        scaleSlider.setScaleX(1.5);
+        scaleSlider.setScaleY(1.5);
         scaleSlider.setMaxHeight(100);
 
         userView = new StackPane();
@@ -130,7 +130,7 @@ public class Kiosk extends Application {
             forward.setTranslateY(val.doubleValue() - margin*2);
             back.setTranslateY(val.doubleValue() - margin*2);
             home.setTranslateY(val.doubleValue() - home.getHeight() - margin/2);
-            scaleSlider.setTranslateY(val.doubleValue() - scaleSlider.getHeight()*2 - margin/2);
+            scaleSlider.setTranslateY(val.doubleValue() - scaleSlider.getLayoutBounds().getHeight() - margin*0.95);
             scaleHeightFactor = (val.doubleValue() - 2*margin) / (minHeight);
             scale.setX(Math.min(scaleWidthFactor, scaleHeightFactor));
             scale.setY(Math.min(scaleWidthFactor, scaleHeightFactor));
