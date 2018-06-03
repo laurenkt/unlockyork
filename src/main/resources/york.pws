@@ -30,7 +30,6 @@
     <POI id="citywalls" latitude="53.95418" longitude="-1.08677" name="City Walls" />
     <POI id="artgallery" latitude="53.9630" longitude="-1.0863" name="Art Gallery" />
     <POI id="theshambles" latitude="53.959393" longitude="-1.080093" name="The Shambles" />
-    <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" type="POI" name="Postern Gate" />
     <POI id="presentation" latitude="53.947641" longitude="-1.057154" type="POI" name="Sales Presentation" />
 
     <Slide duration="12" poi="#minster">
