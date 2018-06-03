@@ -31,7 +31,6 @@
     <POI id="citywalls" latitude="53.95396" longitude="-1.07524" name="City Walls" />
     <POI id="citywalls" latitude="53.95418" longitude="-1.08677" name="City Walls" />
     <POI id="theshambles" latitude="53.959393" longitude="-1.080093" name="The Shambles" />
-    <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" type="POI" name="Postern Gate" />
     <POI id="chocolatestory" latitude="53.960037" longitude="-1.080415" type="POI" name="York's Chocolate Story" />
     <POI id="presentation" latitude="53.947641" longitude="-1.057154" type="POI" name="Sales Presentation" />
 
