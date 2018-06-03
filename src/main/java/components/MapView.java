@@ -175,21 +175,29 @@ public class MapView extends ScrollPane {
     }
 
     private double getScrollXForTarget(double x) {
-        double mapWidth = target.getBoundsInParent().getWidth();
+        double mapWidth = target.getBoundsInParent().getWidth(); // real-width after scaling
+        double scaleFactor = target.getWidth() / mapWidth; // Difference in size between real and sclaed
         double viewportWidth = getViewportBounds().getWidth();
-        double xPercent = x / target.getWidth();
-        double xTargetPos = xPercent * mapWidth - viewportWidth/2 + (leftAligned ? viewportWidth/4 : 0);
-        double hMax = mapWidth - getViewportBounds().getWidth();
-        return xTargetPos / hMax;
+        double realViewportWidth = scaleFactor * viewportWidth;
+
+        double availableWidth = target.getWidth() - realViewportWidth;
+        x = x - realViewportWidth/2;
+
+        if (leftAligned) x += realViewportWidth/4;
+
+        return Math.min(1, Math.max(0, x/availableWidth));
     }
 
     private double getScrollYForTarget(double y) {
-        double mapHeight = target.getBoundsInParent().getHeight();
+        double mapHeight = target.getBoundsInParent().getHeight(); // real-width after scaling
+        double scaleFactor = target.getHeight() / mapHeight; // Difference in size between real and sclaed
         double viewportHeight = getViewportBounds().getHeight();
-        double yPercent = y / target.getHeight();
-        double yTargetPos = yPercent * mapHeight - viewportHeight/2;
-        double vMax = mapHeight - getViewportBounds().getHeight();
-        return yTargetPos / vMax;
+        double realViewportHeight = scaleFactor * viewportHeight;
+
+        double availableHeight = target.getHeight() - realViewportHeight;
+        y = y - realViewportHeight/2;
+
+        return Math.min(1, Math.max(0, y/availableHeight));
     }
 
     public void centerPoint(double x, double y) {
