@@ -167,7 +167,6 @@ public class Kiosk extends Application {
                 this.onPrevious();
                 e.consume();
             }
-
         });
 
         // Volume
@@ -195,6 +194,7 @@ public class Kiosk extends Application {
         map.setLeftAligned(slidePane.isVisible());
         //only show buttons when slide is shown
         poiSlideViews.clear();
+        this.slideNum = 0;
 
         if (poi != null) {
             for (int i = 0; i < slides.length; i++) {
@@ -205,6 +205,8 @@ public class Kiosk extends Application {
             slidePane.getChildren().clear();
             if (poiSlideViews.size() > 0) {
                 slidePane.getChildren().add(poiSlideViews.get(0));
+                poiSlideViews.get(0).setTranslateX(0);
+                poiSlideViews.get(0).setOpacity(1);
                 back.setVisible(false);
                 forward.setVisible(poiSlideViews.size() > 1);
             }
@@ -225,7 +227,9 @@ public class Kiosk extends Application {
         this.slideNum = slideNum;
         // Remove existing slide
         if (slidePane.getChildren().size() > 1) {
-            slidePane.getChildren().remove(0);
+            Node node = slidePane.getChildren().remove(0);
+            node.setTranslateX(0);
+            node.setOpacity(1);
         }
         Node prev = slidePane.getChildren().get(0);
         if (prev != null) {
