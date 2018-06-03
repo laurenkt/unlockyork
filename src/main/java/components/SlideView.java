@@ -222,11 +222,17 @@ public class SlideView extends Region {
     //prints on top of each other for separate text elements, format not always correct
     public Node renderTextNode(models.Text xmlText)
     {
+        double width = xmlText.getPosition().getWidth();
+        double height = xmlText.getPosition().getHeight();
+
+        if (width <= 0) width = 1000;
+        if (height <= 0) height = 1000;
+
         return new TextView(
             xmlText.getPosition().x1,
             xmlText.getPosition().y1,
-            500,
-            500,
+            width,
+            height,
             null,
             null,
             0,

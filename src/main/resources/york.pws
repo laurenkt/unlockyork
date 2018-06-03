@@ -30,26 +30,52 @@
     <POI id="citywalls" latitude="53.95418" longitude="-1.08677" name="City Walls" />
     <POI id="artgallery" latitude="53.9630" longitude="-1.0863" name="Art Gallery" />
     <POI id="theshambles" latitude="53.959393" longitude="-1.080093" name="The Shambles" />
+    <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" type="POI" name="Postern Gate" />
+    <POI id="presentation" latitude="53.947641" longitude="-1.057154" type="POI" name="Sales Presentation" />
 
     <Slide duration="12" poi="#minster">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             The Minster
         </Text>
-        <Text x="0" y="500" textsize="26">
+        <Image path="./content/YorkMinster.jpg" x="0" y="250" x2="1000" y2="1750" />
+        <Text x="0" y="1950" textsize="50">
             <Format bold="true">Opening Times</Format><Br />
             9:00am — 4:30pm
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
-            Since the 7th century, the Minster has been at the centre of Christianity in the north
-            of England and today remains a thriving church rooted in the daily offering of worship
-            and prayer. The Minster was built for the glory of God. Every aspect of this ancient
-            building - from the exquisite, handcrafted stone through to the unrivalled collection
-            of medieval stained glass - tells the story of Jesus Christ. We invite you to discover
-            this sacred place and the love of God at its heart, which has attracted people from
-            across the globe for more than 1000 years.
-        </Text>
-        <Video path="./content/minster.mp4" x="0" y="700" x2="640" y2="1180" />
     </Slide>
+
+    <Slide poi="#minster">
+        <Text x="0" y="200" x2="2000" y2="400" textsize="50">
+            The great Gothic cathedral towers over the surrounding area and at its tallest point reaches a height of 71 metres.
+            Constructed over the course of two and a half centuries, the Minster dates from a period when York was the significant
+            economic and political – as well as religious – capital in the North. Whilst the city’s influence has waned somewhat since
+            then, the Minster has maintained its religious importance and York remains the administrative centre of the Church of
+            England’s ministry in the north of the country.
+        </Text>
+
+        <Text x="0" y="600" x2="2000" y2="800" textsize="50">
+            York Minster has its own Stoneyard which serves to replace the constantly wearing exterior of the building. There is a long
+            history of Christianity on this site, with the first wooden chapel being constructed for the baptism of King Edward of
+            Northumbria in 627. This was later replaced with a stone church which was built on the site of a Roman basilica – the remains
+            of which can still be seen today in the Minster’s crypt.
+        </Text>
+
+        <Text x="0" y="1000" x2="2000" y2="1200" textsize="50">
+            Destroyed by the Danes during the turbulent period that followed the invasion of William The Conqueror, it was rebuilt in the
+            Norman manner favoured by England’s new rulers. With the new Gothic style sweeping across Europe, another rebuild was ordered
+            in the 13th century. It was hoped this new structure would rival the elegance of the new cathedral constructed in Canterbury.
+        </Text>
+
+        <Text x="0" y="1400" x2="2000" y2="1600" textsize="50">
+            Built from limestone quarried from nearby Tadcaster, the building we can see today was constructed over a period of 250 years,
+            between 1220 and 1472, although it has undergone a considerable number of repairs and restorations since then.
+        </Text>
+    </Slide>
+
+    <Slide poi="#minster">
+         <Video path="./content/minster.mp4" x="0" y="200" x2="2000" y2="1700"/>
+    </Slide>
+
     <Slide poi="#minsteryard">
         <Text x="0" y="0" textsize="64" bold="true">
             Minster Yard
@@ -63,10 +89,11 @@
     </Slide>
 
     <Slide poi="#undercroftmuseum">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             Undercroft Museum
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Image path="./content/MinsterUndercroft.jpg" x="0" y="250" x2="2000" y2="1750" />
+        <Text x="0" y="1950" x2="2000" y2="2150" textsize="50">
             Explore 2,000 years of history housed in state-of-the-art interactive chambers beneath the Minster.
             Visitors to the Undercroft, which is the only accredited museum in a cathedral in the country, can see
             the remains of Roman barracks, discover the Minster’s Viking connections and see artefacts never before
@@ -75,10 +102,11 @@
     </Slide>
 
     <Slide poi="#chapterhouse">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             Chapter House
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Image path="./content/MinsterChapterHouse.jpg" x="0" y="250" x2="2000" y2="1750" />
+        <Text x="0" y="1950" x2="2000" y2="2150" textsize="50">
             One of York Minster’s architectural gems, the Chapter House contains some of the Minster’s finest carvings
             and in 1297 was used as the location for the Parliament of King Edward I. The octagonal space dates from the
             1280s and its magnificent, vaulted ceiling is supported by timbers in the roof, instead of a central column,
@@ -87,24 +115,24 @@
     </Slide>
 
     <Slide poi="#deanspark">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             Dean's Park
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Image path="./content/deanpark.jpg" x="0" y="250" x2="2000" y2="1750" />
+        <Text x="0" y="1950" x2="2000" y2="2150" textsize="50">
             Originally built by William the Conqueror to subdue the rebels of the north, it was twice burned to the ground,
             before being rebuilt by Henry III in the 13th century. The tower takes its name from one grisly incident in its
             long history, when Roger de Clifford was executed for treason against Edward II and hanged in chains from the
             tower walls.
         </Text>
-        <Image path="./content/deanpark.jpg" x="0" y="700" x2="640" y2="1180" />
     </Slide>
 
     <Slide poi="#cliffordstower">
-        <Text x="0" y="0" textsize="64" bold="true">
+        <Text x="0" y="0" textsize="100" bold="true">
             Cliffords Tower
         </Text>
 
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             Originally built by William the Conqueror to subdue the rebels of the north, it was
             twice burned to the ground, before being rebuilt by Henry III in the 13th century.
             The tower takes its name from one grisly incident in its long history, when Roger

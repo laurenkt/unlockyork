@@ -411,8 +411,6 @@ public class XMLParser {
                 //sets the defaults for a new TextFormat from slide/presentation defaults
                 setTextContentDefaults(contentText, slide);
 
-                System.out.println("SLIDE DE BOLD: " + slide.getFont().isBold());
-
                 //gets the attributes specified from the Text element, these will overwrite the defaults when needed
                 getTextContentAttributes(contentText, xmlSlide.getAttributes());
 
@@ -420,50 +418,41 @@ public class XMLParser {
                 //if a format change is specified for bold this particular TextFormat will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("bold") != null) {
                     contentText.getFont().setBold(parseBoolean(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("bold").getNodeValue()));
-                    System.out.println("bold from FORMAT");
                 }
 
                 /////////////////////underline//////////////////////////////////////////
                 //if a format change is specified for underline this particular TextFormat will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("underline") != null) {
                     contentText.getFont().setUnderline(parseBoolean(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("underline").getNodeValue()));
-                    System.out.println("underline from FORMAT");
                 }
 
                 ////////////////////italic//////////////////////////////////////////////
                 //if a format change is specified for italic this particular TextFormat will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("italic") != null) {
                     contentText.getFont().setItalic(parseBoolean(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("italic").getNodeValue()));
-                    System.out.println("italic from FORMAT");
                 }
 
                 ///////////////////textsize////////////////////////////////////////////
                 //if a format change is specified for textsize this particular TextFormat will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("textsize") != null) {
                     contentText.getFont().setTextSize(Integer.parseInt(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("textsize").getNodeValue()));
-                    System.out.println("textsize from FORMAT");
                 }
 
                 ///////////////////////font///////////////////////////////////////////
                 //if a format change is specified for font this particular TextFormat will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("font") != null) {
                     contentText.getFont().setFontWithName(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("font").getNodeValue());
-                    System.out.println("font from FORMAT");
                 }
 
                 //////////////////colour/////////////////////////////////////////////
                 //if a format change is specified for colour this particular TextFormat will use that format
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Format") && xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("color") != null) {
-
                     contentText.getColor().setColor(xmlSlide.getChildNodes().item(i).getAttributes().getNamedItem("color").getNodeValue());
-                    System.out.println("colour from FORMAT");
-
                 }
 
                 ///////////////////////line break///////////////////////////////////
                 //when a line break as been specified the content is set to be a line break
                 if (xmlSlide.getChildNodes().item(i).getNodeName().equals("Br")) {
-                    System.out.println("---- Br ---");
                     contentText.setContent("\n");
                 }
                 else
@@ -471,20 +460,6 @@ public class XMLParser {
                     //if not a line break, the actual text content of the line is added to the TextFormat object
                     contentText.setContent(xmlSlide.getChildNodes().item(i).getTextContent().trim());
                 }
-
-                if(contentText.getContent() == "\n")
-                {
-                    System.out.println("LINE BREAK");
-                }
-
-                System.out.println("content TEXT , bold: " + contentText.getFont().isBold()
-                        + " ,italic: " + contentText.getFont().isItalic()
-                        + " ,underline: " + contentText.getFont().isUnderline()
-                        + " ,textsize: " + contentText.getFont().getTextSize()
-                        + " ,colour: " + contentText.getColor().getColor()
-                        + " ,fill: " + contentText.getColor().getFill()
-                        + " ,font: " + contentText.getFont().getFontName()
-                        + " , TEXT: " + contentText.getContent());
 
                 slideText.getContent().add(i, contentText);
             }

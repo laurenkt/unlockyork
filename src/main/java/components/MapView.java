@@ -1,10 +1,5 @@
 package components;
 
-import com.sun.javafx.geom.BaseBounds;
-import com.sun.javafx.geom.transform.BaseTransform;
-import com.sun.javafx.jmx.MXNodeAlgorithm;
-import com.sun.javafx.jmx.MXNodeAlgorithmContext;
-import com.sun.javafx.sg.prism.NGNode;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -14,24 +9,19 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
-import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import javafx.scene.transform.Scale;
-import javafx.stage.Stage;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import models.POI;
-
-import javax.swing.event.DocumentEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,16 +45,18 @@ public class MapView extends ScrollPane {
     }
 
     private double scaleValue = 0.7;
-    private double zoomIntensity = 0.02;
+    private double zoomIntensity = 0.01;
     private List<POIView> poiViews = new ArrayList<>();
     private ImageView mapView;
     private Region target;
     private Node zoomNode;
     private StackPane stack;
+    private boolean leftAligned = false;
     private Timeline timeline = new Timeline();
     private int level = 0;
     private DoubleProperty xCenter = new SimpleDoubleProperty(0);
     private DoubleProperty yCenter = new SimpleDoubleProperty(0);
+    private DoubleProperty scaleProperty = new SimpleDoubleProperty(1);
     private EventHandler<? super POIEvent> onPoiClicked;
     private List<Image> tiles = new ArrayList<>();
     private Image youAreHereIcon = new Image(getClass().getResource("/icons/map_me.png").toExternalForm());
@@ -76,6 +68,10 @@ public class MapView extends ScrollPane {
         youAreHere.setTranslateX(youAreHereLocation.getX());
         youAreHere.setTranslateY(youAreHereLocation.getY());
         stack.getChildren().add(youAreHere);
+    }
+
+    public void setLeftAligned(boolean isLeftAligned) {
+        leftAligned = isLeftAligned;
     }
 
     public MapView(List<POI> POIs) {
@@ -91,23 +87,16 @@ public class MapView extends ScrollPane {
         mapView = new ImageView();
         mapView.setImage(tiles.get(level));
 
-
         for(POI poi : POIs) {
-            // poi == POIs.get(i)
             poiViews.add(new POIView(poi));
-        }
-
-        for(int i = 0; i > POIs.size(); i++) {
-            poiViews.add(new POIView(POIs.get(i)));
         }
 
         stack = new StackPane();
         stack.setAlignment(Pos.TOP_LEFT);
         stack.getChildren().add(mapView);
         stack.getChildren().addAll(poiViews);
-
-        for(POIView SubPOI : poiViews) {
-            stack.getChildren().addAll(SubPOI.getSubPOIViews());
+        for(POIView poiView : poiViews) {
+            stack.getChildren().addAll(poiView.getSubPOIViews());
         }
 
         HBox hBox = new HBox();
@@ -122,13 +111,10 @@ public class MapView extends ScrollPane {
         setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-        hvalueProperty().addListener((obs, old, val) -> {
-            System.out.printf("hVal %f\r\n", val.doubleValue());
-        });
+        scaleProperty.bindBidirectional(target.scaleXProperty());
+        scaleProperty.bindBidirectional(target.scaleYProperty());
 
-        // Ensure target scales on both directions together
-        target.scaleYProperty().bind(target.scaleXProperty());
-        target.scaleXProperty().addListener((obs, old, val) -> {
+        scaleProperty.addListener((obs, old, val) -> {
             for(POIView poi : poiViews) {
                 poi.setScaleX(0.3 / val.doubleValue());
 
@@ -176,15 +162,9 @@ public class MapView extends ScrollPane {
         setHvalue(0.5);
         setVvalue(0.5);
 
+
         target.scaleYProperty().addListener((obs, old, val) -> {
             layout();
-
-            double mapWidth = target.getBoundsInParent().getWidth();
-            double viewportWidth = getViewportBounds().getWidth();
-            double xPercent = xCenter.getValue() / target.getWidth();
-            double xTargetPos = xPercent * mapWidth - viewportWidth/2 + viewportWidth/4;
-            double hMax = mapWidth - getViewportBounds().getWidth();
-            double xVal = xTargetPos / hMax;
 
             double mapHeight = target.getBoundsInParent().getHeight();
             double viewportHeight = getViewportBounds().getHeight();
@@ -193,11 +173,20 @@ public class MapView extends ScrollPane {
             double vMax = mapHeight - getViewportBounds().getHeight();
             double yVal = yTargetPos / vMax;
 
-            layout();
-            System.out.printf("Set xVal %f\r\n", xVal);
-            setHvalue(xVal);
             setVvalue(yVal);
+        });
+
+        target.scaleXProperty().addListener((obs, old, val) -> {
             layout();
+
+            double mapWidth = target.getBoundsInParent().getWidth();
+            double viewportWidth = getViewportBounds().getWidth();
+            double xPercent = xCenter.getValue() / target.getWidth();
+            double xTargetPos = xPercent * mapWidth - viewportWidth/2 + (leftAligned ? viewportWidth/4 : 0);
+            double hMax = mapWidth - getViewportBounds().getWidth();
+            double xVal = xTargetPos / hMax;
+
+            setHvalue(xVal);
         });
     }
 
@@ -213,20 +202,30 @@ public class MapView extends ScrollPane {
         double viewportHeight = getViewportBounds().getHeight();
         double xPercent = x / target.getWidth();
         double yPercent = y / target.getHeight();
-        double xTargetPos = xPercent * mapWidth - viewportWidth/2 + viewportWidth/4;
+        double xTargetPos = xPercent * mapWidth - viewportWidth/2 + (leftAligned ? viewportWidth/4 : 0);
         double yTargetPos = yPercent * mapHeight - viewportHeight/2;
         double hMax = mapWidth - getViewportBounds().getWidth();
         double vMax = mapHeight - getViewportBounds().getHeight();
         double xVal = xTargetPos / hMax;
         double yVal = yTargetPos / vMax;
 
+        final double targetScale = 1.25;
+        final Duration animationDuration = Duration.millis(400);
+
         final Timeline timeline = new Timeline();
-        timeline.getKeyFrames().addAll(
-                new KeyFrame(Duration.millis(250), new KeyValue(target.scaleXProperty(), target.scaleXProperty().getValue())),
-                new KeyFrame(Duration.millis(750), new KeyValue(target.scaleXProperty(), 1.25, Interpolator.EASE_BOTH)),
-                new KeyFrame(Duration.millis(249), new KeyValue(hvalueProperty(), xVal, Interpolator.EASE_IN)),
-                new KeyFrame(Duration.millis(249), new KeyValue(vvalueProperty(), yVal, Interpolator.EASE_IN))
-        );
+        // If it's at a different scale, zoom to it
+        // The zoom will also adjust the scroll location towards 'xCenter'
+        if (scaleProperty.getValue() != targetScale) {
+            timeline.getKeyFrames().add(
+                    new KeyFrame(animationDuration, new KeyValue(scaleProperty, targetScale, Interpolator.EASE_BOTH)));
+        }
+        // If it's at the same scale, then scroll to the location
+        else {
+            timeline.getKeyFrames().addAll(
+                    new KeyFrame(animationDuration, new KeyValue(hvalueProperty(), xVal, Interpolator.EASE_BOTH)),
+                    new KeyFrame(animationDuration, new KeyValue(vvalueProperty(), yVal, Interpolator.EASE_BOTH))
+            );
+        }
         timeline.play();
     }
 
@@ -246,7 +245,7 @@ public class MapView extends ScrollPane {
     }
 
     public DoubleProperty scaleProperty() {
-        return target.scaleXProperty();
+        return scaleProperty;
     }
 
     private Node outerNode(Node node) {
@@ -254,8 +253,6 @@ public class MapView extends ScrollPane {
         outerNode.setOnScroll(e -> {
             e.consume();
             onScroll(e.getDeltaY(), new Point2D(e.getX(), e.getY()));
-           // System.out.println(scaleValue);
-
         });
         return outerNode;
     }
@@ -275,7 +272,7 @@ public class MapView extends ScrollPane {
         timeline.stop();
         timeline.getKeyFrames().clear();
         timeline.getKeyFrames().addAll(
-                new KeyFrame(Duration.millis(200), new KeyValue(target.scaleXProperty(), scaleValue, Interpolator.LINEAR))
+                new KeyFrame(Duration.millis(100), new KeyValue(scaleProperty, scaleValue, Interpolator.LINEAR))
         );
         timeline.play();
     }
