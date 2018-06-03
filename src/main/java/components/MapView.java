@@ -106,8 +106,8 @@ public class MapView extends ScrollPane {
         stack.getChildren().add(mapView);
         stack.getChildren().addAll(poiViews);
 
-        for(POIView SubPOI : poiViews) {
-            stack.getChildren().addAll(SubPOI.getSubPOIViews());
+        for(POIView subPOI : poiViews) {
+            stack.getChildren().addAll(subPOI.getSubPOIViews());
         }
 
         HBox hBox = new HBox();
