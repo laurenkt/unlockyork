@@ -35,6 +35,8 @@
     <POI id="theshambles" latitude="53.959393" longitude="-1.080093" type="POI" name="The Shambles" />
     <POI id="chocolatestory" latitude="53.960037" longitude="-1.080415" type="POI" name="York's Chocolate Story" />
     <POI id="kingsarms" latitude="53.957128725061686" longitude="-1.0830625891685486" type="pub" name="Kings Arms" />
+    <POI id="milleniumbridge" latitude="53.944857" longitude="-1.082085" type="POI" name="Millenium Bridge" />
+    <POI id="kenspelmanbooks" latitude="53.957290" longitude="-1.088439" type="shop" name="Ken Spelman Books" />
     <POI id="presentation" latitude="53.947641" longitude="-1.057154" type="POI" name="Sales Presentation" />
 
     <Slide duration="12" poi="#minster">
@@ -921,6 +923,50 @@
             In 1501/2 the Mayor and Corporation of York ordered that a new tower be made in stone. The stone Fishergate Postern Tower as we see it today, but without the tiled roof, was built between 1504 and 1507. At the start of the 19th century the Postern Tower clearly had no defensive function and was “now inhabited by a poor Freeman of the City”.
 
         </Text>
+    </Slide>
+
+    <Slide poi="#milleniumbridge">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Millenium Bridge
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            The Millennium Bridge, built to a competition-winning design by Whitby Bird and Partners, was opened on 10 April 2001,
+            having cost £4.2 million to build. It spans the River Ouse to the south of York, linking Hospital Fields Road and Maple
+            Grove in Fulfordwith Butcher Terrace on the South Bank. The bridge carries a cycle path and a footpath, and is not open
+            to vehicular traffic.It is a key link in the Sustrans National Cycle Routes 65/66 and is part of the orbital route for
+            York completed in 2011.
+
+        </Text>
+        <Image path="./content/milleniumbridge.jpg" x="0" y="1150" x2="1000" y2="1500" />
+    </Slide>
+    <Slide poi="#milleniumbridge">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Millenium Bridge
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            The bridge shortened the walk or cycle for students from houses in the South Bank to the University
+            of York (they previously had to travel via Skeldergate Bridge).
+            The bridge also acts a meeting place for local people, as it has a waist height shelf spanning the whole structure which
+            facilitates sitting and admiring the view.Increasingly it is used as a circular walk from the city centre taking in the New
+            Walk on the east bank and Terry Avenue and Rowntree Park on the west bank. While riverside paths regularly flood several
+            times a year the bridge is higher and rarely cut off by floodwaters. Signs on approaches from Fulford Rd /Hospital Fields
+            Rd junction and Butcher Terrace/Bishopthorpe Road warn when it may be impassable without wellies.
+
+        </Text>
+    </Slide>
+
+    <Slide poi="#kenspelmanbooks">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Ken Spelman books
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            Established in York in 1948, with 70 years of experience we are always happy to provide professional and confidential
+            advice - whether you are an experienced collector or a first time buyer or seller.
+            Rare and Secondhand Books, Manuscripts and Documents, contemporary art exhibitions, designer cards, and in winter a
+            real coal fire. There is on-street parking right outside our door - a rarity for York!
+
+        </Text>
+        <Image path="./content/kenspelmanshopfront.jpg" x="0" y="950" x2="1000" y2="1500" />
     </Slide>
 
     <Slide poi="#presentation">
