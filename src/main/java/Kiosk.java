@@ -119,7 +119,7 @@ public class Kiosk extends Application {
         Scene scene = new Scene(userView);
         primaryStage.widthProperty().addListener((obs, old, val) -> {
             forward.setTranslateX(val.doubleValue() - margin*2);
-            back.setTranslateX(val.doubleValue() / 2 + margin*2);
+            back.setTranslateX(val.doubleValue()*offset);
             backgroundPane.setTranslateX(val.doubleValue()*offset);
             slidePane.setTranslateX(val.doubleValue()*offset + margin);
             scaleWidthFactor = (val.doubleValue()*(1-offset) - 2*margin) / (minWidth);
