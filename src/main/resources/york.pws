@@ -730,10 +730,17 @@
         </Text>
         <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             The founder of Bettys, Frederick Belmont, travelled on the maiden voyage of the Queen Mary. He was so impressed by the extravagance of the ship that he commissioned the Queen Mary's designers to turn an old furniture store into his most sophisticated branch yet - an elegant café in the land-locked location of St Helens Square, York.
+        </Text>
+        <Image path="./content/bettys.jpg" x="0" y="700" x2="1000" y2="1180" />
+    </Slide>
+    <Slide poi="#bettystearoom">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Betty's Tea Room
+        </Text>
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             A specially devised menu, an immaculate table-setting, a pianist to serenade you: our luxury Lady Betty Afternoon Tea is a truly unforgettable experience. Book ahead so you can waltz past the queues and dine in the opulent splendour of our Belmont Room.
             If you're looking for a really special experience, our Lady Betty Afternoon Tea provides just this. Set in the historic and elegant surroundings of the Belmont Room, York, our menu is inspired by Bettys best-loved pâtisserie and favourite Café Tea Rooms specialities.
         </Text>
-        <Image path="./content/bettys.jpg" x="0" y="700" x2="1000" y2="1180" />
     </Slide>
 
     <Slide poi="#gatehousecoffee">
@@ -758,10 +765,10 @@
             <Format bold="true">Opening Times</Format><Br />
             8:00am — 10:30pm
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             Spark:York CIC is a community of small independent businesses including street food, bars, retail, co-working and entertainment
         </Text>
-        <Image path="./content/spark.jpg" x="0" y="700" x2="640" y2="1180" />
+        <Image path="./content/spark.jpg" x="0" y="700" x2="1000" y2="1500" />
     </Slide>
     <Slide poi="#yorkarmoury">
         <Text x="0" y="0" textsize="100" bold="true">
@@ -771,7 +778,7 @@
             <Format bold="true">Opening Times</Format><Br />
             10:00am — 7:00pm
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             Home of historical arms and armour, movie swords, anime swords, buckland knives and minamoto katana.
         </Text>
         <Image path="./content/yorkarmoury.jpg" x="0" y="700" x2="1000" y2="1580" />
