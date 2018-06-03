@@ -51,6 +51,7 @@ public class MapView extends ScrollPane {
     private Region target;
     private Node zoomNode;
     private StackPane stack;
+    private boolean leftAligned = false;
     private Timeline timeline = new Timeline();
     private int level = 0;
     private DoubleProperty xCenter = new SimpleDoubleProperty(0);
@@ -67,6 +68,10 @@ public class MapView extends ScrollPane {
         youAreHere.setTranslateX(youAreHereLocation.getX());
         youAreHere.setTranslateY(youAreHereLocation.getY());
         stack.getChildren().add(youAreHere);
+    }
+
+    public void setLeftAligned(boolean isLeftAligned) {
+        leftAligned = isLeftAligned;
     }
 
     public MapView(List<POI> POIs) {
@@ -177,7 +182,7 @@ public class MapView extends ScrollPane {
             double mapWidth = target.getBoundsInParent().getWidth();
             double viewportWidth = getViewportBounds().getWidth();
             double xPercent = xCenter.getValue() / target.getWidth();
-            double xTargetPos = xPercent * mapWidth - viewportWidth/2 + viewportWidth/4;
+            double xTargetPos = xPercent * mapWidth - viewportWidth/2 + (leftAligned ? viewportWidth/4 : 0);
             double hMax = mapWidth - getViewportBounds().getWidth();
             double xVal = xTargetPos / hMax;
 
@@ -197,7 +202,7 @@ public class MapView extends ScrollPane {
         double viewportHeight = getViewportBounds().getHeight();
         double xPercent = x / target.getWidth();
         double yPercent = y / target.getHeight();
-        double xTargetPos = xPercent * mapWidth - viewportWidth/2 + viewportWidth/4;
+        double xTargetPos = xPercent * mapWidth - viewportWidth/2 + (leftAligned ? viewportWidth/4 : 0);
         double yTargetPos = yPercent * mapHeight - viewportHeight/2;
         double hMax = mapWidth - getViewportBounds().getWidth();
         double vMax = mapHeight - getViewportBounds().getHeight();

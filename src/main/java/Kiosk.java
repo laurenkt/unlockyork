@@ -179,6 +179,7 @@ public class Kiosk extends Application {
 
     public void onClickPoi(POI poi) {
         slidePane.setVisible(poi != null);
+        map.setLeftAligned(slidePane.isVisible());
         //only show buttons when slide is shown
         POISlides.clear();
 
