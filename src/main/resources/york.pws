@@ -560,10 +560,21 @@
         <Text x="0" y="0" textsize="100" bold="true">
             York Museum Gardens
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
             Set in the stunning surroundings of the Medieval ruins of St. Mary’s Abbey, the York
             Museum Gardens are a great space to meet friends and family and enjoy some peace and
             tranquility in the heart of the city centre.
+
+        </Text>
+
+        <Image path="./content/gardens.jpg" x="0" y="600" x2="1000" y2="1500" />
+
+    </Slide>
+    <Slide poi="#museumgardens">
+        <Text x="0" y="0" textsize="100" bold="true">
+            York Museum Gardens
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
 
             There is so much to see and do including a chance to see inside Yorkshire’s oldest
             working observatory, wander round the gardens and see the vast botanical collection,
@@ -571,8 +582,6 @@
             Yorkshire Museum, which showcases some of Britain’s finest archaeological treasures
             and many rare animals, birds and fossils, in exciting new displays
         </Text>
-
-        <Image path="./content/gardens.jpg" x="0" y="700" x2="1000" y2="1600" />
 
     </Slide>
 
@@ -708,7 +717,7 @@
             and many rare animals, birds and fossils, in exciting displays.
         </Text>
 
-        <Image path="./content/yorkshiremuseum.jpg" x="0" y="700" x2="1000" y2="1600" />
+        <Image path="./content/yorkshiremuseum.jpg" x="0" y="900" x2="1000" y2="1600" />
     </Slide>
 
     <Slide poi="#bettystearoom">
@@ -735,10 +744,10 @@
             <Format bold="true">Opening Times</Format><Br />
             10:00am — 6:00pm
         </Text>
-        <Text x="0" y="150" x2="1000" y2="600">
+        <Text x="0" y="150" x2="1000" y2="600" textsize="50">
             Gatehouse Coffee is located in Walmgate Bar, within York’s city walls, and is a Christian-run cafe specializing in high quality espresso drinks, friendly service, light pastries and snacks, paninis, seasonal soups and free wifi.
         </Text>
-        <Image path="./content/gatehouse.jpg" x="0" y="700" x2="1000" y2="1180" />
+        <Image path="./content/gatehouse.jpg" x="0" y="700" x2="1000" y2="1300" />
     </Slide>
 
     <Slide poi="#sparkyork">
@@ -807,6 +816,30 @@
 
         </Text>
         <Image path="./content/theshambles2.jpg" x="0" y="900" x2="1000" y2="1400" />
+    </Slide>
+
+    <Slide poi="#posterngate">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Fishergate Postern Tower
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            Fishergate Postern Tower, at the end of Piccadilly, is a 4 storey stone tower built around 1504. This is the second Postern Tower on this site. The first was erected some time after 1345 The first tower was named the Talken Tower, after Robert de Talken, a wine merchant, who was York mayor in 1399.
+            Fishergate postern was only a minor gateway into the city as there was a larger entrance just round the corner at Fishergate Bar. However, in 1489 Fishergate Bar suffered considerable damage in the Yorkshire peasants’ revolt against Henry VII. The rebels burned the gates of the bar after murdering the Earl of Northumberland.
+
+        </Text>
+        <Image path="./content/posterngate.jpg" x="0" y="1100" x2="700" y2="1500" />
+    </Slide>
+    <Slide poi="#posterngate">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Fishergate Postern Tower
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            The murder was at a meeting he had arranged with them to hear their complaints about the King’s new taxes. Some say 5,000 peasants went on to attack York’s Walls but soon after this the revolt failed The damaged gateway was bricked up soon after and wasn’t reopened until 1834, to give better access for the cattle market.
+            When Fishergate Bar was bricked up, another gateway was needed fairly urgently. After 1489 it would seem likely that traffic congestion increased, and as the river Foss was silting up, there was the urgent need for a new entry through the walls to be made.
+
+            In 1501/2 the Mayor and Corporation of York ordered that a new tower be made in stone. The stone Fishergate Postern Tower as we see it today, but without the tiled roof, was built between 1504 and 1507. At the start of the 19th century the Postern Tower clearly had no defensive function and was “now inhabited by a poor Freeman of the City”.
+
+        </Text>
     </Slide>
 
     <Slide poi="#presentation">
