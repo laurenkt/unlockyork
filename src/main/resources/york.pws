@@ -44,6 +44,8 @@
     <POI id="no88walmgate" latitude="53.956701823531496" longitude="-1.073874682188034" type="dining" name="No 88 Walmgate" />
     <POI id="peasholmehouse" latitude="53.96007509442962" longitude="-1.0766494274139404" type="poi" name="Peasholme House" />
     <POI id="presentation" latitude="53.947641" longitude="-1.057154" type="POI" name="Sales Presentation" />
+    <POI id="finances" latitude="53.945606" longitude="-1.054297" type="POI" name="Finances" />
+    <POI id="heslingtonhall" latitude="53.94581632418434" longitude="-1.0469169854111442" type="POI" name="Heslington Hall" />
 
     <Slide duration="12" poi="#minster">
         <Text x="0" y="0" textsize="100" bold="true">
@@ -1093,7 +1095,7 @@
     <!-- SALES PRESENTATION SLIDES -->
 
     <Slide poi="#presentation" font="Clear Sans">
-        <Image path="./content/presentation/logo.png" x="250" y="500" x2="772" y2="1002" />
+        <Image path="./content/unlocklogo.png" x="250" y="500" x2="772" y2="1002" />
     </Slide>
     <Slide poi="#presentation" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
@@ -1119,7 +1121,7 @@
 
         </Text>
     </Slide>
-    <Slide poi="#presentation" font="Clear Sans">
+    <Slide poi="#heslingtonhall" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
             Mobile App
 
@@ -1128,13 +1130,13 @@
             Demonstration
         </Text>
     </Slide>
-    <Slide poi="#presentation" font="Clear Sans">
+    <Slide poi="#finances" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
             Finances
 
         </Text>
     </Slide>
-    <Slide poi="#presentation" font="Clear Sans">
+    <Slide poi="#finances" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
             Revenue Streams
 
@@ -1149,7 +1151,7 @@
             ⦁ Show casing local companies
         </Text>
     </Slide>
-    <Slide poi="#presentation" font="Clear Sans">
+    <Slide poi="#finances" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
             Kiosks
 
