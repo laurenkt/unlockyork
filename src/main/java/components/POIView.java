@@ -41,6 +41,8 @@ public class POIView extends Region {
     final private Image pubIcon = new Image(getClass().getResource("/icons/map_bar.png").toExternalForm());
     final private Image hotelIcon = new Image(getClass().getResource("/icons/map_hotel.png").toExternalForm());
     final private Image restaurantIcon = new Image(getClass().getResource("/icons/map_dining.png").toExternalForm());
+    final private Image gardenIcon = new Image(getClass().getResource("/icons/map_garden.png").toExternalForm());
+    final private Image activityIcon = new Image(getClass().getResource("/icons/map_activity.png").toExternalForm());
 
     private ImageView icon = new ImageView();
     private Text name = new Text();
@@ -132,12 +134,14 @@ public class POIView extends Region {
     private Image getImageForType(String type) {
         type = type.toLowerCase(); // Normalize
 
-        if ("spoi".equals(type))   return subPoiIcon;
-        if ("shop".equals(type))   return shopIcon;
-        if ("cafe".equals(type))   return cafeIcon;
-        if ("pub".equals(type))    return pubIcon;
-        if ("hotel".equals(type))  return hotelIcon;
-        if ("dining".equals(type)) return restaurantIcon;
+        if ("spoi".equals(type))     return subPoiIcon;
+        if ("shop".equals(type))     return shopIcon;
+        if ("cafe".equals(type))     return cafeIcon;
+        if ("pub".equals(type))      return pubIcon;
+        if ("hotel".equals(type))    return hotelIcon;
+        if ("dining".equals(type))   return restaurantIcon;
+        if ("garden".equals(type))   return gardenIcon;
+        if ("activity".equals(type)) return activityIcon;
 
         return poiIcon;
     }
