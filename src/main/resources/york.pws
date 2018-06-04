@@ -16,14 +16,14 @@
         <POI id="deanspark" latitude="53.96302" longitude="-1.08248" type="sPOI" name="Dean's Park" />
     </POI>
     <POI id="cliffordstower" latitude="53.95582" longitude="-1.079939" type="POI" name="Clifford's Tower" />
-    <POI id="artgallery" latitude="53.9630" longitude="-1.0863" type="POI" name="Art Gallery" />
+    <POI id="artgallery" latitude="53.9630" longitude="-1.0863" type="activity" name="Art Gallery" />
     <POI id="jorvik" latitude="53.9574" longitude="-1.0803" type="POI" name="Jorvik" />
     <POI id="merchantadventure" latitude="53.9578" longitude="-1.0788" type="POI" name="Merchant Adventure" />
-    <POI id="museumgardens" latitude="53.9615" longitude="-1.0883" type="POI" name="Museum Gardens" />
-    <POI id="nrm" latitude="53.9605" longitude="-1.0964" type="POI" name="National Rail Museum" >
-        <POI id="trainroad" latitude="53.959557482751315" longitude="-1.0960042476654053" type="sPOI" name="The York Road Train | NRM" />
-        <POI id="mallardcafe" latitude="53.960135061220846" longitude="-1.0959291458129883" type="sPOI" name="The Mallard Cafe" />
-        <POI id="friendsnrm" latitude="53.960718943889745" longitude="-1.0971254110336304" type="sPOI" name="Friends Of The NRM" />
+    <POI id="museumgardens" latitude="53.9615" longitude="-1.0883" type="garden" name="Museum Gardens" />
+    <POI id="nrm" latitude="53.9605" longitude="-1.0964" name="National Rail Museum" >
+        <POI id="trainroad" latitude="53.959557482751315" longitude="-1.0960042476654053" name="The York Road Train" />
+        <POI id="mallardcafe" latitude="53.960135061220846" longitude="-1.0959291458129883" name="The Mallard Cafe" />
+        <POI id="friendsnrm" latitude="53.960718943889745" longitude="-1.0971254110336304" name="Friends Of The NRM" />
     </POI>
     <POI id="yorkshiremuseum" latitude="53.9619" longitude="-1.0874" type="POI" name="Yorkshire Museum" />
     <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" type="POI" name="Postern Gate" />
@@ -33,9 +33,11 @@
     <POI id="citywalls" latitude="53.95396" longitude="-1.07524" type="POI" name="City Walls" />
     <POI id="citywalls" latitude="53.95418" longitude="-1.08677" type="POI" name="City Walls" />
     <POI id="theshambles" latitude="53.959393" longitude="-1.080093" type="POI" name="The Shambles" />
-    <POI id="chocolatestory" latitude="53.960037" longitude="-1.080415" type="POI" name="York's Chocolate Story" />
+    <POI id="chocolatestory" latitude="53.960037" longitude="-1.080415" type="activity" name="York's Chocolate Story" />
     <POI id="kingsarms" latitude="53.957128725061686" longitude="-1.0830625891685486" type="pub" name="Kings Arms" />
-    <POI id="milleniumbridge" latitude="53.944857" longitude="-1.082085" type="POI" name="Millenium Bridge" />
+    <POI id="rowntreepark" latitude="53.94845" longitude="-1.08146" type="garden" name="Rowntree Park">
+        <POI id="milleniumbridge" latitude="53.944857" longitude="-1.082085" name="Millenium Bridge" />
+    </POI>
     <POI id="kenspelmanbooks" latitude="53.957290" longitude="-1.088439" type="shop" name="Ken Spelman Books" />
     <POI id="presentation" latitude="53.947641" longitude="-1.057154" type="POI" name="Sales Presentation" />
 
