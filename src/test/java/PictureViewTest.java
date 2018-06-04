@@ -1,4 +1,3 @@
-import components.MovieView;
 import components.PictureView;
 import de.saxsys.javafx.test.JfxRunner;
 import javafx.scene.image.Image;
