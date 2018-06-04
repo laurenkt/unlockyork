@@ -87,7 +87,29 @@ public class XMLParserTest {
     @Test
     public void testShape(){
         //test slide 1 shape = ellipse
-        //assertEquals("ellipse", presentation.getSlides().get())
+        assertEquals("ellipse", presentation.getSlides().get(1).getShape().get(0).getShape());
+        assertEquals("gradient(#AEDE38,#3482ED)" ,presentation.getSlides().get(1).getShape().get(0).getColor().getFill());
+    }
+
+    @Test
+    public void testImage(){
+        assertEquals("./local_file.jpg", presentation.getSlides().get(3).getImage().get(0).getPath());
+        assertEquals(10, presentation.getSlides().get(3).getImage().get(0).getPosition().x1);
+        assertEquals(200, presentation.getSlides().get(3).getImage().get(0).getPosition().y2);
+    }
+
+    @Test
+    public void testVideo(){
+        assertEquals("./local_file.mp4", presentation.getSlides().get(4).getVideo().get(0).getPath());
+        assertEquals(10, presentation.getSlides().get(4).getVideo().get(0).getPosition().x1);
+        assertEquals(515, presentation.getSlides().get(4).getVideo().get(0).getPosition().y2);
+    }
+
+    @Test
+    public void testAudio(){
+        assertEquals("./local_file.wav", presentation.getSlides().get(4).getAudio().get(0).getPath());
+        assertEquals(0, presentation.getSlides().get(4).getAudio().get(0).getPosition().x1);
+        assertEquals(10, presentation.getSlides().get(4).getAudio().get(0).getPosition().y2);
     }
 
 }
