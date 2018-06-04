@@ -27,11 +27,11 @@
     </POI>
     <POI id="yorkshiremuseum" latitude="53.9619" longitude="-1.0874" type="POI" name="Yorkshire Museum" />
     <POI id="posterngate" latitude="53.9543263" longitude="-1.0768696" type="POI" name="Postern Gate" />
-    <POI id="citywalls" latitude="53.96273" longitude="-1.08508" type="POI" name="City Walls" />
-    <POI id="citywalls" latitude="53.96277" longitude="-1.07854" type="POI" name="City Walls" />
-    <POI id="citywalls" latitude="53.95585" longitude="-1.09091" type="POI" name="City Walls" />
-    <POI id="citywalls" latitude="53.95396" longitude="-1.07524" type="POI" name="City Walls" />
-    <POI id="citywalls" latitude="53.95418" longitude="-1.08677" type="POI" name="City Walls" />
+    <POI id="citywalls" latitude="53.96273" longitude="-1.08508" type="POI" name="City Walls - Bootham Bar" />
+    <POI id="citywalls" latitude="53.96277" longitude="-1.07854" type="POI" name="City Walls - Monk Bar" />
+    <POI id="citywalls" latitude="53.95585" longitude="-1.09091" type="POI" name="City Walls - Mickelgate Bar" />
+    <POI id="citywalls" latitude="53.95396" longitude="-1.07524" type="POI" name="City Walls - Fishergate Bar" />
+    <POI id="citywalls" latitude="53.95418" longitude="-1.08677" type="POI" name="City Walls - Victoria Bar" />
     <POI id="theshambles" latitude="53.959393" longitude="-1.080093" type="POI" name="The Shambles" />
     <POI id="chocolatestory" latitude="53.960037" longitude="-1.080415" type="activity" name="York's Chocolate Story" />
     <POI id="kingsarms" latitude="53.957128725061686" longitude="-1.0830625891685486" type="pub" name="Kings Arms" />
@@ -40,6 +40,8 @@
     </POI>
     <POI id="kenspelmanbooks" latitude="53.957290" longitude="-1.088439" type="shop" name="Ken Spelman Books" />
     <POI id="middletonshotel" latitude="53.95469629999999" longitude="-1.0841964999999618" type="hotel" name="Middletons Hotel" />
+    <POI id="nightowlsdisco" latitude="53.95505178040255" longitude="-1.0865199565887451" type="pub" name="Night Owls Disco" />
+    <POI id="no88walmgate" latitude="53.956701823531496" longitude="-1.073874682188034" type="dining" name="No 88 Walmgate" />
     <POI id="presentation" latitude="53.947641" longitude="-1.057154" type="POI" name="Sales Presentation" />
 
     <Slide duration="12" poi="#minster">
@@ -1039,6 +1041,38 @@
         </Text>
         <Image path="./content/middletonshotel1.jpg" x="0" y="850" x2="700" y2="1250" />
         <Image path="./content/middletonshotel.jpg" x="500" y="1250" x2="1000" y2="1600" />
+    </Slide>
+
+    <Slide poi="#nightowlsdisco">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Night Owls Disco
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            NightOwls Discos, based in York, North Yorkshire is owned and personally run by Bruce and Maria Bendall. Today,
+            just as it has done over the past 35 years, NightOwls Discos prides itself in being a supplier of Discos and
+            Entertainment that are second to none.
+
+        </Text>
+        <Image path="./content/nightowls.jpg" x="0" y="800" x2="1000" y2="1500" />
+    </Slide>
+
+    <Slide poi="#no88walmgate">
+        <Text x="0" y="0" textsize="100" bold="true">
+            No 88 Walmgate
+        </Text>
+        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+            No. 88 Walmgate is the latest restaurant to open in York’s most foodie of destinations.
+            Inspiring diners to delight in all things Yorkshire, the focus is simple, cracking dishes
+            with lots of local flavours and seasonal ingredients.
+
+        </Text>
+        <Text x="0" y="700" x2="1000" y2="750" textsize="50" bold="true">
+            Monday - Sunday
+        </Text>
+        <Text x="0" y="750" x2="1000" y2="900" textsize="50" bold="true">
+            06:30 - 10:30 and 12:00 - 21:45
+        </Text>
+        <Image path="./content/88-walmgate.jpg" x="0" y="950" x2="1000" y2="1600" />
     </Slide>
 
     <Slide poi="#presentation">
