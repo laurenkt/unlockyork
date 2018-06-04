@@ -5,6 +5,7 @@
     <POI id="gatehousecoffee" latitude="53.95515" longitude="-1.07074" type="Cafe" name="Gatehouse Coffee" />
     <POI id="sparkyork" latitude="53.95693" longitude="-1.07775" type="dining" name="Spark York" />
     <POI id="yorkarmoury" latitude="53.96102" longitude="-1.08303" type="Shop" name="York Armoury" />
+    <POI id="themaltings" latitude="53.959290" longitude="-1.088014" type="pub" name="The Maltings" />
     <!-- Hide this to stop the map being too crowded
     <POI id="houseofthetremblingmadness" latitude="53.961262" longitude="-1.082935" type="pub" name="House of the Trembling Madness" />
     -->
@@ -927,6 +928,16 @@
             While other British cities were built on steel, coal or wool, York’s fame and fortune have rested on chocolate for almost 300 years: thanks to the vision and invention of its great entrepreneurial families, not to mention the industry and dedication of its people. Though much has changed over the centuries, York remains the UK’s home of chocolate.
         </Text>
         <Image path="./content/chocolatestory2.png" x="0" y="900" x2="1000" y2="1600" />
+    </Slide>
+
+    <Slide poi="#themaltings">
+        <Text x="0" y="0" textsize="100" bold="true">
+            The Maltings
+        </Text>
+        <Image path="./content/themaltings.jpg" x="0" y="200" x2="640" y2="750" />
+        <Text x="0" y="850" x2="1000" y2="600" textsize="50">
+            Cosy, wooden-floored boozer with a host of real ales, traditional ciders and a basic pub menu.
+        </Text>
     </Slide>
 
     <Slide poi="#theshambles">
