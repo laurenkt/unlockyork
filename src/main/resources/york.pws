@@ -142,11 +142,11 @@
             Cliffords Tower
         </Text>
 
-        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+        <Text x="0" y="250" x2="1000" y2="350" textsize="50">
             Monday-sunday	10:00 - 18:00
 
         </Text>
-        <Image path="./content/cliffords.jpg" x="0" y="700" x2="1000" y2="1300" />
+        <Image path="./content/cliffords.jpg" x="0" y="500" x2="1000" y2="1300" />
     </Slide>
     <Slide poi="#cliffordstower">
         <Text x="0" y="0" textsize="100" bold="true">
@@ -168,169 +168,173 @@
             THE NORMAN CASTLE
         </Text>
 
-        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
-            Archaeological evidence shows that there was activity in this area in Roman times (with a Roman cemetery lying across the site)] and perhaps even earlier, but it was William the Conqueror who first established a castle here. When he marched north in 1068 to suppress a rebellion against his rule, he built a series of castles as he went, including one here where Clifford’s Tower now stands.
-            The Norman motte-and-bailey castle saw several violent incidents during its earliest years, including further revolts and an attack by Danish invaders. As the political situation settled down in the 1070s, however, the damage of these early years was repaired, and the castle, built largely of earth and timber, probably survived relatively unaltered through most of the 12th century.
-
+        <Text x="0" y="300" x2="1000" y2="600" textsize="50">
+            Archaeological evidence shows that there was activity in this area in Roman times (with a Roman cemetery lying across
+            the site)] and perhaps even earlier, but it was William the Conqueror who first established a castle here. When he marched
+            north in 1068 to suppress a rebellion against his rule, he built a series of castles as he went, including one here where
+            Clifford’s Tower now stands.
+            The Norman motte-and-bailey castle saw several violent incidents during its earliest years, including further revolts and
+            an attack by Danish invaders. As the political situation settled down in the 1070s, however, the damage of these early years
+            was repaired, and the castle, built largely of earth and timber,
         </Text>
     </Slide>
     <Slide poi="#cliffordstower">
-        <Text x="0" y="0" textsize="100" bold="true">
+        <Text x="0" y="0" x2="1000" y2="100" textsize="50">
+            probably survived relatively unaltered through most of the
+            12th century.
+        </Text>
+        <Text x="0" y="200" textsize="100" bold="true">
             THE MASS SUICIDE AND MASSACRE OF 1190
         </Text>
 
-        <Text x="0" y="350" x2="1000" y2="600" textsize="50">
-            The castle of York was the setting for one of the most notorious events in English history: the mass suicide and massacre in March 1190 of York’s Jewish community.[4]
-            Tensions between Christians and Jews had been increasing throughout England during the 12th century, partly because many people were in debt to Jewish moneylenders and partly because much crusading propaganda was directed not only against Muslims but also against Jews.
+        <Text x="0" y="650" x2="1000" y2="600" textsize="50">
+            The castle of York was the setting for one of the most notorious events in English history: the mass suicide and massacre
+            in March 1190 of York’s Jewish community.[4]
+            Tensions between Christians and Jews had been increasing throughout England during the 12th century, partly because many
+            people were in debt to Jewish moneylenders and partly because much crusading propaganda was directed not only against
+            Muslims but also against Jews.
         </Text>
     </Slide>
     <Slide poi="#cliffordstower">
-        <Text x="0" y="0" textsize="100" bold="true">
-            THE MASS SUICIDE AND MASSACRE OF 1190
+        <Text x="0" y="0" x2="1000" y2="200" textsize="50">
+             Anti-Jewish riots in several cities followed the coronation of the crusader king Richard I in 1189, and a rumour (untrue)
+             was put about that he had ordered a massacre of the Jews.
         </Text>
-
-        <Text x="0" y="350" x2="1000" y2="600" textsize="50">
-             Anti-Jewish riots in several cities followed the coronation of the crusader king Richard I in 1189, and a rumour (untrue) was put about that he had ordered a massacre of the Jews.
-
-        </Text>
-        <Image path="./content/cliffordstowerSlide2.jpg" x="0" y="800" x2="640" y2="1300" />
-    </Slide>
-    <Slide poi="#cliffordstower">
-        <Text x="0" y="0" textsize="100" bold="true">
-            THE MASS SUICIDE AND MASSACRE OF 1190
-        </Text>
-
-        <Text x="0" y="350" x2="1000" y2="600" textsize="50">
-            In York, as described by William of Newburgh and other contemporary chroniclers, about 150 people from the Jewish community were given protective custody in the royal castle, probably the site of Clifford’s Tower.
-            Somehow, though, trust between the royal officials and the Jews broke down. The officials, finding themselves shut out from the tower, summoned reinforcements to recapture it. These troops were joined by a large mob, which soon ran out of control, incited by both anti-Jewish preachers and local gentry eager to escape their debts.
-            On 16 March, the eve of the Sabbath before Passover, when the Jews realised that there would be no safe way out for them, a rabbi urged his fellow-inmates in the tower to commit suicide rather than fall into the hands of their persecutors.
-
+        <Image path="./content/cliffordstowerSlide2.jpg" x="0" y="350" x2="640" y2="850" />
+        <Text x="0" y="900" x2="1000" y2="1400" textsize="50">
+            In York, as described by William of Newburgh and other contemporary chroniclers, about 150 people from the Jewish community
+            were given protective custody in the royal castle, probably the site of Clifford’s Tower.
+            Somehow, though, trust between the royal officials and the Jews broke down. The officials, finding themselves shut out
+            from the tower,
         </Text>
     </Slide>
     <Slide poi="#cliffordstower">
-        <Text x="0" y="0" textsize="100" bold="true">
-            THE MASS SUICIDE AND MASSACRE OF 1190
+        <Text x="0" y="0" x2="1000" y2="1400" textsize="50">
+           summoned reinforcements to recapture it. These troops were joined by a large mob, which soon ran out of control,
+           incited by both anti-Jewish preachers and local gentry eager to escape their debts.
+           On 16 March, the eve of the Sabbath before Passover, when the Jews realised that there would be no safe way out for them, a
+           rabbi urged his fellow-inmates in the tower to commit suicide rather than fall into the hands of their persecutors.
+           According to several accounts a number of Jews did survive and came out of the tower under an amnesty, only to be murdered
+           by the attackers. A plaque at the base of the mound, commemorating these events, was installed in 1978.
+           Though Jewish life did in fact revive in York within a few years of the massacre, it came to an end a hundred years later,
+           in 1290, when Edward I expelled all Jews from England.] This time their exile lasted until the
         </Text>
-        <Text x="0" y="350" x2="1000" y2="600" textsize="50">
-            According to several accounts a number of Jews did survive and came out of the tower under an amnesty, only to be murdered by the attackers. A plaque at the base of the mound, commemorating these events, was installed in 1978.
-            Though Jewish life did in fact revive in York within a few years of the massacre, it came to an end a hundred years later, in 1290, when Edward I expelled all Jews from England.] This time their exile lasted until the 17th century.
-
-        </Text>
-        <Image path="./content/cliffordstowerSlide3.jpg" x="0" y="1000" x2="640" y2="1500" />
     </Slide>
-
     <Slide poi="#cliffordstower">
-        <Text x="0" y="0" textsize="100" bold="true">
+        <Text x="0" y="0" x2="1000" y2="50" textsize="50">
+            17th century.
+        </Text>
+        <Image path="./content/cliffordstowerSlide3.jpg" x="0" y="100" x2="640" y2="650" />
+        <Text x="0" y="700" textsize="100" bold="true">
             THE MEDIEVAL CASTLE
         </Text>
+        <Text x="0" y="1000" x2="1000" y2="1400" textsize="50">
+            The tower burnt down in 1190 was rebuilt very shortly afterwards. Further repairs and rebuilding, some in stone,
+            took place in the castle during the early 13th century. Then in the middle years of that century, as war with Scotland
+            loomed, King Henry III decided to build a completely new stone tower on the
+        </Text>
+    </Slide>
 
-        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
-             The tower burnt down in 1190 was rebuilt very shortly afterwards. Further repairs and rebuilding, some in stone, took place in the castle during the early 13th century. Then in the middle years of that century, as war with Scotland loomed, King Henry III decided to build a completely new stone tower on the mound.
-            A writ of March 1245 may refer to the construction of the tower. It orders Master Henry the mason and Master Simon the carpenter to advise the sheriff on strengthening the castle’s defences.
-
+    <Slide poi="#cliffordstower">
+        <Text x="0" y="0" x2="1000" y2="1400" textsize="50">
+            mound. A writ of March 1245 may refer to the construction of the tower. It orders Master Henry the mason and
+            Master Simon the carpenter to advise the sheriff on strengthening the castle’s defences.
+            Master Henry is often identified as Henry of Reyns, master mason of the new abbey at Westminster. At the abbey, as at
+            Clifford’s Tower, English architectural detailing was applied to a plan influenced by French prototypes.
+            Documentary sources show that construction was intermittent and the tower was probably not finished until the 1270s,
+            possibly not until the 1290s.
+        </Text>
+        <Image path="./content/cliffordstowerSlide4.jpg" x="250" y="1050" x2="890" y2="1600" />
+    </Slide>
+    <Slide poi="#cliffordstower">
+        <Text x="0" y="0" x2="1000" y2="1400" textsize="50">
+            Despite the regional and national importance of York, its royal castle did not generally act as a royal residence.
+            Together with Clifford’s Tower it was instead used chiefly for administrative purposes, notably for imprisonment, for
+            storage and for judicial sessions. Occasionally it acted as a home for the Exchequer and its various treasuries when wars
+            against the Scots caused the government to relocate to the north of England. It also housed an important royal mint.
+            The castle’s buildings, particularly Clifford’s Tower, whose mound was scoured by floods of the river Fosse, fell more
+            than once into disrepair. By 1360, several of the structural defects which are visible today had already appeared.
         </Text>
     </Slide>
     <Slide poi="#cliffordstower">
-        <Text x="0" y="0" textsize="100" bold="true">
-            THE MEDIEVAL CASTLE
-        </Text>
-
-        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
-            Master Henry is often identified as Henry of Reyns, master mason of the new abbey at Westminster. At the abbey, as at Clifford’s Tower, English architectural detailing was applied to a plan influenced by French prototypes.
-            Documentary sources show that construction was intermittent and the tower was probably not finished until the 1270s, possibly not until the 1290s.
-
-        </Text>
-        <Image path="./content/cliffordstowerSlide4.jpg" x="0" y="1000" x2="640" y2="1500" />
+        <Image path="./content/cliffordstowerSlide5.jpg" x="0" y="0" x2="640" y2="550" />
+         <Text x="0" y="600" textsize="100" bold="true">
+                THE TOWER IN DECAY
+         </Text>
+         <Text x="0" y="900" x2="1000" y2="1400" textsize="50">
+             The history of the castle and Clifford’s Tower during the 15th and 16th centuries is obscure. Accounts of Henry VI,
+             Richard III and Henry VIII suggest that several buildings were ruinous, and efforts were concentrated on maintaining a
+             small number of them as goals. In 1540, just three years after Robert Aske (one of the leaders of the Pilgrimage of Grace)]
+             had
+         </Text>
     </Slide>
     <Slide poi="#cliffordstower">
-        <Text x="0" y="0" textsize="100" bold="true">
-            THE MEDIEVAL CASTLE
-        </Text>
-
-        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
-            Despite the regional and national importance of York, its royal castle did not generally act as a royal residence. Together with Clifford’s Tower it was instead used chiefly for administrative purposes, notably for imprisonment, for storage and for judicial sessions. Occasionally it acted as a home for the Exchequer and its various treasuries when wars against the Scots caused the government to relocate to the north of England. It also housed an important royal mint.
-            The castle’s buildings, particularly Clifford’s Tower, whose mound was scoured by floods of the river Fosse, fell more than once into disrepair.
-
-        </Text>
+         <Text x="0" y="0" x2="1000" y2="1400" textsize="50">
+            been hanged ‘on the height of the castle dungeon’,] John Leland wrote that the ‘arx is all in ruin’.
+            In 1596–7 a public scandal arose when the aldermen of York accused the gaoler, Robert Redhead, of trying to demolish the
+            derelict tower and sell the stone for lime-burning. Contemporary correspondence about these events contains the first
+            recorded use of the name ‘Clifford’s Tower’.
+            The name is sometimes interpreted as evidence that the Clifford family claimed the post of constable to be hereditary.
+            Alternatively, it may refer to the rebel Roger de Clifford, who was executed after the Battle of Boroughbridge in 1322
+            and whose body was displayed on a gibbet at the castle.
+         </Text>
     </Slide>
     <Slide poi="#cliffordstower">
-        <Text x="0" y="0" textsize="100" bold="true">
-            THE MEDIEVAL CASTLE
+        <Image path="./content/cliffordstowerSlide6.jpg" x="0" y="0" x2="640" y2="550" />
+        <Text x="0" y="600" textsize="100" bold="true">
+                WAR AND EXPLOSION
         </Text>
-
-        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
-            By 1360, several of the structural defects which are visible today had already appeared.
-
-        </Text>
-        <Image path="./content/cliffordstowerSlide5.jpg" x="0" y="600" x2="640" y2="1100" />
-    </Slide>
-    <Slide poi="#cliffordstower">
-        <Text x="0" y="0" textsize="100" bold="true">
-            THE TOWER IN DECAY
-        </Text>
-
-        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
-            The history of the castle and Clifford’s Tower during the 15th and 16th centuries is obscure. Accounts of Henry VI, Richard III and Henry VIII suggest that several buildings were ruinous, and efforts were concentrated on maintaining a small number of them as goals. In 1540, just three years after Robert Aske (one of the leaders of the Pilgrimage of Grace)] had been hanged ‘on the height of the castle dungeon’,] John Leland wrote that the ‘arx is all in ruin’.
-            In 1596–7 a public scandal arose when the aldermen of York accused the gaoler, Robert Redhead, of trying to demolish the derelict tower and sell the stone for lime-burning. Contemporary correspondence about these events contains the first recorded use of the name ‘Clifford’s Tower’.
+        <Text x="0" y="900" x2="1000" y2="1400" textsize="50">
+            After a brief period when Clifford’s Tower passed out of royal ownership, in 1643 it was occupied again by a royal
+            garrison during the Civil War. The building was re-roofed and re-floored, apparently at the behest of Queen Henrietta
+            Maria, creating storage rooms for ammunition and a gun platform on the roof. The forebuilding was largely reconstructed.
         </Text>
     </Slide>
     <Slide poi="#cliffordstower">
-        <Text x="0" y="0" textsize="100" bold="true">
-            THE TOWER IN DECAY
-        </Text>
-
-        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
-            The name is sometimes interpreted as evidence that the Clifford family claimed the post of constable to be hereditary. Alternatively, it may refer to the rebel Roger de Clifford, who was executed after the Battle of Boroughbridge in 1322 and whose body was displayed on a gibbet at the castle.
-
-        </Text>
-        <Image path="./content/cliffordstowerSlide6.jpg" x="0" y="850" x2="640" y2="1500" />
-    </Slide>
-    <Slide poi="#cliffordstower">
-        <Text x="0" y="0" textsize="100" bold="true">
-            WAR AND EXPLOSION
-        </Text>
-
-        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
-            After a brief period when Clifford’s Tower passed out of royal ownership, in 1643 it was occupied again by a royal garrison during the Civil War. The building was re-roofed and re-floored, apparently at the behest of Queen Henrietta Maria, creating storage rooms for ammunition and a gun platform on the roof. The forebuilding was largely reconstructed.
-            The city fell to Parliamentarians the following year. The tower continued to be occupied by a garrison of between 40 and 80 men and it may also have served occasionally as a prison. The Quaker George Fox was imprisoned here for two nights in 1665, on his way to Scarborough Castle.
-            The garrison’s dissolute behaviour caused discontent among the citizens of York, who called for the demolition of the tower, scathingly nicknamed ‘the Minced Pie’.
-
+        <Text x="0" y="0" x2="1000" y2="1400" textsize="50">
+            The city fell to Parliamentarians the following year. The tower continued to be occupied by a garrison of between 40 and
+            80 men and it may also have served occasionally as a prison. The Quaker George Fox was imprisoned here for two nights in
+            1665, on his way to Scarborough Castle.
+            The garrison’s dissolute behaviour caused discontent among the citizens of York, who called for the demolition of the tower,
+            scathingly nicknamed ‘the Minced Pie’.
+            On 23 April 1684 the interior was partly gutted by fire, allegedly as a result of the firing of a ceremonial salute for
+            St George’s Day. Destruction was not total, though, and parts of the building remained in use for storage, while cannon
+            were still positioned on the roof.
+            By 1699, however, when Clifford’s Tower was released to freeholders, sketches of the interior by Francis Place show that
+            it was completely roofless.
         </Text>
     </Slide>
     <Slide poi="#cliffordstower">
-        <Text x="0" y="0" textsize="100" bold="true">
-            WAR AND EXPLOSION
-        </Text>
-
-        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
-            On 23 April 1684 the interior was partly gutted by fire, allegedly as a result of the firing of a ceremonial salute for St George’s Day. Destruction was not total, though, and parts of the building remained in use for storage, while cannon were still positioned on the roof.
-            By 1699, however, when Clifford’s Tower was released to freeholders, sketches of the interior by Francis Place show that it was completely roofless.
-
-        </Text>
-        <Image path="./content/cliffordstowerSlide7.jpg" x="0" y="1000" x2="640" y2="1500" />
-    </Slide>
-    <Slide poi="#cliffordstower">
-        <Text x="0" y="0" textsize="100" bold="true">
+        <Image path="./content/cliffordstowerSlide7.jpg" x="0" y="0" x2="640" y2="550" />
+        <Text x="0" y="600" textsize="100" bold="true">
             GAOL AND MONUMENT
         </Text>
-
-        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
-            The 18th century was a period of changing ownership for the tower and mound. Clifford’s Tower was treated as a garden folly and possibly as a stable or cattle shed.
-            In marked contrast, the former bailey of the castle was redeveloped as a prison. New courthouses and gaol buildings were built, until in the 1820s and 1830s the prison encompassed the entire castle area. The mound and tower were enclosed and effectively hidden from view. Clifford’s Tower was accessible only with permission from a magistrate.
-            In 1902 a radical campaign of repairs and investigations was undertaken by Mr Basil Mott, including the partial reconstruction of the mound in an effort to underpin the south-east lobe of the tower with buried concrete ‘flying buttresses’. During these works, the most detailed archaeological investigation to date of the internal structure of the mound was carried out.
-
+        <Text x="0" y="900" x2="1000" y2="1400" textsize="50">
+            The 18th century was a period of changing ownership for the tower and mound. Clifford’s Tower was treated as a garden folly
+            and possibly as a stable or cattle shed.
+            In marked contrast, the former bailey of the castle was redeveloped as a prison. New courthouses and gaol buildings were
+            built, until in the 1820s and 1830s the prison
         </Text>
     </Slide>
     <Slide poi="#cliffordstower">
-        <Text x="0" y="0" textsize="100" bold="true">
-            GAOL AND MONUMENT
+        <Text x="0" y="0" x2="1000" y2="1400" textsize="50">
+            encompassed the entire castle area. The mound and tower were enclosed and
+            effectively hidden from view. Clifford’s Tower was accessible only with permission from a magistrate.
+            In 1902 a radical campaign of repairs and investigations was undertaken by Mr Basil Mott, including the partial
+            reconstruction of the mound in an effort to underpin the south-east lobe of the tower with buried concrete ‘flying
+            buttresses’. During these works, the most detailed archaeological investigation to date of the internal structure of the
+            mound was carried out.
+            On 30 March 1915, Clifford’s Tower was taken into state guardianship. The structure was repaired and public access
+            improved in 1935 with the demolition of the surviving 19th-century prison buildings, notably the wall enclosing the
+            mound on its north and west sides. The lower parts of the slope were restored to their
         </Text>
-
-        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
-            On 30 March 1915, Clifford’s Tower was taken into state guardianship. The structure was repaired and public access improved in 1935 with the demolition of the surviving 19th-century prison buildings, notably the wall enclosing the mound on its north and west sides. The lower parts of the slope were restored to their presumed medieval profile, and a stairway leading up to the forebuilding in a straight line was created, replacing a spiral path.
-
+    </Slide>
+    <Slide poi="#cliffordstower">
+        <Text x="0" y="0" x2="1000" y2="300" textsize="50">
+            presumed medieval profile, and a stairway leading up to the forebuilding in a straight line was created, replacing a
+            spiral path.
         </Text>
-        <Image path="./content/cliffordstowerSlide8.jpg" x="0" y="1000" x2="640" y2="1500" />
+        <Image path="./content/cliffordstowerSlide8.jpg" x="0" y="250" x2="640" y2="800" />
     </Slide>
 
     <Slide poi="#citywalls">
@@ -680,7 +684,7 @@
             National Rail Museum
         </Text>
 
-        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+        <Text x="0" y="200" x2="1000" y2="600" textsize="50">
             It has won many awards, including the European Museum of the Year Award
             in 2001. It is the home of the national collection of historically significant railway vehicles,
             as well as a collection of other artefacts and both written and pictorial records.
@@ -698,59 +702,61 @@
             EXPLORE... LOCOMOTIVES
         </Text>
 
-        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+        <Text x="0" y="300" x2="1000" y2="600" textsize="50">
             These incredible inventions underpin our collection of over a million railway-related objects. Among them are the
             world's fastest steam engine Mallard, the exquisitely streamlined Duchess of Hamilton, a replica of George Stephenson's
             pioneering Rocket and the only bullet train to be found outside of Japan.
         </Text>
-        <Image path="./content/NRMslide2-2.jpg" x="0" y="700" x2="500" y2="1180" />
-        <Image path="./content/NRMslide2-1.jpg" x="300" y="1200" x2="1000" y2="1600" />
+        <Image path="./content/NRMslide2-2.jpg" x="0" y="950" x2="490" y2="1400" />
+        <Image path="./content/NRMslide2-1.jpg" x="510" y="950" x2="1000" y2="1400" />
     </Slide>
     <Slide poi="#nrm">
         <Text x="0" y="0" x2="1000" textsize="100" bold="true">
             Engineering Drawings
         </Text>
-
-        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+        <Text x="0" y="200" x2="1000" y2="600" textsize="50">
             The museum has a historic collection of railway engineering drawings is an invaluable tool for anyone restoring a steam locomotive.
             When overhauling a loco, a good drawing can save thousands of pounds and hundreds of hours of hard graft. Without a drawing
             you’ll need to reproduce new drawings, which requires a lot of expertise and time, plus a great deal of confidence that
             you’ve got your measurements right.
         </Text>
-        <Image path="./content/NRMslide3-2.jpg" x="0" y="900" x2="1000" y2="1400" />
+        <Image path="./content/NRMslide3-2.jpg" x="0" y="950" x2="1000" y2="1400" />
     </Slide>
     <Slide poi="#nrm">
         <Text x="0" y="0" x2="1000" textsize="100" bold="true">
             Engineering Drawings
         </Text>
 
-        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+        <Text x="0" y="200" x2="1000" y2="550" textsize="50">
             Original drawings give you certainty that you can manufacture exactly what came out of
             the workshop a hundred years ago. Moreover they can teach you all the lessons that the original engineers learned over the
             locomotive’s life – the small incremental changes they made to the design to improve performance and safety.
         </Text>
-        <Image path="./content/NRMslide3-1.jpg" x="0" y="800" x2="1000" y2="1300" />
+        <Image path="./content/NRMslide3-1.jpg" x="0" y="750" x2="1000" y2="1250" />
     </Slide>
     <Slide poi="#trainroad">
         <Text x="0" y="0" x2="1000" textsize="100" bold="true">
             The York Road Train | NRM
         </Text>
 
-        <Text x="0" y="250" x2="1000" y2="600" textsize="50">
+        <Text x="0" y="350" x2="1000" y2="600" textsize="50">
             Make the most of your day in York by taking our quick, convenient road train between the museum and the Minster.
             Arrive at the museum in style and return to the centre of York with ease after your fun-filled day.
             Buy your tickets from the train guard, or from our reception desk if you wish to pay by card.
         </Text>
-        <Text x="0" y="700" x2="1000" y2="1000" textsize="50">
+        <Text x="0" y="950" x2="1000" y2="900" textsize="50">
             <Format bold="true">TIMETABLE</Format>
         </Text>
-        <Text x="0" y="800" x2="1000" y2="1000" textsize="50">
+        <Text x="0" y="1050" x2="1000" y2="1000" textsize="50">
             ⦁ Leaves the museum every 30 minutes - 11.00–16.00
         </Text>
-        <Text x="0" y="900" x2="1000" y2="1000" textsize="50">
+        <Text x="0" y="1200" x2="1000" y2="1100" textsize="50">
             ⦁ Leaves Duncombe Place every 30 minutes - 11.15–16.15
         </Text>
-        <Image path="./content/roadtrain2.jpg" x="0" y="1100" x2="1000" y2="1500" />
+
+    </Slide>
+    <Slide poi="#trainroad">
+        <Image path="./content/roadtrain2.jpg" x="0" y="0" x2="1000" y2="750" />
     </Slide>
     <Slide poi="#mallardcafe">
         <Text x="0" y="0" x2="1000" textsize="100" bold="true">
@@ -763,22 +769,22 @@
 
             OPENING TIMES: 10.00–17.30
         </Text>
-        <Image path="./content/mallardcafe.jpg" x="0" y="1000" x2="1000" y2="1600" />
+        <Image path="./content/mallardcafe.jpg" x="0" y="650" x2="1000" y2="1400" />
     </Slide>
     <Slide poi="#friendsnrm">
         <Text x="0" y="0" x2="1000" textsize="100" bold="true">
             Friends Of The National Railway Museum
         </Text>
-
-        <Text x="0" y="350" x2="1000" y2="600" textsize="50">
+        <Text x="0" y="450" x2="1000" y2="600" textsize="50">
             We support the National Railway Museum conserve and create exhibits with financial assistance and volunteers
             Membership of the Friends of the National Railway Museum brings the satisfaction of being involved in preserving,
             displaying and interpreting the best of Britain's heritage.
             Your subscription helps to finance work in the Museum that would otherwise not be possible. The Friends contribute
             significant amounts to large projects and support other activities.
-
         </Text>
-        <Image path="./content/friendsofthenationalrailwaymuseum1.jpg" x="0" y="1000" x2="1000" y2="1600" />
+    </Slide>
+    <Slide poi="#friendsnrm">
+        <Image path="./content/friendsofthenationalrailwaymuseum1.jpg" x="0" y="0" x2="1000" y2="750" />
     </Slide>
     <Slide poi="#yorkshiremuseum">
         <Text x="0" y="0" textsize="100" bold="true">
