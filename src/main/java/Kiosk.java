@@ -159,11 +159,11 @@ public class Kiosk extends Application {
 
         // Keyboard events
         primaryStage.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
-            if (e.getCode() == KeyCode.RIGHT || e.getCode() == KeyCode.SPACE) {
+            if (e.getCode() == KeyCode.RIGHT || e.getCode() == KeyCode.SPACE || e.getCode() == KeyCode.DOWN) {
                 this.onNext();
                 e.consume();
             }
-            else if (e.getCode() == KeyCode.LEFT) {
+            else if (e.getCode() == KeyCode.LEFT || e.getCode() == KeyCode.UP) {
                 this.onPrevious();
                 e.consume();
             }
