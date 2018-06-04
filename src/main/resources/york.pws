@@ -5,7 +5,6 @@
     <POI id="gatehousecoffee" latitude="53.95515" longitude="-1.07074" type="Cafe" name="Gatehouse Coffee" />
     <POI id="sparkyork" latitude="53.95693" longitude="-1.07775" type="dining" name="Spark York" />
     <POI id="yorkarmoury" latitude="53.96102" longitude="-1.08303" type="Shop" name="York Armoury" />
-    <POI id="themaltings" latitude="53.959290" longitude="-1.088014" type="pub" name="The Maltings" />
     <!-- Hide this to stop the map being too crowded
     <POI id="houseofthetremblingmadness" latitude="53.961262" longitude="-1.082935" type="pub" name="House of the Trembling Madness" />
     -->
@@ -933,16 +932,6 @@
         <Image path="./content/chocolatestory2.png" x="0" y="900" x2="1000" y2="1600" />
     </Slide>
 
-    <Slide poi="#themaltings">
-        <Text x="0" y="0" textsize="100" bold="true">
-            The Maltings
-        </Text>
-        <Image path="./content/themaltings.jpg" x="0" y="200" x2="640" y2="750" />
-        <Text x="0" y="850" x2="1000" y2="600" textsize="50">
-            Cosy, wooden-floored boozer with a host of real ales, traditional ciders and a basic pub menu.
-        </Text>
-    </Slide>
-
     <Slide poi="#theshambles">
         <Text x="0" y="0" textsize="100" bold="true">
             The Shambles
@@ -1106,7 +1095,7 @@
     <!-- SALES PRESENTATION SLIDES -->
 
     <Slide poi="#presentation" font="Clear Sans">
-        <Image path="./content/presentation/logo.png" x="250" y="500" x2="772" y2="1002" />
+        <Image path="./content/unlocklogo.png" x="250" y="500" x2="772" y2="1002" />
     </Slide>
     <Slide poi="#presentation" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
@@ -1138,16 +1127,19 @@
         <Image path="./content/presentation/kiosk_in_situ.jpg" x="0" y="0" x2="1060" y2="1051" />
     </Slide>
     <Slide poi="#presentation" font="Clear Sans">
-        <Text x="300" y="400" x2="900" y2="700" textsize="100">Demo</Text>
+        <Text x="0" y="0" textsize="100" bold="true" italic="true">
+            Demo
+        </Text>
     </Slide>
-
     <Slide poi="#heslingtonhall" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
             Mobile App
         </Text>
     </Slide>
-    <Slide poi="#heslingtonhall" font="Clear Sans">
-        <Text x="300" y="400" x2="900" y2="700" textsize="100">Demo</Text>
+    <Slide poi="#presentation" font="Clear Sans">
+        <Text x="0" y="0" textsize="100" bold="true" italic="true">
+            Demo
+        </Text>
     </Slide>
 
     <Slide poi="#finances" font="Clear Sans">
@@ -1246,6 +1238,26 @@
     </Slide>
     <Slide poi="#finances" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
+            Marketing
+        </Text>
+        <Text x="0" y="300" x2="1000" y2="600" textsize="50">
+            Target demographic of 18-50 year olds who actively use smart phones both locally and nationally.
+        </Text>
+        <Text x="0" y="600" x2="1000" y2="600" textsize="50">
+            £4000 budget for 3 months advertising
+        </Text>
+        <Text x="0" y="800" x2="1000" y2="600" textsize="50">
+            £2600 on youtube, facebook and instagram advertising
+        </Text>
+        <Text x="0" y="1000" x2="1000" y2="600" textsize="50">
+            £700 on physical advertising, flyers and posters around York
+        </Text>
+        <Text x="0" y="1200" x2="1000" y2="600" textsize="50">
+            £700 on client marketing
+        </Text>
+    </Slide>
+    <Slide poi="#finances" font="Clear Sans">
+        <Text x="0" y="0" textsize="100" bold="true">
             Sales Projections
         </Text>
         <Text x="0" y="500" x2="1000" y2="600" textsize="50">
@@ -1272,5 +1284,6 @@
            Money retained by the company to fund our scaling to other cities
         </Text>
     </Slide>
+
 
 </Presentation>
