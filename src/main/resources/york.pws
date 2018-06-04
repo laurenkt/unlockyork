@@ -158,8 +158,33 @@
             the tower walls.
 
         </Text>
-        <Video path="./content/cliffardstowerVID.mp4" x="0" y="800" x2="1000" y2="1100" />
+        <Video path="./content/cliffardstowerVID.mp4" x="0" y="800" x2="1000" y2="1400" />
     </Slide>
+    <Slide poi="#rowntreepark">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Rowntree Park
+        </Text>
+        <Image path="./content/rowntreepark.jpg" x="0" y="200" x2="640" y2="750" />
+        <Text x="0" y="850" x2="1000" y2="1400" textsize="50">
+            Rowntree Park is a 20-acre park in York, England open to the public, featuring children's playgrounds,
+            tennis courts, bowling greens, basketball court, skateboarding area and general areas for picnicking. The park also
+            features a large lake, a canal and a water cascade, and is home to many ducks, swans and Canada geese. The park's
+            outdoor swimming pool was demolished in the face of
+        </Text>
+    </Slide>
+
+    <Slide poi="#rowntreepark">
+        <Text x="0" y="0" x2="1000" y2="1400" textsize="50">
+            strong public protest in the 1980s. It was created in memory of employees of Rowntree's who died in World War I,
+            and was opened in July 1921 by local
+            entrepreneur and philanthropist Joseph Rowntree. The gates at the riverbank entrance are eighteenth-century and were
+            given by the company as a memorial to the people of York who died in World War II. Rowntree Park celebrated its 85th
+            anniversary on 16 July 2006 with an open day.
+            In 2006 the park won a Green Flag Award. This is awarded for reaching the English and Welsh national standard for
+            parks and green spaces.
+        </Text>
+    </Slide>
+
     <Slide poi="#cliffordstower">
         <Text x="0" y="0" textsize="100" bold="true">
             THE NORMAN CASTLE
@@ -735,6 +760,21 @@
         </Text>
         <Image path="./content/NRMslide3-1.jpg" x="0" y="750" x2="1000" y2="1250" />
     </Slide>
+    <Slide poi="#minsterhotel">
+        <Text x="0" y="0" x2="1000" textsize="100" bold="true">
+            Minster Hotel
+        </Text>
+        <Image path="./content/minsterhotel.jpg" x="0" y="200" x2="640" y2="750" />
+        <Text x="0" y="850" x2="1000" y2="1400" textsize="50">
+            A 5-minute walk from York Minster, this traditional hotel in a Victorian townhouse is 1 mile from Clifton Park.
+
+            The refined, classically furnished rooms all include en suite bathrooms, and provide free Wi-Fi, flat-screen TVs,
+            and tea and coffeemaking facilities. Suites add 4-poster beds.
+
+            Complimentary amenities include full English breakfast served in the dining room, and parking. There's also a bar.
+        </Text>
+    </Slide>
+
     <Slide poi="#trainroad">
         <Text x="0" y="0" x2="1000" textsize="100" bold="true">
             The York Road Train | NRM
