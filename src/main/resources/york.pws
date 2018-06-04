@@ -147,7 +147,6 @@
 
         <Text x="0" y="250" x2="1000" y2="350" textsize="50">
             Monday-sunday	10:00 - 18:00
-
         </Text>
         <Image path="./content/cliffords.jpg" x="0" y="500" x2="1000" y2="1300" />
     </Slide>
@@ -162,7 +161,6 @@
             The tower takes its name from one grisly incident in its long history, when Roger
             de Clifford was executed for treason against Edward II and hanged in chains from
             the tower walls.
-
         </Text>
         <Video path="./content/cliffardstowerVID.mp4" x="0" y="800" x2="1000" y2="1400" />
     </Slide>
@@ -783,7 +781,7 @@
 
     <Slide poi="#trainroad">
         <Text x="0" y="0" x2="1000" textsize="100" bold="true">
-            The York Road Train | NRM
+            The York Road Train
         </Text>
 
         <Text x="0" y="350" x2="1000" y2="600" textsize="50">
@@ -1118,16 +1116,16 @@
         <Text x="400" y="600" x2="1000" y2="800" textsize="100">Mobile App</Text>
     </Slide>
     <Slide poi="#presentation" font="Clear Sans">
-        <Image path="./content/presentation/androids.png" x="0" y="0" x2="572" y2="506" />
+        <Image path="./content/presentation/androids.png" x="50" y="200" x2="1194" y2="1212" />
     </Slide>
     <Slide poi="#presentation" font="Clear Sans">
         <Text x="500" y="600" x2="950" y2="800" textsize="100">Kiosk</Text>
     </Slide>
     <Slide poi="#presentation" font="Clear Sans">
-        <Image path="./content/presentation/traditional.jpg" x="0" y="0" x2="1024" y2="768" />
+        <Image path="./content/presentation/traditional.jpg" x="150" y="300" x2="1174" y2="1068" />
     </Slide>
     <Slide poi="#presentation" font="Clear Sans">
-        <Image path="./content/presentation/kiosk_in_situ.jpg" x="0" y="0" x2="1060" y2="1051" />
+        <Image path="./content/presentation/kiosk_in_situ.jpg" x="100" y="200" x2="1160" y2="1251" />
     </Slide>
     <Slide poi="#presentation" font="Clear Sans">
         <Text x="500" y="600" x2="950" y2="800" textsize="100">Demo</Text>
@@ -1138,6 +1136,9 @@
     </Slide>
     <Slide poi="#heslingtonhall" font="Clear Sans">
         <Text x="500" y="600" x2="950" y2="800" textsize="100">Demo</Text>
+    </Slide>
+    <Slide poi="#heslingtonhall" font="Clear Sans">
+        <Image path="./content/presentation/androids.png" x="50" y="200" x2="1194" y2="1212" />
     </Slide>
 
     <Slide poi="#finances" font="Clear Sans">
