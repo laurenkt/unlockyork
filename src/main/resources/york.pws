@@ -1095,7 +1095,7 @@
     <!-- SALES PRESENTATION SLIDES -->
 
     <Slide poi="#presentation" font="Clear Sans">
-        <Image path="./content/unlocklogo.png" x="250" y="500" x2="772" y2="1002" />
+        <Image path="./content/presentation/logo.png" x="250" y="500" x2="772" y2="1002" />
     </Slide>
     <Slide poi="#presentation" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
@@ -1127,20 +1127,18 @@
         <Image path="./content/presentation/kiosk_in_situ.jpg" x="0" y="0" x2="1060" y2="1051" />
     </Slide>
     <Slide poi="#presentation" font="Clear Sans">
-        <Text x="0" y="0" textsize="100" bold="true" italic="true">
-            Demo
-        </Text>
+        <Text x="300" y="400" x2="900" y2="700" textsize="100">Demo</Text>
     </Slide>
+
     <Slide poi="#heslingtonhall" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
             Mobile App
         </Text>
     </Slide>
-    <Slide poi="#presentation" font="Clear Sans">
-        <Text x="0" y="0" textsize="100" bold="true" italic="true">
-            Demo
-        </Text>
+    <Slide poi="#heslingtonhall" font="Clear Sans">
+        <Text x="300" y="400" x2="900" y2="700" textsize="100">Demo</Text>
     </Slide>
+
     <Slide poi="#finances" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
             Finances
