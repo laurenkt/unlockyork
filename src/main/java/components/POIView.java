@@ -72,7 +72,8 @@ public class POIView extends Region {
         setTranslateX((this.poi.getX())-50);
         setTranslateY((this.poi.getY())-50);
         getChildren().addAll(icon, name);
-        setPickOnBounds(true);
+        setPickOnBounds(false);
+        name.setMouseTransparent(true);
 
         icon.setEffect(colorAdjust);
         setActive(false);

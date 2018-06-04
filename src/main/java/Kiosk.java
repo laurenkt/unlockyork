@@ -5,8 +5,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -41,7 +39,7 @@ public class Kiosk extends Application {
     private StackPane userView;
     private Pane slidePane = new Pane();
     private Pane backgroundPane = new Pane();
-    private Slider scaleSlider = new Slider(0.25, 1.5, 1);
+    private Slider scaleSlider = new Slider(0.35, 1.5, 1);
     private Button forward;
     private Button back;
     private Button home;

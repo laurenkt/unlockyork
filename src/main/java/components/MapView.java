@@ -7,9 +7,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -119,30 +117,6 @@ public class MapView extends ScrollPane {
         setScaleValue(scaleValue);
 
         stack.setOnMouseClicked(e -> {
-/*            final double threshold = 50;
-
-            double x = e.getX();
-            double y = e.getY();
-
-            for (POI poi : POIs) {
-                if (Math.abs(poi.getX() - x) < threshold &&
-                        Math.abs(poi.getY() - y) < threshold) {
-                    onPoiClicked.handle(new POIEvent(poi));
-                    setPointActive(poi);
-                    centerPoint(poi.getX(), poi.getY());
-                    return;
-                }
-                for (POI subPoi : poi.getSubPOI()) {
-                    if (Math.abs(subPoi.getX() - x) < threshold &&
-                            Math.abs(subPoi.getY() - y) < threshold) {
-                        onPoiClicked.handle(new POIEvent(subPoi));
-                        setPointActive(subPoi);
-                        return;
-                    }
-                }
-            }*/
-
-            // Else
             setPointActive(null);
             if (onPoiClicked != null) {
                 onPoiClicked.handle(new POIEvent(null));
@@ -312,7 +286,7 @@ public class MapView extends ScrollPane {
 
         // Bounded scale value
         setScaleValue(
-                Math.min(1.5, Math.max(0.25, scaleValue * zoomFactor))
+                Math.min(1.5, Math.max(0.35, scaleValue * zoomFactor))
         );
     }
 
