@@ -1015,28 +1015,25 @@
         <Image path="./content/nightowls.jpg" x="0" y="800" x2="1000" y2="1500" />
     </Slide>
 
-    <Slide poi="#presentation">
-        <Text x="0" y="0" textsize="100" bold="true">
-            Unlock: York
-        </Text>
-        <Image path="./content/unlocklogo.png" x="0" y="500" x2="800" y2="1300" />
+    <Slide poi="#presentation" font="Clear Sans">
+        <Image path="./content/presentation/logo.png" x="250" y="500" x2="772" y2="1002" />
     </Slide>
-    <Slide poi="#presentation">
+    <Slide poi="#presentation" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
-            What is unlock: york?
+            Platform
         </Text>
     </Slide>
-    <Slide poi="#presentation">
+    <Slide poi="#presentation" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
-            ⦁ Mobile app - portable sources of information
+           Mobile App
 
         </Text>
         <Text x="0" y="500" textsize="100" bold="true">
-            ⦁ Kiosk - stationary sources of information
+          Kiosk
 
         </Text>
     </Slide>
-    <Slide poi="#presentation">
+    <Slide poi="#presentation" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
             The kiosk
         </Text>
@@ -1045,7 +1042,7 @@
 
         </Text>
     </Slide>
-    <Slide poi="#presentation">
+    <Slide poi="#presentation" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
             Mobile App
 
@@ -1054,13 +1051,13 @@
             Demonstration
         </Text>
     </Slide>
-    <Slide poi="#presentation">
+    <Slide poi="#presentation" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
             Finances
 
         </Text>
     </Slide>
-    <Slide poi="#presentation">
+    <Slide poi="#presentation" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
             Revenue Streams
 
@@ -1075,7 +1072,7 @@
             ⦁ Show casing local companies
         </Text>
     </Slide>
-    <Slide poi="#presentation">
+    <Slide poi="#presentation" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
             Kiosks
 
