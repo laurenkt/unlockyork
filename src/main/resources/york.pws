@@ -1144,19 +1144,36 @@
     <Slide poi="#finances" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
             Finances
+
+        </Text>
+        <Text x="0" y="500" x2="1000" y2="600" textsize="50">
+            Revenue Streams
+        </Text>
+        <Text x="0" y="600" x2="1000" y2="600" textsize="50">
+            Sales Projections
+        </Text>
+        <Text x="0" y="700" x2="1000" y2="600" textsize="50">
+            Marketing
+        </Text>
+        <Text x="0" y="800" x2="1000" y2="600" textsize="50">
+           Futures
         </Text>
     </Slide>
     <Slide poi="#finances" font="Clear Sans">
         <Text x="0" y="0" textsize="100" bold="true">
             Revenue Streams
+
         </Text>
         <Text x="0" y="500" x2="1000" y2="600" textsize="50">
-            Split into 3
+            Split into 4
         </Text>
         <Text x="0" y="600" x2="1000" y2="600" textsize="50">
             Indoor and outdoor kiosks
         </Text>
         <Text x="0" y="700" x2="1000" y2="600" textsize="50">
+            Platform Only
+        </Text>
+        <Text x="0" y="800" x2="1000" y2="600" textsize="50">
             Show casing local companies
         </Text>
     </Slide>
@@ -1188,6 +1205,62 @@
         </Text>
         <Text x="100" y="980" x2="1000" y2="1030" textsize="50" italic="true">
             labour cost to design bespoke content £1750
+        </Text>
+    </Slide>
+    <Slide poi="#finances" font="Clear Sans">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Platform Only
+        </Text>
+        <Text x="0" y="500" x2="1000" y2="600" textsize="50">
+            £150 per fortnight
+        </Text>
+        <Text x="0" y="600" x2="1000" y2="600" textsize="50">
+            Minimum 6 month contract
+        </Text>
+        <Text x="0" y="700" x2="1000" y2="600" textsize="50">
+            Cheaper than local alternatives
+        </Text>
+    </Slide>
+    <Slide poi="#finances" font="Clear Sans">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Showcasing Local Companies
+        </Text>
+        <Text x="0" y="500" x2="1000" y2="600" textsize="50">
+            £50 a fortnight to start
+        </Text>
+        <Text x="0" y="600" x2="1000" y2="600" textsize="50">
+            No limits as yet
+        </Text>
+        <Text x="0" y="700" x2="1000" y2="600" textsize="50">
+            Price point subject to review in the future
+        </Text>
+    </Slide>
+    <Slide poi="#finances" font="Clear Sans">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Sales Projections
+        </Text>
+        <Text x="0" y="500" x2="1000" y2="600" textsize="50">
+            Second quarter third year of trading
+        </Text>
+        <Text x="0" y="600" x2="1000" y2="600" textsize="50">
+            Profit growth year to year
+        </Text>
+        <Text x="0" y="700" x2="1000" y2="600" textsize="50">
+            No lead in time for early sales
+        </Text>
+    </Slide>
+    <Slide poi="#finances" font="Clear Sans">
+        <Text x="0" y="0" textsize="100" bold="true">
+            Future of Unlock
+        </Text>
+        <Text x="0" y="500" x2="1000" y2="600" textsize="50">
+            We are positive and fast moving, we could scale out
+        </Text>
+        <Text x="0" y="700" x2="1000" y2="600" textsize="50">
+            Depending on traction in early days, possible reinvestment
+        </Text>
+        <Text x="0" y="900" x2="1000" y2="600" textsize="50">
+           Money retained by the company to fund our scaling to other cities
         </Text>
     </Slide>
 
