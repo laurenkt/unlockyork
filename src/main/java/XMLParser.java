@@ -74,11 +74,6 @@ public class XMLParser {
                 presentation.getMeta().add((getMeta(defaults.getElementsByTagName("Meta").item(m).getAttributes())));
             }
         }
-        //get the gps from the xml
-        if(defaults.getElementsByTagName("GPS").item(0) != null)
-        {
-            presentation.setGps(getGps(defaults.getElementsByTagName("GPS").item(0).getAttributes()));
-        }
 
         for(int m = 0; m < defaults.getElementsByTagName("POI").getLength(); m++)
         {
@@ -629,20 +624,5 @@ public class XMLParser {
         slide.getColor().setColor(presentation.getPresDefaultColor().getColor());
         slide.getColor().setFill(presentation.getPresDefaultColor().getFill());
     }
-
-    //gets the gps from the dom structure and creates a GPS object and saves it in there
-    public static GPS getGps(NamedNodeMap xmlGps)
-    {
-        GPS slideGps = new GPS();
-
-        slideGps.setElevation(Double.parseDouble(xmlGps.getNamedItem("elevation").getNodeValue()));
-        slideGps.setLatitude(Double.parseDouble(xmlGps.getNamedItem("latitude").getNodeValue()));
-        slideGps.setLongitude(Double.parseDouble(xmlGps.getNamedItem("longitude").getNodeValue()));
-
-        System.out.println("GPS - elev: " + slideGps.getElevation() + " - lat: " + slideGps.getLatitude() + " - long" + slideGps.getLongitude());
-
-        return slideGps;
-    }
-
 
 }

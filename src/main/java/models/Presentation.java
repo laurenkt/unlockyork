@@ -6,7 +6,6 @@ import java.util.List;
 public class Presentation {
     List<Meta> meta; //presentation meta
     List<Slide> slides; //all slides inside presentation
-    GPS gps; //GPS coordinates for the presentation
     FontAttrib presDefaultFont; // presentation defaults for the font of text
     ColorAttrib presDefaultColour; // presentation defaults for color
     List<POI> POIs = new ArrayList<>();
@@ -14,7 +13,6 @@ public class Presentation {
     public Presentation() {
         meta = new ArrayList<>();
         slides = new ArrayList<>();
-        gps = new GPS();
         presDefaultFont = new FontAttrib();
         presDefaultColour = new ColorAttrib();
     }
@@ -63,14 +61,6 @@ public class Presentation {
 
     public void setMeta(List<Meta> meta) {
         this.meta = meta;
-    }
-
-    public GPS getGps() {
-        return gps;
-    }
-
-    public void setGps(GPS gps) {
-        this.gps = gps;
     }
 
     public List<POI> getPOI() {
