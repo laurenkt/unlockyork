@@ -2,3 +2,4 @@ rootProject.name = 'unlock'
 
 include "app"
 include "src"
+include "tour"
