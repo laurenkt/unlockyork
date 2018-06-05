@@ -29,7 +29,6 @@ public class XMLParserTest {
         }
     }
 
-
     @Test
     public void testPresentationDefaults() {
         //test correct colour has been found
