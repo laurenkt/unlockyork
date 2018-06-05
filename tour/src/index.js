@@ -4,6 +4,8 @@ import classNames from 'classnames'
 import './style.scss'
 import content from './content.json'
 import {Map} from 'immutable'
+import pdfjsLib from 'pdfjs-dist'
+import autobind from 'autobind-decorator'
 
 function slug(name) {
     return name.toLowerCase().replace(/[\s]+/g, '-');
@@ -29,12 +31,55 @@ class Menu extends React.PureComponent {
     }
 }
 
-class Content extends React.PureComponent {
+class PDF extends React.Component {
+    @autobind
+    async canvasDidMount(canvas) {
+        const {url} = this.props
+
+        const doc = await pdfjsLib.getDocument(url)
+
+        const page = await doc.getPage(1 /* pageNumber */)
+
+        var scale = 1.5;
+        var viewport = page.getViewport(scale);
+
+        // Prepare canvas using PDF page dimensions
+        var context = canvas.getContext('2d');
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        // Render PDF page into canvas context
+        var renderContext = {
+            canvasContext: context,
+            viewport: viewport
+        };
+        var renderTask = await page.render(renderContext);
+        console.log('Page rendered');
+    }
+
     render() {
-        const {children} = this.props
+        return <canvas ref={this.canvasDidMount}></canvas>
+    }
+}
+
+class Content extends React.PureComponent {
+    state ={
+        canvas: null,
+    }
+
+    render() {
+        const {content} = this.props;
+        const {canvas} = this.state;
+
+        let body = content || 'No content'
+
+        if (body.match(/\.pdf$/)) {
+
+        }
 
         return <div className="content">
-            <p>{children}</p>
+            {body.match(/\.pdf$/) &&
+                <PDF url={`./documents/${body}`} />}
         </div>
     }
 }
@@ -44,8 +89,16 @@ class UI extends React.Component {
         active: null,
     }
 
+    componentDidUpdate() {
+        const {active} = this.state;
+
+        // Update URL
+        history.replaceState({}, active || 'HTML Tour', active == null ? '' : `#${slug(active)}`);
+    }
+
     render() {
-        const {content, active} = this.props
+        const {content} = this.props
+        const {active} = this.state
 
         return <div className="tour">
             <Menu>
@@ -55,10 +108,7 @@ class UI extends React.Component {
                         this.setState({active: key})
                     }} />)}
             </Menu>
-            <Content>
-                {active != null &&
-                    content.get(active)}
-            </Content>
+            <Content content={content.get(active)} />
         </div>
     }
 }

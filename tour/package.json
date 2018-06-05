@@ -44,6 +44,7 @@
 		"markdown-loader": "^2.0.2",
 		"memoized-class-decorator": "^1.6.1",
 		"node-sass": "^4.7.2",
+		"pdfjs-dist": "^2.0.489",
 		"raw-loader": "^0.5.1",
 		"react": "^16.3.2",
 		"react-dom": "^16.3.2",
