@@ -47,7 +47,6 @@ export default class PDF extends React.Component {
     }
 
     doc = null
-    canvas = null
 
     constructor(props) {
         super(props)
@@ -59,48 +58,6 @@ export default class PDF extends React.Component {
                 pages: doc.pdfInfo.numPages,
             })
         })
-    }
-
-    @autobind
-    async canvasDidMount(canvas) {
-        //const {pageNum} = this.state
-        this.canvas = canvas
-
-        //this.renderPage(pageNum)
-    }
-
-    @autobind
-    async renderPage(pageNum) {
-        const page = await this.doc.getPage(pageNum)
-        const scale = 1.5
-        const viewport = page.getViewport(scale)
-
-        // Prepare canvas using PDF page dimensions
-        const canvasContext = this.canvas.getContext('2d')
-        this.canvas.height = viewport.height
-        this.canvas.width = viewport.width
-
-        await page.render({canvasContext, viewport})
-    }
-
-    @autobind
-    next(e) {
-        e.preventDefault()
-        this.setState({pageNum: Math.min(this.state.pages, this.state.pageNum+1)})
-    }
-
-    @autobind
-    previous(e) {
-        e.preventDefault()
-        this.setState({pageNum: Math.max(1, this.state.pageNum-1)})
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.state.pages == 0)
-            return
-
-        if (prevState.pageNum != this.state.pageNum)
-            this.renderPage(this.state.pageNum)
     }
 
     render() {

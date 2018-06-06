@@ -20,6 +20,13 @@ export default {
                 ]}
         ]},
     "Design Documentation": {children: [
+            {name:'Functional Specification', children:[
+                    {name:'FS/5.0',type:'pdf',path:'documents/agile/spec/Functionalspecificationversion5.pdf'},
+                    {name:'FS/4.0',type:'pdf',path:'documents/agile/spec/Functionalspecificationversion4.pdf'},
+                    {name:'FS/3.0',type:'pdf',path:'documents/agile/spec/Functionalspecificationversion3.pdf'},
+                    {name:'FS/2.0',type:'pdf',path:'documents/agile/spec/Functionalspecificationversion2.pdf'},
+                    {name:'FS/1.0',type:'pdf',path:'documents/agile/spec/Functionalspecificationversion1.pdf'},
+                ]},
             {name:'User Story Tracker', children: [
                     {name: 'S01', type:'pdf', path:'documents/agile/s01.pdf'},
                     {name: 'S02', type:'pdf', path:'documents/agile/s02.pdf'},
@@ -36,10 +43,12 @@ export default {
         {name:'Kiosk', type:'mp4', path:'documents/videos/kiosk.mp4'},
         {name:'Android', type:'mp4', path:'documents/videos/finalphonemovie.mp4'},
     ],
+    "Code Standard": {type:'pdf', path:'documents/code-standard/CodingStandards.pdf'},
     "User Manual": {type:'pdf', path:'documents/user-manual/manual.pdf'},
     "Minutes": "Test",
     "Time-sheets": "Test",
     "Presentations": {children: [
+            {name: 'Tender Presentation', type:'pdf', path:'documents/presentation/tender.pdf'},
             {name: 'Sales Presentation', type:'pdf', path:'documents/presentation/salespresentation.pdf'}
         ]},
     "Finance": [
@@ -101,13 +110,16 @@ export default {
                 {name: 'WBS/1', type:'pdf', path:'documents/project-management/wbs/1.pdf'},
             ]},
     ],
-    "Contracts": [
+    "Contracts": {content: "Test", children: [
         {name: "The Legba Company", type: 'pdf', path:'documents/contracts/g1.pdf'},
         {name: "York Software Development LTD", type: 'pdf', path:'documents/contracts/g2.pdf'},
         {name: "SImpLe", type: 'pdf', path:'documents/contracts/g5.pdf'},
-    ],
+    ]},
     "Project-Wide Standards": {name: 'PWS', type:'iframe', path:'documents/pws/index.html'},
-    "Market Research": "Test",
+    "Marketing": {children: [
+        {name:'Marketing Report', type:'pdf', path:'/documents/Marketing/marketresearchandmarketingreport.pdf'},
+        {name:'Video', type:'mp4', path:'/documents/videos/marketing.mp4'},
+    ]},
     "Code": "Test",
     "Presentation": "Test",
     "Individual Reports": "Test",
