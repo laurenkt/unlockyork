@@ -85,25 +85,28 @@ class ContentItem extends React.PureComponent {
         if (!content)
             return <div>No content</div>
 
-        if (content.children) {
-            return <ContentChildren>
-                {content.children.map((c, idx) => <ContentItem content={c} key={idx} />)}
-            </ContentChildren>
-        }
+        return <div>
+            {!content.type && !content.content &&
+            <div dangerouslySetInnerHTML={{__html: content}} />}
 
-        if (content.type && content.type == 'mp4')
-            return <video controls key={content.path} src={content.path}></video>
+            {content.content &&
+            <div dangerouslySetInnerHTML={{__html: content.content}} />}
 
-        if (content.type && content.type == 'pdf')
-            return <PDF key={content.path} url={content.path} />
+            {content.children && content.children.length > 0 &&
+                <ContentChildren>
+                    {content.children.map((c, idx) => <ContentItem content={c} key={idx} />)}
+                </ContentChildren>}
 
-        if (content.type && content.type == 'iframe')
-            return <iframe key={content.path} src={content.path}></iframe>
+            {content.type && content.type == 'mp4' &&
+                <video controls key={content.path} src={content.path}></video>}
 
-        if (!content.type)
-            return <div dangerouslySetInnerHTML={{__html: content.content || content}} />
+            {content.type && content.type == 'pdf' &&
+                <PDF key={content.path} url={content.path} external={content.external} />}
 
-        return <div>No content</div>
+            {content.type && content.type == 'iframe' &&
+                <iframe key={content.path} src={content.path}></iframe>}
+
+        </div>
     }
 }
 
