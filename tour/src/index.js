@@ -6,7 +6,7 @@ import content from './document.js'
 import {OrderedMap} from 'immutable'
 import autobind from 'autobind-decorator'
 import PDF from './components/PDF'
-import Markdown from './components/Markdown'
+import {CSSTransition, TransitionGroup} from 'react-transition-group'
 
 function slug(name) {
     return name.toLowerCase().replace(/[\s]+/g, '-');
@@ -32,26 +32,38 @@ class Menu extends React.PureComponent {
     }
 }
 
-
-class Content extends React.PureComponent {
+class ContentItem extends React.PureComponent {
     render() {
         const {content} = this.props;
 
         if (!content)
             return <div>No content</div>
 
-        return <div className="content">
-            {content.type && content.type == 'pdf' &&
-                <PDF url={content.path} />}
-            {!content.type &&
-                <div dangerouslySetInnerHTML={{__html: content}} />}
-        </div>
+        if (content.type && content.type == 'pdf')
+            return <PDF url={content.path} />
+
+        if (!content.type)
+            return <div dangerouslySetInnerHTML={{__html: content}} />
+
+        return <div>No content</div>
+    }
+}
+
+class Content extends React.PureComponent {
+    render() {
+        const {content, name} = this.props;
+
+        return <TransitionGroup className="content">
+            <CSSTransition key={name} classNames="content--item" timeout={{enter: 500, exit:500}}>
+                <ContentItem content={content} />
+            </CSSTransition>
+        </TransitionGroup>
     }
 }
 
 class UI extends React.Component {
     state = {
-        active: null,
+        active: 'Introduction',
     }
 
     componentDidUpdate() {
@@ -73,7 +85,7 @@ class UI extends React.Component {
                         this.setState({active: key})
                     }} />)}
             </Menu>
-            <Content content={content.get(active)} />
+            <Content content={content.get(active)} name={active} />
         </div>
     }
 }
