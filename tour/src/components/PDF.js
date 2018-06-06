@@ -73,7 +73,7 @@ export default class PDF extends React.Component {
             {!external &&
                 <a className="button button-pdf" target="_blank" href={url}>View PDF</a>}
             {external &&
-                <a className={`button button-${external_type}`} target="_blank" href={`file://${external}`}>View {external_type[1].toUpperCase()}</a>}
+                <a className={`button button-${external_type}`} target="_blank" href={`${external}`}>View {external_type[1].toUpperCase()}</a>}
             {pages == null &&
             <p>Loading PDF</p>}
             {pages != 0 &&
