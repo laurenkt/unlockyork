@@ -80,6 +80,9 @@ class ContentItem extends React.PureComponent {
             </ContentChildren>
         }
 
+        if (content.type && content.type == 'mp4')
+            return <video key={content.path} src={content.path}></video>
+
         if (content.type && content.type == 'pdf')
             return <PDF key={content.path} url={content.path} />
 
@@ -87,7 +90,7 @@ class ContentItem extends React.PureComponent {
             return <iframe key={content.path} src={content.path}></iframe>
 
         if (!content.type)
-            return <div dangerouslySetInnerHTML={{__html: content}} />
+            return <div dangerouslySetInnerHTML={{__html: content.content || content}} />
 
         return <div>No content</div>
     }
