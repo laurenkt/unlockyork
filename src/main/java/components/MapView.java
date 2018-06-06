@@ -50,6 +50,7 @@ public class MapView extends ScrollPane {
     private Point2D youAreHereLocation;
     private EventHandler<? super POIEvent> onPoiClicked;
 
+    // sets location of the kiosk and adds it to the map so the user can see where they are
     public void setYouAreHere(double latitude, double longitude) {
         youAreHereLocation = POI.latLongToPoint(latitude, longitude);
         youAreHere.setTranslateX(youAreHereLocation.getX());
@@ -64,6 +65,7 @@ public class MapView extends ScrollPane {
     public MapView(List<POI> POIs) {
         super();
 
+        // adds the map tiles to an array list
         tiles.add(new Image(getClass().getResource("/tiles/16.png").toExternalForm()));
         tiles.add(new Image(getClass().getResource("/tiles/17.png").toExternalForm()));
         tiles.add(new Image(getClass().getResource("/tiles/18.png").toExternalForm()));
@@ -74,10 +76,12 @@ public class MapView extends ScrollPane {
         mapView = new ImageView();
         mapView.setImage(tiles.get(level));
 
+        // creates all the POI objects for all the POI's in the PWS
         for(POI poi : POIs) {
             poiViews.add(new POIView(poi));
         }
 
+        // sets up the stackPane and adds the map tile and adds all the POI's to the map
         stack = new StackPane();
         stack.setAlignment(Pos.TOP_LEFT);
         stack.getChildren().add(mapView);

@@ -132,6 +132,7 @@ public class POIView extends Region {
         });
     }
 
+    // sets the POI's icon on the map depending on the type given to it in the PWS
     private Image getImageForType(String type) {
         type = type.toLowerCase(); // Normalize
 

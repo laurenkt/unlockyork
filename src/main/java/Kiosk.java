@@ -80,6 +80,7 @@ public class Kiosk extends Application {
         logo.setOpacity(0.2);
         logo.setMouseTransparent(true);
 
+        // sets the icons for the buttons displayed on the user view
         forward = new IconButton("/icons/right.png");
         back = new IconButton("/icons/left.png");
         home = new IconButton("/icons/map_centre.png");
@@ -91,6 +92,7 @@ public class Kiosk extends Application {
         scaleSlider.setScaleY(1.5);
         scaleSlider.setMaxHeight(100);
 
+        // sets up the userView and adds all the relevant nodes, this is what the user can see at the start.
         userView = new StackPane();
         userView.getStylesheets().add(getClass().getResource("/css/Kiosk.css").toExternalForm());
         userView.setAlignment(Pos.TOP_LEFT);
@@ -150,6 +152,7 @@ public class Kiosk extends Application {
                 .map(slide -> new SlideView(slide))
                 .toArray(size -> new SlideView[size]);
 
+        // action listeners for the map and buttons
         forward.setOnAction(e -> this.onNext());
         back.setOnAction(e -> this.onPrevious());
         map.setOnPoiClicked(e -> this.onClickPoi(e.getPOI()));
@@ -175,18 +178,21 @@ public class Kiosk extends Application {
         primaryStage.show();
     }
 
+    // gets the next presentation slide
     public void onNext() {
         if (this.slideNum < poiSlideViews.size() - 1) {
             this.setSlideNum(this.slideNum + 1);
         }
     }
 
+    // gets the previous presentation slide
     public void onPrevious() {
         if (this.slideNum > 0) {
             this.setSlideNum(slideNum = this.slideNum - 1);
         }
     }
 
+    // when a POI is clicked display the presentation slides for that POI
     public void onClickPoi(POI poi) {
         slidePane.setVisible(poi != null);
         map.setLeftAligned(slidePane.isVisible());
@@ -215,6 +221,8 @@ public class Kiosk extends Application {
         }
     }
 
+    // sets the slide number depending on whether the next or previous buttons have been pressed so the next presentation slide
+    // can be displayed
     public void setSlideNum(int slideNum) {
         double direction = slideNum > this.slideNum ? 1 : -1;
 
