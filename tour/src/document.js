@@ -2,8 +2,8 @@ export default {
     "Introduction": require('../documents/introduction.md'),
     "Team Members": require('../documents/team-members.md'),
     "Quality Assurance": {children: [
-            {name: 'Document Template', type:'pdf', path:'documents/QA/documenttemplate.pdf'},
-            {name: 'Content Guidelines', type:'pdf', path:'documents/QA/informationguidelines.pdf'},
+            {name:'Document Template', type:'pdf', path:'documents/QA/documenttemplate.pdf'},
+            {name:'Content Guidelines', type:'pdf', path:'documents/QA/informationguidelines.pdf'},
             {name:'QA Metrics Reports', children:[
                     {name:'Iteration 1', type:'pdf', path:'documents/QA/QAMetricreport-iterationone.pdf'},
                     {name:'Iteration 2', type:'pdf', path:'documents/QA/qametricreport-iterationtwo.pdf'},
@@ -69,6 +69,24 @@ export default {
             children: [
                 {name:'Covering Note', type:'pdf', path:'documents/finance/report-3/cover-sheet.pdf'},
                 {name:'Report 3', type:'pdf', path:'documents/finance/report-3/report-3.pdf'},
+            ]
+        },
+        {
+            name: 'Summary',
+            children: [
+                {name: '3.0', children: [
+                        {name: 'Cash Flow', type:'pdf', path:'documents/finance/summary/3.0/cash-flow-3.0.pdf'},
+                        {name: 'Summary Report', type:'pdf', path:'documents/finance/summary/3.0/summary-3.0.pdf'},
+                        {name: 'Sales Projections', type:'pdf', path:'documents/finance/summary/3.0/sales-projections.pdf'},
+                    ]},
+                {name: '2.0', children: [
+                        {name: 'Cash Flow', type:'pdf', path:'documents/finance/summary/2.0/cash-flow-2.0.pdf'},
+                        {name: 'Summary Report', type:'pdf', path:'documents/finance/summary/2.0/summary-2.0.pdf'},
+                    ]},
+                {name: '1.0', children: [
+                        {name: 'Cash Flow', type:'pdf', path:'documents/finance/summary/1.0/cash-flow-1.0.pdf'},
+                        {name: 'Summary Report', type:'pdf', path:'documents/finance/summary/1.0/summary-report-1.0.pdf'},
+                    ]},
             ]
         }
     ],

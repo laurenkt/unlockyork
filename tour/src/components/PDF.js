@@ -20,7 +20,7 @@ class PDFPage extends React.Component {
                 return
             }
 
-            const viewport = page.getViewport(1)
+            const viewport = page.getViewport(1.2)
 
             // Prepare canvas using PDF page dimensions
             const canvasContext = this.canvas.getContext('2d')
