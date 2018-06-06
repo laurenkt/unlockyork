@@ -3,7 +3,7 @@ import {render} from 'react-dom'
 import classNames from 'classnames'
 import './style.scss'
 import content from './content.json'
-import {Map} from 'immutable'
+import {OrderedMap} from 'immutable'
 import pdfjsLib from 'pdfjs-dist'
 import autobind from 'autobind-decorator'
 
@@ -32,33 +32,83 @@ class Menu extends React.PureComponent {
 }
 
 class PDF extends React.Component {
+    state = {
+        pages: 0,
+        pageNum: null,
+    }
+
+    doc = null
+    canvas = null
+
+    constructor(props) {
+        super(props)
+        const {url} = props
+
+        pdfjsLib.getDocument(url).then(doc => {
+            this.doc = doc
+            this.setState({
+                pages: doc.pdfInfo.numPages,
+                pageNum: 1,
+            })
+        })
+    }
+
     @autobind
     async canvasDidMount(canvas) {
-        const {url} = this.props
+        //const {pageNum} = this.state
+        this.canvas = canvas
 
-        const doc = await pdfjsLib.getDocument(url)
+        //this.renderPage(pageNum)
+    }
 
-        const page = await doc.getPage(1 /* pageNumber */)
-
-        var scale = 1.5;
-        var viewport = page.getViewport(scale);
+    @autobind
+    async renderPage(pageNum) {
+        const page = await this.doc.getPage(pageNum)
+        const scale = 1.5
+        const viewport = page.getViewport(scale)
 
         // Prepare canvas using PDF page dimensions
-        var context = canvas.getContext('2d');
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
+        const canvasContext = this.canvas.getContext('2d')
+        this.canvas.height = viewport.height
+        this.canvas.width = viewport.width
 
-        // Render PDF page into canvas context
-        var renderContext = {
-            canvasContext: context,
-            viewport: viewport
-        };
-        var renderTask = await page.render(renderContext);
-        console.log('Page rendered');
+        await page.render({canvasContext, viewport})
+    }
+
+    @autobind
+    next(e) {
+        e.preventDefault()
+        this.setState({pageNum: Math.min(this.state.pages, this.state.pageNum+1)})
+    }
+
+    @autobind
+    previous(e) {
+        e.preventDefault()
+        this.setState({pageNum: Math.max(1, this.state.pageNum-1)})
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.state.pages == 0)
+            return
+
+        if (prevState.pageNum != this.state.pageNum)
+            this.renderPage(this.state.pageNum)
     }
 
     render() {
-        return <canvas ref={this.canvasDidMount}></canvas>
+        const {pages, pageNum} = this.state
+
+        return <div className="pdf-viewer">
+            {pages == null &&
+                <p>Loading PDF</p>}
+            {pages != null &&
+                <div>
+                    Page {pageNum} of {pages}
+                    <button onClick={this.previous}>Previous</button>
+                    <button onClick={this.next}>Next</button>
+                    <canvas ref={this.canvasDidMount}></canvas>
+                </div>}
+        </div>
     }
 }
 
@@ -115,6 +165,6 @@ class UI extends React.Component {
 
 document.addEventListener('DOMContentLoaded', e => {
     const mount = document.createElement('div')
-    render(<UI content={Map(content)} />, mount)
+    render(<UI content={OrderedMap(content)} />, mount)
     document.querySelector('body').appendChild(mount)
 })
