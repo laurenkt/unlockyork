@@ -30,6 +30,10 @@ module.exports = {
 					'css-loader'
 				],
 			},
+            {
+                test: /\.jpg$/,
+                loader: 'file-loader',
+            },
 			{
 				test: /\.png$/,
 				loader: 'file-loader',

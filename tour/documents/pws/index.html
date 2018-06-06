@@ -1,0 +1,412 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Project Wide Specification (PWS)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+   
+      <h1>Project Wide Specification (PWS)</h1>
+<section><h2>Table of Contents</h2>
+<h3>Attribute Groups</h3>
+<ul>
+<li><a href="#attribute-group-pws:colors">colors</a></li>
+<li><a href="#attribute-group-pws:fonts">fonts</a></li>
+<li><a href="#attribute-group-pws:position">position</a></li>
+<li><a href="#attribute-group-pws:transitions">transitions</a></li>
+</ul>
+<h3>Types</h3>
+<ul>
+<li><a href="#simple-type-pws:colorType">colorType</a></li>
+<li><a href="#simple-type-pws:shapeType">shapeType</a></li>
+<li><a href="#simple-type-pws:startType">startType</a></li>
+</ul>
+<h3>Elements</h3>
+<ul>
+<li><a href="#element-type-Audio">Audio</a></li>
+<li><a href="#element-type-Br">Br</a></li>
+<li><a href="#element-type-Format">Format</a></li>
+<li><a href="#element-type-Image">Image</a></li>
+<li><a href="#element-type-Meta">Meta</a></li>
+<li><a href="#element-type-Presentation">Presentation</a></li>
+<li><a href="#element-type-Shape">Shape</a></li>
+<li><a href="#element-type-Slide">Slide</a></li>
+<li><a href="#element-type-Text">Text</a></li>
+<li><a href="#element-type-Video">Video</a></li>
+</ul></section>
+      <p>
+         Version 1.0.
+
+         Actual specification evolution &amp; discussion takes place at //github.com/JackoRo/SWEngPWS where pull requests can be made.
+      </p>
+   
+   <section><h2 id="attribute-group-pws:position">Attribute Group: <code>position</code>
+</h2>
+         The position and size (offset) of an element. The width and height of an element is defined as the difference between the (x, y) and (x2, y2) coordinates.
+      <table border="1">
+<caption>Attributes</caption>
+<tr valign="baseline">
+<th align="left" rowspan="2">x</th>
+<td>Built-in type decimal</td>
+<td>optional</td>
+</tr>
+<tr valign="baseline"><td colspan="2">The x co-ordinate of the top left corner of the element</td></tr>
+<tr valign="baseline">
+<th align="left" rowspan="2">y</th>
+<td>Built-in type decimal</td>
+<td>optional</td>
+</tr>
+<tr valign="baseline"><td colspan="2">The y co-ordinate of the top left corner of the element</td></tr>
+<tr valign="baseline">
+<th align="left" rowspan="2">x2</th>
+<td>Built-in type decimal</td>
+<td>optional</td>
+</tr>
+<tr valign="baseline"><td colspan="2">The x co-ordinate of the bottom right corner of the element</td></tr>
+<tr valign="baseline">
+<th align="left" rowspan="2">y2</th>
+<td>Built-in type decimal</td>
+<td>optional</td>
+</tr>
+<tr valign="baseline"><td colspan="2">The y co-ordinate of the bottom right corner of the element</td></tr>
+</table></section>
+   <section><h2 id="attribute-group-pws:fonts">Attribute Group: <code>fonts</code>
+</h2>
+         All text formatting options (except color). If these attributes are omitted on an element, it will inherit them from its parent
+      <table border="1">
+<caption>Attributes</caption>
+<tr valign="baseline">
+<th align="left" rowspan="2">font</th>
+<td>Built-in type string</td>
+<td>optional</td>
+</tr>
+<tr valign="baseline"><td colspan="2">
+            The font family to be used. If the specified family is not available, the implementor may define a fallback.
+         </td></tr>
+<tr valign="baseline">
+<th align="left" rowspan="2">italic</th>
+<td>Built-in type boolean</td>
+<td>optional</td>
+</tr>
+<tr valign="baseline"><td colspan="2">
+            Whether the text should be italic.
+         </td></tr>
+<tr valign="baseline">
+<th align="left" rowspan="2">bold</th>
+<td>Built-in type boolean</td>
+<td>optional</td>
+</tr>
+<tr valign="baseline"><td colspan="2">
+            Whether the text should be bold.
+         </td></tr>
+<tr valign="baseline">
+<th align="left" rowspan="2">textsize</th>
+<td>Built-in type int</td>
+<td>optional</td>
+</tr>
+<tr valign="baseline"><td colspan="2">
+            The size (in points)
+         </td></tr>
+<tr valign="baseline">
+<th align="left" rowspan="2">underline</th>
+<td>Built-in type boolean</td>
+<td>optional</td>
+</tr>
+<tr valign="baseline"><td colspan="2">
+            Whether the text should be underlined.
+         </td></tr>
+</table></section>
+   <section><h2 id="attribute-group-pws:colors">Attribute Group: <code>colors</code>
+</h2>
+         Defines the fill color and the foreground/stroke/text color
+      <table border="1">
+<caption>Attributes</caption>
+<tr valign="baseline">
+<th align="left" rowspan="2">color</th>
+<td>Simple type <a href="#simple-type-pws:colorType">colorType</a>
+</td>
+<td>optional</td>
+</tr>
+<tr valign="baseline"><td colspan="2">
+            The foreground/stroke/text colour.
+         </td></tr>
+<tr valign="baseline">
+<th align="left" rowspan="2">fill</th>
+<td>Simple type <a href="#simple-type-pws:colorType">colorType</a>
+</td>
+<td>optional</td>
+</tr>
+<tr valign="baseline"><td colspan="2">
+            The background colour.
+         </td></tr>
+</table></section>
+   <section><h2 id="attribute-group-pws:transitions">Attribute Group: <code>transitions</code>
+</h2>
+         Timing controls for automatic animation/transitions of elements
+      <table border="1">
+<caption>Attributes</caption>
+<tr valign="baseline">
+<th align="left" rowspan="2">start</th>
+<td>Simple type <a href="#simple-type-pws:startType">startType</a>
+</td>
+<td>optional</td>
+</tr>
+<tr valign="baseline"><td colspan="2">
+            How long in seconds before the element appears, or whether it should wait to be user-triggered
+         </td></tr>
+<tr valign="baseline">
+<th align="left" rowspan="2">duration</th>
+<td>Built-in type int</td>
+<td>optional</td>
+</tr>
+<tr valign="baseline"><td colspan="2">
+            How long in seconds before the element disappears
+         </td></tr>
+</table></section>
+   <section><h2 id="simple-type-pws:startType">Simple Type: <code>startType</code>
+</h2>
+        
+          Either an integer number of seconds specifying how long to wait until starting the transition,
+          or the word "trigger" which specifies waiting for an event (such as a mouse click)
+       
+     <section>
+            <p>Built-in type string
+            (
+            <code>trigger</code>
+            )
+         </p>
+         </section><h3>OR</h3>
+<section>
+            <p>Built-in type integer</p>
+         </section></section>
+   <section><h2 id="simple-type-pws:shapeType">Simple Type: <code>shapeType</code>
+</h2>
+        
+          Defines all vector shapes that are supported.
+       
+     <p>Built-in type string
+            (
+            <code>ellipse</code>,<code>rectangle</code>,<code>line</code>
+            )
+         </p></section>
+   <section><h2 id="simple-type-pws:colorType">Simple Type: <code>colorType</code>
+</h2>
+        
+        Defines supported color formats;  
+        Hash prefixed 6-digit hex codes, in the form of '#RRGGBB'. 
+        Two color vertical gradients, in the form of 'gradient(#RRGGBB,#RRGGBB)'. 
+		Alpha is not supported, nor are 3-digit hex codes.
+       
+     <section>
+            <p>Built-in type string</p>
+<p>Pattern: <code>#[0-9A-Fa-f]{6}</code></p>
+         </section><h3>OR</h3>
+<section>
+            <p>Built-in type string</p>
+<p>Pattern: <code>gradient\(#[0-9A-Fa-f]{6},#[0-9A-Fa-f]{6}\)</code></p>
+         </section></section>
+   <section><h2 id="element-type-Presentation">Element: <code>&lt;Presentation&gt;</code>
+</h2>
+         The top-level element that contains the presentation
+      <table border="1"><caption>Attributes</caption></table>
+<table border="1">
+<caption>Attribute Groups</caption>
+<tr><td><a href="#attribute-group-pws:fonts">fonts</a></td></tr>
+<tr><td><a href="#attribute-group-pws:colors">colors</a></td></tr>
+</table>
+<h3>Content Model</h3>
+         <p>1 or more choice of:</p>
+<ul>
+            <section><h2 id="element-type-Meta">Element: <code>&lt;Meta&gt;</code>
+</h2>
+                  
+                     Meta elements define key-value pairs of meta information that are unlikely to be directly rendered,
+                     such as author information or revision number.
+                  
+               <table border="1">
+<caption>Attributes</caption>
+<tr valign="baseline">
+<th align="left" rowspan="2">key</th>
+<td>Built-in type string</td>
+<td>required</td>
+</tr>
+<tr valign="baseline"><td colspan="2"></td></tr>
+<tr valign="baseline">
+<th align="left" rowspan="2">value</th>
+<td>Built-in type string</td>
+<td>required</td>
+</tr>
+<tr valign="baseline"><td colspan="2"></td></tr>
+</table>
+<h3>Content Model</h3>
+<p>Empty</p></section>
+            <section><h2 id="element-type-Slide">Element: <code>&lt;Slide&gt;</code>
+</h2>
+                  
+                     Slide element defines a collection of elements which are shown on screen together.
+                     In the general case each slide is shown one by one.
+                  
+               <table border="1"><caption>Attributes</caption></table>
+<table border="1">
+<caption>Attribute Groups</caption>
+<tr><td><a href="#attribute-group-pws:fonts">fonts</a></td></tr>
+<tr><td><a href="#attribute-group-pws:colors">colors</a></td></tr>
+<tr><td><a href="#attribute-group-pws:transitions">transitions</a></td></tr>
+</table>
+<h3>Content Model</h3>
+                  <p>1 or more choice of:</p>
+<ul>
+                     <section><h2 id="element-type-Text">Element: <code>&lt;Text&gt;</code>
+</h2>
+                           Rich Text element
+                        <table border="1">
+<caption>Attribute Groups</caption>
+<tr><td><a href="#attribute-group-pws:position">position</a></td></tr>
+<tr><td><a href="#attribute-group-pws:fonts">fonts</a></td></tr>
+<tr><td><a href="#attribute-group-pws:colors">colors</a></td></tr>
+<tr><td><a href="#attribute-group-pws:transitions">transitions</a></td></tr>
+</table>
+<h3>Content Model</h3>
+<p>Mixed content, including:</p>
+                           <p>1 or more choice of:</p>
+<ul>
+                              <section><h2 id="element-type-Format">Element: <code>&lt;Format&gt;</code>
+</h2>
+                                    Formats the contained text differently to the surrounding text
+                                 <table border="1">
+<caption>Attribute Groups</caption>
+<tr><td><a href="#attribute-group-pws:fonts">fonts</a></td></tr>
+<tr><td><a href="#attribute-group-pws:colors">colors</a></td></tr>
+</table>
+<h3>Content Model</h3>
+                                    
+                                       
+                                          
+                                          
+                                       
+                                    
+                                 </section>
+                              <section><h2 id="element-type-Br">Element: <code>&lt;Br&gt;</code>
+</h2>
+                                    Adds a line break to the text
+                                 <h3>Content Model</h3>
+<p>Empty</p></section>
+                           </ul>
+                           
+                           
+                           
+                           
+                        </section>
+                     <section><h2 id="element-type-Shape">Element: <code>&lt;Shape&gt;</code>
+</h2>
+                           Vector shape element
+                        <table border="1">
+<caption>Attributes</caption>
+<tr valign="baseline">
+<th align="left" rowspan="2">type</th>
+<td>Simple type <a href="#simple-type-pws:shapeType">shapeType</a>
+</td>
+<td>required</td>
+</tr>
+<tr valign="baseline"><td colspan="2">
+                                 The type of shape
+                              </td></tr>
+<tr valign="baseline">
+<th align="left" rowspan="2">stroke</th>
+<td>Built-in type decimal</td>
+<td>optional</td>
+</tr>
+<tr valign="baseline"><td colspan="2">
+                                 The pixel width of stroke (border) on the shape
+                              </td></tr>
+</table>
+<table border="1">
+<caption>Attribute Groups</caption>
+<tr><td><a href="#attribute-group-pws:position">position</a></td></tr>
+<tr><td><a href="#attribute-group-pws:colors">colors</a></td></tr>
+</table>
+<h3>Content Model</h3>
+<p>Empty</p></section>
+                     <section><h2 id="element-type-Image">Element: <code>&lt;Image&gt;</code>
+</h2>
+                           
+                           Bitmap Image element.
+                           JPEG images are supported.
+                           Other file formats may be supported, though this is not guaranteed.
+                           
+                        <table border="1">
+<caption>Attributes</caption>
+<tr valign="baseline">
+<th align="left" rowspan="2">path</th>
+<td>Built-in type string</td>
+<td>required</td>
+</tr>
+<tr valign="baseline"><td colspan="2">
+                                 The local filepath of the media file (accepts relative or absolute locations)
+                              </td></tr>
+</table>
+<table border="1">
+<caption>Attribute Groups</caption>
+<tr><td><a href="#attribute-group-pws:position">position</a></td></tr>
+</table>
+<h3>Content Model</h3>
+<p>Empty</p></section>
+                     <section><h2 id="element-type-Audio">Element: <code>&lt;Audio&gt;</code>
+</h2>
+                           
+                           Embedded audio file.
+                           WAV files are supported.
+                           Other file formats may be supported, though this is not guaranteed.
+                           
+                        <table border="1">
+<caption>Attributes</caption>
+<tr valign="baseline">
+<th align="left" rowspan="2">path</th>
+<td>Built-in type string</td>
+<td>required</td>
+</tr>
+<tr valign="baseline"><td colspan="2">
+                                 The local filepath of the media file (accepts relative or absolute locations)
+                              </td></tr>
+</table>
+<table border="1">
+<caption>Attribute Groups</caption>
+<tr><td><a href="#attribute-group-pws:position">position</a></td></tr>
+</table>
+<h3>Content Model</h3>
+<p>Empty</p></section>
+                     <section><h2 id="element-type-Video">Element: <code>&lt;Video&gt;</code>
+</h2>
+                           
+                           Embedded video file.
+                           MP4 files are supported.
+                           Other file formats may be supported, though this is not guaranteed.
+                           
+                        <table border="1">
+<caption>Attributes</caption>
+<tr valign="baseline">
+<th align="left" rowspan="2">path</th>
+<td>Built-in type string</td>
+<td>required</td>
+</tr>
+<tr valign="baseline"><td colspan="2">
+                                 The local filepath of the media file (accepts relative or absolute locations)
+                              </td></tr>
+</table>
+<table border="1">
+<caption>Attribute Groups</caption>
+<tr><td><a href="#attribute-group-pws:position">position</a></td></tr>
+</table>
+<h3>Content Model</h3>
+<p>Empty</p></section>
+                  </ul>
+                  
+                  
+                  
+               </section>
+         </ul>
+         
+         
+      </section>
+</body>
+</html>
