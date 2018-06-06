@@ -13,11 +13,24 @@ function slug(name) {
 }
 
 class Link extends React.PureComponent {
+    @autobind
+    onClick(name) {
+        return e => {
+            e.preventDefault()
+            this.props.onClick(name)
+        }
+    }
+
     render() {
-        const {children, active, onClick, ...props} = this.props
+        const {children, active, onClick, name, ...props} = this.props
 
         return <li {...props} className={classNames('menu-item', {active})}>
-            <a onClick={onClick} className="menu-item-link" href={'#'+slug(children)}>{children}</a>
+            <a onClick={this.onClick(name)} className="menu-item-link" href={'#'+slug(name)}>
+                {name}
+            </a>
+            {children.map && children.length > 0 && <ul>
+                {children.map(c => <a key={c.name} onClick={this.onClick(`${name}/${c.name}`)}>{c.name}</a>)}
+            </ul>}
         </li>
     }
 }
@@ -43,7 +56,7 @@ class ContentItem extends React.PureComponent {
             return <PDF url={content.path} />
 
         if (!content.type)
-            return <div dangerouslySetInnerHTML={{__html: content}} />
+            return <div dangerouslySetInnerHTML={{__html: content.children ? content.children : content}} />
 
         return <div>No content</div>
     }
@@ -75,15 +88,21 @@ class UI extends React.Component {
         const {content} = this.props
         const {active} = this.state
 
+        const activeParts = active.split('/')
+        let activeContent = content.get(activeParts[0])
+
+        if (activeParts.length > 1) {
+            activeContent = activeContent.find(c => c.name == activeParts[1])
+        }
+
         return <div className="tour">
             <Menu>
-                {content.keySeq().map(key =>
-                    <Link active={active == key} key={key} children={key} onClick={e => {
-                        e.preventDefault()
-                        this.setState({active: key})
-                    }} />)}
+                {content.entrySeq().map(([key, value]) =>
+                    <Link active={active == key} key={key} name={key} children={value} onClick={active =>
+                        this.setState({active})
+                    } />)}
             </Menu>
-            <Content content={content.get(active)} name={active} />
+            <Content content={activeContent} name={active} />
         </div>
     }
 }
