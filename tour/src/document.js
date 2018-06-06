@@ -20,6 +20,13 @@ export default {
                 ]}
         ]},
     "Design Documentation": {children: [
+            {name:'Functional Specification', children:[
+                    {name:'FS/5.0',type:'pdf',path:'documents/agile/spec/Functionalspecificationversion5.pdf'},
+                    {name:'FS/4.0',type:'pdf',path:'documents/agile/spec/Functionalspecificationversion4.pdf'},
+                    {name:'FS/3.0',type:'pdf',path:'documents/agile/spec/Functionalspecificationversion3.pdf'},
+                    {name:'FS/2.0',type:'pdf',path:'documents/agile/spec/Functionalspecificationversion2.pdf'},
+                    {name:'FS/1.0',type:'pdf',path:'documents/agile/spec/Functionalspecificationversion1.pdf'},
+                ]},
             {name:'User Story Tracker', children: [
                     {name: 'S01', type:'pdf', path:'documents/agile/s01.pdf'},
                     {name: 'S02', type:'pdf', path:'documents/agile/s02.pdf'},
