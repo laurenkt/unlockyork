@@ -10,7 +10,7 @@ export default {
   "Time-sheets": "Test",
   "Finance Reports and Summary": "Test",
   "Project Management": [
-      {name: 'GANTT', children: require('../documents/project-management/gantt/gantt.md')},
+      {name: 'GANTT', content: require('../documents/project-management/gantt/gantt.md')},
       {name: 'PERT', type: 'pdf', path: 'documents/project-management/pert/pert.pdf'},
       {name: 'WBS', children: [
               {name: 'WBS/1', type:'pdf', path:'documents/project-management/wbs/1.pdf'},
