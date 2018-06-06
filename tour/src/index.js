@@ -88,11 +88,11 @@ class ContentItem extends React.PureComponent {
             return <div>No content</div>
 
         return <div className="fill">
-            {!content.type && !content.content &&
-            <div dangerouslySetInnerHTML={{__html: content}} />}
+            {typeof content === 'string' &&
+                <div dangerouslySetInnerHTML={{__html: content}} />}
 
             {content.content &&
-            <div dangerouslySetInnerHTML={{__html: content.content}} />}
+                <div dangerouslySetInnerHTML={{__html: content.content}} />}
 
             {content.children && content.children.length > 0 &&
                 <ContentChildren>

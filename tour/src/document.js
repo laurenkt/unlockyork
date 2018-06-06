@@ -112,7 +112,11 @@ export default {
     ],
     "Contracts": {content: "Test", children: [
         {name: "The Legba Company", type: 'pdf', path:'documents/contracts/g1.pdf'},
-        {name: "York Software Development LTD", type: 'pdf', path:'documents/contracts/g2.pdf'},
+        {name: "York Software Development LTD", children: [
+            {name:'Contract', type: 'pdf', path:'documents/contracts/g2.pdf'},
+                {name:'Client Requirements', type: 'pdf', path:'documents/contracts/clientrequirmentsspecs.pdf'},
+                {name:'Development Plan', type: 'pdf', path:'documents/contracts/developmentplan.pdf'},
+            ]},
         {name: "SImpLe", type: 'pdf', path:'documents/contracts/g5.pdf'},
     ]},
     "Project-Wide Standards": {name: 'PWS', type:'iframe', path:'documents/pws/index.html'},
