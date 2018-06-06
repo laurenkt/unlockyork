@@ -25,6 +25,10 @@ body {
 		border: 2px solid black;
 	}
 
+	&:focus {
+		outline: 0;
+	}
+
 	&:hover {
 		background: #2198c0;
 		color: white;
