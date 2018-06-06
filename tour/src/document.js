@@ -1,0 +1,20 @@
+export default {
+  "Introduction": require('../documents/introduction.md'),
+  "Team Members": "Team membs",
+  "Functional Specification": "fs",
+  "QA Manual": "jon",
+  "Testing and Integration Plan": "tests",
+  "Videos": "video",
+  "Design Documentation": "Test",
+  "Minutes": "Test",
+  "Time-sheets": "Test",
+  "Finance Reports and Summary": "Test",
+  "Project Management": "Test",
+  "Contracts": {type: 'pdf', path:'documents/contracts/Group 1 Signed.pdf'},
+  "Project-Wide Standards": "Test",
+  "Market Research": "Test",
+  "Code": "Test",
+  "Presentation": "Test",
+  "Individual Reports": "Test",
+  "References": "Test"
+}

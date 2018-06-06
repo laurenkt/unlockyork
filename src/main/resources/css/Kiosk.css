@@ -1,0 +1,41 @@
+.unlock--button {
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-min-width: 96;
+    -fx-min-height: 96;
+    -fx-max-width: 96;
+    -fx-max-height: 96;
+    -fx-graphic-text-gap: 0;
+    -fx-background-size: 96 96;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left center;
+    -fx-border-insets: 0;
+    -fx-padding: 0;
+    -fx-text-fill: white;
+}
+
+.unlock--button:hover {
+    -fx-opacity: 0.5;
+}
+
+.unlock--poi-label {
+    -fx-font-size: 40;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, white, 5, 1, 0, 0);
+}
+
+/* Slider */
+
+.slider .thumb {
+    -fx-background-color: black;
+}
+
+.slider .thumb:hover {
+    -fx-background-color: linear-gradient(to bottom, #333, #444, #333);
+}
+
+.slider .track {
+    -fx-background-color: #222;
+}

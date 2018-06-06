@@ -8,6 +8,23 @@
          Actual specification evolution &amp; discussion takes place at //github.com/JackoRo/SWEngPWS where pull requests can be made.
       </documentation>
    </annotation>
+   <element name="POI">
+      <annotation>
+         <documentation>
+            POI elements define the POI
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="pws:POI" minOccurs="0" maxOccurs="unbounded" />
+         </sequence>
+         <attribute name="id" type="string" use="required" />
+         <attribute name="latitude" type="string" use="required" />
+         <attribute name="longitude" type="string" use="required" />
+         <attribute name="type" type="string" />
+         <attribute name="name" type="string" />
+      </complexType>
+   </element>
    <attributeGroup name="position">
       <annotation>
          <documentation>The position and size (offset) of an element. The width and height of an element is defined as the difference between the (x, y) and (x2, y2) coordinates.</documentation>
@@ -61,12 +78,12 @@
       </annotation>
       <attribute name="color" type="pws:colorType">
          <annotation>
-            <documentation>The foreground/stroke/text colour.</documentation>
+            <documentation>The foreground/stroke/text color.</documentation>
          </annotation>
       </attribute>
       <attribute name="fill" type="pws:colorType">
          <annotation>
-            <documentation>The background colour.</documentation>
+            <documentation>The background color.</documentation>
          </annotation>
       </attribute>
    </attributeGroup>
@@ -157,6 +174,7 @@
                   <attribute name="value" type="string" use="required" />
                </complexType>
             </element>
+            <element ref="pws:POI" minOccurs="0" maxOccurs="unbounded" />
             <element name="Slide" minOccurs="1" maxOccurs="unbounded">
                <annotation>
                   <documentation>
@@ -271,6 +289,7 @@
                   <attributeGroup ref="pws:fonts" />
                   <attributeGroup ref="pws:colors" />
                   <attributeGroup ref="pws:transitions" />
+                  <attribute name="poi" type="string" />
                </complexType>
             </element>
          </choice>
