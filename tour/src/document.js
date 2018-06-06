@@ -7,6 +7,7 @@ export default {
   "Videos": [
       {name:'Kiosk', type:'mp4', path:'documents/videos/kiosk.mp4'}
   ],
+  "User Manual": {type:'pdf', path:'documents/user-manual/manual.pdf'},
   "Design Documentation": "Test",
   "Minutes": "Test",
   "Time-sheets": "Test",
@@ -44,11 +45,11 @@ export default {
       {name: 'GANTT', content: require('../documents/project-management/gantt/gantt.md')},
       {name: 'PERT', type: 'pdf', path: 'documents/project-management/pert/pert.pdf'},
       {name: 'WBS', children: [
-          {name: 'WBS/1', type:'pdf', path:'documents/project-management/wbs/1.pdf'},
-          {name: 'WBS/1.1', type:'pdf', path:'documents/project-management/wbs/1.1.pdf'},
-          {name: 'WBS/2', type:'pdf', path:'documents/project-management/wbs/2.pdf'},
-          {name: 'WBS/2.1', type:'pdf', path:'documents/project-management/wbs/2.1.pdf'},
           {name: 'WBS/3', type:'pdf', path:'documents/project-management/wbs/3.pdf'},
+          {name: 'WBS/2.1', type:'pdf', path:'documents/project-management/wbs/2.1.pdf'},
+          {name: 'WBS/2', type:'pdf', path:'documents/project-management/wbs/2.pdf'},
+          {name: 'WBS/1.1', type:'pdf', path:'documents/project-management/wbs/1.1.pdf'},
+          {name: 'WBS/1', type:'pdf', path:'documents/project-management/wbs/1.pdf'},
       ]},
   ],
   "Contracts": [
