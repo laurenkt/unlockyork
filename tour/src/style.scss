@@ -58,6 +58,13 @@ body {
 	}
 }
 
+.fill {
+  display: flex;
+  flex: 1;
+  justify-content: stretch;
+  flex-direction: column;
+}
+
 a {
 	text-decoration: none;
 	color: #2198c0;

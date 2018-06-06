@@ -66,13 +66,15 @@ class ContentChildren extends React.PureComponent {
         const {children} = this.props
         const {active} = this.state
 
-        return <div>
+        return <div className="fill">
+            <div className="buttons">
             {range(children.length).map(idx =>
                 <button className={classNames('button', {active: active==idx})} key={idx} onClick={e => {
                         e.preventDefault()
                         this.setState({active: idx})
                     }
                 }>{children[idx].props.content.name}</button>)}
+            </div>
             {children[active]}
         </div>
     }
@@ -85,7 +87,7 @@ class ContentItem extends React.PureComponent {
         if (!content)
             return <div>No content</div>
 
-        return <div>
+        return <div className="fill">
             {!content.type && !content.content &&
             <div dangerouslySetInnerHTML={{__html: content}} />}
 
@@ -114,7 +116,7 @@ class Content extends React.PureComponent {
     render() {
         const {content} = this.props;
 
-        return <div className="content">
+        return <div className="content fill">
                 <ContentItem content={content} />
         </div>
     }

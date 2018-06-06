@@ -121,7 +121,6 @@ export default {
         {name:'Video', type:'mp4', path:'/documents/videos/marketing.mp4'},
     ]},
     "Code": "Test",
-    "Presentation": "Test",
     "Individual Reports": "Test",
     "References": "Test"
 }
