@@ -4,13 +4,15 @@ export default {
   "Functional Specification": "fs",
   "QA Manual": "jon",
   "Testing and Integration Plan": "tests",
-  "Videos": "video",
+  "Videos": [
+      {name:'Kiosk', type:'mp4', path:'documents/videos/kiosk.mp4'}
+  ],
   "Design Documentation": "Test",
   "Minutes": "Test",
   "Time-sheets": "Test",
   "Finance Reports and Summary": "Test",
   "Project Management": [
-      {name: 'GANTT', children: require('../documents/project-management/gantt/gantt.md')},
+      {name: 'GANTT', content: require('../documents/project-management/gantt/gantt.md')},
       {name: 'PERT', type: 'pdf', path: 'documents/project-management/pert/pert.pdf'},
       {name: 'WBS', children: [
               {name: 'WBS/1', type:'pdf', path:'documents/project-management/wbs/1.pdf'},
@@ -21,9 +23,9 @@ export default {
       ]},
   ],
   "Contracts": [
-      {name: "Group 1", type: 'pdf', path:'documents/contracts/g1.pdf'},
-      {name: "Group 2", type: 'pdf', path:'documents/contracts/g2.pdf'},
-      {name: "Group 5", type: 'pdf', path:'documents/contracts/g5.pdf'},
+      {name: "The Legba Company", type: 'pdf', path:'documents/contracts/g1.pdf'},
+      {name: "York Software Development LTD", type: 'pdf', path:'documents/contracts/g2.pdf'},
+      {name: "SImpLe", type: 'pdf', path:'documents/contracts/g5.pdf'},
   ],
   "Project-Wide Standards": {name: 'PWS', type:'iframe', path:'documents/pws/index.html'},
   "Market Research": "Test",

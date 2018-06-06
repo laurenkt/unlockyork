@@ -47,7 +47,7 @@ class Menu extends React.PureComponent {
 
 class ContentChildren extends React.PureComponent {
     state = {
-        active: null,
+        active: 0,
     }
 
     render() {
@@ -56,13 +56,12 @@ class ContentChildren extends React.PureComponent {
 
         return <div>
             {range(children.length).map(idx =>
-                <button key={idx} onClick={e => {
+                <button className={classNames('button', {active: active==idx})} key={idx} onClick={e => {
                         e.preventDefault()
                         this.setState({active: idx})
                     }
                 }>{children[idx].props.content.name}</button>)}
-            {active != null &&
-                children[active]}
+            {children[active]}
         </div>
     }
 }
@@ -80,6 +79,9 @@ class ContentItem extends React.PureComponent {
             </ContentChildren>
         }
 
+        if (content.type && content.type == 'mp4')
+            return <video key={content.path} src={content.path}></video>
+
         if (content.type && content.type == 'pdf')
             return <PDF key={content.path} url={content.path} />
 
@@ -87,7 +89,7 @@ class ContentItem extends React.PureComponent {
             return <iframe key={content.path} src={content.path}></iframe>
 
         if (!content.type)
-            return <div dangerouslySetInnerHTML={{__html: content}} />
+            return <div dangerouslySetInnerHTML={{__html: content.content || content}} />
 
         return <div>No content</div>
     }
