@@ -6,9 +6,11 @@ import content from './document.js'
 import {OrderedMap} from 'immutable'
 import autobind from 'autobind-decorator'
 import PDF from './components/PDF'
-import {range} from 'lodash'
+import {range, find} from 'lodash'
 
 function slug(name) {
+    if (!name) return ''
+
     return name.toLowerCase().replace(/[\s]+/g, '-');
 }
 
@@ -17,7 +19,7 @@ class Link extends React.PureComponent {
     onClick(name) {
         return e => {
             e.preventDefault()
-            this.props.onClick(name)
+            this.props.onClick(slug(name))
         }
     }
 
@@ -80,7 +82,7 @@ class ContentItem extends React.PureComponent {
         }
 
         if (content.type && content.type == 'mp4')
-            return <video key={content.path} src={content.path}></video>
+            return <video controls key={content.path} src={content.path}></video>
 
         if (content.type && content.type == 'pdf')
             return <PDF key={content.path} url={content.path} />
@@ -106,8 +108,11 @@ class Content extends React.PureComponent {
 }
 
 class UI extends React.Component {
-    state = {
-        active: 'Introduction',
+    constructor(props) {
+        super(props)
+        this.state = {
+            active: props.hash
+        }
     }
 
     componentDidUpdate() {
@@ -122,17 +127,20 @@ class UI extends React.Component {
         const {active} = this.state
 
         const activeParts = active.split('/')
-        let activeContent = content.get(activeParts[0])
+        let activeContent = content.find((_, key) => slug(key) == activeParts[0])
+        console.log('activeParts', activeParts)
+        console.log('activeContent', activeContent)
 
         if (activeParts.length > 1) {
-            activeContent = activeContent.find(c => c.name == activeParts[1])
+            activeContent = find(activeContent, c => slug(c.name) == activeParts[1])
         }
 
         return <div className="tour">
             <Menu>
                 {content.entrySeq().map(([key, value]) =>
                     <Link active={active == key} key={key} name={key} children={value} onClick={active =>
-                        this.setState({active})
+                        (console.log('click', active),
+                        this.setState({active}))
                     } />)}
             </Menu>
             <Content content={activeContent} name={active} />
@@ -142,6 +150,13 @@ class UI extends React.Component {
 
 document.addEventListener('DOMContentLoaded', e => {
     const mount = document.createElement('div')
-    render(<UI content={OrderedMap(content)} />, mount)
+
+    let hash = window.location.href.match(/#(.*)$/)
+    if (hash)
+        hash = hash[1]
+    else
+        hash = 'introduction'
+
+    render(<UI content={OrderedMap(content)} hash={hash} />, mount)
     document.querySelector('body').appendChild(mount)
 })

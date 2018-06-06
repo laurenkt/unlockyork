@@ -1,5 +1,4 @@
 import React from 'react'
-import {OrderedMap} from 'immutable'
 import pdfjsLib from 'pdfjs-dist'
 import autobind from 'autobind-decorator'
 import {range} from 'lodash'
@@ -37,7 +36,7 @@ class PDFPage extends React.Component {
     }
 
     render() {
-        return <canvas ref={this.renderCanvas} />
+        return <canvas className="pdf-page" ref={this.renderCanvas} />
     }
 }
 
