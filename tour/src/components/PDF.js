@@ -5,21 +5,35 @@ import autobind from 'autobind-decorator'
 import {range} from 'lodash'
 
 class PDFPage extends React.Component {
+    canvas = null
+
     @autobind
     renderCanvas(canvas) {
-        const {page} = this.props
+        this.canvas = canvas
+        this.updateCanvas()
+    }
 
+    @autobind
+    updateCanvas() {
+        const {page} = this.props
         page.then(page => {
-            const scale = 1.5
-            const viewport = page.getViewport(scale)
+            if (!this.canvas) {
+                return
+            }
+
+            const viewport = page.getViewport(1)
 
             // Prepare canvas using PDF page dimensions
-            const canvasContext = canvas.getContext('2d')
-            canvas.height = viewport.height
-            canvas.width = viewport.width
+            const canvasContext = this.canvas.getContext('2d')
+            this.canvas.height = viewport.height
+            this.canvas.width = viewport.width
 
             page.render({canvasContext, viewport})
         })
+    }
+
+    componentDidUpdate(nextProps) {
+        this.updateCanvas()
     }
 
     render() {

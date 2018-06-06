@@ -53,7 +53,7 @@ class ContentItem extends React.PureComponent {
             return <div>No content</div>
 
         if (content.type && content.type == 'pdf')
-            return <PDF url={content.path} />
+            return <PDF key={content.path} url={content.path} />
 
         if (!content.type)
             return <div dangerouslySetInnerHTML={{__html: content.children ? content.children : content}} />

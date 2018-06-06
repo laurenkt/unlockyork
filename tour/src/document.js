@@ -11,9 +11,7 @@ export default {
   "Finance Reports and Summary": "Test",
   "Project Management": [
       {name: 'GANTT', children: require('../documents/project-management/gantt/gantt.md')},
-      {name: 'PERT', children: [
-
-      ]},
+      {name: 'PERT', type: 'pdf', path: 'documents/project-management/pert/pert.pdf'},
       {name: 'WBS', children: [
 
       ]},

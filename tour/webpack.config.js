@@ -69,7 +69,7 @@ module.exports = {
 		new webpack.HotModuleReplacementPlugin(),
 		new HtmlPlugin({template: 'src/index.html'}),
 		new TidyHtmlPlugin(),
-        new CopyWebpackPlugin([{from: 'documents/contracts', to: 'documents/contracts'}]),
+        new CopyWebpackPlugin([{from: 'documents', to: 'documents'}]),
 		//new CopyWebpackPlugin([{from: 'src/assets/**/*', to: 'assets/[name].[ext]'}]),
 		//new CopyWebpackPlugin([{from: 'report/audio', to: 'audio'}]),
 	],
