@@ -56,28 +56,28 @@ export default {
             name: 'Briefing',
             children: [
                 {name:'Covering Note', type:'pdf', path:'documents/finance/briefing/covering-note.pdf'},
-                {name:'Briefing', type:'pdf', path:'documents/finance/briefing/briefing.pdf'},
+                {name:'Briefing', type:'pdf', external:'documents/finance/briefing/briefing.xslx', path:'documents/finance/briefing/briefing.pdf'},
             ]
         },
         {
             name: 'Report 1',
             children: [
                 {name:'Covering Note', type:'pdf', path:'documents/finance/report-1/cover-sheet.pdf'},
-                {name:'Report 1', type:'pdf', path:'documents/finance/report-1/report-1.pdf'},
+                {name:'Report 1', type:'pdf', external:'documents/finance/report-1/report-1.xslx', path:'documents/finance/report-1/report-1.pdf'},
             ]
         },
         {
             name: 'Report 2',
             children: [
                 {name:'Covering Note', type:'pdf', path:'documents/finance/report-2/cover-sheet.pdf'},
-                {name:'Report 2', type:'pdf', path:'documents/finance/report-2/report-2.pdf'},
+                {name:'Report 2', type:'pdf', external:'documents/finance/report-2/report-2.xslx', path:'documents/finance/report-2/report-2.pdf'},
             ]
         },
         {
             name: 'Report 3',
             children: [
                 {name:'Covering Note', type:'pdf', path:'documents/finance/report-3/cover-sheet.pdf'},
-                {name:'Report 3', type:'pdf', path:'documents/finance/report-3/report-3.pdf'},
+                {name:'Report 3', type:'pdf', external:'documents/finance/report-3/report-3.xslx', path:'documents/finance/report-3/report-3.pdf'},
             ]
         },
         {

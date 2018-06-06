@@ -43,14 +43,12 @@ class PDFPage extends React.Component {
 export default class PDF extends React.Component {
     state = {
         pages: 0,
-        pageNum: null,
     }
 
     doc = null
 
-    constructor(props) {
-        super(props)
-        const {url} = props
+    componentDidMount() {
+        const {url} = this.props
 
         pdfjsLib.getDocument(url).then(doc => {
             this.doc = doc
@@ -61,9 +59,21 @@ export default class PDF extends React.Component {
     }
 
     render() {
-        const {pages, pageNum} = this.state
+        const {url, external} = this.props
+        const {pages} = this.state
+
+        let external_type
+        if (external)
+            external_type = external.match(/\.([^.]+)$/)
+
+        console.log('external', external)
+        console.log('external_type', external_type)
 
         return <div className="pdf-viewer">
+            {!external &&
+                <a className="button button-pdf" target="_blank" href={url}>View PDF</a>}
+            {external &&
+                <a className={`button button-${external_type}`} target="_blank" href={`file://${external}`}>View {external_type[1].toUpperCase()}</a>}
             {pages == null &&
             <p>Loading PDF</p>}
             {pages != 0 &&

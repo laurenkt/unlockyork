@@ -86,6 +86,12 @@ class ContentItem extends React.PureComponent {
             return <div>No content</div>
 
         return <div>
+            {!content.type && !content.content &&
+            <div dangerouslySetInnerHTML={{__html: content}} />}
+
+            {content.content &&
+            <div dangerouslySetInnerHTML={{__html: content.content}} />}
+
             {content.children && content.children.length > 0 &&
                 <ContentChildren>
                     {content.children.map((c, idx) => <ContentItem content={c} key={idx} />)}
@@ -95,13 +101,11 @@ class ContentItem extends React.PureComponent {
                 <video controls key={content.path} src={content.path}></video>}
 
             {content.type && content.type == 'pdf' &&
-                <PDF key={content.path} url={content.path} />}
+                <PDF key={content.path} url={content.path} external={content.external} />}
 
             {content.type && content.type == 'iframe' &&
                 <iframe key={content.path} src={content.path}></iframe>}
 
-            {(!content.type || content.content) &&
-                <div dangerouslySetInnerHTML={{__html: content.content || content}} />}
         </div>
     }
 }
