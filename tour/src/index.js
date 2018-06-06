@@ -19,19 +19,29 @@ class Link extends React.PureComponent {
     onClick(name) {
         return e => {
             e.preventDefault()
-            this.props.onClick(slug(name))
+            this.props.onClick(this.getSlug(name))
         }
+    }
+
+    @autobind
+    getSlug(name) {
+        const {parent} = this.props
+
+        if (parent)
+            return slug(`${parent}/${name}`)
+
+        return slug(name)
     }
 
     render() {
         const {children, active, onClick, name, ...props} = this.props
 
         return <li {...props} className={classNames('menu-item', {active})}>
-            <a onClick={this.onClick(name)} className="menu-item-link" href={'#'+slug(name)}>
+            <a onClick={this.onClick(name)} className="menu-item-link" href={'#'+this.getSlug(name)}>
                 {name}
             </a>
             {children.map && children.length > 0 && <ul>
-                {children.map(c => <a key={c.name} onClick={this.onClick(`${name}/${c.name}`)}>{c.name}</a>)}
+                {children.map(c => <Link key={c.name} active={false} name={c.name} parent={name} onClick={onClick}>{c.name}</Link>)}
             </ul>}
         </li>
     }
@@ -128,8 +138,6 @@ class UI extends React.Component {
 
         const activeParts = active.split('/')
         let activeContent = content.find((_, key) => slug(key) == activeParts[0])
-        console.log('activeParts', activeParts)
-        console.log('activeContent', activeContent)
 
         if (activeParts.length > 1) {
             activeContent = find(activeContent, c => slug(c.name) == activeParts[1])
