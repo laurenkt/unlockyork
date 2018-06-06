@@ -1,5 +1,5 @@
-{
-  "Introduction": "Intro",
+export default {
+  "Introduction": require('../documents/introduction.md'),
   "Team Members": "Team membs",
   "Functional Specification": "fs",
   "QA Manual": "jon",
@@ -10,7 +10,7 @@
   "Time-sheets": "Test",
   "Finance Reports and Summary": "Test",
   "Project Management": "Test",
-  "Contracts": "contracts/Group 1 Signed.pdf",
+  "Contracts": {type: 'pdf', path:'documents/contracts/Group 1 Signed.pdf'},
   "Project-Wide Standards": "Test",
   "Market Research": "Test",
   "Code": "Test",
