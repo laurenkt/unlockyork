@@ -36,10 +36,12 @@ export default {
         {name:'Kiosk', type:'mp4', path:'documents/videos/kiosk.mp4'},
         {name:'Android', type:'mp4', path:'documents/videos/finalphonemovie.mp4'},
     ],
+    "Code Standard": {type:'pdf', path:'documents/code-standard/CodingStandards.pdf'},
     "User Manual": {type:'pdf', path:'documents/user-manual/manual.pdf'},
     "Minutes": "Test",
     "Time-sheets": "Test",
     "Presentations": {children: [
+            {name: 'Tender Presentation', type:'pdf', path:'documents/presentation/tender.pdf'},
             {name: 'Sales Presentation', type:'pdf', path:'documents/presentation/salespresentation.pdf'}
         ]},
     "Finance": [
@@ -101,13 +103,16 @@ export default {
                 {name: 'WBS/1', type:'pdf', path:'documents/project-management/wbs/1.pdf'},
             ]},
     ],
-    "Contracts": [
+    "Contracts": {content: "Test", children: [
         {name: "The Legba Company", type: 'pdf', path:'documents/contracts/g1.pdf'},
         {name: "York Software Development LTD", type: 'pdf', path:'documents/contracts/g2.pdf'},
         {name: "SImpLe", type: 'pdf', path:'documents/contracts/g5.pdf'},
-    ],
+    ]},
     "Project-Wide Standards": {name: 'PWS', type:'iframe', path:'documents/pws/index.html'},
-    "Market Research": "Test",
+    "Marketing": {children: [
+        {name:'Marketing Report', type:'pdf', path:'/documents/Marketing/marketresearchandmarketingreport.pdf'},
+        {name:'Video', type:'mp4', path:'/documents/videos/marketing.mp4'},
+    ]},
     "Code": "Test",
     "Presentation": "Test",
     "Individual Reports": "Test",
