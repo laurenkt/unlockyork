@@ -6,7 +6,7 @@ import content from './document.js'
 import {OrderedMap} from 'immutable'
 import autobind from 'autobind-decorator'
 import PDF from './components/PDF'
-import {CSSTransition, TransitionGroup} from 'react-transition-group'
+import {range} from 'lodash'
 
 function slug(name) {
     return name.toLowerCase().replace(/[\s]+/g, '-');
@@ -45,6 +45,28 @@ class Menu extends React.PureComponent {
     }
 }
 
+class ContentChildren extends React.PureComponent {
+    state = {
+        active: null,
+    }
+
+    render() {
+        const {children} = this.props
+        const {active} = this.state
+
+        return <div>
+            {range(children.length).map(idx =>
+                <button key={idx} onClick={e => {
+                        e.preventDefault()
+                        this.setState({active: idx})
+                    }
+                }>{children[idx].props.content.name}</button>)}
+            {active != null &&
+                children[active]}
+        </div>
+    }
+}
+
 class ContentItem extends React.PureComponent {
     render() {
         const {content} = this.props;
@@ -52,11 +74,20 @@ class ContentItem extends React.PureComponent {
         if (!content)
             return <div>No content</div>
 
+        if (content.children) {
+            return <ContentChildren>
+                {content.children.map((c, idx) => <ContentItem content={c} key={idx} />)}
+            </ContentChildren>
+        }
+
         if (content.type && content.type == 'pdf')
             return <PDF key={content.path} url={content.path} />
 
+        if (content.type && content.type == 'iframe')
+            return <iframe key={content.path} src={content.path}></iframe>
+
         if (!content.type)
-            return <div dangerouslySetInnerHTML={{__html: content.children ? content.children : content}} />
+            return <div dangerouslySetInnerHTML={{__html: content}} />
 
         return <div>No content</div>
     }
