@@ -51,13 +51,11 @@ class ContentItem extends React.PureComponent {
 
 class Content extends React.PureComponent {
     render() {
-        const {content, name} = this.props;
+        const {content} = this.props;
 
-        return <TransitionGroup className="content">
-            <CSSTransition key={name} classNames="content--item" timeout={{enter: 500, exit:500}}>
+        return <div className="content">
                 <ContentItem content={content} />
-            </CSSTransition>
-        </TransitionGroup>
+        </div>
     }
 }
 
