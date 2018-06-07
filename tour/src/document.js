@@ -73,8 +73,8 @@ export default {
                 ]},
         ]
     },
-    "Code Standard": {type:'pdf', path:'documents/code-standard/CodingStandards.pdf'},
-    "User Manual": {children: [{
+    "Code Standard": {type:'pdf', content:require('../documents/code-standard/standard.md'), path:'documents/code-standard/CodingStandards.pdf'},
+    "User Manual": {content: require('../documents/user-manual/description.md'), children: [{
         name:'Manual',
         type:'pdf',
         path:'documents/user-manual/manual.pdf'},
@@ -97,7 +97,7 @@ export default {
             {name: '13', type:'pdf', path:'documents/Minutes/Meeting-13.pdf'},
             {name: '14', type:'pdf', path:'documents/Minutes/Meeting-14.pdf'},
         ]},
-    "Time-sheets": [
+    "Time-sheets": {children: [
         {name:'Jack', children: [
                 {name:'2', type:'pdf', path:'documents/time-sheets/Jack/Week2(Spring)-JackMckeown.pdf'},
                 {name:'3', type:'pdf', path:'documents/time-sheets/Jack/Week3(Spring)-JackMckeown.pdf'},
@@ -258,12 +258,12 @@ export default {
                 {name:'21', type:'pdf', path:'documents/time-sheets/James/Week-21-James.pdf'},
                 {name:'22', type:'pdf', path:'documents/time-sheets/James/Week-22-James.pdf'},
             ]},
-    ],
+    ]},
     "Presentations": {children: [
             {name: 'Tender Presentation', type:'pdf', path:'documents/presentation/tender.pdf'},
             {name: 'Sales Presentation', type:'pdf', path:'documents/presentation/salespresentation.pdf'}
         ]},
-    "Finance": [
+    "Finance": {children: [
         {
             name: 'Briefing',
             children: [
@@ -310,8 +310,8 @@ export default {
                     ]},
             ]
         }
-    ],
-    "Project Management": [
+    ]},
+    "Project Management": {children: [
         {name: 'GANTT', content: require('../documents/project-management/gantt/gantt.md')},
         {name: 'PERT', type: 'pdf', path: 'documents/project-management/pert/pert.pdf'},
         {name: 'WBS', children: [
@@ -321,7 +321,7 @@ export default {
                 {name: 'WBS/1.1', type:'pdf', path:'documents/project-management/wbs/1.1.pdf'},
                 {name: 'WBS/1', type:'pdf', path:'documents/project-management/wbs/1.pdf'},
             ]},
-    ],
+    ]},
     "Contracts": {content: require('../documents/contracts/contracts.md'), children: [
             {name: "The Legba Company", type: 'pdf', path:'documents/contracts/g1.pdf'},
             {name: "York Software Development LTD",
@@ -333,7 +333,12 @@ export default {
                 ]},
             {name: "SImpLe", type: 'pdf', path:'documents/contracts/g5.pdf'},
         ]},
-    "Project-Wide Standards": {name: 'PWS', type:'iframe', path:'documents/pws/index.html'},
+    "Project-Wide Standards": {content:require('../documents/pws/pws.md'),
+        children: [
+            {name: 'PWS', type:'iframe', path:'documents/pws/index.html'},
+            {name: 'example.pws', type:'iframe', path:'documents/pws/example.pws'},
+            {name: 'york.pws', type:'iframe', path:'documents/pws/york.pws'},
+        ]},
     "Marketing": {children: [
             {name:'Marketing Report', type:'pdf', path:'documents/Marketing/marketresearchandmarketingreport.pdf'},
             {name:'Video', type:'mp4', path:'documents/videos/marketing.mp4'},
@@ -344,6 +349,7 @@ export default {
             {name: 'Jon', type:'pdf', path:'documents/individual-reports/jonathantrain.pdf'},
             {name: 'Lauren', type:'pdf', path:'documents/individual-reports/Lauren.pdf'},
             {name: 'Jack', type:'pdf', path:'documents/individual-reports/Jack.pdf'},
+            {name: 'James', type:'pdf', path:'documents/individual-reports/James.pdf'},
             {name: 'Liam', type:'pdf', path:'documents/individual-reports/Liam.pdf'},
             {name: 'Ollie', type:'pdf', path:'documents/individual-reports/Ollie.pdf'},
             {name: 'Tom', type:'pdf', path:'documents/individual-reports/Tom.pdf'},
