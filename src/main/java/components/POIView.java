@@ -31,9 +31,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class POIView extends Region {
+    //audio for POI
     final static private AudioClip appearClip = new AudioClip(POIView.class.getResource("/sounds/dart.aiff").toExternalForm());
     final static private AudioClip activeClip = new AudioClip(POIView.class.getResource("/sounds/click.aiff").toExternalForm());
-
+    //icons for all different types of POI, sPOI, sponsors
     final private Image poiIcon = new Image(getClass().getResource("/icons/map_poi.png").toExternalForm());
     final private Image subPoiIcon = new Image(getClass().getResource("/icons/map_spoi.png").toExternalForm());
     final private Image shopIcon = new Image(getClass().getResource("/icons/map_shop.png").toExternalForm());
@@ -59,14 +60,16 @@ public class POIView extends Region {
     public POIView(POI poi) {
         this.poi = poi;
 
+        //sets name of POI above icon
         name.setText(poi.getName());
         name.setFont(new Font(40));
         name.getStyleClass().add("unlock--poi-label");
         name.setTextOrigin(VPos.BOTTOM);
         name.setTextAlignment(TextAlignment.CENTER);
-        name.setTranslateX(-((name.getLayoutBounds().getWidth()-100) / 2));
+        name.setTranslateX(-((name.getLayoutBounds().getWidth()-100) / 2)); //makes sure text is centered above POI icon
         icon.setImage(getImageForType(poi.getType()));
 
+        //sets region for POI
         setMaxHeight(100);
         setMaxWidth(100);
         setTranslateX((this.poi.getX())-50);
@@ -79,7 +82,7 @@ public class POIView extends Region {
         setActive(false);
 
         opacityProperty.addListener((obs, old, val) -> setStyle("-fx-opacity: "+(Math.round(val.doubleValue() * 100.0)/100.0)));
-
+        //adds all sub POI to this POI
         for(POI subPOI : poi.getSubPOI()) {
             POIView subPoiView = new POIView(subPOI);
             subPOIViews.add(subPoiView);
@@ -98,6 +101,7 @@ public class POIView extends Region {
         );
         timeline.play();
 
+        //when mouse is over POI
         icon.setPickOnBounds(true);
         icon.setOnMouseEntered(e -> {
             timeline.stop();
@@ -109,6 +113,7 @@ public class POIView extends Region {
             );
             timeline.play();
         });
+        //when mouse leaves POI region
         icon.setOnMouseExited(e -> {
             timeline.stop();
             timeline.getKeyFrames().clear();
@@ -122,16 +127,17 @@ public class POIView extends Region {
         });
     }
 
+    //when the POI is clicked on
     public void setOnClicked(EventHandler<? super POIEvent> handler) {
-        for(POIView subPoiView : subPOIViews) {
+        for(POIView subPoiView : subPOIViews) { //show sPOI
             subPoiView.setOnClicked(handler);
         }
-        icon.setOnMouseClicked(e -> {
+        icon.setOnMouseClicked(e -> { //change icon to show its been clicked
             handler.handle(new POIEvent(poi));
             e.consume();
         });
     }
-
+    //returns the correct icon for the type of POI
     private Image getImageForType(String type) {
         type = type.toLowerCase(); // Normalize
 
@@ -150,7 +156,7 @@ public class POIView extends Region {
     public void setActive(boolean isActive) {
         icon.setImage(getImageForType(poi.getType()));
 
-        if (isActive) {
+        if (isActive) {//when a POI is selected
             colorAdjust.setInput(dropShadow);
             colorAdjust.setBrightness(-0.15);
             colorAdjust.setHue(-0.15);
@@ -165,7 +171,7 @@ public class POIView extends Region {
                 activeClip.play();
             }
         }
-        else {
+        else { //if the POI is not selected
             name.setVisible(true);
             colorAdjust.setInput(null);
             colorAdjust.setBrightness(-1);
@@ -177,6 +183,7 @@ public class POIView extends Region {
             }
         }
 
+        //mouse scaling animation
         Timeline sPoiAppearTimeline = new Timeline();
         double delay = 500; // Initial delay + accumulator
         for(POIView subPOI : subPOIViews) {

@@ -50,6 +50,7 @@ public class MapView extends ScrollPane {
     private Point2D youAreHereLocation;
     private EventHandler<? super POIEvent> onPoiClicked;
 
+    //sets kiosk location
     public void setYouAreHere(double latitude, double longitude) {
         youAreHereLocation = POI.latLongToPoint(latitude, longitude);
         youAreHere.setTranslateX(youAreHereLocation.getX());
@@ -89,6 +90,7 @@ public class MapView extends ScrollPane {
             stack.getChildren().addAll(poiView.getSubPOIViews());
         }
 
+
         HBox hBox = new HBox();
         hBox.getChildren().add(stack);
 
@@ -104,6 +106,7 @@ public class MapView extends ScrollPane {
         scaleProperty.bindBidirectional(target.scaleXProperty());
         scaleProperty.bindBidirectional(target.scaleYProperty());
 
+        //scales POI icons
         scaleProperty.addListener((obs, old, val) -> {
             for(POIView poi : poiViews) {
                 poi.setScaleX(0.3 / val.doubleValue());
@@ -153,6 +156,7 @@ public class MapView extends ScrollPane {
             setHvalue(getScrollXForTarget(xCenter.getValue()));
         });
     }
+
 
     private double getScrollXForTarget(double x) {
         double mapWidth = target.getBoundsInParent().getWidth(); // real-width after scaling

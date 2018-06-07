@@ -17,6 +17,7 @@ public class Presentation {
         presDefaultColour = new ColorAttrib();
     }
 
+    //gets the max x value, used for scaling
     public double getMaxX2() {
         return slides.stream()
                 .mapToDouble(slide -> slide.getMaxX2())
@@ -24,6 +25,7 @@ public class Presentation {
                 .orElse(1920);
     }
 
+    //gets max y value, used for scaling
     public double getMaxY2() {
         return slides.stream()
                 .mapToDouble(slide -> slide.getMaxY2())
@@ -67,6 +69,7 @@ public class Presentation {
         return POIs;
     }
 
+    // a certain POI
     public POI getPoiWithId(String id) {
         String realId = id.substring(1);
         for (POI poi : POIs) {
