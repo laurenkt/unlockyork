@@ -28,6 +28,7 @@ public class POI {
         this.type = type;
         this.name = name;
 
+        // adds the sPOI objects to the POI object
         for (int i = 0; i < children.length; i++) {
             subPOI.add(children[i]);
         }
