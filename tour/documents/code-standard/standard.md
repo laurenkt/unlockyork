@@ -1,0 +1,1 @@
+This document outlines the mandated style guide for code in the project. This is additionally enforced with a linting stage as part of the gradle build process although the tooling does not mandate that the warnings must be acted upon.

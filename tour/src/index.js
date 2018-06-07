@@ -95,7 +95,7 @@ class ContentItem extends React.PureComponent {
                 <div dangerouslySetInnerHTML={{__html: content.content}} />}
 
             {content.children && content.children.length > 0 &&
-                <ContentChildren>
+                <ContentChildren key={content.name}>
                     {content.children.map((c, idx) => <ContentItem content={c} key={idx} />)}
                 </ContentChildren>}
 
@@ -143,6 +143,7 @@ class UI extends React.Component {
 
         const activeParts = active.split('/')
         let activeContent = content.find((_, key) => slug(key) == activeParts[0])
+        const activeKey = content.findKey((_, key) => slug(key) == activeParts[0])
 
         if (activeParts.length > 1) {
             activeContent = find(activeContent, c => slug(c.name) == activeParts[1])
@@ -151,9 +152,8 @@ class UI extends React.Component {
         return <div className="tour">
             <Menu>
                 {content.entrySeq().map(([key, value]) =>
-                    <Link active={active == key} key={key} name={key} children={value} onClick={active =>
-                        (console.log('click', active),
-                        this.setState({active}))
+                    <Link active={activeKey == key} key={key} name={key} children={value} onClick={active =>
+                        this.setState({active})
                     } />)}
             </Menu>
             <Content content={activeContent} name={active} />
