@@ -1,0 +1,1 @@
+Details the Quality Assurance policies for the company along with describing the development process, the deliverables and document templates.

@@ -3,16 +3,20 @@ export default {
     "Team Members": require('../documents/team-members.md'),
     "Quality Assurance": {children: [
             {name:'Document Template', type:'pdf', path:'documents/QA/documenttemplate.pdf'},
-            {name:'Content Guidelines', type:'pdf', path:'documents/QA/informationguidelines.pdf'},
-            {name:'QA Metrics Reports', children:[
+            {name:'Content Guidelines', type:'pdf', content:require('../documents/QA/informationguidelines.md'),
+                path:'documents/QA/informationguidelines.pdf'},
+            {name:'QA Metrics Reports', content:require('../documents/QA/qametrics.md'),
+                children:[
                     {name:'Iteration 1', type:'pdf', path:'documents/QA/QAMetricreport-iterationone.pdf'},
                     {name:'Iteration 2', type:'pdf', path:'documents/QA/qametricreport-iterationtwo.pdf'},
                 ]},
-            {name:'End of Iteration Meetings', children:[
+            {name:'End of Iteration Meetings', content:require('../documents/QA/endofiteration.md'),
+                children:[
                     {name:'Iteration 1', type:'pdf', path:'documents/QA/Endofiteration1meeting.pdf'},
                     {name:'Iteration 2', type:'pdf', path:'documents/QA/Endofiteration2meeting.pdf'},
                 ]},
-            {name:'QA Manual', children: [
+            {name:'QA Manual', content:require('../documents/QA/qamanual.md'),
+                children: [
                     {name:'QAM/2.2', type:'pdf', path:'documents/QA/QAM_version2.2.pdf'},
                     {name:'QAM/2.1', type:'pdf', path:'documents/QA/QAM_version2.1.pdf'},
                     {name:'QAM/2.0', type:'pdf', path:'documents/QA/QAM_version2.pdf'},
@@ -20,7 +24,7 @@ export default {
                 ]}
         ]},
     "Design Documentation": {children: [
-            {name:'Functional Specification', children:[
+            {name:'Functional Specification', content: require('../documents/agile/spec/spec.md'), children:[
                     {name:'FS/5.0',type:'pdf',path:'documents/agile/spec/Functionalspecificationversion5.pdf'},
                     {name:'FS/4.0',type:'pdf',path:'documents/agile/spec/Functionalspecificationversion4.pdf'},
                     {name:'FS/3.0',type:'pdf',path:'documents/agile/spec/Functionalspecificationversion3.pdf'},
@@ -42,12 +46,13 @@ export default {
         ]},
     "Testing and Integration": {
         children: [
-            {name: 'Test Plan', children:[
+            {name: 'Test Plan', content: require('../documents/Testing/plan.md'), children:[
                     {name: 'FTIP/2.0', type:'pdf', path:'documents/Testing/test_plan_v2.pdf'},
                     {name: 'FTIP/1.0', type:'pdf', path:'documents/Testing/test_plan_v1.pdf'},
                 ]},
-            {name: 'Test Summary', type:'pdf', path:'documents/Testing/test_summary.pdf'},
-            {name: 'Test Reports', children:[
+            {name: 'Test Summary', type:'pdf', content: require('../documents/Testing/summary.md'),
+                path:'documents/Testing/test_summary.pdf'},
+            {name: 'Test Reports', content:require('../documents/Testing/reports.md'), children:[
                     {name:'1', type:'pdf', path:'documents/Testing/jack_1st_iteration_tests.pdf'},
                     {name:'2', type:'pdf', path:'documents/Testing/jack_instrumentation_tests.pdf'},
                     {name:'3', type:'pdf', path:'documents/Testing/jack_system_tests.pdf'},
@@ -334,6 +339,13 @@ export default {
             {name:'Video', type:'mp4', path:'documents/videos/marketing.mp4'},
         ]},
     "Code": "Test",
-    "Individual Reports": "Test",
+    "Individual Reports": {
+        children: [
+            {name: 'Jon', type:'pdf', path:'documents/individual-reports/jonathantrain.pdf'},
+            {name: 'Lauren', type:'pdf', path:'documents/individual-reports/Lauren.pdf'},
+            {name: 'Ollie', type:'pdf', path:'documents/individual-reports/Ollie.pdf'},
+            {name: 'Tom', type:'pdf', path:'documents/individual-reports/Tom.pdf'},
+        ],
+    },
     "References": require('../documents/references.md'),
 }
