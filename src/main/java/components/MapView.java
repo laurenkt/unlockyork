@@ -64,6 +64,7 @@ public class MapView extends ScrollPane {
     public MapView(List<POI> POIs) {
         super();
 
+        // adds all the map tiles to an array list
         tiles.add(new Image(getClass().getResource("/tiles/16.png").toExternalForm()));
         tiles.add(new Image(getClass().getResource("/tiles/17.png").toExternalForm()));
         tiles.add(new Image(getClass().getResource("/tiles/18.png").toExternalForm()));
@@ -74,10 +75,12 @@ public class MapView extends ScrollPane {
         mapView = new ImageView();
         mapView.setImage(tiles.get(level));
 
+        // Creates the POI objects from all the POI's in the PWS file
         for(POI poi : POIs) {
             poiViews.add(new POIView(poi));
         }
 
+        // sets up the initial user interface
         stack = new StackPane();
         stack.setAlignment(Pos.TOP_LEFT);
         stack.getChildren().add(mapView);
@@ -177,6 +180,7 @@ public class MapView extends ScrollPane {
         return Math.min(1, Math.max(0, y/availableHeight));
     }
 
+    // when either the home button or a POI/sponsor is pressed, centralise on that point.
     public void centerPoint(double x, double y) {
         layout();
 
@@ -206,6 +210,7 @@ public class MapView extends ScrollPane {
         timeline.play();
     }
 
+    // determines whether a POI/sPOI is set visible on the map.
     private POIView activePoiView = null;
     public void setPointActive(POI poi) {
         for (POIView view : poiViews) {
@@ -290,6 +295,7 @@ public class MapView extends ScrollPane {
         );
     }
 
+    // if a POI is clicked, make it the centre point and set it visible on the map
     public void setOnPoiClicked(EventHandler<? super POIEvent> handler) {
         onPoiClicked = handler;
         for(POIView poiView : poiViews) {
@@ -301,6 +307,7 @@ public class MapView extends ScrollPane {
         }
     }
 
+    // sets the zoom level of the map
     private void setLevel(int level) {
         if (level != this.level) {
             this.level = level;
