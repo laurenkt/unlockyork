@@ -40,13 +40,42 @@ export default {
                     {name: 'S13', type:'pdf', path:'documents/agile/s13.pdf'},
                 ]}
         ]},
-    "Testing and Integration": "tests",
-    "Videos": [
-        {name:'Kiosk', type:'mp4', path:'documents/videos/kiosk.mp4'},
-        {name:'Android', type:'mp4', path:'documents/videos/finalphonemovie.mp4'},
-    ],
+    "Testing and Integration": {
+        children: [
+            {name: 'Test Plan', children:[
+                    {name: 'FTIP/2.0', type:'pdf', path:'documents/Testing/test_plan_v2.pdf'},
+                    {name: 'FTIP/1.0', type:'pdf', path:'documents/Testing/test_plan_v1.pdf'},
+                ]},
+            {name: 'Test Summary', type:'pdf', path:'documents/Testing/test_summary.pdf'},
+            {name: 'Test Reports', children:[
+                    {name:'1', type:'pdf', path:'documents/Testing/jack_1st_iteration_tests.pdf'},
+                    {name:'2', type:'pdf', path:'documents/Testing/jack_instrumentation_tests.pdf'},
+                    {name:'3', type:'pdf', path:'documents/Testing/jack_system_tests.pdf'},
+                    {name:'4', type:'pdf', path:'documents/Testing/jack_visual_tests.pdf'},
+                    {name:'5', type:'pdf', path:'documents/Testing/james_1st_iteration_tests.pdf'},
+                    {name:'6', type:'pdf', path:'documents/Testing/james_instrumentation_tests.pdf'},
+                    {name:'7', type:'pdf', path:'documents/Testing/james_system_tests.pdf'},
+                    {name:'8', type:'pdf', path:'documents/Testing/james_visual_tests.pdf'},
+                    {name:'9', type:'pdf', path:'documents/Testing/liam_1st_iteration_tests.pdf'},
+                    {name:'10', type:'pdf', path:'documents/Testing/liam_lauren_jon_test_reports_iteration2.pdf'},
+                    {name:'11', type:'pdf', path:'documents/Testing/ollie_1st_iteration_tests.pdf'},
+                    {name:'12', type:'pdf', path:'documents/Testing/tom_and_ollie_s03_tests.pdf'},
+                    {name:'13', type:'pdf', path:'documents/Testing/tom_kit4.0.pdf'},
+                    {name:'14', type:'pdf', path:'documents/Testing/tom_kst2.pdf'},
+                    {name:'15', type:'pdf', path:'documents/Testing/tom_kst3.pdf'},
+                    {name:'16', type:'pdf', path:'documents/Testing/tom_test_report_s02.pdf'},
+                    {name:'17', type:'pdf', path:'documents/Testing/tom_test_report_s07.pdf'},
+                ]},
+        ]
+    },
     "Code Standard": {type:'pdf', path:'documents/code-standard/CodingStandards.pdf'},
-    "User Manual": {type:'pdf', path:'documents/user-manual/manual.pdf'},
+    "User Manual": {children: [{
+        name:'Manual',
+        type:'pdf',
+        path:'documents/user-manual/manual.pdf'},
+        {name:'Kiosk Video', type:'mp4', path:'documents/videos/kiosk.mp4'},
+        {name:'Android Video', type:'mp4', path:'documents/videos/finalphonemovie.mp4'},
+    ]},
     "Minutes": {children: [
             {name: '1', type:'pdf', path:'documents/Minutes/Meeting-1.pdf'},
             {name: '2', type:'pdf', path:'documents/Minutes/Meeting-2.pdf'},
@@ -288,9 +317,11 @@ export default {
                 {name: 'WBS/1', type:'pdf', path:'documents/project-management/wbs/1.pdf'},
             ]},
     ],
-    "Contracts": {content: "Test", children: [
+    "Contracts": {content: require('../documents/contracts/contracts.md'), children: [
             {name: "The Legba Company", type: 'pdf', path:'documents/contracts/g1.pdf'},
-            {name: "York Software Development LTD", children: [
+            {name: "York Software Development LTD",
+                content: require('../documents/contracts/ysd.md'),
+                children: [
                     {name:'Contract', type: 'pdf', path:'documents/contracts/g2.pdf'},
                     {name:'Client Requirements', type: 'pdf', path:'documents/contracts/clientrequirmentsspecs.pdf'},
                     {name:'Development Plan', type: 'pdf', path:'documents/contracts/developmentplan.pdf'},

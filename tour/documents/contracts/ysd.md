@@ -1,0 +1,1 @@
+The contract for YSD was more complex, both because it was a mutual contract (buying and selling an equal number in either direction) and also because we took more time and care to specify requirements and create a development plan to meet our contractual goals.
