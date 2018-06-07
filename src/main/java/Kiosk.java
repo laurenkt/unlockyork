@@ -57,7 +57,7 @@ public class Kiosk extends Application {
 
         primaryStage.setTitle("Unlock York");
 
-        try {
+        try { // pulls all slides from the xml
             presentation = XMLParser.parse(
                     "src/build/resources/main/york.pws",
                     "src/build/resources/main/schema.xsd"
@@ -74,6 +74,7 @@ public class Kiosk extends Application {
         map = new MapView(presentation.getPOI());
         map.setYouAreHere(53.95582, -1.079939);
 
+        //logo at the top left
         ImageView logo = new ImageView(new Image(getClass().getResource("/logo.png").toExternalForm()));
         logo.setTranslateX(margin/2);
         logo.setTranslateY(margin/2);
@@ -86,6 +87,7 @@ public class Kiosk extends Application {
         home = new IconButton("/icons/map_centre.png");
         home.setTranslateX(margin*1.2);
 
+        //set up zoom in control
         scaleSlider.setOrientation(Orientation.VERTICAL);
         scaleSlider.setTranslateX(margin/2);
         scaleSlider.setScaleX(1.5);
@@ -112,13 +114,16 @@ public class Kiosk extends Application {
         forward.setVisible(false);
         back.setVisible(false);
 
+        //hold the size of the largest element, used for scaling
         double minWidth = presentation.getMaxX2();
         double minHeight = presentation.getMaxY2();
 
+        //set up scale
         Scale scale = new Scale();
         scale.setPivotX(0);
         scale.setPivotY(0);
         scale.setPivotZ(0);
+        //set up content pane
         slidePane.getTransforms().add(scale);
         slidePane.setPickOnBounds(false);
         slidePane.setTranslateY(margin);
@@ -129,6 +134,7 @@ public class Kiosk extends Application {
         backgroundPane.visibleProperty().bind(slidePane.visibleProperty());
 
         Scene scene = new Scene(userView);
+        //scales all elements onto the screen horizontally
         primaryStage.widthProperty().addListener((obs, old, val) -> {
             forward.setTranslateX(val.doubleValue() - margin*2);
             back.setTranslateX(val.doubleValue()*offset);
@@ -138,6 +144,7 @@ public class Kiosk extends Application {
             scale.setX(Math.min(scaleWidthFactor, scaleHeightFactor));
             scale.setY(Math.min(scaleWidthFactor, scaleHeightFactor));
         });
+        //scales all elements onto the screen vertically
         primaryStage.heightProperty().addListener((obs, old, val) -> {
             forward.setTranslateY(val.doubleValue() - margin*2);
             back.setTranslateY(val.doubleValue() - margin*2);
@@ -148,6 +155,7 @@ public class Kiosk extends Application {
             scale.setY(Math.min(scaleWidthFactor, scaleHeightFactor));
         });
 
+        //pulls all the slides found in the xml
         slides = presentation.getSlides().stream()
                 .map(slide -> new SlideView(slide))
                 .toArray(size -> new SlideView[size]);
@@ -199,21 +207,21 @@ public class Kiosk extends Application {
         slidePane.setVisible(poi != null);
         map.setLeftAligned(slidePane.isVisible());
         //only show buttons when slide is shown
-        poiSlideViews.clear();
+        poiSlideViews.clear(); //clears to ensure that it only contains slides for selected POI
         this.slideNum = 0;
 
         if (poi != null) {
-            for (int i = 0; i < slides.length; i++) {
+            for (int i = 0; i < slides.length; i++) { //adds all slides for selected POI to POI slide array
                 if (poi.getId().equals(slides[i].getSlide().getPoiId())) {
                     poiSlideViews.add(slides[i]);
                 }
             }
-            slidePane.getChildren().clear();
-            if (poiSlideViews.size() > 0) {
-                slidePane.getChildren().add(poiSlideViews.get(0));
+            slidePane.getChildren().clear(); //clear old slide
+            if (poiSlideViews.size() > 0) { //only if there are slides found for that POI
+                slidePane.getChildren().add(poiSlideViews.get(0)); //shows first slide
                 poiSlideViews.get(0).setTranslateX(0);
                 poiSlideViews.get(0).setOpacity(1);
-                back.setVisible(false);
+                back.setVisible(false); //as first slide, don't show back button
                 forward.setVisible(poiSlideViews.size() > 1);
             }
         }
@@ -223,6 +231,7 @@ public class Kiosk extends Application {
         }
     }
 
+    //adds sets the slide from a given index
     public void setSlideNum(int slideNum) {
         double direction = slideNum > this.slideNum ? 1 : -1;
 
@@ -244,7 +253,6 @@ public class Kiosk extends Application {
                     new KeyFrame(swipeDuration, new KeyValue(prev.opacityProperty(), 0, Interpolator.EASE_BOTH))
             );
         }
-        //slidePane.getChildren().clear();
         // Add new one
         Node next = poiSlideViews.get(slideNum);
 
