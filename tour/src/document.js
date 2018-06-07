@@ -338,11 +338,13 @@ export default {
             {name:'Marketing Report', type:'pdf', path:'documents/Marketing/marketresearchandmarketingreport.pdf'},
             {name:'Video', type:'mp4', path:'documents/videos/marketing.mp4'},
         ]},
-    "Code": "Test",
+    "Code": require('../documents/code.md'),
     "Individual Reports": {
         children: [
             {name: 'Jon', type:'pdf', path:'documents/individual-reports/jonathantrain.pdf'},
             {name: 'Lauren', type:'pdf', path:'documents/individual-reports/Lauren.pdf'},
+            {name: 'Jack', type:'pdf', path:'documents/individual-reports/Jack.pdf'},
+            {name: 'Liam', type:'pdf', path:'documents/individual-reports/Liam.pdf'},
             {name: 'Ollie', type:'pdf', path:'documents/individual-reports/Ollie.pdf'},
             {name: 'Tom', type:'pdf', path:'documents/individual-reports/Tom.pdf'},
         ],
