@@ -335,5 +335,5 @@ export default {
         ]},
     "Code": "Test",
     "Individual Reports": "Test",
-    "References": "Test"
+    "References": require('../documents/references.md'),
 }

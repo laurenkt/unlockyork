@@ -1,0 +1,37 @@
+All test media content came from the following websites. All media content was used for the purpose of demonstrating the app in the sales presentation. Upon product release all information will be provided by the POI’s / sponsors and negotiated during the creation of the contracts
+
+- http://www.english-heritage.org.uk/visit/places/cliffords-tower-york/history-and-stories/history/
+- https://www.jorvikvikingcentre.co.uk/
+- https://www.railwaymuseum.org.uk/
+- https://www.yorkartgallery.org.uk/
+- http://www.historyofyork.org.uk/themes/norman/jewbury-cemetery
+- http://www.kenspelman.com/
+- http://withinthewalls.tumblr.com/kingsarms
+- http://www.merchantshallyork.org/
+- https://en.wikipedia.org/wiki/Bridges_of_York
+- https://www.yorkshiremuseum.org.uk/york-museum-gardens/
+- https://en.wikipedia.org/wiki/Peaseholme_House
+- http://withinthewalls.tumblr.com/posterngate
+- http://www.york-pm.co.uk/the-shambles/
+- http://www.yorkwalls.org.uk/?page_id=3690
+- https://www.yorkschocolatestory.com/
+- https://yorkminster.org/
+- https://www.yorkshiremuseum.org.uk/
+- https://www.bettys.co.uk/cafe-tea-rooms/our-locations/bettys-york
+- https://www.fudgekitchen.co.uk/find-us/shops/
+- https://www.visityork.org/eat-and-drink/gatehouse-coffee-p799671
+- https://mattcornock.co.uk/photos/picture/University-Of-York-Exhibition-Centre-Department-Physics-Electronics
+- https://wildnatureblog.wordpress.com/2014/01/17/a-goosey-gander-solving-the-mystery-of-heslington-lake/
+- https://www.gardenvisit.com/gardens/university_of_york_heslington_hall
+- https://yorkconferences.com/venues/heslington-hall/
+- https://www.york.ac.uk/about/campus/landmarks/
+- https://www.york.ac.uk/about/campus/landmarks/quiet-place/
+- https://brutalistconstructions.com/2015/03/21/university-of-york-central-hall-york/
+- https://www.york.ac.uk/electronic-engineering/about/campus/
+- https://yorkconferences.com/keep-it-on-campus/
+- http://www.tremblingmadness.co.uk/
+- https://middletonsyork.co.uk/
+- http://www.nightowlsdiscos.co.uk/
+- http://www.oxosrestaurantyork.com/
+- https://www.sparkyork.org/
+- http://www.yorkarmoury.com/
