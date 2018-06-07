@@ -6,9 +6,9 @@ import javafx.scene.text.FontWeight;
 
 public class FontAttrib {
 
-    String fontName;
+    String fontName; // font name
 
-    boolean italic;
+    boolean italic; // italic on or off
     boolean bold;
     boolean underline;
 
@@ -24,7 +24,7 @@ public class FontAttrib {
 
     public FontAttrib()
     {
-        fontName = "Times New Roman";
+        fontName = "Times New Roman"; // default
 
         italic = false;
         bold = false;
