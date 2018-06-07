@@ -59,6 +59,7 @@ public class POIView extends Region {
     public POIView(POI poi) {
         this.poi = poi;
 
+
         name.setText(poi.getName());
         name.setFont(new Font(40));
         name.getStyleClass().add("unlock--poi-label");

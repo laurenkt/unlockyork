@@ -80,7 +80,7 @@ public class MapView extends ScrollPane {
             poiViews.add(new POIView(poi));
         }
 
-        // sets up the initial user interface
+        // sets up the initial map view
         stack = new StackPane();
         stack.setAlignment(Pos.TOP_LEFT);
         stack.getChildren().add(mapView);

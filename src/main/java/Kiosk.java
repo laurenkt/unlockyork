@@ -81,7 +81,7 @@ public class Kiosk extends Application {
         logo.setOpacity(0.2);
         logo.setMouseTransparent(true);
 
-        //sets the icons for the user
+        //sets the icons for the user interface buttons
         forward = new IconButton("/icons/right.png");
         back = new IconButton("/icons/left.png");
         home = new IconButton("/icons/map_centre.png");
