@@ -1,0 +1,1 @@
+User stories were tracked throughout the project on our GitHub repository. As they were worked on by sub-teams, their suitability was reassessed and in some cases modifications were made (posted to the GitHub issue). When the functional specification was reviewed, these then informed changes to the specification to better reflect what would be useful to users.
