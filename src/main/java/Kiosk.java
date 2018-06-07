@@ -80,6 +80,7 @@ public class Kiosk extends Application {
         logo.setOpacity(0.2);
         logo.setMouseTransparent(true);
 
+        //sets the icons for the user
         forward = new IconButton("/icons/right.png");
         back = new IconButton("/icons/left.png");
         home = new IconButton("/icons/map_centre.png");
@@ -91,6 +92,7 @@ public class Kiosk extends Application {
         scaleSlider.setScaleY(1.5);
         scaleSlider.setMaxHeight(100);
 
+        //sets up the initial user interface
         userView = new StackPane();
         userView.getStylesheets().add(getClass().getResource("/css/Kiosk.css").toExternalForm());
         userView.setAlignment(Pos.TOP_LEFT);
@@ -150,6 +152,7 @@ public class Kiosk extends Application {
                 .map(slide -> new SlideView(slide))
                 .toArray(size -> new SlideView[size]);
 
+        //action listeners
         forward.setOnAction(e -> this.onNext());
         back.setOnAction(e -> this.onPrevious());
         map.setOnPoiClicked(e -> this.onClickPoi(e.getPOI()));
@@ -175,18 +178,23 @@ public class Kiosk extends Application {
         primaryStage.show();
     }
 
+    // if the next button is pressed the slide numbers is incremented by one, this is to allow the next presentation slide to be
+    // received
     public void onNext() {
         if (this.slideNum < poiSlideViews.size() - 1) {
             this.setSlideNum(this.slideNum + 1);
         }
     }
 
+    // if the previous button is pressed the slide numbers is decreased by one, this is to allow the previous presentation slide to be
+    // received
     public void onPrevious() {
         if (this.slideNum > 0) {
             this.setSlideNum(slideNum = this.slideNum - 1);
         }
     }
 
+    // if the user clicks on a POI, display the slide pane and the starting information for that POI.
     public void onClickPoi(POI poi) {
         slidePane.setVisible(poi != null);
         map.setLeftAligned(slidePane.isVisible());
